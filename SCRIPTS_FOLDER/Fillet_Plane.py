@@ -1,3 +1,11 @@
+"""
+Fillet Plane
+
+Author: Viktor Aleksandrovsky & Google
+Written for Maxon Cinema 4D R23
+Tested on R23
+"""
+
 import c4d
 GENERATOR_CODE = """import c4d
 import math

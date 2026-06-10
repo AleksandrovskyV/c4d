@@ -3,7 +3,7 @@
 🔧 **Extended Workflow for Arnold String Attribute in Cinema 4D**  
 _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_
 
-![preview](../!ALL-PREVIEW/Arnold_String-Path_Randomizer_Selector.gif)
+![preview](../assets/Arnold_String-Path_Randomizer_Selector.gif)
 
 This setup automates texture path assignment for **Arnold** in **Cinema 4D**, designed to streamline workflows with **Substance Painter** and batch texture assets.
 
