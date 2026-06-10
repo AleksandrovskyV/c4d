@@ -20,6 +20,7 @@ Hey dudes. W*lcome [0]
 Hey dudes. W*lcome [1]  > 🔹 [SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/SCRIPTS_FOLDER)
 
 ---
+## 🔹 [Fillet Plane / R23](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/SCRIPTS_FOLDER/Fillet_Plane.py)  
 
 ## 🔹 [CAM_MLinkScript / R20+](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/SCRIPTS_FOLDER/CAM_MLinkScript.py)  
 
