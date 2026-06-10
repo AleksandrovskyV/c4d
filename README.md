@@ -1,23 +1,6 @@
-# 🎬 Cinema4D-Projects
-
-Hey dudes. W*lcome [0]
-
----
-
-## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
-
-> Extend workflow with Arnold String Attribute  
-> _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_
-
-![preview](./assets/Arnold_String-Path_Randomizer_Selector.gif)
-
-- 🎲 Randomizes Arnold textures from a selected folder  
-- 🎯 Allows manual texture selection  
-
-
 # 🎬 Cinema4D-Scripts
 
-Hey dudes. W*lcome [1]  > 🔹 [SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/SCRIPTS_FOLDER)
+Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/SCRIPTS_FOLDER)
 
 ---
 
@@ -40,6 +23,23 @@ Hey dudes. W*lcome [1]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 - 🗑 One-click remove the generated camera, Xpresso tag, and render settings.
 
 > *Additional note: by creating your own alpha-channel mask you can effectively “patch” the render in post. With the standard renderer, you achieve this by projecting a material that carries an alpha channel from the camera onto your scene. It’s a clever workaround—though I’m really hoping the Maxon team will one day build in a true “Negative Render Region” feature! :)*
+
+
+# 🎬 Cinema4D-Projects
+
+Hey dudes. W*lcome [1]
+
+---
+
+## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
+
+> Extend workflow with Arnold String Attribute  
+> _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_
+
+![preview](./assets/Arnold_String-Path_Randomizer_Selector.gif)
+
+- 🎲 Randomizes Arnold textures from a selected folder  
+- 🎯 Allows manual texture selection  
 
 ### 🏷 Tags
 
