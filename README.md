@@ -22,7 +22,7 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 
 <br>
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/Matrix%20Preserve.tif" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
+  <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
     > Matrix Object to single mesh. Save color to Vertex Map Tag <br>
     > Convert Object Color on PolyObject to Vertex Map Tag <br></a>
