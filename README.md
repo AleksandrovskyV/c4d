@@ -8,6 +8,7 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 
 > plane.. with fillet
 
+![preview](./assets/fillet_plane_preview.gif)
 
 ## 🔹 [Matrix Preserve / R23](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Matrix%20Preserve.py)
 
