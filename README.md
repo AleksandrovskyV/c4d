@@ -11,7 +11,7 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 ![preview](./assets/fillet_plane_preview.gif)
 
 
-## 🔹 [CAM_MLinkScript / R20+](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked_Camera.py)  
+## 🔹 [Linked Camera / R20+](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked_Camera.py)  
 
 > Instantly duplicates the active camera to the top level of your scene.
 > Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length.
