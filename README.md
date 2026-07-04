@@ -7,7 +7,7 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 ## 🔹 [Fillet Plane](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Filled%20Plane.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
+  <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="margin-right: 12px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
 <strong> Tested:</strong> R23<br>
 "It`s a plane.. And it has fillets"<br>
@@ -19,7 +19,7 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 ## 🔹 [Matrix Preserve](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Matrix%20Preserve.py)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
+  <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="margin-right: 12px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color<br>
@@ -30,7 +30,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
 ## 🔹 [Object Color to Vertex Color Tag](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
+  <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="margin-right: 12px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
 <strong> Tested:</strong> R23<br>
 Convert object color from polygon object to Vertex Color Tag <br>
@@ -41,7 +41,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
 ## 🔹 [Linked Camera](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
+  <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="margin-right: 12px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
 <strong>Tested:</strong> R20+<br>
 > Instantly duplicates the active camera to the top level of your scene <br>
