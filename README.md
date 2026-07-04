@@ -8,8 +8,15 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 
 > plane.. with fillet
 
-![preview](./assets/fillet_plane_preview.gif)
 
+## 🔹 [Matrix Preserve / R23](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Matrix%20Preserve.py)
+
+> Matrix Object to single mesh. Save color to Vertex Map Tag
+> Alternative Mode > separate cubes with size 10. Color on Object
+
+## 🔹 [Object Color to Vertex Color / R23](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
+
+> Convert Object Color on PolyObject to Vertex Map Tag
 
 ## 🔹 [Linked Camera / R20+](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
 
