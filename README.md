@@ -13,7 +13,6 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 "It`s a plane.. And it has fillets"<br>
   </p>
 </div>
-<br>
 
 ![preview](./assets/fillet_plane_preview.gif)
 
