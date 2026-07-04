@@ -10,7 +10,7 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
   <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
 <strong> Tested:</strong> R23<br>
-"plane.. with fillet"<br>
+"It`s a plane.. And it has fillets"<br>
   </p>
 </div>
 <br>
