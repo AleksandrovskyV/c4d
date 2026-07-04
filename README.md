@@ -45,12 +45,13 @@ Convert Object Color on PolyObject to<br>Vertex Color Tag <br>
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
 <strong>Tested:</strong> R20+<br>
+> Instantly duplicates the active camera to the top level of your scene <br>
+> Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length <br>
   </p>
 </div>
 <br>
 
-> Instantly duplicates the active camera to the top level of your scene.
-> Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length.
+
 
 ![preview](./assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
 
