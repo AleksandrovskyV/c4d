@@ -9,8 +9,8 @@ Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/Aleksandrovsky
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
-Tested on R23<br>
-plane.. with fillet<br>
+<strong>Tested:</strong>R23<br>
+"plane.. with fillet"<br>
   </p>
 </div>
 <br>
@@ -22,8 +22,8 @@ plane.. with fillet<br>
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
-Tested on R23<br>
-Matrix Object to single mesh,<br>color transfer to Vertex Color Tag<br>AltMode: preserve as cubes,<br>color transfer to object color<br>
+<strong>Tested:</strong>R23<br>
+Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color<br>
   </p>
 </div>
 <br>
@@ -33,7 +33,7 @@ Matrix Object to single mesh,<br>color transfer to Vertex Color Tag<br>AltMode: 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
-Tested on R23<br>
+tested on R23<br>
 Convert Object Color on PolyObject to<br>Vertex Color Tag <br>
   </p>
 </div>
@@ -44,7 +44,7 @@ Convert Object Color on PolyObject to<br>Vertex Color Tag <br>
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="margin-right: 24px; margin-top: -2px;">
   <p style="margin: 0 0 -2px 0;">
-Tested on R20+<br>
+<strong>Tested:</strong>R20+<br>
   </p>
 </div>
 <br>
