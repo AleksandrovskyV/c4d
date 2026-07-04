@@ -19,7 +19,6 @@ Matrix Object to single mesh.<br>Color transfer to Vertex Map Tag<br>AltMode: pr
   </p>
 </div>
 <br>
-<br>
 
 ## 🔹 [Object Color to Vertex Color / R23](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
@@ -29,7 +28,6 @@ Matrix Object to single mesh.<br>Color transfer to Vertex Map Tag<br>AltMode: pr
 Convert Object Color on PolyObject to<br>Vertex Map Tag <br>
   </p>
 </div>
-<br>
 <br>
 
 ## 🔹 [Linked Camera / R20+](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
