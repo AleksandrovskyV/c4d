@@ -38,6 +38,20 @@ Convert object color from polygon object to Vertex Color Tag <br>
 </div>
 <br>
 
+## 🔹 [MP4 Vidoc](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/MP4%20Vidoc.py)  
+
+<div style="overflow: hidden; margin-bottom: 12px;">
+  <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong> Tested:</strong> R23<br>
+[LMB] - render MP4 file with current settings with _# numeration <br>
+[LMB]+[ALT] - viewport render in PV<br>
+[LMB]+[SHIFT] - viewport render in bg process
+  </p>
+</div>
+<br>
+
+
 ## 🔹 [Linked Camera](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
