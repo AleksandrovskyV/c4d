@@ -38,6 +38,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
 </div>
 <br>
 
+
 ## 🔹 [MP4 Vidoc](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/MP4%20Vidoc.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
@@ -50,7 +51,6 @@ Convert object color from polygon object to Vertex Color Tag <br>
   </p>
 </div>
 <br>
-
 
 ## 🔹 [Linked Camera](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
 
