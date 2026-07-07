@@ -2,7 +2,7 @@
 Linked Camera
 
 Author: Viktor Aleksandrovsky & ChatGPT
-Description-US: Creates a top-level duplicate Active Cam and...
+Description-US:Creates a top-level duplicate Active Cam and...
 optionally adds an Xpresso setup with an Extend value for sensor-based render scaling.
 
 Written for Maxon Cinema 4D R20+
