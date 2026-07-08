@@ -52,6 +52,19 @@ Convert object color from polygon object to Vertex Color Tag <br>
 </div>
 <br>
 
+## 🔹 [Swap Mats](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Swap%20Mats.py)  
+
+<div style="overflow: hidden; margin-bottom: 12px;">
+  <img src="./vsky.scripts/cust_icons/Swap%20Mats.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong> Tested:</strong> R23<br>
+Swap 2 selected texture tags in Object Manager<br>
+If select 2 objects, script swap last texture tags on objects<br>
+If parent object has no tag, script scan children and find first object with tag<br>
+  </p>
+</div>
+<br>
+
 ## 🔹 [Linked Camera](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
