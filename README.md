@@ -60,7 +60,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager<br>
 If select 2 objects, script swap last texture tags on objects<br>
-If parent object has no tag, script scan children and find first object with tag<br>
+If object has no tag, script scan children and find first object with tag for swap<br>
   </p>
 </div>
 <br>
