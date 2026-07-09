@@ -21,7 +21,7 @@ LMB click with [shift] - silent mode
 
 import c4d, os, re
 DIALOG_ID = 1000123
-present_mode = True
+present_mode = False
 
 class PreviewDialog(c4d.gui.GeDialog):
     def __init__(self, select_mode=0):
@@ -254,10 +254,15 @@ def main():
         render_flags = c4d.RENDERFLAGS_EXTERNAL
 
         import threading
+        import time
+
+        render_state = {
+            "is_active": True,
+            "progress": 0
+        }
+
         def render_progress_hook(progress, progress_type):
-            percentage = int(progress * 100)
-            c4d.StatusSetText(f"[MP4Vidoc] Background Viewport Render: {percentage}%")
-            c4d.StatusSetBar(percentage)
+            render_state["progress"] = int(progress * 100)
 
         def bg_render_worker():
             found_stage = doc.SearchObject(unique_stage_name)
@@ -272,7 +277,7 @@ def main():
                     break
                 found_uniq_rdata = found_uniq_rdata.GetNext()
 
-            print("[MP4Vidoc] Background Render Started...")
+            print("[MP4Vidoc] Render Started...")
 
             c4d.documents.RenderDocument(
                 doc,
@@ -283,22 +288,37 @@ def main():
                 wprog=None
             )
 
-            c4d.StatusSetText("[Vidoc] Background Render Complete")
-            c4d.StatusSetBar(100)
-
             print(f"[MP4Vidoc] {base_name}_{next_counter}{ext} - on disk!")
             c4d.EventAdd()
 
             if os.path.exists(directory):
                 c4d.storage.ShowInFinder(directory)
 
-            import time
+            # Status Bar
             time.sleep(1.5)
-            c4d.StatusClear()
+            render_state["is_active"] = False
 
+        def status_spammer_worker():
+            while render_state["is_active"]:
+                current_pct = render_state["progress"]
+                #c4d.StatusSetBar(current_pct)
+                c4d.StatusSetText(f"[MP4Vidoc] Rendering: {current_pct}%")
+                time.sleep(0.004)
+            
+            #c4d.StatusSetBar(100)
+            c4d.StatusSetText("[MP4Vidoc] Render Complete!")
+            c4d.EventAdd()
+
+
+        # BG Render
         render_thread = threading.Thread(target=bg_render_worker)
         render_thread.daemon = True
         render_thread.start()
+
+        # TextSpamer
+        status_thread = threading.Thread(target=status_spammer_worker)
+        status_thread.daemon = True
+        status_thread.start()
 
         c4d.EventAdd()
 
