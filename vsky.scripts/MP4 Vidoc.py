@@ -309,21 +309,34 @@ def main():
             #c4d.StatusSetBar(100)
             c4d.StatusSetText("[MP4Vidoc] Render Complete!")
             
-            time.sleep(5)
+            time.sleep(3.5)
             c4d.StatusClear()
 
-            
+
         # BG Render
         render_thread = threading.Thread(target=bg_render_worker)
         render_thread.daemon = True
         render_thread.start()
+        
+        hardlock = False
+        
+        if hardlock:
+            while render_state["is_active"]:
+                current_pct = render_state["progress"]
+                c4d.StatusSetText(f"[MP4Vidoc] Rendering: {current_pct}%")
+                c4d.StatusSetBar(current_pct)
+                time.sleep(0.005)
+    
+            c4d.StatusSetText("[MP4Vidoc] Render Complete!")
+            c4d.StatusSetBar(100)
 
-        # TextSpamer
-        status_thread = threading.Thread(target=status_spammer_worker)
-        status_thread.daemon = True
-        status_thread.start()
+        else:
+            # TextSpamer
+            status_thread = threading.Thread(target=status_spammer_worker)
+            status_thread.daemon = True
+            status_thread.start()
+            c4d.EventAdd()
 
-        c4d.EventAdd()
 
     else:
         # default render (without shift)
