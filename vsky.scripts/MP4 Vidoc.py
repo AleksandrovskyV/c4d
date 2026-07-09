@@ -303,13 +303,16 @@ def main():
                 current_pct = render_state["progress"]
                 #c4d.StatusSetBar(current_pct)
                 c4d.StatusSetText(f"[MP4Vidoc] Rendering: {current_pct}%")
-                time.sleep(0.004)
+                time.sleep(0.025) 
+
             
             #c4d.StatusSetBar(100)
             c4d.StatusSetText("[MP4Vidoc] Render Complete!")
-            c4d.EventAdd()
+            
+            time.sleep(5)
+            c4d.StatusClear()
 
-
+            
         # BG Render
         render_thread = threading.Thread(target=bg_render_worker)
         render_thread.daemon = True
