@@ -1,6 +1,6 @@
 # scripts
 
-Hey dudes. W*lcome [0]  > 🔹 [SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/vsky.scripts)
+Hey dudes. W*lcome [0]  > [SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/vsky.scripts)
 
 ---
 
