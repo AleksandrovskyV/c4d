@@ -41,8 +41,6 @@ Convert object color from polygon object to Vertex Color Tag <br>
 
 ## 🔹 [MP4 Vidoc](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/MP4%20Vidoc.py)  
 
-![preview](./assets/mp4_vidoc_11fps.gif)
-
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
@@ -53,6 +51,8 @@ Convert object color from polygon object to Vertex Color Tag <br>
   </p>
 </div>
 <br>
+
+![preview](./assets/mp4_vidoc_11fps.gif)
 
 ## 🔹 [Swap Mats](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Swap%20Mats.py)  
 
