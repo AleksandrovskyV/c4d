@@ -50,11 +50,9 @@ using your current render settings
   </p>
 </div>
 <br>
-
-Controls:
-[ LMB ] - Active "Render Settings" render via Picture Viewer<br><br>
+[ LMB ] - Active "Render Settings" render via Picture Viewer<br>
 [ LMB ] + [ ALT ] - Viewport render via Picture Viewer<br>
-[ LMB ] + [ SHIFT ] - Viewport render via Background Process
+[ LMB ] + [ SHIFT ] - Viewport render via Background Process<br>
 
 ![preview](./assets/mp4_vidoc_pillow.gif)
 
