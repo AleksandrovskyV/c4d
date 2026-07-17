@@ -1,6 +1,6 @@
 # scripts
 
-Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z) or [GIT REPOSITORY](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/vsky.scripts)
+Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z) or [GIT SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/vsky.scripts)
 
 ---
 
