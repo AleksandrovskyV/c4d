@@ -52,7 +52,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
 </div>
 <br>
 
-![preview](./assets/mp4_vidoc_11fps.gif)
+![preview](./assets/mp4_vidoc_pillow.gif)
 
 ## 🔹 [Swap Mats](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Swap%20Mats.py)  
 
