@@ -56,7 +56,7 @@ using your current render settings
  [ LMB ] + [ ALT ] - Viewport render via Picture Viewer<br>
  [ LMB ] + [ SHIFT ] - Viewport render via Background Process<br><br>
 
-![preview](./assets/mp4_vidoc_pillow.gif)
+![preview](./assets/mp4_vidoc_pillow.gif)<br>
 
 ## 🔹 [Swap Mats](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Swap%20Mats.py)  
 
