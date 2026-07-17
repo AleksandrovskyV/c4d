@@ -45,12 +45,16 @@ Convert object color from polygon object to Vertex Color Tag <br>
   <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
-[LMB] - write MP4 using current settings and _# numeration via Picture Viewer<br>
-[LMB]+[ALT] - viewport render via Picture Viewer<br>
-[LMB]+[SHIFT] - viewport render via Background Process
+A button to quickly export MP4 files with "_#" numbering<br>
+using your current render settings
   </p>
 </div>
 <br>
+
+Controls:
+[ LMB ] - Active "Render Settings" render via Picture Viewer<br><br>
+[ LMB ] + [ ALT ] - Viewport render via Picture Viewer<br>
+[ LMB ] + [ SHIFT ] - Viewport render via Background Process
 
 ![preview](./assets/mp4_vidoc_pillow.gif)
 
