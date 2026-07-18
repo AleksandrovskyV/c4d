@@ -52,9 +52,9 @@ using your current render settings
 <br>
 
 <div>  <strong> Controls:</strong><br></div>
- [ LMB ] -Active RenderSettings render via Picture Viewer<br>
- [ LMB + ALT   ] -Viewport render via Picture Viewer<br>
- [ LMB + SHIFT ] -Viewport render via BG Process<br><br>
+ [ LMB ] - Active "RenderSettings" via Picture Viewer<br>
+ [ LMB + ALT   ] - Viewport via Picture Viewer<br>
+ [ LMB + SHIFT ] - Viewport via BG Process<br><br>
 
 ![preview](./assets/mp4_vidoc_pillow.gif)<br>
 
