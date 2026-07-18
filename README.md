@@ -46,7 +46,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
-using your current render settings
+using your current "Render Settings"
   </p>
 </div>
 <br>
