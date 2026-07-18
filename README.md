@@ -52,7 +52,7 @@ using your current render settings
 <br>
 
 <div>  <strong> Controls:</strong><br></div>
- [ LMB ] - Active settings via Picture Viewer<br>
+ [ LMB ] &nbsp;&nbsp;- Active settings via Picture Viewer<br>
  [ LMB + ALT &nbsp;&nbsp;&nbsp;&nbsp;] - Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] - Viewport via BG Process<br><br>
 
