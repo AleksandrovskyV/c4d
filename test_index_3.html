@@ -32,7 +32,7 @@
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
 --main_w: 75%;
---topbar_h: 10vh;
+--topbar_h: 13vh;
 --botbar: 12vh; 
 --mbtn_size: 82px;
 }
@@ -249,7 +249,7 @@ pointer-events: auto;
 #mainViewer {
 width: var(--main_w);
 margin: 0 auto;
-padding-top: calc(var(--topbar_h) + 4vh);   
+padding-top: calc(var(--topbar_h) + 1vh);   
 display: flex;
 flex-direction: column;
 align-items: flex-start; 
@@ -435,7 +435,7 @@ justify-content: center;
 width: 117px;
 height: 117px;
 background-color: #26282c; 
-margin-right: 24px;
+margin-right: 20px;
 }
 
 .titleIco {
@@ -461,7 +461,7 @@ flex-direction: row;
 
 .aboutIconRow { 
 margin-top: 1.2vh;
-min-width: 380px;
+min-width: 424px;
 }
 
 .about_extend { 
@@ -520,9 +520,9 @@ opacity: 0;
 
 
 /* MOBILE */
-@media (max-width: 1600px){
+@media (max-width: 1790px){
     .gif_placeholder_web {
-        padding-right: 0px;
+    padding-right: 0px;
     }
 }
 @media (max-width: 1200px) {
@@ -532,7 +532,7 @@ opacity: 0;
 }
 @media (max-width: 769px) {
     :root {
-    --topbar_h: 16vh;
+    /*--topbar_h: 16vh; */
     --botbar: 5vh; /* SIZE PROBLEM FIX */
     --main_w: 97.5%;
     }
@@ -541,11 +541,6 @@ opacity: 0;
     }
     .bottomPageMobileS .gitLine {
     padding-bottom: 2vh; /* SIZE PROBLEM FIX */
-    }
-
-    #mainViewer {
-    width: var(--main_w);
-    padding-top: calc( var(--topbar_h));   
     }
 
     .aboutIconRow {
@@ -575,7 +570,20 @@ opacity: 0;
       <button id="sbtn" class="open-btn" >SCRIPTS</button>
       <div id="wbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">SCRIPTS</span></div>
     </div>
-    
+
+    <div id="webSidebar" class="webSidebarS">
+        <div style="height: 2.5vh;"></div>
+        <button id="a">Fillet Plane</button>
+        <button id="b">MP4 Vidoc</button>
+        <button id="c">Helpers</button>
+        <button id="d">Link Camera</button>
+        <h2 class="sidelink"> <a class="link b" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+        <div id = "gggbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div style="height: 2.5vh;"></div>
+        <button id="g">Arnold Random Textures</button>
+        <button id="a">Preview Head</button>
+    </div>
+
     <div id="mobile_push"></div>
 
     <div id="mobileToolbar" class="mobileToolbarS" hidden>
@@ -594,18 +602,7 @@ opacity: 0;
     
     <div style="height: 40px;"></div>
 
-    <div id="webSidebar" class="webSidebarS">
-        <div style="height: 2.5vh;"></div>
-        <button id="a">Fillet Plane</button>
-        <button id="b">MP4 Vidoc</button>
-        <button id="c">Helpers</button>
-        <button id="d">Link Camera</button>
-        <h2 class="sidelink"> <a class="link b" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-        <div id = "gggbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
-        <div style="height: 2.5vh;"></div>
-        <button id="g">Arnold Random Textures</button>
-        <button id="a">Preview Head</button>
-    </div>
+
     
 
     <div id="bottomPage" class="bottomPageS">
@@ -670,7 +667,7 @@ opacity: 0;
 
             <div class="infoElementS">
                     <div class="about_placeholder_mob">
-                        <div class="about_extend">
+                        <div class="about_extend" style="margin-top: 0vh; height: 0px !important;">
                             <div id="aboutControlsLabel"> <h2 class="special"></h2> </div>
                             <div id="aboutControlsText"> <p></p> </div>
                          </div>
@@ -711,9 +708,10 @@ opacity: 0;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p>
-                                Button for fast write <span class="marked">MP4</span> file with <span class="marked">_#</span> numeration <br>
-                                using current " Render Settings "
+                                <p style="font-size: 20px; line-height: 1.5;">
+                                Button for fast writing an <span class="marked">MP4</span> file with <span class="marked">_#</span><br>
+                                - version token. Uses active "Render Settings"<br>
+    
                                 </p>
 
                                 <div class="rowline pad">
@@ -868,7 +866,7 @@ function transitAllGifs(to_mobile, hard) {
 }
 
 function gifSizeChecker() {
-    const gif_align = window.innerWidth<1600;
+    const gif_align = window.innerWidth<1790;
     console.log("gf", gif_align)
     transitAllGifs(gif_align, true); 
 }
@@ -1019,15 +1017,15 @@ function resizeGlobalCanvas() {
 
     if (width < 768) { 
         switchToMobile(true);
-
-        document.documentElement.style.setProperty('--topbar_h', '16vh');
         transitElements('.about_placeholder_mob', '.about_extend', false);
 
+        //document.documentElement.style.setProperty('--topbar_h', '16vh');
+        
     } else if (width > 1200) {
         switchToMobile(false);
-
         transitElements('.about_placeholder_web', '.about_extend', false);
-        document.documentElement.style.setProperty('--topbar_h', '10vh');
+
+        //document.documentElement.style.setProperty('--topbar_h', '10vh');
 
     } else {
         switchToMobile(false);
@@ -1035,7 +1033,7 @@ function resizeGlobalCanvas() {
         const interpolationFactor = (width - 768) / (1200 - 768);
         const calculatedHeight = lerp(16, 10, interpolationFactor);
     
-        document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
+        //document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
     }
 
     gifSizeChecker();
