@@ -525,10 +525,14 @@ opacity: 0;
         padding-right: 0px;
     }
 }
-
+@media (max-width: 1200px) {
+    :root {
+    --topbar_h: 16vh;
+    --botbar: 5vh; /* SIZE PROBLEM FIX */
+    --main_w: 97.5%;
+    }
+}
 @media (max-width: 769px) {
-
-
     :root {
     --topbar_h: 16vh;
     --botbar: 5vh; /* SIZE PROBLEM FIX */
@@ -975,11 +979,17 @@ function textShortChecker() {
   };
 
   const updateDOM = () => {
-    namepageText.textContent = nameCases.namepage[currentIndices.namepage];
+    
     const width = window.innerWidth;
-    if (width < 970) {
-        centralText.textContent = nameCases.central[currentIndices.central];
+    
+    if (width >= 960 && width<1300) {
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&_DATA";//nameCases.central[currentIndices.central];
+    }else if (width < 960){
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&";//nameCases.central[currentIndices.central];
     }else{
+        namepageText.textContent = nameCases.namepage[currentIndices.namepage];
         // width fix
         centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
     }
