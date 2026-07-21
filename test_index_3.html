@@ -134,6 +134,23 @@ cursor: pointer;
 color: #dd9f17; 
 }
 
+.namepageS {
+color: #c8c8ca;
+font-size: 72px; 
+font-family: var(--titlefont);
+text-align: left;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+
+pointer-events: none;
+user-select: none;
+}
+
+.name_slash {
+color: #828282;
+}
+
 button {
 background: none;
 border: 0px solid transparent;
@@ -144,15 +161,15 @@ font-size: 76px;
 pointer-events: auto;
 }
 
-#namepage { 
+#namepage_mob { 
 color: #c8c8ca;
 }
-#slash { 
+#slash_mob { 
 color: #636161;
 }
 #sepa { color: #424447;
 }
-#namepage, #slash, #sepa {
+#namepage_mob, #slash_mob, #sepa {
 pointer-events: none;
 }
 
@@ -169,6 +186,8 @@ color: #848484;
 button.active {
 color: var(--accolor);
 }
+
+
 
 .mt_btn {
 width: 82px; height: 82px;
@@ -296,12 +315,6 @@ color: #6d6a65;
 }
 
 
-#proj_btn {
-font-size: 72px;
-margin-left: 0px;
-text-decoration: none;
-}
-
 .alt_proj_btn {
 font-size: 72px; 
 color: #828282;
@@ -314,6 +327,7 @@ white-space: nowrap;
 font-kerning: normal; 
 letter-spacing: -0.03em;
 }
+
 .subl {
 text-decoration: underline;
 }
@@ -539,33 +553,34 @@ opacity: 0;
 
 <div class="mainMenuOverlay">
     <div id="headerPage">
-      <button id="namepage">C4D</button>
-      <button id="slash">/</button>
+      <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
+      <button id="namepage_mob">C4D</button>
+      <button id="slash_mob">/</button>
       <button id="pbtn" class="open-btn" >PRJ</button>
       <button id="sepa">&amp;</button>
       <button id="sbtn" class="open-btn" >SCRIPTS</button>
-      <div id="wbtn"class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">SCRIPTS</span></div>
+      <div id="wbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">SCRIPTS</span></div>
     </div>
     
     <div id="mobile_push"></div>
 
     <div id="mobileToolbar" class="mobileToolbarS" hidden>
-        <div class="mt_btn wspc top"          id="mob_lang" data-num="-1">RU</div>
+        <div class="mt_btn wspc top"          id="mob_lang" data-nm="-1">RU</div>
 
-        <div class="mt_btn sg ico fp active"  id="mb_fp"    data-num="0" ></div>
-        <div class="mt_btn sg ico mpr"        id="mb_mpr"   data-num="1" ></div>
-        <div class="mt_btn sg ico swm"        id="mb_swm"   data-num="2" ></div>
-        <div class="mt_btn sg ico ctv"        id="mb_ctv"   data-num="3" ></div>
-        <div class="mt_btn sg ico map"        id="mb_map"   data-num="4" ></div>
-        <div class="mt_btn sg ico lk"         id="mb_lk"    data-num="5" ></div>
+        <div class="mt_btn sg ico fp active"  id="mb_fp"    data-nm="0" ></div>
+        <div class="mt_btn sg ico mpr"        id="mb_mpr"   data-nm="1" ></div>
+        <div class="mt_btn sg ico swm"        id="mb_swm"   data-nm="2" ></div>
+        <div class="mt_btn sg ico ctv"        id="mb_ctv"   data-nm="3" ></div>
+        <div class="mt_btn sg ico map"        id="mb_map"   data-nm="4" ></div>
+        <div class="mt_btn sg ico lk"         id="mb_lk"    data-nm="5" ></div>
 
-        <div class="mt_btn wspc bot"          id="mob_next" data-num="-2" >▼</div>
+        <div class="mt_btn wspc bot"          id="mob_next" data-nm="-2" >▼</div>
     </div>
 
     <div id="webSidebar" class="webSidebarS">
 <div style="height: 2.5vh;"></div>
 <button id="a">Fillet Plane</button>
-<button id="b">MP4Vidoc</button>
+<button id="b">MP4 Vidoc</button>
 <button id="c">Helpers</button>
 <button id="d">Link Camera</button>
 <h2 class="sidelink"> <a class="link b" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
@@ -603,7 +618,7 @@ opacity: 0;
   <div class="contentWrapper">
     <div class="contentScroll">
 
-        <div class="elementBlock" id="filletplane" >
+        <div class="elementBlock" id="filletplane" data-nm="0">
             <div class="iconBlock" > 
                 <div class="line_struct"></div>
                 
@@ -612,7 +627,9 @@ opacity: 0;
                 <div class="aboutIconRow" >
                     
                     <div id="nameIcon"> 
-                        <h2 class="titleLabel"> <span class="cmark" style="color: #1cf975" >* </span><span>Fillet Plane</span> </h2> 
+                        <h2 class="titleLabel"> <span class="cmark" style="color: #1cf975" >* </span>
+                            <span>Fillet Plane</span>
+                        </h2> 
                     </div>
                     
                     <div class="rowline">
@@ -624,8 +641,8 @@ opacity: 0;
                                 <p style="font-size: 22px; font-style: italic;">It`s a plane.. And it has fillets "</p>
 
                                 <div class="rowline pad">
-                                     <div id="tested"> <p>Tested: <span class="marked">R23</span> </p> </div>
-                                     <p><a class="texlink dn" href="">download</a>
+                                     <div id="tested"> <p>Tested: 
+                                        <span class="marked">R23</span></p> </div><p><a class="texlink dn" href="">download</a>
                                 </div>
 
                             </div>
@@ -659,7 +676,7 @@ opacity: 0;
 
         </div>
 
-        <div class="elementBlock" id="mp4preview" >
+        <div class="elementBlock" id="mp4preview" data-nm="1" >
             <div class="iconBlock" > 
                 <div class="line_struct"></div>
 
@@ -668,7 +685,9 @@ opacity: 0;
                 <div class="aboutIconRow" >
                     
                     <div id="nameIcon">
-                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span><span>MP4 Vidoc</span> </h2> 
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span>
+                            <span>MP4 Vidoc</span>
+                        </h2>
                     </div>
 
                     <div class="rowline">
@@ -684,8 +703,8 @@ opacity: 0;
 
                                 <div class="rowline pad">
                                      <p><a class="texlink yt" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a>
-                                     <div id="tested"> <p>Tested: <span class="marked">R23</span> </p> </div>
-                                     <p><a class="texlink dn" href="">download</a>
+                                     <div id="tested"> <p>Tested: 
+                                        <span class="marked">R23</span> </p> </div><p><a class="texlink dn" href="">download</a>
                                 </div>
 
                             </div>
@@ -694,7 +713,6 @@ opacity: 0;
 
                     <div class="about_placeholder_web">
                         
-
                         <div class="about_extend">
                             <div id="aboutControlsLabel"><h2 class="special">Controls:</h2></div>
                             <div id="aboutControlsText"> <p>
@@ -747,12 +765,12 @@ opacity: 0;
 
 
 <script>
-let mobile  = false;
 
+let mobile  = false;
+let activeElement = null;
 const projBtn = document.querySelector('.alt_proj_btn');
 
 if (projBtn) {
-
     document.querySelectorAll('.alt_proj_btn').forEach(btn => {
         btn.addEventListener('click', () => {
             //btn.classList.toggle("active")
@@ -785,12 +803,10 @@ let gifmobileflag = false;
 let isTransitBlocked = false;
 let shifting = false;
 
-
 function transitElements(toContainerSelector, targetSelector) {
     document.querySelectorAll('.elementBlock').forEach(block => {
         const destination = block.querySelector(toContainerSelector);
         const targetElement = block.querySelector(targetSelector);
-
 
         if (destination && targetElement) {
             if (!destination.contains(targetElement)) {
@@ -799,8 +815,6 @@ function transitElements(toContainerSelector, targetSelector) {
         }
     });
 }
-
-
 
 function transitAllGifs(to_mobile, hard) {
     if (hard){
@@ -899,18 +913,25 @@ function switchToMobile(mobile_state) {
     const bottomPageMobile = document.getElementById('bottomPageMobile');
     bottomPage.hidden = unhide_flag;
     bottomPageMobile.hidden = hide_flag;
-    
-
-    const pbtn = document.getElementById('pbtn');
-    const sbtn = document.getElementById('sbtn');
-
-    pbtn.hidden = hide_flag;
-    sbtn.hidden = hide_flag;
 
     swapTestedAndYoutube(mobile)
 
+    const namepage = document.getElementById('namepage');
+    const namepage_mob = document.getElementById('namepage_mob');
+    const slash_mob = document.getElementById('slash_mob');
+
     const wbtn = document.getElementById('wbtn');
+    const pbtn = document.getElementById('pbtn');
+    const sbtn = document.getElementById('sbtn');    
+
+    namepage.hidden = unhide_flag;
     wbtn.hidden = unhide_flag;
+
+    namepage_mob.hidden = hide_flag;
+    slash_mob.hidden = hide_flag;
+    pbtn.hidden = hide_flag;
+    sbtn.hidden = hide_flag;
+
 }
 
 
@@ -918,24 +939,73 @@ function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
 }
 
+
+// ResizeChecker //
+const nameCases = {
+    'namepage': ['C4D', 'CINEMA 4D'], 
+    'central': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
+};
+
+const headerPage = document.getElementById('headerPage');
+const namepageText = document.getElementById('namepageText');
+const centralText = document.getElementById('sepa');
+
+const reductionOrder = [
+  { key: 'namepage', element: namepageText },
+  { key: 'central', element: centralText },
+];
+
+function textShortChecker() {
+  const currentIndices = {
+    namepage: nameCases.namepage.length - 1,
+    central: nameCases.central.length - 1,
+  };
+
+  const updateDOM = () => {
+    namepageText.textContent = nameCases.namepage[currentIndices.namepage];
+    const width = window.innerWidth;
+    if (width < 970) {
+        centralText.textContent = nameCases.central[currentIndices.central];
+    }else{
+        // width fix
+        centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
+    }
+  };
+    
+  updateDOM();
+
+  const isOverflowing = () => {
+    return headerPage.scrollWidth > headerPage.clientWidth;
+  };
+  let step = 0;
+  
+  while (isOverflowing() && step < reductionOrder.length) {
+    const currentTarget = reductionOrder[step];
+    
+    if (currentIndices[currentTarget.key] > 0) {
+      currentIndices[currentTarget.key]--;
+      updateDOM();
+    } else {
+      step++;
+    }
+  }
+}
+
+//
+
 function resizeGlobalCanvas() {
-
-
-
     const width = window.innerWidth;
 
     if (width < 768) { 
         switchToMobile(true);
 
         document.documentElement.style.setProperty('--topbar_h', '18vh');
-
         transitElements('.about_placeholder_mob', '.about_extend', false);
 
     } else if (width > 1200) {
         switchToMobile(false);
 
         transitElements('.about_placeholder_web', '.about_extend', false);
-
         document.documentElement.style.setProperty('--topbar_h', '10vh');
 
     } else {
@@ -948,6 +1018,9 @@ function resizeGlobalCanvas() {
     }
 
     gifSizeChecker();
+
+    textShortChecker();
+
 
     const firstIcon = document.querySelector('.imageIconS');
 
