@@ -35,6 +35,7 @@
 --main_wm: 97.5%;
 --topbar_h: 10vh;
 --topbar_hm: 16vh;
+--mbtn_size: 14vw;
 }
 
 @font-face { font-family: 'title';
@@ -188,7 +189,8 @@ color: var(--accolor);
 
 
 .mt_btn {
-width: 82px; height: 82px;
+width: var(--mbtn_size); 
+height: var(--mbtn_size);
 margin-bottom: 4px;
 display: flex;
 justify-content: center;
@@ -211,8 +213,9 @@ background-size: contain;
 .ico.swm { background-image: url('./assets/svg/SwapMats.svg'); }
 
 .mt_btn.sg.ico {
-background-size: 70px 70px;
+background-size: calc(var(--mbtn_size) * 0.85) calc(var(--mbtn_size) * 0.85);
 }
+
 .mt_btn.wspc {
 font-family: var(--titlefont);
 font-size: 28px;
@@ -520,18 +523,18 @@ opacity: 0;
 /* MOBILE */
 @media (max-width: 1600px){
     .gif_placeholder_web {
-    padding-right: 0px;
+        padding-right: 0px;
     }
 }
 
 @media (max-width: 769px) {
+
     .mainMenuOverlay {
     width: calc( var(--main_wm) + 0.5%);
     }
 
     #headerPage {
-
-        height: var(--topbar_hm);
+    height: var(--topbar_hm);
     }
 
     #mainViewer {
