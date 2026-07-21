@@ -840,7 +840,7 @@ opacity: 0;
                         </h2>
                     </div>
 
-                    <div class="rowline" style="padding-bottom: 12px">
+                    <div class="rowline">
                         <div class="imageIconS"><div class="ico map titleIco"></div></div>
 
                         <div id="aboutElement" >
@@ -855,11 +855,11 @@ opacity: 0;
                                 </p>
 
                                 <p class="about_ru" style="font-size: 20px; line-height: 1.3;" hidden>
-                                Запекание MatrixObject в меш ~ цвет переносится на VertexColor Tag. Есть режим печки в кубы, с переносом цвета на объект<br>Проверен на <span class="marked">R23</span>
+                                Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
                                 </p>
 
                                 <div class="rowline jsb "style="justify-content: left;">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
                                         >download</a>
                                     </p>
@@ -869,7 +869,7 @@ opacity: 0;
                         </div>
                     </div>
 
-                    <div class="rowline">
+                    <div class="rowline" style="padding-bottom:20px">
                         <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
 
                         <div id="aboutElement" >
@@ -883,7 +883,39 @@ opacity: 0;
                                 </p>
 
                                 <p class="about_ru_s" style="font-size: 20px; line-height: 1.3;" hidden>
-                                    Перенос системного цвета с объекта<br>на Vertex Color Tag. Проверен на <span class="marked">R23</span><br>
+                                    Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
+                                </p>
+
+                                <div class="rowline jsb">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico swm titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
+                                </h2>
+
+                                <p class="about_us_g" style="font-size: 20px; line-height: 1.3;">
+
+                                Swap 2 selected texture tags in Object Manager<br>
+                                * If select 2 objects - swap last texture tags<br>
+                                * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
+                                </p>
+
+                                <p class="about_ru_g" style="font-size: 20px; line-height: 1.3;" hidden>
+                                Смена 2 выбранных tex тегов в ObjectManager<br>
+                                * Выбирая 2 объекта, меняет их крайние теги<br>
+                                * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
                                 </p>
 
                                 <div class="rowline jsb">
@@ -1066,7 +1098,15 @@ function switchLang() {
             ru_text.hidden = translated ? false : true;
         }
     });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_g');
+        const ru_text = block.querySelector('.about_ru_g');
 
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
     document.querySelectorAll('.elementBlock').forEach(block => {
         const us_text = block.querySelector('.about_с_us');
         const ru_text = block.querySelector('.about_с_ru');
