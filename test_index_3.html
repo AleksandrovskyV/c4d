@@ -2,7 +2,7 @@
 
 <meta charset="UTF-8">
 <meta name="description" content="Scripts & Projects for Cinema 4D" />
-<meta name="viewport" content="width=device-width, initial-scale=0.68">
+<meta name="viewport" content="width=device-width, initial-scale=0.66">
 
 <title>c4d</title>
 
@@ -32,11 +32,9 @@
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
 --main_w: 75%;
---main_wm: 97.5%;
 --topbar_h: 10vh;
---topbar_hm: 16vh;
---mbtn_size: 14vw;
---botbar: 14vh;
+--botbar: 12vh; 
+--mbtn_size: 82px;
 }
 
 @font-face { font-family: 'title';
@@ -371,7 +369,7 @@ user-select: none;
 background-color: var(--bgcolor);
 display: flex; flex-direction: row;
 width: 100%;
-height: 12vh;
+height: var(--botbar);
 justify-content: space-between;
 align-items: flex-start; 
 
@@ -516,7 +514,7 @@ opacity: 0;
 }
 
 .elementBlock{
-padding-bottom: 1vh;
+    padding-bottom: 1vh;
 }
 
 
@@ -530,21 +528,16 @@ padding-bottom: 1vh;
 
 @media (max-width: 769px) {
 
-      :root {
-        --botbar: 10vh; /* Новое значение переменной */
-      }
-      
-    .mainMenuOverlay {
-    width: calc( var(--main_wm) + 0.5%);
-    }
 
-    #headerPage {
-    height: var(--topbar_hm);
+    :root {
+    --topbar_h: 16vh;
+    --botbar: 4vh; 
+    --main_w: 97.5%;
     }
 
     #mainViewer {
-    width: var(--main_wm);
-    padding-top: calc( var(--topbar_hm));   
+    width: var(--main_w);
+    padding-top: calc( var(--topbar_h));   
     }
 
     .aboutIconRow {
