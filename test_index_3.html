@@ -34,7 +34,7 @@
 --main_w: 75%;
 --main_wm: 95%;
 --topbar_h: 10vh;
---topbar_hm: 18vh;
+--topbar_hm: 16vh;
 }
 
 
@@ -222,6 +222,7 @@ border: 2px solid #7f6423;
 display: flex; padding: 0;
 box-sizing: border-box;
 flex-shrink: 0;
+background-color: var(--bgcolor);
 }
 .mt_btn.wspc.top { margin-bottom: 24px;
 }
@@ -248,7 +249,7 @@ pointer-events: auto;
 #mainViewer {
 width: var(--main_w);
 margin: 0 auto;
-padding-top: calc(var(--topbar_h) + 2vh);   
+padding-top: calc(var(--topbar_h) + 4vh);   
 display: flex;
 flex-direction: column;
 align-items: flex-start; 
@@ -276,13 +277,13 @@ flex-direction: column;
 align-items: center;
 position: sticky;
 padding-right: 0vh;
-top: calc(var(--topbar_h) + 10vh);
+top: calc(var(--topbar_h) + 4vh);
 height: max-content;
 pointer-events: auto;
 }
 
-.mobile_push{
-margin-top: auto;
+#mobile_push{
+margin-top: auto ;
 }
 
 .webSidebarS {
@@ -525,13 +526,19 @@ opacity: 0;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 769px) {
     .mainMenuOverlay {
-    width: calc(var(--main_wm) + 0.5%);
+    width: calc( var(--main_wm) + 0.5%);
+    }
+
+    #headerPage {
+
+        height: var(--topbar_hm);
     }
 
     #mainViewer {
     width: var(--main_wm);
+    padding-top: calc( var(--topbar_hm));   
     }
 
     .aboutIconRow {
@@ -575,23 +582,24 @@ opacity: 0;
         <div class="mt_btn sg ico lk"         id="mb_lk"    data-nm="5" ></div>
 
         <div class="mt_btn wspc bot"          id="mob_next" data-nm="-2" >▼</div>
+        
     </div>
-
-    <div id="webSidebar" class="webSidebarS">
-<div style="height: 2.5vh;"></div>
-<button id="a">Fillet Plane</button>
-<button id="b">MP4 Vidoc</button>
-<button id="c">Helpers</button>
-<button id="d">Link Camera</button>
-<h2 class="sidelink"> <a class="link b" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-<div id = "gggbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
-<div style="height: 2.5vh;"></div>
-<button id="g">Arnold Random Textures</button>
-<button id="a">Preview Head</button>
-    </div>
-
+    
     <div style="height: 40px;"></div>
 
+    <div id="webSidebar" class="webSidebarS">
+        <div style="height: 2.5vh;"></div>
+        <button id="a">Fillet Plane</button>
+        <button id="b">MP4 Vidoc</button>
+        <button id="c">Helpers</button>
+        <button id="d">Link Camera</button>
+        <h2 class="sidelink"> <a class="link b" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+        <div id = "gggbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div style="height: 2.5vh;"></div>
+        <button id="g">Arnold Random Textures</button>
+        <button id="a">Preview Head</button>
+    </div>
+    
 
     <div id="bottomPage" class="bottomPageS">
         <h2><a class="gitlink" href="https://github.com/AleksandrovskyV/c4d/">* alright, go to github</a> </h2>
@@ -999,7 +1007,7 @@ function resizeGlobalCanvas() {
     if (width < 768) { 
         switchToMobile(true);
 
-        document.documentElement.style.setProperty('--topbar_h', '18vh');
+        document.documentElement.style.setProperty('--topbar_h', '16vh');
         transitElements('.about_placeholder_mob', '.about_extend', false);
 
     } else if (width > 1200) {
@@ -1012,7 +1020,7 @@ function resizeGlobalCanvas() {
         switchToMobile(false);
         
         const interpolationFactor = (width - 768) / (1200 - 768);
-        const calculatedHeight = lerp(16.8, 10, interpolationFactor);
+        const calculatedHeight = lerp(16, 10, interpolationFactor);
     
         document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
     }
