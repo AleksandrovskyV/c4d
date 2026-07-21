@@ -95,7 +95,20 @@ letter-spacing: -0.03em;
 padding-bottom: 1.4vh;
 }
 
-
+.overlay_fill{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%; height: 100%;
+background-color: var(--bgcolor);
+z-index: 9990;
+transition: opacity 0.4s ;
+user-select: none;
+pointer-events: none;
+}
+.overlay_fill.close{
+opacity: 0;
+}
 
 h2.special{
 color: #698aa8;
@@ -108,7 +121,10 @@ margin-bottom: 10px;
 h2.rtext {text-align: right;}
 
 
-a.link { color: #dd9f17; }
+a.link { 
+    color: #dd9f17; 
+pointer-events: auto;
+}
 a.link.b {color: #279ae3}
 a.link.drs { text-decoration: none; }
 a.link:hover { color: #a3a3a3; }
@@ -242,7 +258,7 @@ width: 100%;
 height: var(--topbar_h);
 justify-content: space-between;
 align-items: flex-end; 
-z-index: 9999;
+z-index: 9950;
 pointer-events: auto;
 }
 
@@ -290,7 +306,8 @@ margin-top: auto ;
 width: 420px;
 top: calc(var(--topbar_h) + 10vh);
 display: flex; flex-direction: column;
-pointer-events: auto;
+pointer-events: none;
+user-select: none;
 margin-bottom: auto;
 
 }
@@ -301,11 +318,11 @@ font-size: 28px;
 color: #a4a4a4;
 background-color: var(--bgcolor);
 text-decoration: underline;
-pointer-events: auto;
 text-align: left;
 margin-left: 140px;
-cursor: pointer;
 line-height: 1.6;
+cursor: pointer;
+pointer-events: auto;
 }
 
 .webSidebarS button:hover{
@@ -360,7 +377,7 @@ width: calc(var(--main_w) + 0.5%);
 height: 100%;
 display: flex; flex-direction: column;
 align-items: flex-end; 
-z-index: 9998;
+z-index: 9900;
 pointer-events: none !important;
 user-select: none;
 }
@@ -385,7 +402,7 @@ padding-top: 1vh;
 display: flex;
 flex-direction: column;
 background: var(--bgcolor);
-z-index: 9999;
+z-index: 9950;
 user-select: text;
 pointer-events: auto;
 }
@@ -410,10 +427,14 @@ flex-shrink: 0;
 .rowline {
 display: flex;
 flex-direction: row;
-justify-content: space-between;
+
 }
 .rowline.pad{
 margin-top: 0.8vh;
+}
+
+.rowline.jsb{
+justify-content: space-between;
 }
 
 .srtc {
@@ -466,8 +487,8 @@ flex-direction: row;
 }
 
 .aboutIconRow { 
-margin-top: 1.2vh;
 min-width: 424px;
+width: 460px;
 }
 
 .about_extend { 
@@ -565,6 +586,7 @@ opacity: 0;
 
 </head><body>
 
+<div id="zagl" class="overlay_fill"></div>
 
 <div class="mainMenuOverlay">
     <div id="headerPage">
@@ -625,7 +647,7 @@ opacity: 0;
     </div>
 
 
-    <div id="bottomPageMobile" class="bottomPageMobileS">
+    <div id="bottomPageMobile" class="bottomPageMobileS" hidden>
         <div class="botTexLine">
             <h2><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z"><u style="text-decoration: underline;">download</u> <div>shelf</div> </a> </h2>
             <h2 class="bot_link lngsup" id="swapside_mobile"
@@ -663,14 +685,23 @@ opacity: 0;
                         <div class="imageIconS" ><div class="ico fp titleIco"></div></div>
 
                         <div id="aboutElement" >
-                            <div class="aboutIconRow" >
+                            <div class="aboutIconRow" style="margin-top: 1.2vh;" >
 
                                 <p class="about_us" style="font-size: 22px; font-style: italic;">It`s a plane.. And it has fillets "</p>
                                 <p class="about_ru" style="font-size: 22px; font-style: italic;" hidden>Плоскость c глубиной и мягкими углами "</p>
 
-                                <div class="rowline pad">
-                                     <div class="tested"><p>Tested: <span class="marked">R23</span></p></div>
-                                     <p class="downlink"><a class="texlink dn" href="">download</a></p>
+                                <div class="rowline pad jsb">
+                                    <div class="tested">
+                                        <p>
+                                            <span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span>
+                                            <span class="marked">R23</span>
+                                        </p>
+                                    </div>
+                                    <p class="downlink">
+                                        <a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Filled%20Plane.py"
+                                        >download</a>
+                                    </p>
                                 </div>
 
                             </div>
@@ -731,13 +762,17 @@ opacity: 0;
 
                                 <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
                                 Кнопка быстрого рендера <span class="marked">MP4</span> файла с <span class="marked">_#</span><br>
-                                - номером итерации. Использует текущие<br>"Render Settings"<br>
+                                - номером итерации. Использует текущие<br>"Render Settings"...<br>
                                 </p>
 
-                                <div class="rowline pad">
-                                     <div id="class"><p>Tested: <span class="marked">R23</span></p></div>
+                                <div class="rowline pad jsb">
+                                     <div class="tested">
+                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R23</span></p>
+                                     </div>
                                      <p><a class="texlink yt" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
-                                     <p class="downlink"><a class="texlink dn" href="">download</a></p>
+                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
+                                        >download</a></p>
                                 </div>
 
                             </div>
@@ -746,7 +781,7 @@ opacity: 0;
 
                     <div class="about_placeholder_web">
                         
-                        <div class="about_extend">
+                        <div class="about_extend" style="width: 500px;">
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
 
             
@@ -758,12 +793,116 @@ opacity: 0;
                             </div>
                             
                             <div id="aboutControlsText" class="about_с_ru" hidden> <p>
-                                  <span class="srtc d">[ <span class="txt">ЛКМ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
+                                  <span class="srtc d">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
                                   <span class="srtc d">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
                                   <span class="srtc d">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
                                 </p>
                             </div>
 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+                        <img src="./assets/prvgif/mp4_preview_poster.png" 
+                             data-gif="./assets/mp4_vidoc_pillow.gif" 
+                             data-poster="./assets/prvgif/mp4_preview_poster.png" 
+                             alt="poster" />
+                        
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="elementBlock" id="converters" data-nm="2" >
+            <div class="iconBlock" > 
+                <div class="line_struct"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel" style="padding-bottom:0px" ><span class="cmark" style="color: #45a2de">* </span>
+                            <span>Matrix Preserve </span> 
+                        </h2>
+
+                        <h2 class="titleLabel" style="font-size: 25px; display: inline-block; "><span style="padding-left: 37px; color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
+                        </h2>
+
+
+                    </div>
+
+                    <div class="rowline" style="padding-bottom: 12px">
+                        <div class="imageIconS"><div class="ico map titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" style="margin-top: 0px;" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                Matrix Object to single mesh ~ color transfer<br>to VertexColor Tag. Alt mode preserve as cubes with save color to object<br>
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                Запекание MatrixObject в меш ~ цвет переносится на VertexColor Tag. Есть режим печки в кубы, с переносом цвета на объект<br>
+                                </p>
+
+                                <div class="rowline pad jsb">
+                                     <div class="tested">
+                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R23</span></p>
+                                     </div>
+                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
+                                        >download</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us_s" style="font-size: 20px; line-height: 1.5;">
+                                    Convert object color from polygon object<br>to Vertex Color Tag<br>
+                                </p>
+
+                                <p class="about_ru_s" style="font-size: 20px; line-height: 1.5;" hidden>
+                                    Перенос системного цвета с объекта<br>на Vertex Color Tag<br>
+                                </p>
+
+                                <div class="rowline pad jsb">
+                                     <div class="tested">
+                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R23</span></p>
+                                     </div>
+                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend">
                         </div>
 
 
@@ -915,6 +1054,16 @@ function switchLang() {
     document.querySelectorAll('.elementBlock').forEach(block => {
         const us_text = block.querySelector('.about_us');
         const ru_text = block.querySelector('.about_ru');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_s');
+        const ru_text = block.querySelector('.about_ru_s');
 
         if (ru_text && us_text) {
             us_text.hidden = translated ? true : false;
@@ -1118,10 +1267,17 @@ function resizeGlobalCanvas() {
             el.style.height = `${targetWidth}px`;
         });
     }
+
+    const zagl = document.getElementById('zagl');
+    zagl.classList.add("close"); 
+
+    //zagl.hidden = true;
 }
 
 window.onload = resizeGlobalCanvas;
 window.addEventListener('resize', resizeGlobalCanvas);
+
+
 
 
 </script>
