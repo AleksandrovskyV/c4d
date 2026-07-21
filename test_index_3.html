@@ -2,7 +2,7 @@
 
 <meta charset="UTF-8">
 <meta name="description" content="Scripts & Projects for Cinema 4D" />
-<meta name="viewport" content="width=device-width, initial-scale=0.66">
+<meta name="viewport" content="width=device-width, initial-scale=0.68">
 
 <title>c4d</title>
 
@@ -36,6 +36,7 @@
 --topbar_h: 10vh;
 --topbar_hm: 16vh;
 --mbtn_size: 14vw;
+--botbar: 14vh;
 }
 
 @font-face { font-family: 'title';
@@ -399,7 +400,7 @@ justify-content: space-between;
 display: flex;
 justify-content: center;
 align-items: center; 
-height: 12vh;
+height: var(--botbar);
 }
 
 .spacer_scroller {
@@ -515,7 +516,7 @@ opacity: 0;
 }
 
 .elementBlock{
-    padding-bottom: 1vh;
+padding-bottom: 1vh;
 }
 
 
@@ -529,6 +530,10 @@ opacity: 0;
 
 @media (max-width: 769px) {
 
+      :root {
+        --botbar: 10vh; /* Новое значение переменной */
+      }
+      
     .mainMenuOverlay {
     width: calc( var(--main_wm) + 0.5%);
     }
