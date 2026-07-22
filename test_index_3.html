@@ -35,6 +35,9 @@
 --topbar_h: 13vh;
 --botbar: 12vh; 
 --mbtn_size: 82px;
+--fp_color: #1cf975;
+--hp_color: #45a2de;
+--lc_color: #92a3bc;
 }
 
 @font-face { font-family: 'title';
@@ -244,9 +247,9 @@ background-color: var(--bgcolor);
 }
 .mt_btn.wspc.bot { margin-top: 20px;
 }
-.mt_btn:hover { background-color: #848484;
+.mt_btn:hover { background-color: var(--accolor);
 }
-.mt_btn.active { background-color: var(--accolor);
+.mt_btn.active { background-color: #848484;
 }
 
 
@@ -261,6 +264,7 @@ align-items: flex-end;
 z-index: 9950;
 pointer-events: auto;
 }
+
 
 #mainViewer {
 width: var(--main_w);
@@ -475,8 +479,8 @@ background-color: transparent !important;
 }
 
 .line_struct {
-border-left: 6px solid var(--accolor); 
-border-bottom: 6px solid var(--accolor); 
+border-left: 6px solid currentColor; 
+border-bottom: 6px solid currentColor; 
 margin-right: 1vh;
 height: calc(2.0vh + 26px);
 width: 1.5vh;
@@ -547,18 +551,28 @@ opacity: 0;
     padding-bottom: 1vh;
 }
 
+/* WEB */
+@media (min-width: 1790px){
+    #filletplane .aboutIconRow {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.3, 6vh);
+    }
+    #mp4vidoc .aboutIconRow {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.1, 2vh);
+    }
+}
 
-
-/* MOBILE */
 @media (max-width: 1790px){
     .gif_placeholder_web {
     padding-right: 0px;
     }
 }
+
+/* MOBILE */
 @media (max-width: 1200px) {
     :root {
     --main_w: 97.5%;
     }
+
 }
 @media (max-width: 769px) {
     :root {
@@ -608,7 +622,7 @@ opacity: 0;
         <button id="b">MP4 Vidoc</button>
         <button id="c">Helpers</button>
         <button id="d">Link Camera</button>
-        <h2 class="sidelink"> <a class="link b" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+        <h2 class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
         <div id = "gggbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
         <button id="g">Arnold Random Textures</button>
@@ -660,7 +674,7 @@ opacity: 0;
         </div>
 
         <div class="gitLine">
-            <h2><a class="gitlink_mob" href="https://github.com/AleksandrovskyV/c4d/">github</a> </h2>
+            <h2><a class="gitlink_mob lngsup" data-ru="гитхаб" data-us="github" href="https://github.com/AleksandrovskyV/c4d/">github</a> </h2>
         </div>
     </div>
 
@@ -672,14 +686,14 @@ opacity: 0;
 
         <div class="elementBlock" id="filletplane" data-nm="0">
             <div class="iconBlock" > 
-                <div class="line_struct"></div>
+                <div class="line_struct" style="color: var(--fp_color)"></div>
                 
                 <div class="gif_placeholder_web"></div>
 
                 <div class="aboutIconRow" >
                     
                     <div id="nameIcon"> 
-                        <h2 class="titleLabel"> <span class="cmark" style="color: #1cf975" >* </span>
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--fp_color)" >* </span>
                             <span>Fillet Plane</span>
                         </h2> 
                     </div>
@@ -738,9 +752,9 @@ opacity: 0;
 
         </div>
 
-        <div class="elementBlock" id="mp4preview" data-nm="1" >
+        <div class="elementBlock" id="mp4vidoc" data-nm="1" >
             <div class="iconBlock" > 
-                <div class="line_struct"></div>
+                <div class="line_struct" style="color: var(--accolor)"></div>
 
                 <div class="gif_placeholder_web"></div>
 
@@ -784,7 +798,7 @@ opacity: 0;
 
                     <div class="about_placeholder_web">
                         
-                        <div class="about_extend" style="width: 540px;">
+                        <div class="about_extend" style="width: 570px;">
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
 
             
@@ -796,9 +810,9 @@ opacity: 0;
                             </div>
                             
                             <div id="aboutControlsText" class="about_с_ru" hidden> <p>
-                                  <span class="srtc d">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
-                                  <span class="srtc d">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
-                                  <span class="srtc d">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
                                 </p>
                             </div>
 
@@ -831,14 +845,14 @@ opacity: 0;
 
         <div class="elementBlock" id="helpers" data-nm="2" >
             <div class="iconBlock" > 
-                <div class="line_struct"></div>
+                <div class="line_struct" style="color: var(--hp_color)"></div>
 
                 <div class="gif_placeholder_web"></div>
 
                 <div class="aboutIconRow" >
                     
                     <div id="nameIcon">
-                        <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: #45a2de">* </span>
+                        <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
                             <span>Helpers</span> 
                         </h2>
                     </div>
@@ -965,14 +979,14 @@ opacity: 0;
 
         <div class="elementBlock" id="linked_camera" data-nm="3" >
             <div class="iconBlock" > 
-                <div class="line_struct"></div>
+                <div class="line_struct" style="color: var(--lc_color)"></div>
 
                 <div class="gif_placeholder_web"></div>
 
                 <div class="aboutIconRow" >
                     
                     <div id="nameIcon">
-                        <h2 class="titleLabel"> <span class="cmark" style="color: #92a3bc" >* </span>
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--lc_color)" >* </span>
                             <span>Linked Camera</span>
                         </h2>
                     </div>
@@ -1021,7 +1035,7 @@ opacity: 0;
                             <div id="aboutControlsText" class="about_с_ru" hidden>  <p style="width: 540px; line-height: 1.5;">
 - Камера создаётся на верхнем уровне, что удобно для запекания исходной PSR-анимации<br>
 - Для расширенной области рендера через Xpresso тег создаётся готовый профиль Render Settings<br>
-- Удаление добавленного сетапа Linked Camera (включая рендер профиль) в один клик<br>
+- Опция для удаления добавленной камеры, включая профиль "Render Settings", в один клик<br>
                                 </p>
                             </div>
 
