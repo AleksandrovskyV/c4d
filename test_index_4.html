@@ -51,6 +51,7 @@ console.log("Mobile",isMobile,"Local", isLocal);
 --mp_color: #dd9f17;
 --hp_color: #45a2de;
 --lc_color: #92a3bc;
+--font_head: 72px;
 }
 
 @font-face { font-family: 'title';
@@ -168,7 +169,7 @@ color: #dd9f17;
 
 .namepageS {
 color: #c8c8ca;
-font-size: 72px; 
+font-size: var(--font_head); 
 font-family: var(--titlefont);
 text-align: left;
 white-space: nowrap; 
@@ -189,7 +190,7 @@ border: 0px solid transparent;
 font-family: var(--titlefont);
 letter-spacing: -0.04em;
 margin: 0;
-font-size: 76px; 
+font-size: var(--font_head); 
 pointer-events: auto;
 }
 
@@ -421,7 +422,7 @@ line-height: 1.6;
 }
 
 .base_btn {
-font-size: 72px; 
+font-size: var(--font_head); 
 color: #828282;
 font-family: var(--titlefont);
 text-decoration: none;
@@ -2086,6 +2087,7 @@ function firstStart() {
         }
 
         let lastTouchEnd = 0;
+        scr.textContent = "SCR";
         
         document.addEventListener('touchend', function (event) {
             const now = Date.now();
