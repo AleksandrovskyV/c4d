@@ -786,7 +786,7 @@ opacity: 0;
         <div class="botTexLine">
             <h2><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z"><u style="text-decoration: underline;">download</u> <div>shelf</div> </a> </h2>
             <h2 class="bot_link lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
-            <h2 class="rtext"> <a class="link drs" href="http://vsky.space/c4d/vsky.scripts/Filled%20Plane.py"><u style="text-decoration: underline;">viewcode</u> <div>script</div> </a> </h2> 
+            <h2 id="viewcode" class="rtext"> <a class="link drs" href=""><u style="text-decoration: underline;">viewcode</u> <div>script</div> </a> </h2> 
         </div>
 
         <div class="gitLine">
@@ -1511,7 +1511,31 @@ function nextElement() {
     activateNextInContainer(toolbarScr);
 }
 
+const viewCodeBtn = document.getElementById('viewcode');
 
+if (viewCodeBtn) {
+    viewCodeBtn.addEventListener('click', (event) => {
+        event.preventDefault(); 
+
+        // 2. Находим единственный видимый в данный момент блок (у которого hidden равен false)
+        const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
+                                         .find(block => !block.hidden);
+
+        if (currentVisibleBlock) {
+            // 3. Ищем внутри этого блока ссылку для скачивания файла (.py)
+            const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
+            
+            if (downloadLink && downloadLink.href) {
+                // 4. Открываем код скрипта в новой вкладке браузера
+                window.open(downloadLink.href, '_blank');
+            } else {
+                console.warn("Ссылка на файл скрипта внутри видимого блока не найдена.");
+            }
+        } else {
+            console.warn("На экране нет активных или видимых блоков elementBlock.");
+        }
+    });
+}
 const mob_next_btn = document.getElementById('mob_next');
 if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
 
@@ -1760,7 +1784,6 @@ function switchLang() {
             ru_text.hidden = translated ? false : true;
         }
     });
-
     document.querySelectorAll('.elementBlock').forEach(block => {
         const us_text = block.querySelector('.about_us_s');
         const ru_text = block.querySelector('.about_ru_s');
@@ -1794,7 +1817,6 @@ function switchLang() {
             }else{
                 ru_text.hidden = translated ? false : true;                
             }
-
         }
     });
 
@@ -1840,27 +1862,7 @@ if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
 if (swapButton) swapButton.onclick = () => switchSide();
 if (swapMobile) swapMobile.onclick = () => switchSide();
 
-function switchLangUpd() {
-    translated = !translated;
 
-    if (langButtonMobile) {
-        langButtonMobile.textContent = translated ? "US" : "RU";
-    }
-
-    const suffixes = ['', '_s', '_g', '_с_'];
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        suffixes.forEach(suf => {
-            const us_text = block.querySelector(`.about_${suf}us`);
-            const ru_text = block.querySelector(`.about_${suf}ru`);
-            if (ru_text && us_text) {
-                us_text.hidden = translated;
-                ru_text.hidden = !translated;
-            }
-        });
-    });
-
-    updateResponsiveText();
-}
 
 function swapTestedAndYoutube(mobile_state) {
     document.querySelectorAll('.rowline.pad').forEach(container => {
@@ -2026,8 +2028,6 @@ function resizeGlobalCanvas() {
     textShortChecker();
 
     updateResponsiveText();
-
-    
 
     const zagl = document.getElementById('zagl');
     zagl.classList.add("close"); 
