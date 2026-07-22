@@ -1561,15 +1561,15 @@ document.addEventListener('click', (event) => {
         }
 
         // 2. Сортировка SCRIPTS
-        if (currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn" )){
-            document.querySelectorAll('.elementBlock').forEach(block => {
-                const tag = block.dataset.tag;
-                block.hidden = !(tag === "script" || tag === "script_pack");
-            });
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn" )){
+                document.querySelectorAll('.elementBlock').forEach(block => {
+                    const tag = block.dataset.tag;
+                    block.hidden = !(tag === "script" || tag === "script_pack");
+                });
         }
 
         // 3. Сортировка PROJECTS
-        if (currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "project" || tag === "project_pack");
@@ -1577,7 +1577,7 @@ document.addEventListener('click', (event) => {
         }
 
         // 4. Сортировка для SEPA (Показать всё, кроме вложенных скриптов)
-        if (currentBtn.classList.contains('mclickcfunc') && currentBtn.id === "sepa") {
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && currentBtn.id === "sepa") {
             document.querySelectorAll('.elementBlock').forEach(block => {
                 block.hidden = (block.dataset.tag === "script_inpack");
             });
