@@ -1537,14 +1537,20 @@ let lastCheckedButtons = [];
 let lastCheckedU = null;
 let lastCheckedT = null;
 
+const mobile_width = 780+1;
+
 document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
-    
+    const width = window.innerWidth;
+    let sizeIsMobile = false;
+
+    if (width < mobile_width) sizeIsMobile = true;
+
     if (currentBtn) {
- 
+        
         const isMainTabClick = currentBtn.classList.contains('mclickcfunc');
 
-        if (!isMobile || isMainTabClick) {
+        if (!sizeIsMobile || isMainTabClick) {
             lastCheckedMainTabs.forEach(btn => {
                 if (btn) btn.classList.remove("active");
             });
@@ -1568,7 +1574,7 @@ document.addEventListener('click', (event) => {
             const btnMob = document.getElementById('prjbtn_mob');
             
             // На мобилках сохраняем в отдельный неприкосновенный кэш вкладок
-            if (isMobile) {
+            if (sizeIsMobile) {
                 lastCheckedMainTabs = [btnWeb, btnMob].filter(Boolean);
                 lastCheckedButtons = []; // Дочерний кэш чист
             } else {
@@ -1581,7 +1587,7 @@ document.addEventListener('click', (event) => {
         } else if (currentBtn.id === "scrbtn") {
             const btnWeb = document.getElementById('scrbtn');
             
-            if (isMobile) {
+            if (sizeIsMobile) {
                 lastCheckedMainTabs = [btnWeb].filter(Boolean);
                 lastCheckedButtons = [];
             } else {
@@ -1592,7 +1598,7 @@ document.addEventListener('click', (event) => {
             toolbar_scr.hidden = false;
 
         } else if (currentBtn.id === "sepa") {
-            if (isMobile) {
+            if (sizeIsMobile) {
                 lastCheckedMainTabs.forEach(btn => btn && btn.classList.remove("active"));
                 lastCheckedMainTabs = [];
             }
@@ -1870,8 +1876,6 @@ function switchSide() {
     const left = document.getElementById('webTrickbarSwap');
     const leftMobile = document.getElementById('mobileTrickbarSwap');
 
-    
-    const mobile_width = 780+1;
     const width = window.innerWidth;
 
     if (width < mobile_width && switchSides){
@@ -2029,7 +2033,6 @@ function textShortChecker() {
 
 function resizeGlobalCanvas() {
     const width = window.innerWidth;
-    const mobile_width = 780+1;
     if (width < mobile_width) { 
         switchToMobile(true);
         transitElements('.about_placeholder_mob', '.about_extend', false);
@@ -2070,7 +2073,8 @@ function firstStart() {
     if (isMobile) {
         const scr = document.getElementById('scrbtn');
         if (scr) {
-           scr.classList.add('active'); 
+            scr.classList.add('active'); 
+            lastCheckedMainTabs = [scr]; 
         }
 
         let lastTouchEnd = 0;
