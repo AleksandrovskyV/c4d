@@ -186,16 +186,26 @@ color: #c8c8ca;
 #slash_mob { 
 color: #636161;
 }
+
 #sepa { color: #424447;
 }
-#namepage_mob, #slash_mob, #sepa {
+
+#sepa:hover{
+text-decoration: underline;
+cursor: pointer;
+}
+
+#namepage_mob, #slash_mob {
 pointer-events: none;
 }
 
-.open-btn {
+.open_btn {
 color: #828282;
 text-decoration: underline;
 cursor: pointer;
+}
+.open_btn:not(.active):hover {
+filter: brightness(0.85); 
 }
 
 button:hover {
@@ -389,7 +399,7 @@ letter-spacing: -0.03em;
 line-height: 1.6;
 }
 
-.sort_btn {
+.base_btn {
 font-size: 72px; 
 color: #828282;
 font-family: var(--titlefont);
@@ -404,18 +414,19 @@ letter-spacing: -0.03em;
 .subl {
 text-decoration: underline;
 }
-.sort_btn:not(.active):hover {
-    filter: brightness(0.85); 
+.base_btn:not(.active):hover {
+filter: brightness(0.85); 
 }
-.sort_btn:active,
-.sort_btn.active:active {
+
+.base_btn:active,
+.base_btn.active:active {
 color: #6d6a65 !important; 
 }
-.sort_btn.active {
+.base_btn.active {
 color: var(--accolor);
 }
 
-#gggbtn {
+#prjbtn {
 padding-top: 2vh;
 }
 
@@ -517,13 +528,16 @@ align-items: center;
 justify-content: center; 
 width: 117px;
 height: 117px;
+aspect-ratio: 1 / 1; 
 background-color: #26282c; 
 margin-right: 20px;
+
 }
 
 .titleIco {
 width: 96px;
 height: 96px;
+aspect-ratio: 1 / 1; 
 display: inline-block;
 vertical-align: middle;
 background-color: transparent !important; 
@@ -619,7 +633,7 @@ opacity: 0;
 }
 
 /* MOBILE */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
     :root {
     --main_w: 97.5%;
     }
@@ -648,6 +662,15 @@ opacity: 0;
     .titleLabel{
     padding-bottom: 0vh;
     }
+    .mob_hide{
+    display: none !important;
+    }
+    #sepa:hover{
+    text-decoration: none;
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+    }
 }
 
 </style>
@@ -661,22 +684,21 @@ opacity: 0;
       <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
       <button id="namepage_mob">C4D</button>
       <button id="slash_mob">/</button>
-      <button id="pbtn" class="open-btn" >PRJ</button>
+      <button id="prjbtn_mob" class="open_btn sort_btn" >PRJ</button>
       <button id="sepa">&amp;</button>
-      <button id="sbtn" class="open-btn" >SCRIPTS</button>
-      <div    id="wbtn" class="sort_btn" tabindex="0"><span>/  </span><span class="subl">SCRIPTS</span></div>
+      <div    id="scrbtn" class="base_btn sort_btn" tabindex="0"><span class="mob_hide">/  </span><span class="subl">SCRIPTS</span></div>
     </div>
 
     <div id="webSidebar" class="webSidebarS">
         <div style="height: 2.5vh;"></div>
         <div    id="menu_a" class="sidebtn" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
         <div    id="menu_b" class="sidebtn" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
-        <div    id="meny_c" class="sidebtn" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
-        <div    id="meny_d" class="sidebtn" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
+        <div    id="menu_c" class="sidebtn" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
+        <div    id="menu_d" class="sidebtn" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
         <h2 class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-        <div    id="gggbtn" class="sort_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div    id="prjbtn" class="base_btn sort_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
-        <div    id="meny_g" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Arnold Random<br> <span class="rem_und"></span>Textures</span> </div>
+        <div    id="menu_g" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Arnold Random<br> <span class="rem_und"></span>Textures</span> </div>
         <div    id="menu_f" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Preview Head</span></div>
     </div>
 
@@ -698,8 +720,6 @@ opacity: 0;
     
     <div style="height: 40px;"></div>
 
-
-    
 
     <div id="bottomPage" class="bottomPageS">
         <h2><a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
@@ -735,7 +755,7 @@ opacity: 0;
   <div class="contentWrapper">
     <div class="contentScroll">
 
-        <div class="elementBlock" id="filletplane" data-nm="0">
+        <div class="elementBlock" id="filletplane" data-tag="script" data-nm="0">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--fp_color)"></div>
                 
@@ -803,7 +823,7 @@ opacity: 0;
 
         </div>
 
-        <div class="elementBlock" id="mp4vidoc" data-nm="1" >
+        <div class="elementBlock" id="mp4vidoc" data-nm="1" data-tag="script">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--accolor)"></div>
 
@@ -894,7 +914,7 @@ opacity: 0;
 
         </div>
 
-        <div class="elementBlock" id="helpers" data-nm="2" >
+        <div class="elementBlock" id="helpers" data-tag="script_pack" data-nm="2" >
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--hp_color)"></div>
 
@@ -1028,7 +1048,7 @@ opacity: 0;
 
         </div>
 
-        <div class="elementBlock" id="linked_camera" data-nm="3" >
+        <div class="elementBlock" id="linked_camera" data-nm="3" data-tag="script">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--lc_color)"></div>
 
@@ -1137,33 +1157,73 @@ opacity: 0;
 let mobile  = false;
 let activeElement = null;
 
-let lastCheckedB = null;
+let lastCheckedButtons = []; 
 let lastCheckedU = null;
 let lastCheckedT = null;
 
 document.addEventListener('click', (event) => {
-
     const currentBtn = event.target.closest('.sidebtn, .sort_btn');
     
     if (currentBtn) {
-        if (lastCheckedB) lastCheckedB.classList.remove("active");
+        lastCheckedButtons.forEach(btn => {
+            if (btn) btn.classList.remove("active");
+        });
         if (lastCheckedU) lastCheckedU.classList.remove("active");
         if (lastCheckedT) lastCheckedT.classList.remove("active");
 
-        lastCheckedB = currentBtn;
-        lastCheckedU = currentBtn.querySelector('.sel_pre');
-        lastCheckedT = currentBtn.querySelector('.sid_tex');
+        lastCheckedU = null;
+        lastCheckedT = null;
 
-        if (lastCheckedB) lastCheckedB.classList.add("active");
-        if (lastCheckedU) lastCheckedU.classList.add("active"); 
-        if (lastCheckedT) lastCheckedT.classList.add("active"); 
+        if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
+            const btnWeb = document.getElementById('prjbtn');
+            const btnMob = document.getElementById('prjbtn_mob');
+            
+            lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
 
-        if(sidebtn.id == "menu_a"){
+        // 3. СВЯЗЫВАНИЕ ПАР (SCRIPTS)
+        } else if (currentBtn.id === "scrbtn") {
+            const btnWeb = document.getElementById('scrbtn');
+            
+            lastCheckedButtons = [btnWeb].filter(Boolean);
 
+        } else {
+            lastCheckedButtons = [currentBtn];
+            lastCheckedU = currentBtn.querySelector('.sel_pre');
+            lastCheckedT = currentBtn.querySelector('.sid_tex');
         }
 
-    }
+        lastCheckedButtons.forEach(btn => btn.classList.add("active"));
+        if (lastCheckedU) lastCheckedU.classList.add("active");
+        if (lastCheckedT) lastCheckedT.classList.add("active");
 
+        if (currentBtn.classList.contains('sidebtn')) {
+            let target_id;
+            if(currentBtn.id == "menu_a") target_id = 'filletplane';
+            if(currentBtn.id == "menu_b") target_id = 'mp4vidoc';
+            if(currentBtn.id == "menu_c") target_id = 'helpers';
+            if(currentBtn.id == "menu_d") target_id = 'linked_camera';
+            if(currentBtn.id == "menu_g") target_id = 'arnold_rand_texture';
+            if(currentBtn.id == "menu_f") target_id = 'preview_head';
+
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                block.hidden = (block.id !== target_id);
+            });
+        }
+
+        if (currentBtn.classList.contains('sort_btn') && (currentBtn.id === "scrbtn" )){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "script" || tag === "script_pack");
+            });
+        }
+
+        if (currentBtn.classList.contains('sort_btn') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "project" || tag === "project_pack");
+            });
+        }
+    }
 
     const gifCont = event.target.closest('.gifpreview');
     
@@ -1388,18 +1448,12 @@ function switchToMobile(mobile_state) {
     const namepage_mob = document.getElementById('namepage_mob');
     const slash_mob = document.getElementById('slash_mob');
 
-    const wbtn = document.getElementById('wbtn');
-    const pbtn = document.getElementById('pbtn');
-    const sbtn = document.getElementById('sbtn');    
+    const prjbtn_mob = document.getElementById('prjbtn_mob');   
 
     namepage.hidden = unhide_flag;
-    wbtn.hidden = unhide_flag;
-
     namepage_mob.hidden = hide_flag;
     slash_mob.hidden = hide_flag;
-    pbtn.hidden = hide_flag;
-    sbtn.hidden = hide_flag;
-
+    prjbtn_mob.hidden = hide_flag;
 }
 
 
@@ -1476,7 +1530,7 @@ function resizeGlobalCanvas() {
 
         //document.documentElement.style.setProperty('--topbar_h', '16vh');
         
-    } else if (width > 1200) {
+    } else if (width > 1400) {
         switchToMobile(false);
         transitElements('.about_placeholder_web', '.about_extend', false);
 
@@ -1485,7 +1539,7 @@ function resizeGlobalCanvas() {
     } else {
         switchToMobile(false);
         
-        const interpolationFactor = (width - 768) / (1200 - 768);
+        const interpolationFactor = (width - 768) / (1400 - 768);
         const calculatedHeight = lerp(16, 10, interpolationFactor);
     
         //document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
@@ -1494,16 +1548,6 @@ function resizeGlobalCanvas() {
     gifSizeChecker();
 
     textShortChecker();
-
-
-    const firstIcon = document.querySelector('.imageIconS');
-
-    if (firstIcon) {
-        const targetWidth = firstIcon.getBoundingClientRect().width;
-        document.querySelectorAll('.imageIconS').forEach(el => {
-            el.style.height = `${targetWidth}px`;
-        });
-    }
 
     const zagl = document.getElementById('zagl');
     zagl.classList.add("close"); 
