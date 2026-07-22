@@ -657,6 +657,39 @@ html.mobile {
     --font_head: 92px; 
 }
 
+/*ShortShelf*/
+#shortshelf {
+position: fixed;
+top: 0;left: 0;
+width: 100vw; height: 100vh;
+box-sizing: border-box;
+padding: 10vh 10vw;
+display: grid !important; 
+grid-template-columns: repeat(var(--cols, 3), 1fr);
+grid-auto-rows: 1fr;
+gap: 6px; 
+place-content: center; 
+}
+html:not(.mobile) #shortshelf {
+    background-color: var(--bgcolor); 
+    z-index: 9999;
+}
+html.mobile #shortshelf {
+    display: none !important;
+}
+
+#shortshelf div.mt_btn {
+width: 100% !important;
+height: 100% !important;
+margin: 0 !important; 
+box-sizing: border-box;
+background-size: 80% 80% !important; 
+pointer-events: auto;
+}
+#shortshelf[hidden] {
+display: none !important;
+}
+
 /* WEB */
 @media (min-width: 1790px){
     #filletplane .aboutIconRow {
@@ -750,23 +783,35 @@ html.mobile {
         <div    data-func="preview_head" class="sidebtn clickfunc"        tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Preview Head</span></div>
     </div>
 
+    <div id="shortshelf" hidden>
+            <div data-func="filletplane"         class="sh_btn downfunc sg ico fp"   ></div>
+            <div data-func="mp4vidoc"            class="mt_btn downfunc sg ico mpr"  ></div>
+            <div data-func="swap_mats"           class="mt_btn downfunc sg ico swm"  ></div>
+            <div data-func="matrix_preserve"     class="mt_btn downfunc sg ico map"  ></div>
+            <div data-func="objcolor_to_vercolor"class="mt_btn downfunc sg ico ctv"  ></div>
+            <div data-func="linked_camera"       class="mt_btn downfunc sg ico lk"   ></div>
+            <div data-func="arnold_rand_texture" class="mt_btn downfunc sg ico at"   ></div>
+            <div data-func="preview_head"        class="mt_btn downfunc sg ico he"   ></div>
+            <div data-func="preview_head"        class="mt_btn downfunc sg ico rand" ></div>
+    </div>
+
     <div id="mobile_push"></div>
 
     <div id="mobileToolbar" class="mobileToolbarS" hidden>
         <div class="mt_btn wspc top" id="mob_lang" >RU</div>
 
         <div id="toolbar_scr">
-            <div data-func="filletplane"     class="mt_btn clickfunc sg ico fp"   id="mb_fp"    data-nm="0" ></div>
-            <div data-func="mp4vidoc"        class="mt_btn clickfunc sg ico mpr"  id="mb_mpr"   data-nm="1" ></div>
-            <div data-func="swap_mats"       class="mt_btn clickfunc sg ico swm"  id="mb_swm"   data-nm="2" ></div>
-            <div data-func="matrix_preserve" class="mt_btn clickfunc sg ico map"  id="mb_map"   data-nm="3" ></div>
+            <div data-func="filletplane"     class="mt_btn clickfunc sg ico fp"        id="mb_fp"    data-nm="0" ></div>
+            <div data-func="mp4vidoc"        class="mt_btn clickfunc sg ico mpr"       id="mb_mpr"   data-nm="1" ></div>
+            <div data-func="swap_mats"       class="mt_btn clickfunc sg ico swm"       id="mb_swm"   data-nm="2" ></div>
+            <div data-func="matrix_preserve" class="mt_btn clickfunc sg ico map"       id="mb_map"   data-nm="3" ></div>
             <div data-func="objcolor_to_vercolor" class="mt_btn clickfunc sg ico ctv"  id="mb_ctv"   data-nm="4" ></div>
-            <div data-func="linked_camera"   class="mt_btn clickfunc sg ico lk"   id="mb_lk"    data-nm="5" ></div>
+            <div data-func="linked_camera"   class="mt_btn clickfunc sg ico lk"        id="mb_lk"    data-nm="5" ></div>
         </div>
 
         <div id="toolbar_prj" hidden>
             <div data-func="arnold_rand_texture" class="mt_btn clickfunc sg ico at"  id="mb_arp"   data-nm="0" ></div>
-            <div data-func="preview_head"        class="mt_btn clickfunc sg ico he"        id="mb_prh"   data-nm="1" ></div>
+            <div data-func="preview_head"        class="mt_btn clickfunc sg ico he"  id="mb_prh"   data-nm="1" ></div>
         </div>
 
         <div class="mt_btn wspc bot" id="mob_next" data-nm="-2" >▼</div>
@@ -1538,9 +1583,13 @@ let activeElement = null;
 
 
 let backupSoloCheck = null;
+let shortShelfActive = false;
 
 function soloCheck(state) {
+    if(shortShelfActive) return;
+
     const blocks = document.querySelectorAll('.elementBlock');
+
     if (blocks.length === 0) return;
 
     if (state) {
@@ -2177,6 +2226,60 @@ function textShortChecker() {
   }
 }
 
+document.getElementById('shortshelf')?.addEventListener('click', function(event) {
+    const btn = event.target.closest('.mt_btn');
+    if (!btn) return;
+
+    const funcName = btn.dataset.func;    
+    const element = document.getElementById(funcName);
+
+    if (funcName === 'randomize') {
+
+        return;
+    }else{
+        if (element) {
+            console.log(`Скачивание скрипта для: ${funcName}`);
+            const downloadLink = element.querySelector('.texlink.dn');
+            if (downloadLink && downloadLink.href) {
+                window.open(downloadLink.href, '_blank');
+            } 
+
+        } else {
+            console.log("Элемент не найден");
+        }
+    }
+});
+
+// Добавьте эту функцию в ваш глобальный JS-файл
+function updateShortShelf() {
+    const shelf = document.getElementById('shortshelf');
+    if (!shelf) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const isMobileLayout = document.documentElement.classList.contains('mobile');
+
+    // Условие отображения: ширина < 900 И высота < 600 И на HTML нет класса mobile
+    if (width < 600 && height < 600 && !isMobileLayout) {
+
+        shelf.hidden = false;
+        shortShelfActive =true;
+
+
+        const buttons = shelf.querySelectorAll('.mt_btn');
+        const count = buttons.length;
+
+        const cols = Math.ceil(Math.sqrt(count)); 
+        shelf.style.setProperty('--cols', cols);
+
+    } else {
+        shelf.setAttribute('hidden', '');
+        shelf.style.removeProperty('display');
+        shelf.hidden = true;
+        shortShelfActive =false;
+    }
+}
+
 
 function resizeGlobalCanvas() {
     const width = window.innerWidth;
@@ -2225,10 +2328,19 @@ function resizeGlobalCanvas() {
 
     updateResponsiveText();
 
+    if(!isMobile){
+       updateShortShelf(); 
+    }
+    
+
     const zagl = document.getElementById('zagl');
     zagl.classList.add("close"); 
     //zagl.hidden = true;
 }
+
+
+
+
 
 function firstStart() {
     resizeGlobalCanvas();
