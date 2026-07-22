@@ -360,7 +360,6 @@ letter-spacing: -0.03em;
 line-height: 1.6;
 }
 .sidebtn.active{
-
 }
 .sid_tex {
 text-decoration: underline;
@@ -684,22 +683,22 @@ opacity: 0;
       <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
       <button id="namepage_mob">C4D</button>
       <button id="slash_mob">/</button>
-      <button id="prjbtn_mob" class="open_btn sort_btn" >PRJ</button>
-      <button id="sepa">&amp;</button>
-      <div    id="scrbtn" class="base_btn sort_btn" tabindex="0"><span class="mob_hide">/  </span><span class="subl">SCRIPTS</span></div>
+      <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
+      <button data-func="home" id="sepa">&amp;</button>
+      <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span class="subl">SCRIPTS</span></div>
     </div>
 
     <div id="webSidebar" class="webSidebarS">
         <div style="height: 2.5vh;"></div>
-        <div    id="menu_a" class="sidebtn" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
-        <div    id="menu_b" class="sidebtn" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
-        <div    id="menu_c" class="sidebtn" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
-        <div    id="menu_d" class="sidebtn" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
+        <div    data-func="menu_a" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
+        <div    data-func="menu_b" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
+        <div    data-func="menu_c" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
+        <div    data-func="menu_d" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
         <h2 class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-        <div    id="prjbtn" class="base_btn sort_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div    data-func="prjbtn" class="base_btn mclickcfunc" tabindex="0" id="prjbtn" ><span>/  </span><span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
-        <div    id="menu_g" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Arnold Random<br> <span class="rem_und"></span>Textures</span> </div>
-        <div    id="menu_f" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Preview Head</span></div>
+        <div    data-func="menu_g" class="sidebtn clickfunc" tabindex="0"><span>- </span><span class="sid_tex">Arnold Random<br> <span class="rem_und"></span>Textures</span> </div>
+        <div    data-func="menu_f" class="sidebtn clickfunc" tabindex="0"><span>- </span><span class="sid_tex">Preview Head</span></div>
     </div>
 
     <div id="mobile_push"></div>
@@ -707,12 +706,12 @@ opacity: 0;
     <div id="mobileToolbar" class="mobileToolbarS" hidden>
         <div class="mt_btn wspc top"          id="mob_lang" data-nm="-1">RU</div>
 
-        <div class="mt_btn sg ico fp active"  id="mb_fp"    data-nm="0" ></div>
-        <div class="mt_btn sg ico mpr"        id="mb_mpr"   data-nm="1" ></div>
-        <div class="mt_btn sg ico swm"        id="mb_swm"   data-nm="2" ></div>
-        <div class="mt_btn sg ico ctv"        id="mb_ctv"   data-nm="3" ></div>
-        <div class="mt_btn sg ico map"        id="mb_map"   data-nm="4" ></div>
-        <div class="mt_btn sg ico lk"         id="mb_lk"    data-nm="5" ></div>
+        <div data-func="menu_a" class="mt_btn clickfunc sg ico fp active"  id="mb_fp"    data-nm="0" ></div>
+        <div data-func="menu_b" class="mt_btn clickfunc sg ico mpr"        id="mb_mpr"   data-nm="1" ></div>
+        <div data-func="help_c" class="mt_btn clickfunc sg ico swm"        id="mb_swm"   data-nm="2" ></div>
+        <div data-func="help_b" class="mt_btn clickfunc sg ico ctv"        id="mb_ctv"   data-nm="3" ></div>
+        <div data-func="help_a" class="mt_btn clickfunc sg ico map"        id="mb_map"   data-nm="4" ></div>
+        <div data-func="menu_d" class="mt_btn clickfunc sg ico lk"         id="mb_lk"    data-nm="5" ></div>
 
         <div class="mt_btn wspc bot"          id="mob_next" data-nm="-2" >▼</div>
         
@@ -1162,7 +1161,7 @@ let lastCheckedU = null;
 let lastCheckedT = null;
 
 document.addEventListener('click', (event) => {
-    const currentBtn = event.target.closest('.sidebtn, .sort_btn');
+    const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
     
     if (currentBtn) {
         lastCheckedButtons.forEach(btn => {
@@ -1196,28 +1195,33 @@ document.addEventListener('click', (event) => {
         if (lastCheckedU) lastCheckedU.classList.add("active");
         if (lastCheckedT) lastCheckedT.classList.add("active");
 
-        if (currentBtn.classList.contains('sidebtn')) {
-            let target_id;
-            if(currentBtn.id == "menu_a") target_id = 'filletplane';
-            if(currentBtn.id == "menu_b") target_id = 'mp4vidoc';
-            if(currentBtn.id == "menu_c") target_id = 'helpers';
-            if(currentBtn.id == "menu_d") target_id = 'linked_camera';
-            if(currentBtn.id == "menu_g") target_id = 'arnold_rand_texture';
-            if(currentBtn.id == "menu_f") target_id = 'preview_head';
+        if (currentBtn.classList.contains('clickfunc')) {
+            let target_func;
+            if(currentBtn.dataset.func == "menu_a") target_func = 'filletplane';
+            if(currentBtn.dataset.func == "menu_b") target_func = 'mp4vidoc';
+            if(currentBtn.dataset.func == "menu_c") target_func = 'helpers';
+
+            if(currentBtn.dataset.func == "help_a") target_func = 'matrix_preserve';
+            if(currentBtn.dataset.func == "help_b") target_func = 'objcolor_to_vercolor';
+            if(currentBtn.dataset.func == "help_c") target_func = 'swap_mats';
+
+            if(currentBtn.dataset.func == "menu_d") target_func = 'linked_camera';
+            if(currentBtn.dataset.func == "menu_g") target_func = 'arnold_rand_texture';
+            if(currentBtn.dataset.func == "menu_f") target_func = 'preview_head';
 
             document.querySelectorAll('.elementBlock').forEach(block => {
-                block.hidden = (block.id !== target_id);
+                block.hidden = (block.id !== target_func);
             });
         }
 
-        if (currentBtn.classList.contains('sort_btn') && (currentBtn.id === "scrbtn" )){
+        if (currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn" )){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "script" || tag === "script_pack");
             });
         }
 
-        if (currentBtn.classList.contains('sort_btn') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "project" || tag === "project_pack");
