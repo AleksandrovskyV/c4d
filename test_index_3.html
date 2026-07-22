@@ -162,7 +162,7 @@ color: #ababab;
 text-decoration: underline; 
 cursor: pointer;
 }
-.bot_link:hover { 
+html:not(.mobile) .bot_link:hover {
 color: #dd9f17; 
 }
 
@@ -761,10 +761,7 @@ opacity: 0;
             </a>
         </h2>
         
-        <h2 class="bot_link lngsup" id="swapside"
-            data-ru="* я левша *" data-us="* left-handed *">
-            * left-handed *
-        </h2>
+        <h2 class="bot_link lngsup" id="swapside" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *" >* left-handed *</h2>
         
         <h2 class="bot_link lngsup" id="switch_lang" 
             data-us="и не знаю английский *" 
@@ -781,9 +778,7 @@ opacity: 0;
     <div id="bottomPageMobile" class="bottomPageMobileS" hidden>
         <div class="botTexLine">
             <h2><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z"><u style="text-decoration: underline;">download</u> <div>shelf</div> </a> </h2>
-            <h2 class="bot_link lngsup" id="swapside_mobile"
-            data-ru="* я левша *" data-us="* left-handed *"
-            >* left-handed *</h2>
+            <h2 class="bot_link lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
             <h2 class="rtext"> <a class="link drs" href="http://vsky.space/c4d/vsky.scripts/Filled%20Plane.py"><u style="text-decoration: underline;">viewcode</u> <div>script</div> </a> </h2> 
         </div>
 
@@ -1804,9 +1799,31 @@ function switchLangUpd() {
     updateResponsiveText();
 }
 
+
+
 if (langButton) langButton.onclick = () => switchLang();
 if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
 
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
+let switchSides = false; 
+
+function switchSide() {
+    switchSides = !switchSides;
+
+    const langPrefix = translated ? 'ru' : 'us'; 
+    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
+
+    if (swapButton) {
+        swapButton.textContent = swapButton.dataset[attributeName];
+    }
+    
+    if (swapMobile) {
+        swapMobile.textContent = swapMobile.dataset[attributeName];
+    }
+}
+if (swapButton) swapButton.onclick = () => switchSide();
+if (swapMobile) swapMobile.onclick = () => switchSide();
 
 
 function swapTestedAndYoutube(mobile_state) {
@@ -1985,13 +2002,11 @@ function firstStart() {
     resizeGlobalCanvas();
 
     if (isMobile) {
-        // 1. Активируем кнопку scrbtn
         const scr = document.getElementById('scrbtn');
         if (scr) {
            scr.classList.add('active'); 
         }
 
-        // 2. Блокируем дабл-тач зум НА ВСЕЙ СТРАНИЦЕ
         let lastTouchEnd = 0;
         
         document.addEventListener('touchend', function (event) {
@@ -2005,7 +2020,7 @@ function firstStart() {
                 }
             }
             lastTouchEnd = now;
-        }, { passive: false }); // passive: false критически важен для отмены зума
+        }, { passive: false }); 
     }
 }
 
