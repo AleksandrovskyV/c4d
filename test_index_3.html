@@ -35,7 +35,9 @@
 --topbar_h: 13vh;
 --botbar: 12vh; 
 --mbtn_size: 82px;
+--sbt_color: #a4a4a4;
 --fp_color: #1cf975;
+--mp_color: #dd9f17;
 --hp_color: #45a2de;
 --lc_color: #92a3bc;
 }
@@ -204,8 +206,6 @@ button.active {
 color: var(--accolor);
 }
 
-
-
 .mt_btn {
 width: var(--mbtn_size); 
 height: var(--mbtn_size);
@@ -319,7 +319,7 @@ margin-bottom: auto;
 .webSidebarS button{
 font-family: var(--sidefont);
 font-size: 28px; 
-color: #a4a4a4;
+color: var(--sbt_color);
 background-color: var(--bgcolor);
 text-decoration: underline;
 text-align: left;
@@ -336,8 +336,60 @@ color: var(--accolor);
 color: #6d6a65;
 }
 
+.sidebtn {
+font-family: var(--sidefont);
+font-size: 28px; 
+color: var(--sbt_color);
+pointer-events: auto;
+text-align: left;
+margin-left: 140px;
+cursor: pointer;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+line-height: 1.6;
+}
+.sidebtn.active{
 
-.alt_proj_btn {
+}
+.sid_tex {
+text-decoration: underline;
+}
+.sel_pre{
+color: var(--sbt_color);
+}
+.sel_pre.a.active{
+color: var(--fp_color);
+}
+.sel_pre.b.active{
+color: var(--mp_color);
+}
+.sel_pre.c.active{
+color: var(--hp_color);
+}
+.sel_pre.d.active{
+color: var(--lc_color);
+}
+
+.sid_tex.active{
+color: #565656;
+}
+.sidebtn:hover {
+color: var(--accolor);
+}
+.rem_und {
+display: inline-block;
+font-family: var(--sidefont);
+font-size: 28px;
+margin-left: 31px;
+color: var(--bgcolor);
+pointer-events: none;
+text-align: left;
+letter-spacing: -0.03em;
+line-height: 1.6;
+}
+
+.sort_btn {
 font-size: 72px; 
 color: #828282;
 font-family: var(--titlefont);
@@ -353,14 +405,15 @@ letter-spacing: -0.03em;
 .subl {
 text-decoration: underline;
 }
-.alt_proj_btn:hover {
+
+.sort_btn:hover {
 color: var(--accolor) ; 
 }
-.alt_proj_btn:active,
-.alt_proj_btn.active:active {
+.sort_btn:active,
+.sort_btn.active:active {
 color: #6d6a65 !important; 
 }
-.alt_proj_btn.active {
+.sort_btn.active {
 color: var(--accolor);
 }
 
@@ -613,20 +666,20 @@ opacity: 0;
       <button id="pbtn" class="open-btn" >PRJ</button>
       <button id="sepa">&amp;</button>
       <button id="sbtn" class="open-btn" >SCRIPTS</button>
-      <div id="wbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">SCRIPTS</span></div>
+      <div    id="wbtn" class="sort_btn" tabindex="0"><span>/  </span><span class="subl">SCRIPTS</span></div>
     </div>
 
     <div id="webSidebar" class="webSidebarS">
         <div style="height: 2.5vh;"></div>
-        <button id="a">Fillet Plane</button>
-        <button id="b">MP4 Vidoc</button>
-        <button id="c">Helpers</button>
-        <button id="d">Link Camera</button>
+        <div    id="menu_a" class="sidebtn" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
+        <div    id="menu_b" class="sidebtn" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
+        <div    id="meny_c" class="sidebtn" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
+        <div    id="meny_d" class="sidebtn" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
         <h2 class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-        <div id = "gggbtn" class="alt_proj_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div    id="gggbtn" class="sort_btn" tabindex="0"><span>/  </span><span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
-        <button id="g">Arnold Random Textures</button>
-        <button id="a">Preview Head</button>
+        <div    id="meny_g" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Arnold Random<br> <span class="rem_und"></span>Textures</span> </div>
+        <div    id="menu_f" class="sidebtn" tabindex="0"><span>- </span><span class="sid_tex">Preview Head</span></div>
     </div>
 
     <div id="mobile_push"></div>
@@ -1085,31 +1138,49 @@ opacity: 0;
 
 let mobile  = false;
 let activeElement = null;
-const projBtn = document.querySelector('.alt_proj_btn');
 
-if (projBtn) {
-    document.querySelectorAll('.alt_proj_btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            //btn.classList.toggle("active")
-            btn.classList.add("active"); 
-        });
-    });
-}
+let lastCheckedB = null;
+let lastCheckedU = null;
+let lastCheckedT = null;
 
 document.addEventListener('click', (event) => {
-    const container = event.target.closest('.gifpreview');
-    if (!container) return;
 
-    const img = container.querySelector('img');
-    let video = container.querySelector('video');
+    const currentBtn = event.target.closest('.sidebtn, .sort_btn');
+    
+    if (currentBtn) {
+        if (lastCheckedB) lastCheckedB.classList.remove("active");
+        if (lastCheckedU) lastCheckedU.classList.remove("active");
+        if (lastCheckedT) lastCheckedT.classList.remove("active");
+
+        lastCheckedB = currentBtn;
+        lastCheckedU = currentBtn.querySelector('.sel_pre');
+        lastCheckedT = currentBtn.querySelector('.sid_tex');
+
+        if (lastCheckedB) lastCheckedB.classList.add("active");
+        if (lastCheckedU) lastCheckedU.classList.add("active"); 
+        if (lastCheckedT) lastCheckedT.classList.add("active"); 
+
+        if(sidebtn.id == "menu_a"){
+
+        }
+
+    }
+
+
+    const gifCont = event.target.closest('.gifpreview');
+    
+    if (!gifCont) return;
+
+    const img = gifCont.querySelector('img');
+    let video = gifCont.querySelector('video');
     
     const mediaUrl = img ? img.getAttribute('data-src') : video.getAttribute('src');
     const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
     
     const isVideo = mediaUrl.endsWith('.mp4');
 
-    if (container.classList.contains('playing')) {
-        container.classList.remove('playing');
+    if (gifCont.classList.contains('playing')) {
+        gifCont.classList.remove('playing');
         
         if (isVideo && video) {
             video.pause();
@@ -1117,7 +1188,7 @@ document.addEventListener('click', (event) => {
             img.src = posterUrl;
         }
     } else {
-        container.classList.add('playing');
+        gifCont.classList.add('playing');
         
         if (isVideo) {
             if (!video) {
@@ -1130,7 +1201,7 @@ document.addEventListener('click', (event) => {
                 video.setAttribute('webkit-playsinline', '');
                 video.preload = 'auto';
                 img.remove();
-                container.insertBefore(video, container.firstChild);
+                gifCont.insertBefore(video, gifCont.firstChild);
             }
             video.play().catch(err => console.log("Автоплей заблокирован:", err));
         } else {
@@ -1280,7 +1351,6 @@ function swapTestedAndYoutube(mobile_state) {
         }
     });
 }
-
 
 function switchToMobile(mobile_state) {
     console.log("mobile", mobile_state);
