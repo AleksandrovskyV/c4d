@@ -1989,27 +1989,27 @@ function firstStart() {
     resizeGlobalCanvas();
 
     if (isMobile) {
-        // 1. Активируем вашу кнопку scrbtn
+        // 1. Активируем кнопку scrbtn
         const scr = document.getElementById('scrbtn');
         if (scr) {
            scr.classList.add('active'); 
         }
 
-        // 2. Блокируем дабл-тач зум на тулбаре
+        // 2. Блокируем дабл-тач зум НА ВСЕЙ СТРАНИЦЕ
         let lastTouchEnd = 0;
-        const toolbar = document.getElementById('mobileToolbar');
         
-        if (toolbar) {
-            toolbar.addEventListener('touchend', function (event) {
-                const now = Date.now();
-                // Если между тапами прошло меньше 300 миллисекунд
-                if (now - lastTouchEnd <= 300) {
-                    event.preventDefault(); // Запрещаем зум браузера
-                    event.target.click();   // Принудительно вызываем клик по кнопке
+        document.addEventListener('touchend', function (event) {
+            const now = Date.now();
+            
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+                
+                if (event.target && typeof event.target.click === 'function') {
+                    event.target.click();
                 }
-                lastTouchEnd = now;
-            }, { passive: false }); 
-        }
+            }
+            lastTouchEnd = now;
+        }, { passive: false }); // passive: false критически важен для отмены зума
     }
 }
 
