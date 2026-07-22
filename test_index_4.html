@@ -2083,11 +2083,11 @@ function firstStart() {
         const scr = document.getElementById('scrbtn');
         if (scr) {
             scr.classList.add('active'); 
-            lastCheckedMainTabs = [scr]; 
+            lastCheckedMainTabs = [scr];
+            scr.textContent = "SCR";
         }
 
         let lastTouchEnd = 0;
-        scr.textContent = "SCR";
         
         document.addEventListener('touchend', function (event) {
             const now = Date.now();
