@@ -1978,15 +1978,18 @@ function resizeGlobalCanvas() {
 }
 
 function firstStart() {
+    resizeGlobalCanvas();
+
     if(isMobile){
         const scr = document.getElementById('scrbtn');
-        scr.classList.add('active');
+        if(scr){
+           scr.classList.add('active'); 
+        }
     }
 
 }
 
-window.onload = resizeGlobalCanvas;
-
+window.onload = firstStart;
 window.addEventListener('resize', resizeGlobalCanvas);
 
 
