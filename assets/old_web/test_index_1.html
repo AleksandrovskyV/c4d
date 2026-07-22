@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="ru"><head>
+
+<meta charset="UTF-8">
+<meta name="description" content="Scripts & Projects for Cinema 4D" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>c4d</title>
+
+<meta property="og:title" content="stuff for c4d">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vsky.space/c4d">
+<meta property="og:description" content="Scripts & Projects for Cinema 4D">
+<meta property="og:image" content="https://vsky.space/content/cover/c4d.jpg">
+<meta property="og:image:secure_url" content="https://vsky.space/content/cover/c4d.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="stuff for c4d">
+<meta name="twitter:description" content="Scripts & Projects for Cinema 4D">
+<meta name="twitter:image" content="https://vsky.space/content/cover/c4d.jpg">
+<meta name="twitter:site" content="@AleksandrovskyV">
+
+<link rel="canonical" href="http://vsky.space/c4d/">
+
+<style>
+* {margin: 0; padding: 0;box-sizing: border-box;}
+
+html, body {
+width: 100%;
+height: 100%;
+display: flex;
+background: white;
+justify-content: center;
+align-items: center; 
+font-family: sans-serif;
+}
+
+.sMainBlock {
+width: 50%; 
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: flex-start;
+z-index: 9998;
+margin-top: 20vh;
+margin-bottom: 5vh;
+}
+
+p{
+color: black;
+display: block;
+font-size: 19px;
+padding-top: 2px;
+padding-bottom: 4px;
+}
+
+h1, h2{
+color: black;
+}
+
+h1{
+color: black;
+display: block;
+font-size: 20px;
+}
+
+p .link { color: #2685ff; }
+p .link:hover { color: blue;}
+h2 .link { color: #1370e7; }
+h2 .link:hover { color: blue; }
+
+.imageIconS {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 72px;
+height: 72px;
+}
+
+.imageIconS img{
+width: 64px;
+height: 64px;
+}
+
+.vline {
+border-left: 2px solid #ccc; 
+height: 72px;
+margin-left: 1vh;
+}
+
+.iconBlock {
+margin-top: 10vh;
+display: flex;
+flex-direction: row;
+}
+
+.aboutIconRow {
+margin-left: 2vh;
+margin-top: 0.7vh;
+}
+
+.infoElementS {
+margin-top: 0vh;
+}
+.spacer {
+height: 100px;
+}
+.endtext p{
+color: white;
+}
+
+@media (max-width: 768px) {
+.sMainBlock {
+width: 90%;
+margin-top: 5vh;
+}
+}
+</style>
+
+</head><body>
+
+<div id="mainBlock" class="sMainBlock">
+    
+    <div class="iconBlock" > 
+
+        <div id="imageIcon" class="imageIconS">
+            <img src="https://vsky.space/c4d/vsky.scripts/cust_icons/MP4%20Vidoc.png">
+        </div>
+
+        <div class="vline"></div>
+
+        <div class="aboutIconRow" >
+            <div id="nameIcon"> <h2><a >MP4 Vidoc</a></h2> </div>
+            <div id="textIcon"> <p>Tested: Cinema 4D R23</p> </div>
+        </div>
+
+    </div>
+
+    <div class="infoElementS">
+        
+        <div id="aboutElement"> 
+            <p>
+            <br>
+            Button for fast write MP4 file with _# numeration <br>
+            using current render settings <br> <br> <br>
+            </p>
+        </div>
+
+        <div id="aboutControlsLabel"> 
+            <h1>Controls</h1>
+        </div>
+
+        <div id="aboutControls"> 
+            <p>
+            <br>
+            [ LMB ] - current "render settings" render via Picture Viewer<br>
+            [ LMB ] + [  ALT  ] - viewport render via Picture Viewer<br>
+            [ LMB ] + [ SHIFT ] - viewport render via Background Process<br><br>
+            </p>
+        </div>
+
+        <h2><a class="link" href="https://vsky.space/python/utils/pillow_gif_maker.py"> > download shelf</a> </h2>
+        <h2><a class="link" href="https://vsky.space/python/utils/pillow_gif_maker.py"> > download script</a> </h2>
+
+    </div>
+
+
+    <div class="spacer"></div>
+    <div class="endtext"> <p>heh</p></div>
+
+</div>
+
+</body></html>
