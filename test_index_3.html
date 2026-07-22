@@ -1977,7 +1977,16 @@ function resizeGlobalCanvas() {
     //zagl.hidden = true;
 }
 
+function firstStart() {
+    if(isMobile){
+        const scr = document.getElementById('scrbtn');
+        scr.classList.add('active');
+    }
+
+}
+
 window.onload = resizeGlobalCanvas;
+window.onload = firstStart;
 window.addEventListener('resize', resizeGlobalCanvas);
 
 
