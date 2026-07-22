@@ -1988,15 +1988,31 @@ function resizeGlobalCanvas() {
 function firstStart() {
     resizeGlobalCanvas();
 
-    if(isMobile){
+    if (isMobile) {
+        // 1. Активируем вашу кнопку scrbtn
         const scr = document.getElementById('scrbtn');
-        if(scr){
+        if (scr) {
            scr.classList.add('active'); 
-           scr
+        }
+
+        // 2. Блокируем дабл-тач зум на тулбаре
+        let lastTouchEnd = 0;
+        const toolbar = document.getElementById('mobileToolbar');
+        
+        if (toolbar) {
+            toolbar.addEventListener('touchend', function (event) {
+                const now = Date.now();
+                // Если между тапами прошло меньше 300 миллисекунд
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault(); // Запрещаем зум браузера
+                    event.target.click();   // Принудительно вызываем клик по кнопке
+                }
+                lastTouchEnd = now;
+            }, { passive: false }); 
         }
     }
-
 }
+
 
 window.onload = firstStart;
 window.addEventListener('resize', resizeGlobalCanvas);
