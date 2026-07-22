@@ -794,9 +794,18 @@ html.mobile {
 
     <div id="bottomPageMobile" class="bottomPageMobileS" hidden>
         <div class="botTexLine">
-            <h2><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z"><u style="text-decoration: underline;">download</u> <div>shelf</div> </a> </h2>
+
+            <h2 id="down_package"><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">
+                <u style="text-decoration: underline;"class="lngsup" data-ru="скачать" data-us="download">download</u> 
+                <div class="lngsup" data-ru="архив" data-us="shelf">shelf</div> </a> 
+            </h2>
+            
             <h2 class="bot_link lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
-            <h2 id="viewcode" class="rtext"> <a class="link drs" href=""><u style="text-decoration: underline;">viewcode</u> <div>script</div> </a> </h2> 
+            
+            <h2 id="viewcode" class="rtext"> <a class="link drs" href="">
+                <u style="text-decoration: underline;"class="lngsup" data-ru="глянуть" data-us="viewcode">viewcode</u> 
+                <div class="lngsup" data-ru="скрипт" data-us="script">script</div> </a> 
+            </h2> 
         </div>
 
         <div class="gitLine">
@@ -1899,6 +1908,28 @@ function switchSide() {
     rightMobile.hidden = switchSides;
     leftMobile.hidden = !switchSides;
 
+    const downPackage = document.getElementById('down_package');
+    const viewCode = document.getElementById('viewcode');
+
+    if (downPackage && viewCode) {
+        const dummy = downPackage.cloneNode(false);
+        downPackage.replaceWith(dummy);
+        viewCode.replaceWith(downPackage);
+        dummy.replaceWith(viewCode);
+
+        if(switchSides){
+            viewCode.classList.remove('rtext');
+            downPackage.classList.add('rtext');
+        }else{
+            viewCode.classList.add('rtext');
+            downPackage.classList.remove('rtext');
+        }
+
+
+    }
+
+
+
     renderSwapButtons();
 }
 
@@ -1906,7 +1937,6 @@ if (langButton) langButton.onclick = () => switchLang();
 if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
 if (swapButton) swapButton.onclick = () => switchSide();
 if (swapMobile) swapMobile.onclick = () => switchSide();
-
 
 
 function swapTestedAndYoutube(mobile_state) {
