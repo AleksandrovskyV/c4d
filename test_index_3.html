@@ -401,13 +401,11 @@ white-space: nowrap;
 font-kerning: normal; 
 letter-spacing: -0.03em;
 }
-
 .subl {
 text-decoration: underline;
 }
-
-.sort_btn:hover {
-color: var(--accolor) ; 
+.sort_btn:not(.active):hover {
+    filter: brightness(0.85); 
 }
 .sort_btn:active,
 .sort_btn.active:active {
