@@ -669,7 +669,7 @@ html.mobile {
 /* MOBILE */
 @media (max-width: 1400px) {
     :root {
-    --main_w: 97.5%;
+    /*--main_w: 97.5%; */
     }
 
 }
@@ -2069,6 +2069,20 @@ function resizeGlobalCanvas() {
     
         //document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
     }
+
+
+    if (width <= mobile_width) { 
+        document.documentElement.style.setProperty('--main_w', '97.5%');
+        
+    } else if (width >= 1400) {
+        document.documentElement.style.setProperty('--main_w', '75%');
+
+    } else {
+        const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
+        const calculatedWidth = lerp(97.5, 75.0, interpolationFactor);
+        document.documentElement.style.setProperty('--main_w', `${calculatedWidth}%`);
+    }
+
 
     gifSizeChecker();
 
