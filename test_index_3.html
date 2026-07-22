@@ -684,7 +684,7 @@ opacity: 0;
       <button id="namepage_mob">C4D</button>
       <button id="slash_mob">/</button>
       <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
-      <button data-func="home" id="sepa">&amp;</button>
+      <button data-func="home" id="sepa" class="mclickcfunc">&amp;</button>
       <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span class="subl">SCRIPTS</span></div>
     </div>
 
@@ -1164,6 +1164,7 @@ document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
     
     if (currentBtn) {
+        // МГНОВЕННЫЙ СБРОС СТАРЫХ КЛАССОВ
         lastCheckedButtons.forEach(btn => {
             if (btn) btn.classList.remove("active");
         });
@@ -1176,15 +1177,15 @@ document.addEventListener('click', (event) => {
         if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
             const btnWeb = document.getElementById('prjbtn');
             const btnMob = document.getElementById('prjbtn_mob');
-            
             lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
 
-        // 3. СВЯЗЫВАНИЕ ПАР (SCRIPTS)
         } else if (currentBtn.id === "scrbtn") {
             const btnWeb = document.getElementById('scrbtn');
-            
             lastCheckedButtons = [btnWeb].filter(Boolean);
 
+        } else if (currentBtn.id === "sepa") {
+            lastCheckedButtons = [];
+            
         } else {
             lastCheckedButtons = [currentBtn];
             lastCheckedU = currentBtn.querySelector('.sel_pre');
@@ -1195,16 +1196,16 @@ document.addEventListener('click', (event) => {
         if (lastCheckedU) lastCheckedU.classList.add("active");
         if (lastCheckedT) lastCheckedT.classList.add("active");
 
+        // --- ФИЛЬТРАЦИЯ КОНТЕНТА ---
+
         if (currentBtn.classList.contains('clickfunc')) {
             let target_func;
             if(currentBtn.dataset.func == "menu_a") target_func = 'filletplane';
             if(currentBtn.dataset.func == "menu_b") target_func = 'mp4vidoc';
             if(currentBtn.dataset.func == "menu_c") target_func = 'helpers';
-
             if(currentBtn.dataset.func == "help_a") target_func = 'matrix_preserve';
             if(currentBtn.dataset.func == "help_b") target_func = 'objcolor_to_vercolor';
             if(currentBtn.dataset.func == "help_c") target_func = 'swap_mats';
-
             if(currentBtn.dataset.func == "menu_d") target_func = 'linked_camera';
             if(currentBtn.dataset.func == "menu_g") target_func = 'arnold_rand_texture';
             if(currentBtn.dataset.func == "menu_f") target_func = 'preview_head';
@@ -1214,6 +1215,7 @@ document.addEventListener('click', (event) => {
             });
         }
 
+        // 2. Сортировка SCRIPTS
         if (currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn" )){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
@@ -1221,10 +1223,18 @@ document.addEventListener('click', (event) => {
             });
         }
 
+        // 3. Сортировка PROJECTS
         if (currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "project" || tag === "project_pack");
+            });
+        }
+
+        // 4. Сортировка для SEPA (Показать всё, кроме вложенных скриптов)
+        if (currentBtn.classList.contains('mclickcfunc') && currentBtn.id === "sepa") {
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                block.hidden = (block.dataset.tag === "script_inpack");
             });
         }
     }
