@@ -1466,38 +1466,30 @@ function soloCheck(state) {
     }
 }
 
-
-const mob_next_btn = document.getElementById('mob_next');
-
 function nextElement() {
     const toolbarPrj = document.getElementById('toolbar_prj');
     const toolbarScr = document.getElementById('toolbar_scr');
     
-    // Функция для переключения на следующую активную кнопку внутри переданного контейнера
     function activateNextInContainer(container) {
-        if (!container) return;
+        // Если контейнер скрыт (через hidden), мы его полностью игнорируем
+        if (!container || container.hidden) return;
         
         const buttons = container.querySelectorAll('.clickfunc');
         if (buttons.length === 0) return;
 
         let activeIndex = -1;
         
-        // Ищем текущую активную кнопку
         buttons.forEach((btn, index) => {
             if (btn.classList.contains('active')) {
                 activeIndex = index;
             }
         });
         
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        // Делаем активной следующую или самую первую
         const nextIndex = (activeIndex + 1) % buttons.length;
-        buttons[nextIndex].classList.add('active');
-        
-        // Дополнительно: триггер для функции, если это предусмотрено (как data-func)
-        if (buttons[nextIndex].dataset.func && typeof clickfunc === 'function') {
-            clickfunc(buttons[nextIndex].dataset.func);
+        const nextButton = buttons[nextIndex];
+
+        if (nextButton) {
+            nextButton.click();
         }
     }
 
@@ -1505,6 +1497,8 @@ function nextElement() {
     activateNextInContainer(toolbarScr);
 }
 
+
+const mob_next_btn = document.getElementById('mob_next');
 if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
 
 document.addEventListener('click', (event) => {
