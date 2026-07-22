@@ -724,7 +724,7 @@ html.mobile {
 
       <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
       <button data-func="home" id="sepa" class="mclickcfunc">&amp;</button>
-      <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span class="subl">SCRIPTS</span></div>
+      <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
     </div>
 
     <div id="webSidebar" class="webSidebarS">
@@ -2089,7 +2089,11 @@ function firstStart() {
         if (scr) {
             scr.classList.add('active'); 
             lastCheckedMainTabs = [scr];
-            scr.textContent = "SCR";
+            const scr_text = document.getElementById('scr_text');
+            
+            if(scr_text){ scr_text.textContent = "SCR" + "\u00A0";
+            }
+
         }
 
         let lastTouchEnd = 0;
