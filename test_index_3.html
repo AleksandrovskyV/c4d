@@ -468,6 +468,9 @@ pointer-events: none !important;
 user-select: none;
 touch-action: manipulation;
 }
+.mainMenuOverlay.swap{
+align-items: flex-start;
+}
 
 .bottomPageS {
 background-color: var(--bgcolor);
@@ -700,7 +703,7 @@ opacity: 0;
 
 <div id="zagl" class="overlay_fill"></div>
 
-<div class="mainMenuOverlay">
+<div id="mainMenu"class="mainMenuOverlay">
     <div id="headerPage">
       <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
       <button id="namepage_mob">C4D</button>
@@ -791,7 +794,10 @@ opacity: 0;
 
 <div id="mainViewer">
   <div class="contentWrapper">
-    <div class="contentScroll">
+    <div id="mobileTrickbarSwap" style="width: 90px" hidden></div>
+    <div id="webTrickbarSwap" class="webSidebarS" style ="width: 360px;"hidden></div>
+
+    <div class="contentScroll" >
 
         <div class="elementBlock" id="filletplane" data-tag="script" data-nm="0">
             <div class="iconBlock" > 
@@ -1293,7 +1299,6 @@ opacity: 0;
         </div>
 
 
-
         <div class="elementBlock" id="linked_camera" data-nm="5" data-tag="script">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--lc_color)"></div>
@@ -1690,13 +1695,31 @@ function gifSizeChecker() {
 
 const langButton = document.getElementById('switch_lang');
 const langButtonMobile = document.getElementById('mob_lang');
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
+
+const mainMenu= document.getElementById('mainMenu');
 let translated = false; 
+let switchSides = false; 
+
+function renderSwapButtons() {
+    const langPrefix = translated ? 'ru' : 'us'; 
+    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
+
+    if (swapButton && swapButton.dataset[attributeName]) {
+        swapButton.textContent = swapButton.dataset[attributeName];
+    }
+    if (swapMobile && swapMobile.dataset[attributeName]) {
+        swapMobile.textContent = swapMobile.dataset[attributeName];
+    }
+}
 
 function updateResponsiveText() {
     const width = window.innerWidth;
     const langPrefix = translated ? 'ru' : 'us'; // Определяем текущий язык
 
     document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
         let text = '';
         
         if (width <= 1000) {
@@ -1707,7 +1730,6 @@ function updateResponsiveText() {
             text = texblock.dataset[`${langPrefix}Mid` ];
         }
 
-        // Если экран больше 1700px (широкий десктоп) ИЛИ для диапазона нет сокращения
         if (!text) {
             text = texblock.dataset[langPrefix];
         }
@@ -1717,6 +1739,7 @@ function updateResponsiveText() {
         }
     });
 }
+
 function switchLang() {
     translated = !translated;
 
@@ -1772,10 +1795,46 @@ function switchLang() {
     });
 
     document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        
         texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
     });
+
     updateResponsiveText();
+    renderSwapButtons();
 }
+
+function switchSide() {
+    switchSides = !switchSides;
+    mainMenu.classList.toggle('swap')
+
+    const right = document.getElementById('webTrickbar');
+    const rightMobile = document.getElementById('mobileTrickbar');
+
+    const left = document.getElementById('webTrickbarSwap');
+    const leftMobile = document.getElementById('mobileTrickbarSwap');
+
+    
+    const mobile_width = 780+1;
+    const width = window.innerWidth;
+
+    if (width < mobile_width && switchSides){
+        left.hidden = true;
+    }else{
+        left.hidden = !switchSides;
+    }
+
+    right.hidden = switchSides;
+    rightMobile.hidden = switchSides;
+    leftMobile.hidden = !switchSides;
+
+    renderSwapButtons();
+}
+
+if (langButton) langButton.onclick = () => switchLang();
+if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
+if (swapButton) swapButton.onclick = () => switchSide();
+if (swapMobile) swapMobile.onclick = () => switchSide();
 
 function switchLangUpd() {
     translated = !translated;
@@ -1798,33 +1857,6 @@ function switchLangUpd() {
 
     updateResponsiveText();
 }
-
-
-
-if (langButton) langButton.onclick = () => switchLang();
-if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
-
-const swapButton = document.getElementById('swapside');
-const swapMobile = document.getElementById('swapside_mobile');
-let switchSides = false; 
-
-function switchSide() {
-    switchSides = !switchSides;
-
-    const langPrefix = translated ? 'ru' : 'us'; 
-    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
-
-    if (swapButton) {
-        swapButton.textContent = swapButton.dataset[attributeName];
-    }
-    
-    if (swapMobile) {
-        swapMobile.textContent = swapMobile.dataset[attributeName];
-    }
-}
-if (swapButton) swapButton.onclick = () => switchSide();
-if (swapMobile) swapMobile.onclick = () => switchSide();
-
 
 function swapTestedAndYoutube(mobile_state) {
     document.querySelectorAll('.rowline.pad').forEach(container => {
