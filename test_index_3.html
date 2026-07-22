@@ -638,7 +638,7 @@ opacity: 0;
     }
 
 }
-@media (max-width: 769px) {
+@media (max-width: 780px) {
     :root {
     /*--topbar_h: 16vh; */
     --botbar: 5vh; /* SIZE PROBLEM FIX */
@@ -721,16 +721,32 @@ opacity: 0;
 
 
     <div id="bottomPage" class="bottomPageS">
-        <h2><a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
-            data-ru="* круто, но дай гитхаб" data-us="* alright, go to github"
-            >* alright, go to github</a></h2>
+        <h2>
+            <a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
+               data-us="* alright, go to github" 
+               data-us-mid="* alright, github" 
+               data-us-short="*  github" 
+               data-ru="* круто, но дай гитхаб" 
+               data-ru-mid="* круто, гитхаб" 
+               data-ru-short="* гитхаб">
+               * alright, go to github
+            </a>
+        </h2>
+        
         <h2 class="bot_link lngsup" id="swapside"
-            data-ru="* я левша *" data-us="* left-handed *"
-            >* left-handed *</h2>
+            data-ru="* я левша *" data-us="* left-handed *">
+            * left-handed *
+        </h2>
         
         <h2 class="bot_link lngsup" id="switch_lang" 
-            data-ru="i don't know russian *" data-us="и не знаю английский *"
-            >и не знаю английский *</h2>
+            data-us="и не знаю английский *" 
+            data-us-mid="знать английский? *" 
+            data-us-short="английский!? *"
+            data-ru="i don't know russian *" 
+            data-ru-mid="u know russian? *" 
+            data-ru-short="russian!? *">
+            и не знаю английский *
+        </h2>
     </div>
 
 
@@ -1403,7 +1419,6 @@ document.addEventListener('click', (event) => {
         if (lastCheckedT) lastCheckedT.classList.add("active");
 
         // --- ФИЛЬТРАЦИЯ КОНТЕНТА ---
-
         if (currentBtn.classList.contains('clickfunc')) {
             let target_func;
             if(currentBtn.dataset.func == "menu_a") target_func = 'filletplane';
@@ -1554,6 +1569,32 @@ const langButton = document.getElementById('switch_lang');
 const langButtonMobile = document.getElementById('mob_lang');
 let translated = false; 
 
+function updateResponsiveText() {
+    const width = window.innerWidth;
+    const langPrefix = translated ? 'ru' : 'us'; // Определяем текущий язык
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        let text = '';
+        
+        if (width <= 1000) {
+            text = texblock.dataset[`${langPrefix}Short` ] || texblock.dataset[`${langPrefix}Mid`];
+        } else if (width > 1000 && width <= 1400) {
+            text = texblock.dataset[`${langPrefix}Mid`];
+        } else if (width > 1400 && width <= 1700) {
+            text = texblock.dataset[`${langPrefix}Mid` ];
+        }
+
+        // Если экран больше 1700px (широкий десктоп) ИЛИ для диапазона нет сокращения
+        if (!text) {
+            text = texblock.dataset[langPrefix];
+        }
+
+        if (text) {
+            texblock.textContent = text;
+        }
+    });
+}
+
 function switchLang() {
     translated = !translated;
 
@@ -1561,51 +1602,25 @@ function switchLang() {
         langButtonMobile.textContent = translated ? "US" : "RU";
     }
 
+    const suffixes = ['', '_s', '_g', '_с_'];
     document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_us');
-        const ru_text = block.querySelector('.about_ru');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
+        suffixes.forEach(suf => {
+            const us_text = block.querySelector(`.about_${suf}us`);
+            const ru_text = block.querySelector(`.about_${suf}ru`);
+            if (ru_text && us_text) {
+                us_text.hidden = translated;
+                ru_text.hidden = !translated;
+            }
+        });
     });
 
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_us_s');
-        const ru_text = block.querySelector('.about_ru_s');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
-    });
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_us_g');
-        const ru_text = block.querySelector('.about_ru_g');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
-    });
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_с_us');
-        const ru_text = block.querySelector('.about_с_ru');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
-    });
-
-    document.querySelectorAll('.lngsup').forEach(texblock => {
-        texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
-    });
+    updateResponsiveText();
 }
 
 if (langButton) langButton.onclick = () => switchLang();
 if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
+
+
 
 function swapTestedAndYoutube(mobile_state) {
     document.querySelectorAll('.rowline.pad').forEach(container => {
@@ -1743,8 +1758,8 @@ function textShortChecker() {
 
 function resizeGlobalCanvas() {
     const width = window.innerWidth;
-
-    if (width < 768) { 
+    const mobile_width = 780-1;
+    if (width < mobile_width) { 
         switchToMobile(true);
         transitElements('.about_placeholder_mob', '.about_extend', false);
 
@@ -1759,7 +1774,7 @@ function resizeGlobalCanvas() {
     } else {
         switchToMobile(false);
         
-        const interpolationFactor = (width - 768) / (1400 - 768);
+        const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
         const calculatedHeight = lerp(16, 10, interpolationFactor);
     
         //document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
@@ -1769,15 +1784,15 @@ function resizeGlobalCanvas() {
 
     textShortChecker();
 
+    updateResponsiveText();
+
     const zagl = document.getElementById('zagl');
     zagl.classList.add("close"); 
-
     //zagl.hidden = true;
 }
 
 window.onload = resizeGlobalCanvas;
 window.addEventListener('resize', resizeGlobalCanvas);
-
 
 
 
