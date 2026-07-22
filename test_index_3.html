@@ -1594,8 +1594,58 @@ function updateResponsiveText() {
         }
     });
 }
-
 function switchLang() {
+    translated = !translated;
+
+    if (langButtonMobile) {
+        langButtonMobile.textContent = translated ? "US" : "RU";
+    }
+
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us');
+        const ru_text = block.querySelector('.about_ru');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_s');
+        const ru_text = block.querySelector('.about_ru_s');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_g');
+        const ru_text = block.querySelector('.about_ru_g');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_с_us');
+        const ru_text = block.querySelector('.about_с_ru');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
+    });
+    updateResponsiveText();
+}
+
+function switchLangUpd() {
     translated = !translated;
 
     if (langButtonMobile) {
@@ -1758,7 +1808,7 @@ function textShortChecker() {
 
 function resizeGlobalCanvas() {
     const width = window.innerWidth;
-    const mobile_width = 780-1;
+    const mobile_width = 780+1;
     if (width < mobile_width) { 
         switchToMobile(true);
         transitElements('.about_placeholder_mob', '.about_extend', false);
