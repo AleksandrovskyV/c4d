@@ -326,6 +326,9 @@ height: max-content;
 pointer-events: auto;
 }
 
+.mobileToolbarS .mt_btn {
+touch-action: manipulation;
+}
 #mobile_push{
 margin-top: auto ;
 }
@@ -1984,6 +1987,7 @@ function firstStart() {
         const scr = document.getElementById('scrbtn');
         if(scr){
            scr.classList.add('active'); 
+           scr
         }
     }
 
