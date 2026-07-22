@@ -21,6 +21,17 @@
 
 <link rel="canonical" href="http://vsky.space/c4d/">
 
+<script>
+  const ua = navigator.userAgent.toLowerCase();
+  window.isMobile = /iphone|ipad|android/.test(ua);
+  window.isLocal = (window.location.protocol === "file:");
+  
+  if (window.isMobile) {
+    document.documentElement.classList.add('mobile');
+  }
+console.log("Mobile",isMobile,"Local", isLocal);
+</script>
+
 <style>
 * {margin: 0; padding: 0;box-sizing: border-box;}
 [hidden] { display: none !important; }
@@ -884,7 +895,7 @@ opacity: 0;
 
                     <div class="about_placeholder_web">
                         
-                        <div class="about_extend" style="width: 540px;">
+                        <div class="about_extend" style="width: 500px;">
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
 
             
@@ -1561,7 +1572,7 @@ function transitAllGifs(to_mobile, hard) {
 
 function gifSizeChecker() {
     const gif_align = window.innerWidth<1790;
-    console.log("gf", gif_align)
+    //console.log("gf", gif_align)
     transitAllGifs(gif_align, true); 
 }
 
@@ -1696,7 +1707,7 @@ function swapTestedAndYoutube(mobile_state) {
 }
 
 function switchToMobile(mobile_state) {
-    console.log("mobile", mobile_state);
+    //console.log("mobile", mobile_state);
     
     mobile = mobile_state;
     const hide_flag = mobile ? false : true;
