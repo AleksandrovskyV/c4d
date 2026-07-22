@@ -51,6 +51,7 @@ console.log("Mobile",isMobile,"Local", isLocal);
 --mp_color: #dd9f17;
 --hp_color: #45a2de;
 --lc_color: #92a3bc;
+--ar_color: #93947a;
 --font_head: 72px;
 }
 
@@ -253,6 +254,7 @@ background-size: contain;
 .ico.ctv { background-image: url('./assets/svg/ObjectColorToVertexColor.svg'); }
 .ico.map { background-image: url('./assets/svg/MatrixPreserve.svg'); }
 .ico.swm { background-image: url('./assets/svg/SwapMats.svg'); }
+.ico.at  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
 
 .mt_btn.sg.ico {
 background-size: calc(var(--mbtn_size) * 0.85) calc(var(--mbtn_size) * 0.85);
@@ -736,7 +738,7 @@ html.mobile {
         <h2  class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
         <div    data-func="prjbtn" class="base_btn mclickcfunc" tabindex="0" id="prjbtn" ><span>/  </span><span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
-        <div    data-func="arnold_rand_texture" class="sidebtn clickfunc" tabindex="0"><span>- </span><span class="sid_tex">Arnold Random<br> <span class="rem_und"></span>Textures</span> </div>
+        <div    data-func="arnold_rand_texture" class="sidebtn clickfunc" tabindex="0"><span>- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
         <div    data-func="preview_head" class="sidebtn clickfunc" tabindex="0"><span>- </span><span class="sid_tex">Preview Head</span></div>
     </div>
 
@@ -1409,12 +1411,106 @@ html.mobile {
                 </div>
 
             </div>
-
         </div>
 
+        <div class="elementBlock" id="arnold_rand_texture" data-nm="0" data-tag="project">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--ar_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--ar_color)" >* </span>
+                            <span>Arnold Workflow<br>      "user_data_string"</span>
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico at titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                Extended
+                                <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">workflow</a> for 
+                                <br>Arnold String Attribute<br>Automating it...?
+                                                                </p>
+
+                                                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                Расширенный
+                                <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">процесс</a>
+                                <br>работы с Arnold String Attribute<br>Cильно его ускоряя...? 
+                                                                </p>
+
+                                                                <div class="rowline pad jsb">
+                                                                     <div class="tested">
+                                                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">??</span></p>
+                                                                     </div>
+                                                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                                                        href="https://vsky.space/c4d/ARND_STRING_ATR_EXT/ARND_STRING_ATR_EXT_V2.zip"
+                                                                        >download</a></p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="about_placeholder_web">
+                                                        
+                                                        <div class="about_extend" style="width: 500px;">
+                                                            <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Особенности:" data-us="Features:">Features:</h2></div>
+
+                                            
+                                                            <div id="aboutControlsText" class="about_с_us" > 
+                                <p style="width: 540px; line-height: 1.5;">
+                                - Manual path setup for a selected object<br>
+                                - PBR texture slots & randomization<br>
+                                - Workflow tutorial on <a class="texlink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru" hidden>  
+                                <p style="width: 520px; line-height: 1.5;">
+                                - Можно точечно задать путь у выбранного объекта<br>
+                                - Наличие слотов для PBR-текстур и рандомизация<br>
+                                - Разбор процесса на <a class="texlink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+                        <img src="./assets/prvgif/ArnoldRandomizer_poster.png"
+                             data-src="./assets/Arnold_String-Path_Randomizer_Selector.gif" 
+                             data-poster="./assets/prvgif/ArnoldRandomizer_poster.png"
+                             alt="poster" />
+                        
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <div class="spacer_scroller" ></div>
 
     </div>
+
+
 
     <div id="mobileTrickbar" class="mobileToolbarS"></div>
     <div id="webTrickbar" class="webSidebarS"></div>
