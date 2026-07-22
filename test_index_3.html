@@ -1413,9 +1413,6 @@ opacity: 0;
 let mobile  = false;
 let activeElement = null;
 
-let lastCheckedButtons = []; 
-let lastCheckedU = null;
-let lastCheckedT = null;
 
 let backupSoloCheck = null;
 
@@ -1517,20 +1514,15 @@ if (viewCodeBtn) {
     viewCodeBtn.addEventListener('click', (event) => {
         event.preventDefault(); 
 
-        // 2. Находим единственный видимый в данный момент блок (у которого hidden равен false)
         const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
                                          .find(block => !block.hidden);
 
         if (currentVisibleBlock) {
-            // 3. Ищем внутри этого блока ссылку для скачивания файла (.py)
             const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
             
             if (downloadLink && downloadLink.href) {
-                // 4. Открываем код скрипта в новой вкладке браузера
                 window.open(downloadLink.href, '_blank');
-            } else {
-                console.warn("Ссылка на файл скрипта внутри видимого блока не найдена.");
-            }
+            } 
         } else {
             console.warn("На экране нет активных или видимых блоков elementBlock.");
         }
@@ -1539,11 +1531,27 @@ if (viewCodeBtn) {
 const mob_next_btn = document.getElementById('mob_next');
 if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
 
+
+let lastCheckedMainTabs = []; 
+let lastCheckedButtons = []; 
+let lastCheckedU = null;
+let lastCheckedT = null;
+
 document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
     
     if (currentBtn) {
-        // МГНОВЕННЫЙ СБРОС СТАРЫХ КЛАССОВ
+ 
+        const isMainTabClick = currentBtn.classList.contains('mclickcfunc');
+
+        if (!isMobile || isMainTabClick) {
+            lastCheckedMainTabs.forEach(btn => {
+                if (btn) btn.classList.remove("active");
+            });
+            if (isMainTabClick) lastCheckedMainTabs = []; // Сбрасываем кэш вкладок
+        }
+
+        // Одиночные кнопки и внутренние спаны стираем всегда при любом клике
         lastCheckedButtons.forEach(btn => {
             if (btn) btn.classList.remove("active");
         });
@@ -1553,39 +1561,60 @@ document.addEventListener('click', (event) => {
         lastCheckedU = null;
         lastCheckedT = null;
 
+
+        // 2. ЛОГИКА ОПРЕДЕЛЕНИЯ И КЭШИРОВАНИЯ АКТИВНЫХ ЭЛЕМЕНТОВ
         if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
             const btnWeb = document.getElementById('prjbtn');
             const btnMob = document.getElementById('prjbtn_mob');
-            lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
+            
+            // На мобилках сохраняем в отдельный неприкосновенный кэш вкладок
+            if (isMobile) {
+                lastCheckedMainTabs = [btnWeb, btnMob].filter(Boolean);
+                lastCheckedButtons = []; // Дочерний кэш чист
+            } else {
+                lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
+            }
 
-            const prj_shelf = document.getElementById('toolbar_prj');
             toolbar_prj.hidden = false;
             toolbar_scr.hidden = true;
 
-
         } else if (currentBtn.id === "scrbtn") {
             const btnWeb = document.getElementById('scrbtn');
-            lastCheckedButtons = [btnWeb].filter(Boolean);
+            
+            if (isMobile) {
+                lastCheckedMainTabs = [btnWeb].filter(Boolean);
+                lastCheckedButtons = [];
+            } else {
+                lastCheckedButtons = [btnWeb].filter(Boolean);
+            }
 
             toolbar_prj.hidden = true;
             toolbar_scr.hidden = false;
 
         } else if (currentBtn.id === "sepa") {
+            if (isMobile) {
+                lastCheckedMainTabs.forEach(btn => btn && btn.classList.remove("active"));
+                lastCheckedMainTabs = [];
+            }
             lastCheckedButtons = [];
             
         } else {
+            // Если кликнули по элементу тулбара (clickfunc), пишем его строго в дочерний кэш
             lastCheckedButtons = [currentBtn];
             lastCheckedU = currentBtn.querySelector('.sel_pre');
             lastCheckedT = currentBtn.querySelector('.sid_tex');
         }
 
+        lastCheckedMainTabs.forEach(btn => btn.classList.add("active"));
+        
+        // Зажигаем текущие кликнутые элементы и спаны
         lastCheckedButtons.forEach(btn => btn.classList.add("active"));
         if (lastCheckedU) lastCheckedU.classList.add("active");
         if (lastCheckedT) lastCheckedT.classList.add("active");
 
+
         // --- ФИЛЬТРАЦИЯ КОНТЕНТА ---
         if (currentBtn.classList.contains('clickfunc')) {
-
             const target_func = currentBtn.dataset.func;
             document.querySelectorAll('.elementBlock').forEach(block => {
                 block.hidden = (block.id !== target_func);
@@ -1593,11 +1622,11 @@ document.addEventListener('click', (event) => {
         }
 
         // 2. Сортировка SCRIPTS
-        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn" )){
-                document.querySelectorAll('.elementBlock').forEach(block => {
-                    const tag = block.dataset.tag;
-                    block.hidden = !(tag === "script" || tag === "script_pack");
-                });
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn")){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "script" || tag === "script_pack");
+            });
         }
 
         // 3. Сортировка PROJECTS
@@ -1615,6 +1644,7 @@ document.addEventListener('click', (event) => {
             });
         }
     }
+
 
     const gifCont = event.target.closest('.gifpreview');
     
