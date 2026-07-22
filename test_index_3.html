@@ -268,8 +268,11 @@ background-color: var(--bgcolor);
 }
 .mt_btn.wspc.bot { margin-top: 20px;
 }
-.mt_btn:hover { background-color: var(--accolor);
+
+html:not(.mobile) .mt_btn:hover {
+background-color: var(--accolor);
 }
+
 .mt_btn.active { background-color: #848484;
 }
 
