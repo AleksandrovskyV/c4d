@@ -666,6 +666,9 @@ html.mobile {
     .gif_placeholder_web {
     padding-right: 0px;
     }
+    .elementBlock{
+        padding-bottom: 4vh;
+    }
 }
 
 /* MOBILE */
@@ -1324,7 +1327,7 @@ html.mobile {
         </div>
 
 
-        <div class="elementBlock" id="linked_camera" data-nm="5" data-tag="script">
+        <div class="elementBlock" id="linked_camera" data-nm="5" data-tag="script" style="padding-bottom: 40px;">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--lc_color)"></div>
 
@@ -2176,14 +2179,12 @@ function resizeGlobalCanvas() {
     if (width < mobile_width) { 
         switchToMobile(true);
         transitElements('.about_placeholder_mob', '.about_extend', false);
-        soloCheck(true);
 
         //document.documentElement.style.setProperty('--topbar_h', '16vh');
         
     } else if (width > 1400) {
         switchToMobile(false);
         transitElements('.about_placeholder_web', '.about_extend', false);
-        soloCheck(false);
 
         //document.documentElement.style.setProperty('--topbar_h', '10vh');
 
@@ -2192,10 +2193,14 @@ function resizeGlobalCanvas() {
         
         const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
         const calculatedHeight = lerp(16, 10, interpolationFactor);
-    
         //document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
     }
 
+    if(width<mobile_width){
+        soloCheck(true);
+    }else{
+        soloCheck(false);
+    }
 
     if (width <= mobile_width) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
