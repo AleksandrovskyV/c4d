@@ -7,9 +7,9 @@
 <title>c4d</title>
 
 <link rel="canonical" href="https://vsky.space/">
-<link rel="icon" type="image/png" sizes="16x16" href="/content/fav/c4d.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/content/fav/c4d.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/content/fav/c4d.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://vsky.space/content/fav/c4d.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://vsky.space/content/fav/c4d.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://vsky.space/content/fav/c4d.png">
 
 <meta property="og:title" content="stuff for c4d">
 <meta property="og:type" content="website">
@@ -785,7 +785,7 @@ display: none !important;
         <div    data-func="prjbtn" class="base_btn mclickcfunc" tabindex="0" id="prjbtn" ><span>/  </span><span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
         <div    data-func="arnold_rand_texture" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
-        <div    data-func="preview_head" class="sidebtn clickfunc"        tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Head</span></div>
+        <div    data-func="test_head" class="sidebtn clickfunc"        tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Head</span></div>
     </div>
 
     <div id="shortshelf" hidden>
@@ -796,8 +796,8 @@ display: none !important;
             <div data-func="objcolor_to_vercolor"class="mt_btn downfunc sg ico ctv"  ></div>
             <div data-func="linked_camera"       class="mt_btn downfunc sg ico lk"   ></div>
             <div data-func="arnold_rand_texture" class="mt_btn downfunc sg ico at"   ></div>
-            <div data-func="preview_head"        class="mt_btn downfunc sg ico he"   ></div>
-            <div data-func="preview_head"        class="mt_btn downfunc sg ico rand" ></div>
+            <div data-func="test_head"        class="mt_btn downfunc sg ico he"   ></div>
+            <div data-func="rand_btn"        class="mt_btn downfunc sg ico rand" ></div>
     </div>
 
     <div id="mobile_push"></div>
@@ -816,7 +816,7 @@ display: none !important;
 
         <div id="toolbar_prj" hidden>
             <div data-func="arnold_rand_texture" class="mt_btn clickfunc sg ico at"  id="mb_arp"   data-nm="0" ></div>
-            <div data-func="preview_head"        class="mt_btn clickfunc sg ico thd"  id="mb_prh"   data-nm="1" ></div>
+            <div data-func="test_head"        class="mt_btn clickfunc sg ico thd"  id="mb_prh"   data-nm="1" ></div>
         </div>
 
         <div class="mt_btn wspc bot" id="mob_next" data-nm="-2" >▼</div>
@@ -1563,10 +1563,97 @@ display: none !important;
 
             </div>
         </div>
+
+        <div class="elementBlock" id="test_head" data-nm="1" data-tag="project">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--ar_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span>
+                            <span>Test Head</span>
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico thd titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                    Built to <br>be tested...
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                    Создан через<br>тестирование...
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend" style="width: 500px;">
+                            <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Файлы:" data-us="Files:">Files:</h2></div>
+
+            
+                            <div id="aboutControlsText" class="about_с_us" > 
+                                <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
+                                    01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Low-poly mouth setup with small trick * Pose Morph Tag<br></span></p>
+                                <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
+                                    02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Prepared Octane AOVs * with .aep files include...<br></span>
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru" hidden>  
+                                 <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
+                                    01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Простая установка рта с хитростью * Pose Morph Tag<br></span></p>
+                                <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
+                                    02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Подготовленные OctaneAOVs * содержит .aep<br></span>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+                        <img src="./assets/prvgif/no_poster.png"
+                             data-src="" 
+                             data-poster="./assets/prvgif/no_poster.png"
+                             alt="poster" />
+                        
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="spacer_scroller" ></div>
 
     </div>
-
 
 
     <div id="mobileTrickbar" class="mobileToolbarS"></div>
