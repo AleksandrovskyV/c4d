@@ -863,8 +863,8 @@ display: none !important;
             <h2 class="bot_link lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
             
             <h2 id="viewcode" class="rtext"> <a class="link drs" href="">
-                <u style="text-decoration: underline;"class="lngsup" data-ru="глянуть" data-us="viewcode">viewcode</u> 
-                <div class="lngsup" data-ru="скрипт" data-us="script">script</div> </a> 
+                <u id="mob_str_a" style="text-decoration: underline;" class="lngsup" data-ru="глянуть" data-us="viewcode" data-ru-p="скачать" data-us-p="download">viewcode</u> 
+                <div id="mob_str_b" class="lngsup" data-ru="скрипт" data-us="script" data-ru-p="проект" data-us-p="project">script</div> </a> 
             </h2> 
         </div>
 
@@ -1235,8 +1235,8 @@ display: none !important;
                 <div class="gif_placeholder_mobile">
                     <div class="gifpreview">
 
-                        <img src="./assets/prvgif/no_poster.png" 
-                             data-poster="./assets/prvgif/no_poster.png" 
+                        <img src="./assets/prvgif/swap_maps_poster.png" 
+                             data-poster="./assets/prvgif/swap_maps_poster.png" 
                              alt="poster" />
 
                         <div class=" no_overlay"></div>
@@ -1304,8 +1304,8 @@ display: none !important;
                 <div class="gif_placeholder_mobile">
                     <div class="gifpreview">
 
-                        <img src="./assets/prvgif/no_poster.png" 
-                             data-poster="./assets/prvgif/no_poster.png" 
+                        <img src="./assets/prvgif/matrix_preserve_alt_poster.png" 
+                             data-poster="./assets/prvgif/matrix_preserve_alt_poster.png" 
                              alt="poster" />
 
                         <div class=" no_overlay"></div>
@@ -1677,6 +1677,15 @@ let activeElement = null;
 let backupSoloCheck = null;
 let shortShelfActive = false;
 
+const langButton = document.getElementById('switch_lang');
+const langButtonMobile = document.getElementById('mob_lang');
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
+
+const mainMenu= document.getElementById('mainMenu');
+let translated = false; 
+let switchSides = false; 
+
 function soloCheck(state) {
     if(shortShelfActive) return;
 
@@ -1803,6 +1812,20 @@ let lastCheckedT = null;
 
 const mobile_width = 780+1;
 
+function changeMobileDownloadBtn(check) {
+    const mob_str_a = document.getElementById('mob_str_a');
+    const mob_str_b = document.getElementById('mob_str_b');
+
+    const langPrefix = translated ? 'ru' : 'us';
+    const keySuffix = check ? '-p' : ''; 
+    const fullAttributeName = `data-${langPrefix}${keySuffix}`;
+
+    mob_str_a.textContent = mob_str_a.getAttribute(fullAttributeName);
+    mob_str_b.textContent = mob_str_b.getAttribute(fullAttributeName);
+}
+
+
+
 document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
     const width = window.innerWidth;
@@ -1847,6 +1870,8 @@ document.addEventListener('click', (event) => {
 
             toolbar_prj.hidden = false;
             toolbar_scr.hidden = true;
+            
+            changeMobileDownloadBtn(true);
 
         } else if (currentBtn.id === "scrbtn") {
             const btnWeb = document.getElementById('scrbtn');
@@ -1860,6 +1885,8 @@ document.addEventListener('click', (event) => {
 
             toolbar_prj.hidden = true;
             toolbar_scr.hidden = false;
+            
+            changeMobileDownloadBtn(false);
 
         } else if (currentBtn.id === "sepa") {
             if (sizeIsMobile) {
@@ -2021,14 +2048,7 @@ function gifSizeChecker() {
     transitAllGifs(gif_align, true); 
 }
 
-const langButton = document.getElementById('switch_lang');
-const langButtonMobile = document.getElementById('mob_lang');
-const swapButton = document.getElementById('swapside');
-const swapMobile = document.getElementById('swapside_mobile');
 
-const mainMenu= document.getElementById('mainMenu');
-let translated = false; 
-let switchSides = false; 
 
 function renderSwapButtons() {
     const langPrefix = translated ? 'ru' : 'us'; 
@@ -2168,8 +2188,6 @@ function switchSide() {
             viewCode.classList.add('rtext');
             downPackage.classList.remove('rtext');
         }
-
-
     }
 
 
@@ -2342,7 +2360,6 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
     }
 });
 
-// Добавьте эту функцию в ваш глобальный JS-файл
 function updateShortShelf() {
     const shelf = document.getElementById('shortshelf');
     if (!shelf) return;
@@ -2413,7 +2430,6 @@ function resizeGlobalCanvas() {
         document.documentElement.style.setProperty('--main_w', `${calculatedWidth}%`);
     }
 
-
     gifSizeChecker();
 
     textShortChecker();
@@ -2429,8 +2445,6 @@ function resizeGlobalCanvas() {
     zagl.classList.add("close"); 
     //zagl.hidden = true;
 }
-
-
 
 
 
@@ -2469,11 +2483,6 @@ function firstStart() {
 
 window.onload = firstStart;
 window.addEventListener('resize', resizeGlobalCanvas);
-
-
-
-
-
 
 
 </script>
