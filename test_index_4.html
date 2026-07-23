@@ -255,6 +255,7 @@ background-size: contain;
 .ico.map { background-image: url('./assets/svg/MatrixPreserve.svg'); }
 .ico.swm { background-image: url('./assets/svg/SwapMats.svg'); }
 .ico.at  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
+.ico.thd  { background-image: url('./assets/svg/TestHead.svg'); }
 
 .mt_btn.sg.ico {
 background-size: calc(var(--mbtn_size) * 0.85) calc(var(--mbtn_size) * 0.85);
@@ -490,8 +491,7 @@ align-items: flex-start;
 pointer-events: auto;
 user-select: none;
 box-shadow: 
-    0 -15px 148px 30px rgba(44, 47, 52, 1.0),
-    0 -5px 50px rgba(44, 47, 52, 1.0);
+    0 -5px 50px 9px rgb(44 47 52);
 }
 
 .bottomPageMobileS {
@@ -811,7 +811,7 @@ display: none !important;
 
         <div id="toolbar_prj" hidden>
             <div data-func="arnold_rand_texture" class="mt_btn clickfunc sg ico at"  id="mb_arp"   data-nm="0" ></div>
-            <div data-func="preview_head"        class="mt_btn clickfunc sg ico he"  id="mb_prh"   data-nm="1" ></div>
+            <div data-func="preview_head"        class="mt_btn clickfunc sg ico thd"  id="mb_prh"   data-nm="1" ></div>
         </div>
 
         <div class="mt_btn wspc bot" id="mob_next" data-nm="-2" >▼</div>
