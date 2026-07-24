@@ -120,11 +120,6 @@ letter-spacing: -0.03em;
 padding-bottom: 1.4vh;
 }
 
-.no_overlay{
-pointer-events: none;
-cursor: default;
-}
-
 .overlay_fill{
 position: fixed;
 top: 0;
@@ -165,8 +160,6 @@ a.gitlink:hover { color: #dd9f17;}
 
 a.gitlink_mob { color: #698aa8; }
 a.gitlink_mob:hover { color: #a3a3a3;}
-
-
 
 
 .bot_link {
@@ -623,6 +616,11 @@ min-width: 480px;
 }
 
 /* gifplayer */
+.no_gif{
+pointer-events: none;
+cursor: default;
+}
+
 .gif_placeholder_web {
 max-width: 680px;
 padding-right: 28px;
@@ -816,8 +814,8 @@ display: none !important;
             <div data-func="objcolor_to_vercolor"class="mt_btn downfunc sg ico ctv"  ></div>
             <div data-func="linked_camera"       class="mt_btn downfunc sg ico lk"   ></div>
             <div data-func="arnold_rand_texture" class="mt_btn downfunc sg ico at"   ></div>
-            <div data-func="test_head"        class="mt_btn downfunc sg ico he"   ></div>
-            <div data-func="rand_btn"        class="mt_btn downfunc sg ico rand" ></div>
+            <div data-func="test_head"           class="mt_btn downfunc sg ico thd"  ></div>
+            <div data-func="rand_btn"            class="mt_btn downfunc sg ico rand" ></div>
     </div>
 
     <div id="mobile_push"></div>
@@ -1253,13 +1251,13 @@ display: none !important;
                 <div class="about_placeholder_mob">
                 </div>
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_overlay">
+                    <div class="gifpreview no_gif">
 
                         <img src="./assets/prvgif/swap_maps_poster.png" 
                              data-poster="./assets/prvgif/swap_maps_poster.png" 
                              alt="poster" />
 
-                        <div class=" no_overlay"></div>
+                        <div class=" no_gif"></div>
                     </div>
                 </div>
 
@@ -1322,13 +1320,13 @@ display: none !important;
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_overlay">
+                    <div class="gifpreview no_gif">
 
                         <img src="./assets/prvgif/matrix_preserve_poster.png" 
                              data-poster="./assets/prvgif/matrix_preserve_poster.png" 
                              alt="poster" />
 
-                        <div class=" no_overlay"></div>
+                        <div class=" no_gif"></div>
                     </div>
                 </div>
 
@@ -1388,12 +1386,12 @@ display: none !important;
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_overlay">
+                    <div class="gifpreview no_gif">
                         <img src="./assets/prvgif/color_to_vertex_poster.png" 
                              data-poster="./assets/prvgif/color_to_vertex_poster.png" 
                              alt="poster" />
 
-                        <div class=" no_overlay"></div>
+                        <div class=" no_gif"></div>
                     </div>
                 </div>
 
@@ -1658,12 +1656,12 @@ display: none !important;
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_overlay">
+                    <div class="gifpreview no_gif">
                         <img src="./assets/prvgif/no_poster_v2.png" 
                              data-poster="./assets/prvgif/no_poster_v2.png" 
                              alt="poster" />
 
-                        <div class="no_overlay"></div>
+                        <div class="no_gif"></div>
                     </div>
                 </div>
 
