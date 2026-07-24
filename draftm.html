@@ -27,6 +27,13 @@
 <link rel="canonical" href="http://vsky.space/c4d/">
 
 <script>
+// Initialize the Telegram WebApp
+const tg = window.Telegram.WebApp;
+tg.ready();
+
+// Method A: Set to a specific hex color
+tg.setHeaderColor('#FF5733'); 
+    
   const ua = navigator.userAgent.toLowerCase();
   window.isMobile = /iphone|ipad|android/.test(ua);
   window.isLocal = (window.location.protocol === "file:");
