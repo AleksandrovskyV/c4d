@@ -102,10 +102,7 @@ Hey dudes. W*lcome [1]
 
 ## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
 
-> Extend workflow with Arnold String Attribute  
-> _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_
-
-![preview](./assets/Arnold_String-Path_Randomizer_Selector.gif)
+> Extend workflow with Arnold String Attribute  > [read](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
 
 - 🎲 Randomizes Arnold textures from a selected folder  
 - 🎯 Allows manual texture selection  
