@@ -19,14 +19,16 @@
 <meta property="og:image" content="https://vsky.space/content/cover/c4d.jpg">
 <meta property="og:image:secure_url" content="https://vsky.space/content/cover/c4d.jpg">
 
-<meta name="theme-color" content="#2c2f34">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="stuff for c4d">
 <meta name="twitter:description" content="Scripts & Projects for Cinema 4D">
 <meta name="twitter:image" content="https://vsky.space/content/cover/c4d.jpg">
 <meta name="twitter:site" content="@AleksandrovskyV">
 
+<meta name="theme-color" content="#2c2f34">
+
 <link rel="canonical" href="http://vsky.space/c4d/">
+<link rel="preload" href="./assets/prvgif/fillet_plane_poster.png" as="image" type="image/png" />
 
 <script>
   const ua = navigator.userAgent.toLowerCase();
@@ -1003,11 +1005,12 @@ display: none !important;
 
                     <div class="gif_placeholder_mobile">
                         <div class="gifpreview">
-                            <img src="./assets/prvgif/fillet_plane_poster.png" 
+                            <img preload="auto" 
+                                 src="./assets/prvgif/fillet_plane_poster.png" 
                                  data-src="./assets/fillet_plane_preview.gif" 
                                  data-poster="./assets/prvgif/fillet_plane_poster.png" 
                                  alt="poster" />
-                            
+
                             <div class="overlay"></div>
                         </div>
                     </div>
