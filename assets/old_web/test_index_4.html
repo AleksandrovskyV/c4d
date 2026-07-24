@@ -1,0 +1,2549 @@
+<!DOCTYPE html><html lang="ru"><head>
+
+<meta charset="UTF-8">
+<meta name="description" content="Scripts & Projects for Cinema 4D" />
+<meta name="viewport" content="width=device-width, initial-scale=0.66">
+
+<title>c4d</title>
+
+<link rel="canonical" href="https://vsky.space/">
+<link rel="icon" type="image/png" sizes="16x16" href="https://vsky.space/content/fav/c4d.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://vsky.space/content/fav/c4d.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://vsky.space/content/fav/c4d.png">
+
+<meta property="og:title" content="stuff for c4d">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vsky.space/c4d">
+<meta property="og:description" content="Scripts & Projects for Cinema 4D">
+<meta property="og:image" content="https://vsky.space/content/cover/c4d.jpg">
+<meta property="og:image:secure_url" content="https://vsky.space/content/cover/c4d.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="stuff for c4d">
+<meta name="twitter:description" content="Scripts & Projects for Cinema 4D">
+<meta name="twitter:image" content="https://vsky.space/content/cover/c4d.jpg">
+<meta name="twitter:site" content="@AleksandrovskyV">
+
+<link rel="canonical" href="http://vsky.space/c4d/">
+
+<script>
+  const ua = navigator.userAgent.toLowerCase();
+  window.isMobile = /iphone|ipad|android/.test(ua);
+  window.isLocal = (window.location.protocol === "file:");
+  
+  if (window.isMobile) {
+    document.documentElement.classList.add('mobile');
+  }
+console.log("Mobile",isMobile,"Local", isLocal);
+</script>
+
+<style>
+* {margin: 0; padding: 0;box-sizing: border-box;}
+[hidden] { display: none !important; }
+
+:root {
+--titlefont: 'title', sans-serif;
+--sidefont: 'sidebar', sans-serif;;
+--monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+--bgcolor: #2c2f34;
+--accolor: #dd9f17;
+--main_w: 75%;
+--topbar_h: 13vh;
+--botbar_h: 12vh; 
+--mbtn_size: 82px;
+--sbt_color: #a4a4a4;
+--fp_color: #1cf975;
+--mp_color: #dd9f17;
+--hp_color: #45a2de;
+--lc_color: #92a3bc;
+--ar_color: #acbfbe;
+--font_head: 72px;
+}
+
+@font-face { font-family: 'title';
+src: url('./assets/fonts/GeistMono-SemiBold.ttf') format('truetype'); }
+
+@font-face { font-family: 'sidebar';
+src: url('./assets/fonts/GeistMono-Medium.ttf') format('truetype'); }
+
+html, body {
+width: 100%;
+height: 100%;
+display: flex;
+background: var(--bgcolor);
+font-family: sans-serif;
+user-select: text;
+margin: 0;
+touch-action: manipulation;
+
+}
+
+p{
+color: #a3a3a3;
+display: block;
+font-size: 20px;
+padding-top: 2px;
+padding-bottom: 4px;
+line-height: 1.2;
+letter-spacing: +0.01em;
+}
+
+p .marked{ color: #e0dfdf;
+}
+
+p .link { color: #dd9f17; }
+p .link:hover { color: #a3a3a3;}
+
+
+.texlink { 
+letter-spacing: +0.02em;
+    color: #ababab; 
+}
+.texlink.yt:hover { color: #f74545;}
+
+.texlink.dn { 
+    margin-left: auto;
+    color: #909090;
+}
+.texlink.dn:hover { color: var(--accolor);}
+
+h2{ 
+color: #dfdfe0;
+font-family: var(--titlefont);
+}
+
+.titleLabel{
+color: #dfdfe0;
+font-size: 38px;
+font-kerning: normal; 
+letter-spacing: -0.03em;
+padding-bottom: 1.4vh;
+}
+
+.overlay_fill{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%; height: 100%;
+background-color: var(--bgcolor);
+z-index: 9990;
+transition: opacity 0.4s ;
+user-select: none;
+pointer-events: none;
+}
+.overlay_fill.close{
+opacity: 0;
+}
+
+h2.special{
+color: #698aa8;
+font-size: 20px;
+font-kerning: normal; 
+letter-spacing: -0.03em;
+margin-bottom: 10px;
+}
+
+h2.rtext {text-align: right;}
+
+
+a.link { 
+color: #ababab; 
+pointer-events: auto;
+}
+a.link.b {color: #279ae3}
+a.link.drs { text-decoration: none; }
+a.link:hover { color: #a3a3a3; }
+
+a.gitlink { color: #ababab; }
+a.gitlink:hover { color: #dd9f17;}
+
+
+a.gitlink_mob { color: #698aa8; }
+a.gitlink_mob:hover { color: #a3a3a3;}
+
+
+.bot_link {
+color: #ababab;
+text-decoration: underline; 
+cursor: pointer;
+}
+html:not(.mobile) .bot_link:hover {
+color: #dd9f17; 
+}
+
+.namepageS {
+color: #c8c8ca;
+font-size: var(--font_head); 
+font-family: var(--titlefont);
+text-align: left;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+
+pointer-events: none;
+user-select: none;
+}
+
+.name_slash {
+color: #828282;
+}
+
+button {
+background: none;
+border: 0px solid transparent;
+font-family: var(--titlefont);
+letter-spacing: -0.04em;
+margin: 0;
+font-size: var(--font_head); 
+pointer-events: auto;
+}
+
+#namepage_mob { 
+color: #c8c8ca;
+}
+#slash_mob { 
+color: #636161;
+}
+
+#sepa { color: #424447;
+}
+
+#sepa:hover{
+text-decoration: underline;
+cursor: pointer;
+}
+
+#namepage_mob, #slash_mob {
+pointer-events: none;
+}
+
+.open_btn {
+color: #828282;
+text-decoration: underline;
+cursor: pointer;
+}
+.open_btn:not(.active):hover {
+filter: brightness(0.85); 
+}
+
+button:hover {
+color: #848484;
+}
+
+button.active {
+color: var(--accolor);
+}
+
+.mt_btn {
+width: var(--mbtn_size); 
+height: var(--mbtn_size);
+margin-bottom: 4px;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #dfdfe0;
+cursor: pointer;
+}
+
+.ico{
+background-color: #373c43;
+background-repeat: no-repeat;
+background-position: center;
+background-size: contain; 
+}
+.ico.fp  { background-image: url('./assets/svg/FilledPlane.svg'); }
+.ico.lk  { background-image: url('./assets/svg/LinkedCamera.svg'); }
+.ico.mpr { background-image: url('./assets/svg/MP4Vidoc.svg'); }
+.ico.ctv { background-image: url('./assets/svg/ObjectColorToVertexColor.svg'); }
+.ico.map { background-image: url('./assets/svg/MatrixPreserve.svg'); }
+.ico.swm { background-image: url('./assets/svg/SwapMats.svg'); }
+.ico.at  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
+.ico.thd  { background-image: url('./assets/svg/TestHead_Alt.svg'); }
+
+.mt_btn.sg.ico {
+background-size: calc(var(--mbtn_size) * 0.85) calc(var(--mbtn_size) * 0.85);
+}
+
+.mt_btn.wspc {
+font-family: var(--titlefont);
+font-size: 28px;
+border: 2px solid #7f6423;
+display: flex; padding: 0;
+box-sizing: border-box;
+flex-shrink: 0;
+background-color: var(--bgcolor);
+}
+.mt_btn.wspc.top { margin-bottom: 24px;
+}
+.mt_btn.wspc.bot { margin-top: 20px;
+}
+
+html:not(.mobile) .mt_btn:hover {
+background-color: var(--accolor);
+}
+
+.mt_btn.active { background-color: #848484;
+}
+
+.plateFixed {
+position: fixed; 
+left: 0;
+width: 100vw; 
+background: var(--bgcolor);
+z-index: 9900; 
+pointer-events: auto; 
+}
+
+
+#topbarExpand {
+height: var(--topbar_h);
+top: 0;
+}
+#botbarExpand {
+height: var(--botbar_h);
+bottom: 0;
+}
+#bottomShadowRow {
+position: fixed;
+left: 0;
+width: 100vw;
+height: 128px; 
+bottom: var(--botbar_h); 
+background-image: url('./assets/shadow_sample.png');
+background-repeat: repeat-x; 
+background-position: bottom left; 
+z-index: 5000; 
+pointer-events: none; 
+}
+
+#topBarBlock {
+background: var(--bgcolor);
+display: flex;
+flex-direction: column;
+width: 100%;
+height: var(--topbar_h);
+z-index: 9950;
+}
+
+
+#pearlLine{
+color: #767676;
+font-size: 19px;
+margin-top: auto;
+transform: translateY(8px);
+}
+
+#headerPage {
+background: var(--bgcolor);
+display: flex;
+flex-direction: row;
+width: 100%;
+justify-content: space-between;
+align-items: flex-end; 
+pointer-events: auto;
+}
+
+#mainViewer {
+width: var(--main_w);
+margin: 0 auto;
+padding-top: calc(var(--topbar_h) + 1vh);   
+display: flex;
+flex-direction: column;
+align-items: flex-start; 
+height: auto; 
+}
+
+.contentWrapper {
+display: flex;
+flex-direction: row;
+width: 100%;
+position: relative;
+}
+
+.contentScroll {
+flex: 1;
+padding-right: 0px;
+overflow-y: visible;   
+}
+
+.mobileToolbarS {
+width: 90px;
+flex-shrink: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+position: sticky;
+padding-right: 0vh;
+top: calc(var(--topbar_h) + 4vh);
+height: max-content;
+pointer-events: auto;
+touch-action: manipulation;
+}
+
+.mobileToolbarS .mt_btn {
+touch-action: manipulation;
+}
+
+#mobile_push{
+margin-top: auto ;
+}
+
+.webSidebarS {
+width: 420px;
+top: calc(var(--topbar_h) + 10vh);
+display: flex; flex-direction: column;
+pointer-events: none;
+user-select: none;
+margin-bottom: auto;
+
+}
+
+.webSidebarS button{
+font-family: var(--sidefont);
+font-size: 28px; 
+color: var(--sbt_color);
+background-color: var(--bgcolor);
+text-decoration: underline;
+text-align: left;
+margin-left: 140px;
+line-height: 1.6;
+cursor: pointer;
+pointer-events: auto;
+}
+
+.webSidebarS button:hover{
+color: var(--accolor);
+}
+.webSidebarS button:active{
+color: #6d6a65;
+}
+
+.sidebtn {
+font-family: var(--sidefont);
+font-size: 28px; 
+color: var(--sbt_color);
+pointer-events: auto;
+text-align: left;
+margin-left: 140px;
+cursor: pointer;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+line-height: 1.6;
+background-color: rgba(44, 47, 52, 0.5);
+}
+.sidebtn.active{
+}
+.sid_tex {
+text-decoration: underline;
+}
+.sel_pre{
+color: var(--sbt_color);
+}
+.sel_pre.a.active{
+color: var(--fp_color);
+}
+.sel_pre.b.active{
+color: var(--mp_color);
+}
+.sel_pre.c.active{
+color: var(--hp_color);
+}
+.sel_pre.d.active{
+color: var(--lc_color);
+}
+.sel_pre.e.active{
+color: var(--ar_color);
+}
+
+.sid_tex.active{
+color: #565656;
+}
+.sidebtn:hover {
+color: var(--accolor);
+}
+.rem_und {
+display: inline-block;
+font-family: var(--sidefont);
+font-size: 28px;
+margin-left: 31px;
+color: var(--bgcolor);
+pointer-events: none;
+text-align: left;
+letter-spacing: -0.03em;
+line-height: 1.6;
+}
+
+.base_btn {
+font-size: var(--font_head); 
+color: #828282;
+font-family: var(--titlefont);
+text-decoration: none;
+pointer-events: auto;
+text-align: right;
+cursor: pointer;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+}
+.subl {
+text-decoration: underline;
+}
+.base_btn:not(.active):hover {
+filter: brightness(0.85); 
+}
+
+.base_btn:active,
+.base_btn.active:active {
+color: #6d6a65 !important; 
+}
+.base_btn.active {
+color: var(--accolor);
+}
+
+#prjbtn {
+padding-top: 2vh;
+}
+
+h2.sidelink{
+margin-left: 140px;
+font-size: 30px;
+padding: 3vh 0px;
+}
+
+.mainMenuOverlay {
+position: fixed; top: 0; left: 50%;
+transform: translateX(-50%); 
+width: calc(var(--main_w) + 0.5%);
+height: 100%;
+display: flex; flex-direction: column;
+align-items: flex-end; 
+z-index: 9900;
+pointer-events: none !important;
+user-select: none;
+touch-action: manipulation;
+}
+
+.mainMenuOverlay.swap{
+align-items: flex-start;
+}
+
+.bottomPageS {
+background-color: var(--bgcolor);
+display: flex; flex-direction: row;
+width: 100%;
+height: var(--botbar_h);
+justify-content: space-between;
+align-items: flex-start; 
+
+pointer-events: auto;
+user-select: none;
+}
+
+.bottomPageMobileS {
+position: sticky;
+bottom: 0; 
+width: 100%;
+padding-top: 1vh;
+display: flex;
+flex-direction: column;
+background: var(--bgcolor);
+z-index: 9950;
+user-select: text;
+pointer-events: auto;
+}
+.bottomPageMobileS .botTexLine {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+.bottomPageMobileS .gitLine {
+display: flex;
+justify-content: center;
+align-items: center; 
+height: var(--botbar_h);
+}
+
+.spacer_scroller {
+width: 100%;
+height: 300px; 
+min-height: 10vh; 
+flex-shrink: 0;
+}
+
+.rowline {
+display: flex;
+flex-direction: row;
+
+}
+.rowline.pad{
+margin-top: 0.8vh;
+}
+
+.rowline.jsb{
+justify-content: space-between;
+}
+
+.srtc {
+font-family: var(--monofont);
+color: var(--accolor);
+}
+.srtc .txt {color: #e0e0e0; 
+}
+.srtc .dsh {color: #e0e0e0; 
+}
+.srtc .plus {
+color:#a3a3a3;
+}
+.srtc.d{
+font-size: 18px;
+}
+.offset {margin-left: 4px; 
+}
+
+.imageIconS {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center; 
+width: 117px;
+height: 117px;
+aspect-ratio: 1 / 1; 
+background-color: #26282c; 
+margin-right: 20px;
+
+}
+
+.titleIco {
+width: 96px;
+height: 96px;
+aspect-ratio: 1 / 1; 
+display: inline-block;
+vertical-align: middle;
+background-color: transparent !important; 
+}
+
+.line_struct {
+border-left: 6px solid currentColor; 
+border-bottom: 6px solid currentColor; 
+margin-right: 1vh;
+height: calc(2.0vh + 26px);
+width: 1.5vh;
+}
+
+.iconBlock {
+display: flex;
+flex-direction: row;
+}
+
+.aboutIconRow { 
+min-width: 424px;
+width: 460px;
+}
+
+.about_extend { 
+margin-top: 2vh;
+min-width: 480px;
+}
+
+/* gifplayer */
+.no_gif{
+pointer-events: none;
+cursor: default;
+}
+
+.gif_placeholder_web {
+max-width: 680px;
+padding-right: 28px;
+}
+
+.gifpreview {
+position: relative;
+min-width: 260px;
+width: 100%;
+display: inline-block;
+cursor: pointer;
+overflow: hidden;
+}
+.gifpreview img, 
+.gifpreview video {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+.gifpreview .overlay {
+position: absolute;
+top: 0;left: 0;
+width: 100%;height: 100%;
+background-color: rgba(67, 77, 91, 0.7);
+display: flex;
+justify-content: center;
+align-items: center;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f4f4f4' d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 60px 60px;
+transition: background-size 0.1s ease, opacity 0.1s ease;
+pointer-events: auto;
+user-select: none;
+}
+
+
+.gifpreview:hover .overlay {
+background-size: 72px 72px; 
+}
+.gifpreview.playing .overlay {
+opacity: 0;
+}
+
+.elementBlock{
+padding-bottom: 1vh;
+}
+.about_placeholder_mob{
+padding-bottom: 10px;
+}
+
+html.mobile {
+    --font_head: 92px; 
+}
+
+/*ShortShelf*/
+#shortshelf {
+position: fixed;
+top: 0;left: 0;
+width: 100vw; height: 100vh;
+box-sizing: border-box;
+padding: 10vh 10vw;
+display: grid !important; 
+grid-template-columns: repeat(var(--cols, 3), 1fr);
+grid-auto-rows: 1fr;
+gap: 6px; 
+place-content: center; 
+}
+html:not(.mobile) #shortshelf {
+    background-color: var(--bgcolor); 
+    z-index: 9999;
+}
+html.mobile #shortshelf {
+    display: none !important;
+}
+
+#shortshelf div.mt_btn {
+width: 100% !important;
+height: 100% !important;
+margin: 0 !important; 
+box-sizing: border-box;
+background-size: 80% 80% !important; 
+pointer-events: auto;
+}
+#shortshelf[hidden] {
+display: none !important;
+}
+
+/* WEB */
+@media (min-width: 1790px){
+    #filletplane .aboutIconRow {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.3, 6vh);
+    }
+    #mp4vidoc .aboutIconRow {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.1, 2vh);
+    }
+}
+
+@media (max-width: 1790px){
+    .gif_placeholder_web {
+    padding-right: 0px;
+    }
+    .elementBlock{
+        padding-bottom: 4vh;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 1400px) {
+    :root {
+    /*--main_w: 97.5%; */
+    }
+
+}
+@media (max-width: 780px) {
+    :root {
+    /*--topbar_h: 16vh; */
+    --botbar_h: 5vh; /* SIZE PROBLEM FIX */
+    --main_w: 97.5%;
+    }
+    .bottomPageMobileS{
+        padding-top: 2vh;
+    }
+    .bottomPageMobileS .gitLine {
+    padding-bottom: 2vh; /* SIZE PROBLEM FIX */
+    }
+
+    .aboutIconRow {
+    margin-top: 2.0vh;
+    }
+
+    .contentScroll {
+    padding-right: 2vw;
+    }
+    .titleLabel{
+    padding-bottom: 0vh;
+    }
+    .mob_hide{
+    display: none !important;
+    }
+    #sepa:hover{
+    text-decoration: none;
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+    }
+}
+
+</style>
+
+</head><body>
+
+<div id="zagl" class="overlay_fill"></div>
+<div id="topbarExpand" class="plateFixed"></div>
+<div id="botbarExpand" class="plateFixed"></div>
+<div id="bottomShadowRow"></div>
+<div id="mainMenu"class="mainMenuOverlay">
+    <div id="topBarBlock">
+    <h2 id="pearlLine">* pearl version</h2>
+    <div id="headerPage">
+          <div id="prebtn">
+              <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
+              <button id="namepage_mob">C4D</button>
+          </div>
+
+          <button id="slash_mob">/</button>
+
+          <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
+          <button data-func="home" id="sepa" class="mclickcfunc">&amp;</button>
+          <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+        </div>
+    </div>
+
+    <div id="webSidebar" class="webSidebarS">
+        <div style="height: 2.5vh;"></div>
+        <div    data-func="filletplane" class="sidebtn clickfunc" tabindex="0"><span   class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
+        <div    data-func="mp4vidoc"    class="sidebtn clickfunc" tabindex="0"><span   class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
+        <div    data-func="helpers"     class="sidebtn clickfunc" tabindex="0"><span   class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
+        <div    data-func="linked_camera" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
+        <h2  class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+        <div    data-func="prjbtn" class="base_btn mclickcfunc" tabindex="0" id="prjbtn" ><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div style="height: 2.5vh;"></div>
+        <div    data-func="arnold_rand_texture" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
+        <div    data-func="test_head" class="sidebtn clickfunc"        tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
+    </div>
+
+    <div id="shortshelf" hidden>
+            <div data-func="filletplane"         class="sh_btn downfunc sg ico fp"   ></div>
+            <div data-func="mp4vidoc"            class="mt_btn downfunc sg ico mpr"  ></div>
+            <div data-func="swap_mats"           class="mt_btn downfunc sg ico swm"  ></div>
+            <div data-func="matrix_preserve"     class="mt_btn downfunc sg ico map"  ></div>
+            <div data-func="objcolor_to_vercolor"class="mt_btn downfunc sg ico ctv"  ></div>
+            <div data-func="linked_camera"       class="mt_btn downfunc sg ico lk"   ></div>
+            <div data-func="arnold_rand_texture" class="mt_btn downfunc sg ico at"   ></div>
+            <div data-func="test_head"           class="mt_btn downfunc sg ico thd"  ></div>
+            <div data-func="rand_btn"            class="mt_btn downfunc sg ico rand" ></div>
+    </div>
+
+    <div id="mobile_push"></div>
+
+    <div id="mobileToolbar" class="mobileToolbarS" hidden>
+        <div class="mt_btn wspc top" id="mob_lang" >RU</div>
+
+        <div id="toolbar_scr">
+            <div data-func="filletplane"     class="mt_btn clickfunc sg ico fp"        id="mb_fp"    data-nm="0" ></div>
+            <div data-func="mp4vidoc"        class="mt_btn clickfunc sg ico mpr"       id="mb_mpr"   data-nm="1" ></div>
+            <div data-func="swap_mats"       class="mt_btn clickfunc sg ico swm"       id="mb_swm"   data-nm="2" ></div>
+            <div data-func="matrix_preserve" class="mt_btn clickfunc sg ico map"       id="mb_map"   data-nm="3" ></div>
+            <div data-func="objcolor_to_vercolor" class="mt_btn clickfunc sg ico ctv"  id="mb_ctv"   data-nm="4" ></div>
+            <div data-func="linked_camera"   class="mt_btn clickfunc sg ico lk"        id="mb_lk"    data-nm="5" ></div>
+        </div>
+
+        <div id="toolbar_prj" hidden>
+            <div data-func="arnold_rand_texture" class="mt_btn clickfunc sg ico at"  id="mb_arp"   data-nm="0" ></div>
+            <div data-func="test_head"        class="mt_btn clickfunc sg ico thd"  id="mb_prh"   data-nm="1" ></div>
+        </div>
+
+        <div class="mt_btn wspc bot" id="mob_next" data-nm="-2" >▼</div>
+    </div>
+    
+    <div style="height: 40px;"></div>
+
+
+    <div id="bottomPage" class="bottomPageS">
+        <h2>
+            <a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
+               data-us="* alright, go to github" 
+               data-us-mid="* alright, github" 
+               data-us-short="*  github" 
+               data-ru="* круто, но дай гитхаб" 
+               data-ru-mid="* круто, гитхаб" 
+               data-ru-short="* гитхаб">
+               * alright, go to github
+            </a>
+        </h2>
+        
+        <h2 class="bot_link lngsup" id="swapside" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *" >* left-handed *</h2>
+        
+        <h2 class="bot_link lngsup" id="switch_lang" 
+            data-us="и не знаю английский *" 
+            data-us-mid="знать английский? *" 
+            data-us-short="английский!? *"
+            data-ru="i don't know russian *" 
+            data-ru-mid="u know russian? *" 
+            data-ru-short="russian!? *">
+            и не знаю английский *
+        </h2>
+    </div>
+
+
+    <div id="bottomPageMobile" class="bottomPageMobileS" hidden>
+        <div class="botTexLine">
+
+            <h2 id="down_package"><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">
+                <u style="text-decoration: underline;"class="lngsup" data-ru="скачать" data-us="download">download</u> 
+                <div class="lngsup" data-ru="архив" data-us="shelf">shelf</div> </a> 
+            </h2>
+            
+            <h2 class="bot_link lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
+            
+            <h2 id="viewcode" class="rtext"> <a class="link drs" href="">
+                <u id="mob_str_a" style="text-decoration: underline;" class="lngsup" data-ru="глянуть" data-us="viewcode" data-ru-p="скачать" data-us-p="download">viewcode</u> 
+                <div id="mob_str_b" class="lngsup" data-ru="скрипт" data-us="script" data-ru-p="проект" data-us-p="project">script</div> </a> 
+            </h2> 
+        </div>
+
+        <div class="gitLine">
+            <h2><a class="gitlink_mob lngsup" data-ru="гитхаб" data-us="github" href="https://github.com/AleksandrovskyV/c4d/">github</a> </h2>
+        </div>
+    </div>
+
+</div>
+
+<div id="mainViewer">
+  <div class="contentWrapper">
+    <div id="mobileTrickbarSwap" style="width: 90px" hidden></div>
+    <div id="webTrickbarSwap" class="webSidebarS" style ="width: 360px;"hidden></div>
+
+    <div class="contentScroll" >
+
+        <div class="elementBlock" id="filletplane" data-tag="script" data-nm="0">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--fp_color)"></div>
+                
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon"> 
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--fp_color)" >* </span>
+                            <span>Fillet Plane</span>
+                        </h2> 
+                    </div>
+                    
+                    <div class="rowline">
+                        <div class="imageIconS" ><div class="ico fp titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" style="margin-top: 1.2vh;" >
+
+                                <p class="about_us" style="font-size: 22px; font-style: italic;">It`s a plane.. And it has fillets "</p>
+                                <p class="about_ru" style="font-size: 22px; font-style: italic;" hidden>Плоскость c глубиной и мягкими углами "</p>
+
+                                <div class="rowline pad jsb">
+                                    <div class="tested">
+                                        <p>
+                                            <span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span>
+                                            <span class="marked">R23</span>
+                                        </p>
+                                    </div>
+                                    <p class="downlink">
+                                        <a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Filled%20Plane.py"
+                                        >download</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web"></div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+                    <div class="about_placeholder_mob">
+                        <div class="about_extend" style="margin-top: 0vh; height: 0px !important;">
+                            <div id="aboutControlsLabel"> <h2 class="special"></h2> </div>
+                            <div id="aboutControlsText"> <p></p> </div>
+                         </div>
+                    </div>
+
+                    <div class="gif_placeholder_mobile">
+                        <div class="gifpreview">
+                            <img src="./assets/prvgif/fillet_plane_poster.png" 
+                                 data-src="./assets/fillet_plane_preview.gif" 
+                                 data-poster="./assets/prvgif/fillet_plane_poster.png" 
+                                 alt="poster" />
+                            
+                            <div class="overlay"></div>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div class="elementBlock" id="mp4vidoc" data-nm="1" data-tag="script">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--accolor)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span>
+                            <span>MP4 Vidoc</span>
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico mpr titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                Button for fast writing an <span class="marked">MP4</span> file with <span class="marked">_#</span><br>
+                                - version token. Uses active "Render Settings"<br>
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                Кнопка быстрого рендера <span class="marked">MP4</span> файла с <span class="marked">_#</span><br>
+                                - номером итерации. Использует текущие<br>"Render Settings"...<br>
+                                </p>
+
+                                <div class="rowline pad jsb">
+                                     <div class="tested">
+                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R23</span></p>
+                                     </div>
+                                     <p><a class="texlink yt" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
+                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend" >
+                            <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
+
+            
+                            <div id="aboutControlsText" class="about_с_us"> <p>
+                                  <span class="srtc">[ <span class="txt">LMB</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Active settings via Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> ALT</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via Picture Viewer<br>
+                                  <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> SHIFT</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via BG Process<br><br>
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru" style="width: 560px;" hidden> <p>
+                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru_mb" hidden> <p>
+                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ<span class="plus">+</span>АЛЬТ</span> ]&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ<span class="plus">+</span>ШИФТ</span> ]&nbsp;</span>Драфт вьюпорта сквозь PViewer<br><br>
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+                        <img src="./assets/prvgif/mp4_preview_poster.png" 
+                             data-src="./assets/mp4_vidoc_pillow.gif" 
+                             data-poster="./assets/prvgif/mp4_preview_poster.png" 
+                             alt="poster" />
+                        
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="elementBlock" id="helpers" data-tag="script_pack" data-nm="-1" >
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--hp_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
+                            <span>Helpers</span> 
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico map titleIco"></div></div>
+
+                        <div id="aboutElement" >
+
+                            <div class="aboutIconRow" style="margin-top: 0px;" >
+
+                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px; color: #999">+ </span>
+                                Matrix Preserve</span></span> 
+                                </h2>
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.3;">
+                                Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.3;" hidden>
+                                Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
+                                </p>
+
+                                <div class="rowline jsb "style="justify-content: left;">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py"
+                                        >download</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rowline" style="padding-bottom:20px">
+                        <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
+                                </h2>
+
+                                <p class="about_us_s" style="font-size: 20px; line-height: 1.3;">
+                                    Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
+                                </p>
+
+                                <p class="about_ru_s" style="font-size: 20px; line-height: 1.3;" hidden>
+                                    Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
+                                </p>
+
+                                <div class="rowline jsb">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico swm titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
+                                </h2>
+
+                                <p class="about_us_g" style="font-size: 20px; line-height: 1.3;">
+
+                                Swap 2 selected texture tags in Object Manager<br>
+                                * If select 2 objects - swap last texture tags<br>
+                                * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
+                                </p>
+
+                                <p class="about_ru_g" style="font-size: 20px; line-height: 1.3;" hidden>
+                                Смена 2 выбранных tex тегов в ObjectManager<br>
+                                * Выбирая 2 объекта, меняет их крайние теги<br>
+                                * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
+                                </p>
+
+                                <div class="rowline jsb">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+
+                        <img src="./assets/prvgif/helpers_poster.png" 
+                             data-src="./assets/matrix_preserve.mp4" 
+                             data-poster="./assets/prvgif/helpers_poster.png" 
+                             alt="preview" />
+                        <div class="overlay"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="elementBlock" id="swap_mats" data-tag="script_inpack" data-nm="2" hidden>
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--hp_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
+                            <span>Swap Mats</span> 
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico swm titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us_g" style="font-size: 20px; line-height: 1.3;">
+
+                                Swap 2 selected texture tags in Object Manager<br>
+                                * If select 2 objects - swap last texture tags<br>
+                                * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
+                                </p>
+
+                                <p class="about_ru_g" style="font-size: 20px; line-height: 1.3;" hidden>
+                                Смена 2 выбранных tex тегов в ObjectManager<br>
+                                * Выбирая 2 объекта, меняет их крайние теги<br>
+                                * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
+                                </p>
+
+                                <div class="rowline jsb">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
+                                        >download</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        <div class="about_extend">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="infoElementS">
+                <div class="about_placeholder_mob">
+                </div>
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview no_gif">
+
+                        <img src="./assets/prvgif/swap_maps_poster.png" 
+                             data-poster="./assets/prvgif/swap_maps_poster.png" 
+                             alt="poster" />
+
+                        <div class=" no_gif"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="elementBlock" id="matrix_preserve" data-tag="script_inpack" data-nm="3" hidden>
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--hp_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
+                            <span>Matrix Preserve</span> 
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico map titleIco"></div></div>
+
+                        <div id="aboutElement" >
+
+                            <div class="aboutIconRow" style="margin-top: 0px;" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.3;">
+                                Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.3;" hidden>
+                                Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
+                                </p>
+
+                                <div class="rowline jsb "style="justify-content: left;">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py"
+                                        >download</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview no_gif">
+
+                        <img src="./assets/prvgif/matrix_preserve_poster.png" 
+                             data-poster="./assets/prvgif/matrix_preserve_poster.png" 
+                             alt="poster" />
+
+                        <div class=" no_gif"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="elementBlock" id="objcolor_to_vercolor" data-tag="script_inpack" data-nm="4" hidden>
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--hp_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
+                            <span>ObjectColor to VertexColor</span> 
+                        </h2>
+                    </div>
+
+                    <div class="rowline" style="padding-bottom:20px">
+                        <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+                                <p class="about_us_s" style="font-size: 20px; line-height: 1.3;">
+                                    Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
+                                </p>
+
+                                <p class="about_ru_s" style="font-size: 20px; line-height: 1.3;" hidden>
+                                    Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
+                                </p>
+
+                                <div class="rowline jsb">
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend">
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview no_gif">
+                        <img src="./assets/prvgif/color_to_vertex_poster.png" 
+                             data-poster="./assets/prvgif/color_to_vertex_poster.png" 
+                             alt="poster" />
+
+                        <div class=" no_gif"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="elementBlock" id="linked_camera" data-nm="5" data-tag="script" style="padding-bottom: 40px;">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--lc_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--lc_color)" >* </span>
+                            <span>Linked Camera</span>
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico lk titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                Сamera linked to the active one via CameraMorph tag. Includes optional Xpresso to expand your render area while strictly maintaining the original focal length
+                                                                </p>
+
+                                                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                Камера привязанная к активной, через CameraMorph тег. Включает возможность расширить зону рендера без искажения фокусного расстояния
+                                                                </p>
+
+                                                                <div class="rowline pad jsb">
+                                                                     <div class="tested">
+                                                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R20</span></p>
+                                                                     </div>
+                                                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                                                        href="https://vsky.space/c4d/vsky.scripts/Linked%20Camera.py"
+                                                                        >download</a></p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="about_placeholder_web">
+                                                        
+                                                        <div class="about_extend" style="width: 500px;">
+                                                            <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Особенности:" data-us="Features:">Features:</h2></div>
+
+                                            
+                                                            <div id="aboutControlsText" class="about_с_us" > <p style="width: 540px; line-height: 1.5;">
+                                - Camera is created on the top level, ready for baking the original PSR animation data<br>
+                                - Ready-to-use Render Settings tailored for the expanded region via Xpresso tag<br>
+                                - The entire сamera setup can be completely removed along with Render Settings in one click<br>
+
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru" hidden>  
+                                <p style="width: 520px; line-height: 1.5;">
+                                - Камера создаётся на верхнем уровне, что удобно для запекания исходной PSR-анимации<br>
+                                - Для расширенной области рендера через Xpresso тег создаётся готовый профиль Render Settings<br>
+                                - Опция для удаления добавленной камеры, включая профиль "Render Settings", в один клик<br>
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+                        <img src="./assets/prvgif/LinkedCamera_poster.png" 
+                             data-src="./assets/Camera_Morph_Link_with_Extend-Region_Value.gif" 
+                             data-poster="./assets/prvgif/LinkedCamera_poster.png" 
+                             alt="poster" />
+                        
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="elementBlock" id="arnold_rand_texture" data-nm="0" data-tag="project" style="padding-bottom: 40px;">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--ar_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--ar_color)" >* </span>
+                            <span>Arnold Workflow<br>      "user_data_string"</span>
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico at titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                Extended this
+                                <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">workflow</a> for 
+                                <br>Arnold String Attribute<br>Automating it...?
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+
+                                <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">Расширенный</a> процесс
+                                <br>работы с Arnold String Attribute<br>Cильно его ускоряя...? 
+                                </p>
+
+                                <div class="rowline pad jsb">
+                                     <div class="tested">
+                                          <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">??</span></p>
+                                     </div>
+                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        href="https://vsky.space/c4d/ARND_STRING_ATR_EXT/ARND_STRING_ATR_EXT_V2.zip"
+                                        >download</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend" style="width: 500px;">
+                            <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Особенности:" data-us="Features:">Features:</h2></div>
+
+            
+                            <div id="aboutControlsText" class="about_с_us" > 
+                                <p style="width: 540px; line-height: 1.5;">
+                                - Manual path setup for a selected object<br>
+                                - PBR texture slots & randomization<br>
+                                - Workflow tutorial on <a class="texlink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru" hidden>  
+                                <p style="width: 520px; line-height: 1.5;">
+                                - Можно точечно задать путь у выбранного объекта<br>
+                                - Наличие слотов для PBR-текстур и рандомизация<br>
+                                - Разбор процесса на <a class="texlink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview">
+                        <img src="./assets/prvgif/ArnoldRandomizer_poster.png"
+                             data-src="./assets/Arnold_String-Path_Randomizer_Selector.gif" 
+                             data-poster="./assets/prvgif/ArnoldRandomizer_poster.png"
+                             alt="poster" />
+                        
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="elementBlock" id="test_head" data-nm="1" data-tag="project">
+            <div class="iconBlock" > 
+                <div class="line_struct" style="color: var(--ar_color)"></div>
+
+                <div class="gif_placeholder_web"></div>
+
+                <div class="aboutIconRow" >
+                    
+                    <div id="nameIcon">
+                        <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span>
+                            <span>Test Smile</span>
+                        </h2>
+                    </div>
+
+                    <div class="rowline">
+                        <div class="imageIconS"><div class="ico thd titleIco"></div></div>
+
+                        <div id="aboutElement" >
+                            <div class="aboutIconRow" >
+
+                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                    Built to <br>be tested...
+                                </p>
+
+                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                    Создан через<br>тестирование...
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about_placeholder_web">
+                        
+                        <div class="about_extend" style="width: 500px;">
+                            <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Файлы:" data-us="Files:">Files:</h2></div>
+
+            
+                            <div id="aboutControlsText" class="about_с_us" > 
+                                <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
+                                    01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Low-poly mouth setup with small trick * Pose Morph Tag<br></span></p>
+                                <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
+                                    02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Prepared Octane AOVs * with .aep files include...<br></span>
+                                </p>
+                            </div>
+                            
+                            <div id="aboutControlsText" class="about_с_ru" hidden>  
+                                 <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
+                                    01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Простая установка рта с хитростью * Pose Morph Tag<br></span></p>
+                                <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
+                                    02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
+                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                - Подготовленные OctaneAOVs * содержит .aep<br></span>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="infoElementS">
+
+                <div class="about_placeholder_mob">
+                </div>
+
+                <div class="gif_placeholder_mobile">
+                    <div class="gifpreview no_gif">
+                        <img src="./assets/prvgif/no_poster_v2.png" 
+                             data-poster="./assets/prvgif/no_poster_v2.png" 
+                             alt="poster" />
+
+                        <div class="no_gif"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="spacer_scroller" ></div>
+
+    </div>
+
+
+    <div id="mobileTrickbar" class="mobileToolbarS"></div>
+    <div id="webTrickbar" class="webSidebarS"></div>
+
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+<script>
+
+let mobile  = false;
+let activeElement = null;
+
+
+let backupSoloCheck = null;
+let shortShelfActive = false;
+
+const langButton = document.getElementById('switch_lang');
+const langButtonMobile = document.getElementById('mob_lang');
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
+
+const mainMenu= document.getElementById('mainMenu');
+let translated = false; 
+let switchSides = false; 
+
+function soloCheck(state) {
+    if(shortShelfActive) return;
+
+    const blocks = document.querySelectorAll('.elementBlock');
+
+    if (blocks.length === 0) return;
+
+    if (state) {
+        if (!backupSoloCheck) {
+            backupSoloCheck = new Map();
+            blocks.forEach(block => {
+                backupSoloCheck.set(block, block.hidden);
+            });
+        }
+
+        const screenCenterY = window.innerHeight / 2;
+        let closestBlock = null;
+        let minDifference = Infinity;
+
+        blocks.forEach(block => {
+            const rect = block.getBoundingClientRect();
+            const blockCenterY = rect.top + rect.height / 2;
+            const difference = Math.abs(blockCenterY - screenCenterY);
+
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestBlock = block;
+            }
+        });
+
+        blocks.forEach(block => {
+            if (block === closestBlock) {
+                block.hidden = false;
+            } else {
+                block.hidden = true;
+            }
+        });
+        
+        const targetBtnName = closestBlock ? closestBlock.id : null;
+        if (targetBtnName) {
+            const buttons = document.querySelectorAll('.mt_btn');
+            
+            buttons.forEach(btn => {
+                if (btn.dataset.func === targetBtnName) {
+                    btn.classList.add('active');
+                    lastCheckedButtons = [btn].filter(Boolean);
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+    } else {
+        if (backupSoloCheck) {
+            blocks.forEach(block => {
+                if (backupSoloCheck.has(block)) {
+                    block.hidden = backupSoloCheck.get(block);
+                }
+            });
+            backupSoloCheck = null;
+        }
+    }
+}
+
+function nextElement() {
+    const toolbarPrj = document.getElementById('toolbar_prj');
+    const toolbarScr = document.getElementById('toolbar_scr');
+    
+    function activateNextInContainer(container) {
+        // Если контейнер скрыт (через hidden), мы его полностью игнорируем
+        if (!container || container.hidden) return;
+        
+        const buttons = container.querySelectorAll('.clickfunc');
+        if (buttons.length === 0) return;
+
+        let activeIndex = -1;
+        
+        buttons.forEach((btn, index) => {
+            if (btn.classList.contains('active')) {
+                activeIndex = index;
+            }
+        });
+        
+        const nextIndex = (activeIndex + 1) % buttons.length;
+        const nextButton = buttons[nextIndex];
+
+        if (nextButton) {
+            nextButton.click();
+        }
+    }
+
+    activateNextInContainer(toolbarPrj);
+    activateNextInContainer(toolbarScr);
+}
+
+const viewCodeBtn = document.getElementById('viewcode');
+
+if (viewCodeBtn) {
+    viewCodeBtn.addEventListener('click', (event) => {
+        event.preventDefault(); 
+
+        const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
+                                         .find(block => !block.hidden);
+
+        if (currentVisibleBlock) {
+            const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
+            
+            if (downloadLink && downloadLink.href) {
+                window.open(downloadLink.href, '_blank');
+            } 
+        } else {
+            console.warn("На экране нет активных или видимых блоков elementBlock.");
+        }
+    });
+}
+const mob_next_btn = document.getElementById('mob_next');
+if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
+
+
+let lastCheckedMainTabs = []; 
+let lastCheckedButtons = []; 
+let lastCheckedU = null;
+let lastCheckedT = null;
+
+const mobile_width = 780+1;
+
+function changeMobileDownloadBtn(check) {
+    const mob_str_a = document.getElementById('mob_str_a');
+    const mob_str_b = document.getElementById('mob_str_b');
+
+    const langPrefix = translated ? 'ru' : 'us';
+    const keySuffix = check ? '-p' : ''; 
+    const fullAttributeName = `data-${langPrefix}${keySuffix}`;
+
+    mob_str_a.textContent = mob_str_a.getAttribute(fullAttributeName);
+    mob_str_b.textContent = mob_str_b.getAttribute(fullAttributeName);
+}
+
+
+
+document.addEventListener('click', (event) => {
+    const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
+    const width = window.innerWidth;
+    let sizeIsMobile = false;
+
+    if (width < mobile_width) sizeIsMobile = true;
+
+    if (currentBtn) {
+        
+        const isMainTabClick = currentBtn.classList.contains('mclickcfunc');
+
+        if (!sizeIsMobile || isMainTabClick) {
+            lastCheckedMainTabs.forEach(btn => {
+                if (btn) btn.classList.remove("active");
+            });
+            if (isMainTabClick) lastCheckedMainTabs = []; // Сбрасываем кэш вкладок
+        }
+
+        // Одиночные кнопки и внутренние спаны стираем всегда при любом клике
+        lastCheckedButtons.forEach(btn => {
+            if (btn) btn.classList.remove("active");
+        });
+        if (lastCheckedU) lastCheckedU.classList.remove("active");
+        if (lastCheckedT) lastCheckedT.classList.remove("active");
+
+        lastCheckedU = null;
+        lastCheckedT = null;
+
+
+        // 2. ЛОГИКА ОПРЕДЕЛЕНИЯ И КЭШИРОВАНИЯ АКТИВНЫХ ЭЛЕМЕНТОВ
+        if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
+            const btnWeb = document.getElementById('prjbtn');
+            const btnMob = document.getElementById('prjbtn_mob');
+            
+            // На мобилках сохраняем в отдельный неприкосновенный кэш вкладок
+            if (sizeIsMobile) {
+                lastCheckedMainTabs = [btnWeb, btnMob].filter(Boolean);
+                lastCheckedButtons = []; // Дочерний кэш чист
+            } else {
+                lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
+            }
+
+            toolbar_prj.hidden = false;
+            toolbar_scr.hidden = true;
+            
+            changeMobileDownloadBtn(true);
+
+        } else if (currentBtn.id === "scrbtn") {
+            const btnWeb = document.getElementById('scrbtn');
+            
+            if (sizeIsMobile) {
+                lastCheckedMainTabs = [btnWeb].filter(Boolean);
+                lastCheckedButtons = [];
+            } else {
+                lastCheckedButtons = [btnWeb].filter(Boolean);
+            }
+
+            toolbar_prj.hidden = true;
+            toolbar_scr.hidden = false;
+            
+            changeMobileDownloadBtn(false);
+
+        } else if (currentBtn.id === "sepa") {
+            if (sizeIsMobile) {
+                lastCheckedMainTabs.forEach(btn => btn && btn.classList.remove("active"));
+                lastCheckedMainTabs = [];
+            }
+            lastCheckedButtons = [];
+            
+        } else {
+            // Если кликнули по элементу тулбара (clickfunc), пишем его строго в дочерний кэш
+            lastCheckedButtons = [currentBtn];
+            lastCheckedU = currentBtn.querySelector('.sel_pre');
+            lastCheckedT = currentBtn.querySelector('.sid_tex');
+        }
+
+        lastCheckedMainTabs.forEach(btn => btn.classList.add("active"));
+        
+        // Зажигаем текущие кликнутые элементы и спаны
+        lastCheckedButtons.forEach(btn => btn.classList.add("active"));
+        if (lastCheckedU) lastCheckedU.classList.add("active");
+        if (lastCheckedT) lastCheckedT.classList.add("active");
+
+
+        // --- ФИЛЬТРАЦИЯ КОНТЕНТА ---
+        if (currentBtn.classList.contains('clickfunc')) {
+            const target_func = currentBtn.dataset.func;
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                block.hidden = (block.id !== target_func);
+            });
+        }
+
+        // 2. Сортировка SCRIPTS
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn")){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "script" || tag === "script_pack");
+            });
+        }
+
+        // 3. Сортировка PROJECTS
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "project" || tag === "project_pack");
+            });
+        }
+
+        // 4. Сортировка для SEPA (Показать всё, кроме вложенных скриптов)
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && currentBtn.id === "sepa") {
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                block.hidden = (block.dataset.tag === "script_inpack");
+            });
+        }
+    }
+
+
+    const gifCont = event.target.closest('.gifpreview');
+    
+    if (!gifCont) return;
+
+    const img = gifCont.querySelector('img');
+    let video = gifCont.querySelector('video');
+    
+    const mediaUrl = img ? img.getAttribute('data-src') : video.getAttribute('src');
+    const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
+    
+    const isVideo = mediaUrl.endsWith('.mp4');
+
+    if (gifCont.classList.contains('playing')) {
+        gifCont.classList.remove('playing');
+        
+        if (isVideo && video) {
+            video.pause();
+        } else if (img) {
+            img.src = posterUrl;
+        }
+    } else {
+        gifCont.classList.add('playing');
+        
+        if (isVideo) {
+            if (!video) {
+                video = document.createElement('video');
+                video.src = mediaUrl;
+                video.poster = posterUrl;
+                video.loop = true;
+                video.muted = true;
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.preload = 'auto';
+                img.remove();
+                gifCont.insertBefore(video, gifCont.firstChild);
+            }
+            video.play().catch(err => console.log("Автоплей заблокирован:", err));
+        } else {
+            if (img && mediaUrl) {
+                img.src = mediaUrl;
+            }
+        }
+    }
+});
+
+
+let gifmobileflag = false;
+let isTransitBlocked = false;
+let shifting = false;
+
+function transitElements(toContainerSelector, targetSelector) {
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const destination = block.querySelector(toContainerSelector);
+        const targetElement = block.querySelector(targetSelector);
+
+        if (destination && targetElement) {
+            if (!destination.contains(targetElement)) {
+                destination.appendChild(targetElement);
+            }
+        }
+    });
+}
+
+function transitAllGifs(to_mobile, hard) {
+    if (hard){
+        isTransitBlocked = false;
+    }
+    if (isTransitBlocked) return;
+    shifting = true;
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const webPlaceholder = block.querySelector('.gif_placeholder_web');
+        const mobilePlaceholder = block.querySelector('.gif_placeholder_mobile');
+        const gifPreview = block.querySelector('.gifpreview');
+
+        const elemChecker = gifPreview && webPlaceholder && mobilePlaceholder;
+
+        if (!elemChecker) return;
+
+        if (to_mobile) {
+            mobilePlaceholder.appendChild(gifPreview);
+            if (!gifmobileflag) {
+                gifmobileflag = true;
+            }
+        } else {
+            webPlaceholder.appendChild(gifPreview);
+            if (gifmobileflag) {
+                gifmobileflag = false;
+            }
+        }
+    });
+
+    shifting = false;
+    isTransitBlocked = true;
+
+    setTimeout(() => {
+        isTransitBlocked = false;
+    }, 500); 
+}
+
+function gifSizeChecker() {
+    const gif_align = window.innerWidth<1790;
+    //console.log("gf", gif_align)
+    transitAllGifs(gif_align, true); 
+}
+
+
+
+function renderSwapButtons() {
+    const langPrefix = translated ? 'ru' : 'us'; 
+    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
+
+    if (swapButton && swapButton.dataset[attributeName]) {
+        swapButton.textContent = swapButton.dataset[attributeName];
+    }
+    if (swapMobile && swapMobile.dataset[attributeName]) {
+        swapMobile.textContent = swapMobile.dataset[attributeName];
+    }
+}
+
+function updateResponsiveText() {
+    const width = window.innerWidth;
+    const langPrefix = translated ? 'ru' : 'us'; // Определяем текущий язык
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        let text = '';
+        
+        if (width <= 1000) {
+            text = texblock.dataset[`${langPrefix}Short` ] || texblock.dataset[`${langPrefix}Mid`];
+        } else if (width > 1000 && width <= 1400) {
+            text = texblock.dataset[`${langPrefix}Mid`];
+        } else if (width > 1400 && width <= 1700) {
+            text = texblock.dataset[`${langPrefix}Mid` ];
+        }
+
+        if (!text) {
+            text = texblock.dataset[langPrefix];
+        }
+
+        if (text) {
+            texblock.textContent = text;
+        }
+    });
+}
+
+function switchLang() {
+    translated = !translated;
+
+    if (langButtonMobile) {
+        langButtonMobile.textContent = translated ? "US" : "RU";
+    }
+
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us');
+        const ru_text = block.querySelector('.about_ru');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_s');
+        const ru_text = block.querySelector('.about_ru_s');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_g');
+        const ru_text = block.querySelector('.about_ru_g');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_с_us');
+        const ru_text = block.querySelector('.about_с_ru');
+
+        const ru_text_mob = block.querySelector('.about_с_ru_mb');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+
+            if(ru_text_mob && isMobile){
+
+                ru_text_mob.hidden = translated ? false : true;
+            }else{
+                ru_text.hidden = translated ? false : true;                
+            }
+        }
+    });
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        
+        texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
+    });
+
+    updateResponsiveText();
+    renderSwapButtons();
+}
+
+function switchSide() {
+    switchSides = !switchSides;
+    mainMenu.classList.toggle('swap')
+
+    const right = document.getElementById('webTrickbar');
+    const rightMobile = document.getElementById('mobileTrickbar');
+
+    const left = document.getElementById('webTrickbarSwap');
+    const leftMobile = document.getElementById('mobileTrickbarSwap');
+
+    const width = window.innerWidth;
+
+    if (width < mobile_width && switchSides){
+        left.hidden = true;
+    }else{
+        left.hidden = !switchSides;
+    }
+
+    right.hidden = switchSides;
+    rightMobile.hidden = switchSides;
+    leftMobile.hidden = !switchSides;
+
+    const downPackage = document.getElementById('down_package');
+    const viewCode = document.getElementById('viewcode');
+
+    if (downPackage && viewCode) {
+        const dummy = downPackage.cloneNode(false);
+        downPackage.replaceWith(dummy);
+        viewCode.replaceWith(downPackage);
+        dummy.replaceWith(viewCode);
+
+        if(switchSides){
+            viewCode.classList.remove('rtext');
+            downPackage.classList.add('rtext');
+        }else{
+            viewCode.classList.add('rtext');
+            downPackage.classList.remove('rtext');
+        }
+    }
+
+
+
+    renderSwapButtons();
+}
+
+if (langButton) langButton.onclick = () => switchLang();
+if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
+if (swapButton) swapButton.onclick = () => switchSide();
+if (swapMobile) swapMobile.onclick = () => switchSide();
+
+
+function swapTestedAndYoutube(mobile_state) {
+    document.querySelectorAll('.rowline.pad').forEach(container => {
+        const ytLink = container.querySelector('.texlink.yt');
+        const testedBlock = container.querySelector('.tested');
+
+        if (!ytLink || !testedBlock) return;
+
+        if (mobile_state) {
+            const ytParagraph = ytLink.closest('p') || ytLink;
+        
+            if (ytParagraph.nextElementSibling !== testedBlock) {
+                container.insertBefore(testedBlock, ytParagraph.nextSibling);
+            }
+        } else {
+            const ytParagraph = ytLink.closest('p') || ytLink;
+            
+            if (testedBlock.nextElementSibling !== ytParagraph) {
+                container.insertBefore(ytParagraph, testedBlock.nextSibling);
+            }
+        }
+    });
+}
+
+function switchToMobile(mobile_state) {
+    //console.log("mobile", mobile_state);
+    
+    mobile = mobile_state;
+    const hide_flag = mobile ? false : true;
+    const unhide_flag = mobile ? true : false;
+
+    const mobileToolbar = document.getElementById('mobileToolbar');
+    const mobileTrickbar = document.getElementById('mobileTrickbar');
+
+    const mobile_push = document.getElementById('mobile_push');
+
+    mobileToolbar.hidden = hide_flag;
+    mobileTrickbar.hidden = hide_flag;
+    mobile_push.hidden = hide_flag;
+
+    const webSidebar =  document.getElementById('webSidebar');
+    const webTrickbar =  document.getElementById('webTrickbar');
+    webSidebar.hidden = unhide_flag;
+    webTrickbar.hidden = unhide_flag;
+
+    document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
+    document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
+    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
+
+    if(isMobile){
+        document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
+    }
+    
+
+    const bottomPage = document.getElementById('bottomPage');
+    const bottomPageMobile = document.getElementById('bottomPageMobile');
+    bottomPage.hidden = unhide_flag;
+    bottomPageMobile.hidden = hide_flag;
+
+    //swapTestedAndYoutube(mobile)
+
+    const namepage = document.getElementById('namepage');
+    const namepage_mob = document.getElementById('namepage_mob');
+    const slash_mob = document.getElementById('slash_mob');
+
+    const prjbtn_mob = document.getElementById('prjbtn_mob');   
+
+    namepage.hidden = unhide_flag;
+    namepage_mob.hidden = hide_flag;
+    slash_mob.hidden = hide_flag;
+    prjbtn_mob.hidden = hide_flag;
+}
+
+
+function lerp(start, end, amt) {
+    return (1 - amt) * start + amt * end;
+}
+
+
+// ResizeChecker //
+const nameCases = {
+    'namepage': ['C4D', 'CINEMA 4D'], 
+    'central': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
+};
+
+const headerPage = document.getElementById('headerPage');
+const namepageText = document.getElementById('namepageText');
+const centralText = document.getElementById('sepa');
+
+const reductionOrder = [
+  { key: 'namepage', element: namepageText },
+  { key: 'central', element: centralText },
+];
+
+const pearlLine = document.getElementById('pearlLine');
+
+function textShortChecker() {
+  const currentIndices = {
+    namepage: nameCases.namepage.length - 1,
+    central: nameCases.central.length - 1,
+  };
+
+  const updateDOM = () => {
+    
+    const width = window.innerWidth;
+    
+    if (width >= 960 && width<1300) {
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&_DATA";//nameCases.central[currentIndices.central];
+    }else if (width < 960){
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&";//nameCases.central[currentIndices.central];
+    }else{
+        namepageText.textContent = nameCases.namepage[currentIndices.namepage];
+        // width fix
+        centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
+    }
+
+    if(namepageText.textContent==="C4D"){
+        pearlLine.textContent = "* pearl";
+    }else{
+        pearlLine.textContent = "* pearl edition";
+    }
+
+  };
+    
+  updateDOM();
+
+  const isOverflowing = () => {
+    return headerPage.scrollWidth > headerPage.clientWidth;
+  };
+  let step = 0;
+  
+  while (isOverflowing() && step < reductionOrder.length) {
+    const currentTarget = reductionOrder[step];
+    
+    if (currentIndices[currentTarget.key] > 0) {
+      currentIndices[currentTarget.key]--;
+      updateDOM();
+    } else {
+      step++;
+    }
+  }
+}
+
+document.getElementById('shortshelf')?.addEventListener('click', function(event) {
+    const btn = event.target.closest('.mt_btn');
+    if (!btn) return;
+
+    const funcName = btn.dataset.func;    
+    const element = document.getElementById(funcName);
+
+    if (funcName === 'randomize') {
+
+        return;
+    }else{
+        if (element) {
+            console.log(`Скачивание скрипта для: ${funcName}`);
+            const downloadLink = element.querySelector('.texlink.dn');
+            if (downloadLink && downloadLink.href) {
+                window.open(downloadLink.href, '_blank');
+            } 
+
+        } else {
+            console.log("Элемент не найден");
+        }
+    }
+});
+
+function updateShortShelf() {
+    const shelf = document.getElementById('shortshelf');
+    if (!shelf) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const isMobileLayout = document.documentElement.classList.contains('mobile');
+
+    // Условие отображения: ширина < 900 И высота < 600 И на HTML нет класса mobile
+    if (width < 600 && height < 600 && !isMobileLayout) {
+
+        shelf.hidden = false;
+        shortShelfActive =true;
+
+
+        const buttons = shelf.querySelectorAll('.mt_btn');
+        const count = buttons.length;
+
+        const cols = Math.ceil(Math.sqrt(count)); 
+        shelf.style.setProperty('--cols', cols);
+
+    } else {
+        shelf.setAttribute('hidden', '');
+        shelf.style.removeProperty('display');
+        shelf.hidden = true;
+        shortShelfActive =false;
+    }
+}
+
+
+function resizeGlobalCanvas() {
+    const width = window.innerWidth;
+    if (width < mobile_width) { 
+        switchToMobile(true);
+        transitElements('.about_placeholder_mob', '.about_extend', false);
+
+        //document.documentElement.style.setProperty('--topbar_h', '16vh');
+        
+    } else if (width > 1400) {
+        switchToMobile(false);
+        transitElements('.about_placeholder_web', '.about_extend', false);
+
+        //document.documentElement.style.setProperty('--topbar_h', '10vh');
+
+    } else {
+        switchToMobile(false);
+        
+        const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
+        const calculatedHeight = lerp(16, 10, interpolationFactor);
+        //document.documentElement.style.setProperty('--topbar_h', `${calculatedHeight}vh`);
+    }
+
+    if(width<mobile_width){
+        soloCheck(true);
+    }else{
+        soloCheck(false);
+    }
+
+    if (width <= mobile_width) { 
+        document.documentElement.style.setProperty('--main_w', '97.5%');
+        
+    } else if (width >= 1400) {
+        document.documentElement.style.setProperty('--main_w', '75%');
+
+    } else {
+        const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
+        const calculatedWidth = lerp(97.5, 75.0, interpolationFactor);
+        document.documentElement.style.setProperty('--main_w', `${calculatedWidth}%`);
+    }
+
+    gifSizeChecker();
+
+    textShortChecker();
+
+    updateResponsiveText();
+
+    if(!isMobile){
+       updateShortShelf(); 
+    }
+    
+
+    const zagl = document.getElementById('zagl');
+    zagl.classList.add("close"); 
+    //zagl.hidden = true;
+}
+
+
+
+function firstStart() {
+    resizeGlobalCanvas();
+
+    if (isMobile) {
+        const scr = document.getElementById('scrbtn');
+        if (scr) {
+            scr.classList.add('active'); 
+            lastCheckedMainTabs = [scr];
+            const scr_text = document.getElementById('scr_text');
+            
+            if(scr_text){ scr_text.textContent = "SCR" + "\u00A0";
+            }
+
+        }
+
+        let lastTouchEnd = 0;
+        
+        document.addEventListener('touchend', function (event) {
+            const now = Date.now();
+            
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+                
+                if (event.target && typeof event.target.click === 'function') {
+                    event.target.click();
+                }
+            }
+            lastTouchEnd = now;
+        }, { passive: false }); 
+    }
+}
+
+
+window.onload = firstStart;
+window.addEventListener('resize', resizeGlobalCanvas);
+
+
+</script>
+
+</body></html>
