@@ -49,7 +49,7 @@ console.log("Mobile",isMobile,"Local", isLocal);
 --accolor: #dd9f17;
 --main_w: 75%;
 --topbar_h: 13vh;
---botbar: 12vh; 
+--botbar_h: 12vh; 
 --mbtn_size: 82px;
 --sbt_color: #a4a4a4;
 --fp_color: #1cf975;
@@ -285,6 +285,37 @@ background-color: var(--accolor);
 .mt_btn.active { background-color: #848484;
 }
 
+.plateFixed {
+position: fixed; 
+left: 0;
+width: 100vw; 
+background: var(--bgcolor);
+z-index: 9900; 
+pointer-events: auto; 
+}
+
+
+#topbarExpand {
+height: var(--topbar_h);
+top: 0;
+}
+#botbarExpand {
+height: var(--botbar_h);
+bottom: 0;
+}
+#bottomShadowRow {
+position: fixed;
+left: 0;
+width: 100vw;
+height: 128px; 
+bottom: var(--botbar_h); 
+background-image: url('./assets/shadow_sample.png');
+background-repeat: repeat-x; 
+background-position: bottom left; 
+z-index: 9901; 
+pointer-events: none; 
+}
+
 #topBarBlock {
 background: var(--bgcolor);
 display: flex;
@@ -293,6 +324,8 @@ width: 100%;
 height: var(--topbar_h);
 z-index: 9950;
 }
+
+
 #pearlLine{
 color: #767676;
 font-size: 19px;
@@ -499,14 +532,12 @@ align-items: flex-start;
 background-color: var(--bgcolor);
 display: flex; flex-direction: row;
 width: 100%;
-height: var(--botbar);
+height: var(--botbar_h);
 justify-content: space-between;
 align-items: flex-start; 
 
 pointer-events: auto;
 user-select: none;
-box-shadow: 
-    0 -5px 50px 9px rgb(44 47 52);
 }
 
 .bottomPageMobileS {
@@ -530,7 +561,7 @@ justify-content: space-between;
 display: flex;
 justify-content: center;
 align-items: center; 
-height: var(--botbar);
+height: var(--botbar_h);
 }
 
 .spacer_scroller {
@@ -739,7 +770,7 @@ display: none !important;
 @media (max-width: 780px) {
     :root {
     /*--topbar_h: 16vh; */
-    --botbar: 5vh; /* SIZE PROBLEM FIX */
+    --botbar_h: 5vh; /* SIZE PROBLEM FIX */
     --main_w: 97.5%;
     }
     .bottomPageMobileS{
@@ -775,7 +806,9 @@ display: none !important;
 </head><body>
 
 <div id="zagl" class="overlay_fill"></div>
-
+<div id="topbarExpand" class="plateFixed"></div>
+<div id="botbarExpand" class="plateFixed"></div>
+<div id="bottomShadowRow"></div>
 <div id="mainMenu"class="mainMenuOverlay">
     <div id="topBarBlock">
     <h2 id="pearlLine">* pearl version</h2>
