@@ -287,19 +287,30 @@ background-color: var(--accolor);
 .mt_btn.active { background-color: #848484;
 }
 
+#topBarBlock {
+background: var(--bgcolor);
+display: flex;
+flex-direction: column;
+width: 100%;
+height: var(--topbar_h);
+z-index: 9950;
+}
+#pearlLine{
+color: #767676;
+font-size: 19px;
+margin-top: auto;
+transform: translateY(8px);
+}
 
 #headerPage {
 background: var(--bgcolor);
 display: flex;
 flex-direction: row;
 width: 100%;
-height: var(--topbar_h);
 justify-content: space-between;
 align-items: flex-end; 
-z-index: 9950;
 pointer-events: auto;
 }
-
 
 #mainViewer {
 width: var(--main_w);
@@ -481,6 +492,7 @@ pointer-events: none !important;
 user-select: none;
 touch-action: manipulation;
 }
+
 .mainMenuOverlay.swap{
 align-items: flex-start;
 }
@@ -762,17 +774,20 @@ display: none !important;
 <div id="zagl" class="overlay_fill"></div>
 
 <div id="mainMenu"class="mainMenuOverlay">
+    <div id="topBarBlock">
+    <h2 id="pearlLine">* pearl version</h2>
     <div id="headerPage">
-      <div id="prebtn">
-          <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
-          <button id="namepage_mob">C4D</button>
-      </div>
+          <div id="prebtn">
+              <div id="namepage" class="namepageS" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
+              <button id="namepage_mob">C4D</button>
+          </div>
 
-      <button id="slash_mob">/</button>
+          <button id="slash_mob">/</button>
 
-      <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
-      <button data-func="home" id="sepa" class="mclickcfunc">&amp;</button>
-      <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+          <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
+          <button data-func="home" id="sepa" class="mclickcfunc">&amp;</button>
+          <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+        </div>
     </div>
 
     <div id="webSidebar" class="webSidebarS">
@@ -2293,6 +2308,8 @@ const reductionOrder = [
   { key: 'central', element: centralText },
 ];
 
+const pearlLine = document.getElementById('pearlLine');
+
 function textShortChecker() {
   const currentIndices = {
     namepage: nameCases.namepage.length - 1,
@@ -2314,6 +2331,13 @@ function textShortChecker() {
         // width fix
         centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
     }
+
+    if(namepageText.textContent==="C4D"){
+        pearlLine.textContent = "* pearl";
+    }else{
+        pearlLine.textContent = "* pearl edition";
+    }
+
   };
     
   updateDOM();
