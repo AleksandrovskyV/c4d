@@ -73,9 +73,10 @@ background-color: var(--bgcolor);
 margin: 0;
 padding: 0;
 overflow-x: hidden;
+font-family: sans-serif;
+user-select: text;
 touch-action: manipulation;
 }
-
 
 p{
 color: #a3a3a3;
@@ -294,14 +295,13 @@ background: var(--bgcolor);
 z-index: -1;
 pointer-events: none;
 }
+
 .plateFixed {
-    position: fixed;
-    left: 0; width: 100vw;
-    background: var(--bgcolor);
-    z-index: 9900;
+position: fixed;
+left: 0; width: 100vw;
+background: var(--bgcolor);
+z-index: 9900;
 }
-
-
 
 #topbarExpand {
 height: var(--topbar_h);
