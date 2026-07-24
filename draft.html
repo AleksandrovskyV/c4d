@@ -76,7 +76,6 @@ font-family: sans-serif;
 user-select: text;
 margin: 0;
 touch-action: manipulation;
-
 }
 
 p{
@@ -295,6 +294,15 @@ z-index: 9900;
 pointer-events: auto; 
 }
 
+.true_bg {
+position: fixed; 
+left: 0;
+width: 100vw; 
+height: 130vh;
+background: var(--bgcolor);
+z-index: 0; 
+pointer-events: none; 
+}
 
 #topbarExpand {
 height: var(--topbar_h);
@@ -806,6 +814,7 @@ display: none !important;
 
 </head><body>
 
+<div class="true_bg"></div>
 <div id="zagl" class="overlay_fill"></div>
 <div id="topbarExpand" class="plateFixed"></div>
 <div id="botbarExpand" class="plateFixed"></div>
