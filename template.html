@@ -22,6 +22,7 @@
 --footer_h: 200px;
 --spaces: 5px;
 
+--font_head: 72px;
 --titlefont: 'title', sans-serif;
 --sidefont: 'sidebar', sans-serif;
 --monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -46,6 +47,11 @@ overflow-x: hidden;
 overflow-y: auto;
 touch-action: manipulation;
 }
+h2{ 
+color: #dfdfe0;
+font-family: var(--titlefont);
+}
+
 
 .linePage {
 position: fixed; 
@@ -57,12 +63,18 @@ margin-right: auto;
 width: var(--main_w);
 background-color: red; 
 z-index: 5000; 
+
+
 }
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
 #header { 
 top: calc(var(--header_h) * -1);
 height: calc(var(--header_h) * 2);
+
+display: flex;
+flex-direction: column;
+align-items: flex-end;
 }
 
 #footer { 
@@ -80,11 +92,28 @@ align-items: flex-start;
 margin-bottom: calc(var(--footer_h) * 2);
 }
 
+
+#pearlLine{
+font-size: 19px;
+margin-top: auto;
+transform: translateY(8px);
+}
+#headerPage {
+display: flex;
+flex-direction: row;
+width: 100%;
+justify-content: space-between;
+align-items: flex-end; 
+pointer-events: auto;
+}
+
+
 #ContentViewer {
 display: flex; 
 flex-direction: column;
 flex-grow: 1;
-margin: var(--spaces);
+margin-top: var(--spaces);
+margin-right: calc(var(--spaces)*2);
 min-width: 0; 
 }
 
@@ -106,12 +135,13 @@ height: 100%;
 background-color: transparent;
 flex-shrink: 0;
 background-color: blue;
+margin-right: var(--spaces);
 }
 
 #mobileShelf {
 position: fixed; 
 top: calc(var(--header_h) + var(--spaces));
-right: calc((100% - var(--main_w)) / 2);
+right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 width: var(--sidebar_w);
 height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
 
@@ -154,6 +184,9 @@ margin-top: 12px;
 .mbtn.active { 
 background-color: #848484;
 }
+html:not(.mobile) .mbtn:hover {
+background-color: var(--accolor);
+}
 
 #fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
 #mpv { background-image: url('./assets/svg/MP4Vidoc.svg'); }
@@ -165,9 +198,78 @@ background-color: #848484;
 #aws  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
 #tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
 
-html:not(.mobile) .mbtn:hover {
-background-color: var(--accolor);
+/* Paste Content */
+.namepageS {
+color: #c8c8ca;
+font-size: var(--font_head); 
+font-family: var(--titlefont);
+text-align: left;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+
+pointer-events: none;
+user-select: none;
 }
+
+button {
+background: none;
+border: 0px solid transparent;
+font-family: var(--titlefont);
+letter-spacing: -0.04em;
+margin: 0;
+font-size: var(--font_head); 
+pointer-events: auto;
+}
+
+button:hover {
+color: #848484;
+}
+
+button.active {
+color: var(--accolor);
+}
+
+.base_btn {
+font-size: var(--font_head); 
+color: #828282;
+font-family: var(--titlefont);
+text-decoration: none;
+pointer-events: auto;
+text-align: right;
+cursor: pointer;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+}
+.subl {
+text-decoration: underline;
+}
+.base_btn:not(.active):hover {
+filter: brightness(0.85); 
+}
+
+.base_btn:active,
+.base_btn.active:active {
+color: #6d6a65 !important; 
+}
+.base_btn.active {
+color: var(--accolor);
+}
+
+#namepage_mob { 
+color: #c8c8ca;
+}
+#slash_mob { 
+color: #636161;
+}
+.open_btn {
+color: #828282;
+text-decoration: underline;
+cursor: pointer;
+}
+/* Paste Content */
+
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   :root {
@@ -176,11 +278,19 @@ background-color: var(--accolor);
     --spaces: 3px;
   }
 }
+
 @media (max-width: 780px) {
     :root {
     --main_w: 97.5%;
     --sidebar_w: 12vw;
+    }
 
+    .mob_hide{ display: none !important;
+    }
+}
+@media (min-width: 780px) {
+
+    .web_hide{ display: none !important;
     }
 }
 
@@ -188,7 +298,22 @@ background-color: var(--accolor);
 </head>
 <body>
 
-<div id="header" class="linePage"></div>
+<div id="header" class="linePage">
+    <h2 id="pearlLine">* pearl version</h2>
+
+    <div id="headerPage">
+          <div id="prebtn">
+              <div    id="namepage"     class="namepageS mob_hide" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
+              <button id="namepage_mob" class="web_hide">C4D</button>
+          </div>
+
+          <button id="slash_mob" class="web_hide">/</button>
+          <button id="prjbtn_mob" class="open_btn web_hide mclickcfunc" data-func="prj_mob" >PRJ</button>
+          <button id="sepa"   data-func="home"  class="mclickcfunc">&amp;</button>
+          <div    id="scrbtn" data-func="scr"   class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+    </div>
+</div>
+
 
 <div id="mobileShelf" hidden> 
     <div class="mbtn text top" id="switchLangMobile" >RU</div>
