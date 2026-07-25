@@ -32,45 +32,41 @@ overflow-x: hidden;
 overflow-y: auto;
 }
 
-#headerPage {
+.linePage{
 position: fixed; 
-top: calc(var(--bars_h) * -1);
-width: var(--main_w);
-height: calc(var(--bars_h) * 2); 
-transform: translateX(calc((100vw - var(--main_w)) / 2));
-background-color: red;
-z-index: 9999;
-}
-
-#bottomPage {
-position: fixed; 
-bottom: calc(var(--bars_h) * -1);
+Left: calc((100vw - var(--main_w)) / 2);
 width: var(--main_w);
 height: calc(var(--bars_h) * 2);
-transform: translateX(calc((100vw - var(--main_w)) / 2));
-background-color: red;
-z-index: 9999;
+background-color: red; 
+z-index: 9999; 
+}
+
+#header { top: calc(var(--bars_h) * -1);
+}
+
+#footer { bottom: calc(var(--bars_h) * -1);
 }
 
 #middlePage {
 width: var(--main_w);
+Left: calc((100vw - var(--main_w)) / 2);
 transform: translateX(calc((100vw - var(--main_w)) / 2)) translateY(calc(var(--bars_h) + var(--spaces)));
-display: flex;flex-direction: row;
+display: flex; flex-direction: row;
 align-items: flex-start; 
 margin-bottom: calc(var(--bars_h) * 2);
 }
 
 #ContentViewer {
-margin: var(--spaces);
+display: flex; flex-direction: column;
 flex-grow: 1;
-display: flex;
-flex-direction: column;
+margin: var(--spaces);
 }
 
 #iconsColumnFake {
 width: var(--iconbar_w);
 height: 100%;
 background-color: transparent;
+flex-shrink: 0; 
 }
 
 #iconsColumn {
@@ -113,9 +109,11 @@ background-position: center;
 </head>
 <body>
 
-<div id="headerPage"></div>
+<div id="header" class="linePage"></div>
 
 <div id="iconsColumn"> 
+    <div id ="fp" class="mbtn"></div>
+    <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
 </div>
@@ -130,7 +128,7 @@ background-position: center;
     <div id="iconsColumnFake"></div>
 </div>
 
-<div id="bottomPage"></div>
+<div id="footer" class="linePage"></div>
 
 </div>
 
