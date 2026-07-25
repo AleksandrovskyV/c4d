@@ -15,10 +15,10 @@
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
 :root {
---main_w: 75vw;
+--main_w: 75%;
 --sidebar_w: 24vw;
 --sidemob_w: 12vw;
---header_h: 12vh;;
+--header_h: 12vh;
 --footer_h: 12vh;
 --spaces: 5px;
 --bgcolor: #2c2f34;
@@ -34,12 +34,16 @@ overflow-x: hidden;
 overflow-y: auto;
 }
 
-.linePage{
-position: fixed; 
-Left: calc((100vw - var(--main_w)) / 2);
-width: var(--main_w);
-background-color: red; 
-z-index: 9999; 
+.linePage {
+  position: fixed; 
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  
+  width: var(--main_w);
+  background-color: red; 
+  z-index: 9999; 
 }
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
@@ -55,32 +59,38 @@ height: calc(var(--footer_h) * 2);
 
 #mainPage {
 width: var(--main_w);
-Left: calc((100vw - var(--main_w)) / 2);
-transform:  translateX(calc((100vw - var(--main_w)) / 2)) 
-            translateY(calc(var(--header_h) + var(--spaces)));
+margin-left: auto;
+margin-right: auto;
+transform: translateY(calc(var(--header_h) + var(--spaces)));
 display: flex; flex-direction: row;
 align-items: flex-start; 
 margin-bottom: calc(var(--footer_h) * 2);
 }
 
 #ContentViewer {
-display: flex; flex-direction: column;
+display: flex; 
+flex-direction: column;
 flex-grow: 1;
 margin: var(--spaces);
+min-width: 0; 
 }
+
 
 #iconsColumnFake {
 width: var(--sidebar_w);
+min-height: 1px;
 height: 100%;
 background-color: transparent;
 flex-shrink: 0; 
+background-color: blue;
+z-index: 9500;
 }
 
 #iconsColumn {
 position: fixed; 
 top: calc(var(--header_h) + var(--spaces));
-left: calc(((100vw - var(--main_w)) / 2) + var(--main_w) - var(--sidemob_w));
-width: var(--sidemob_w);
+right: calc((100% - var(--main_w)) / 2);
+width: var(--sidebar_w);
 height: calc(100vh - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
 
 display: flex;
@@ -92,9 +102,10 @@ background-color: green;
 .element {
 width: 100%;
 margin-bottom: 25px;
+min-width: 0; 
 }
 .element img {
-width: 100%;
+max-width: 100%;
 height: auto;
 display: block;
 }
@@ -113,6 +124,7 @@ background-position: center;
 @media (max-width: 780px) {
     :root {
     --main_w: 97.5%;
+    --sidebar_w: 12vw;
     }
 }
 
@@ -154,19 +166,15 @@ function lerp(start, end, amt) {
 function resizeGeneral() {
     const width = window.innerWidth;
     const mobile_width = 780+1;
-    const iconsColumn = document.getElementById('iconsColumn');
-    const iconsColumnFake = document.getElementById('iconsColumnFake');
 
     if (width <= mobile_width) { 
-        document.documentElement.style.setProperty('--main_w', '97.5vw');
-
-        document.documentElement.style.setProperty('--sidebar_w', `${12}vw`);
+        document.documentElement.style.setProperty('--main_w', '97.5%');
+        document.documentElement.style.setProperty('--sidebar_w', `12vw`);
 
         
     } else if (width >= 1400) {
-        document.documentElement.style.setProperty('--main_w', '75vw');
-        
-        document.documentElement.style.setProperty('--sidebar_w', `${24}vw`);
+        document.documentElement.style.setProperty('--main_w', '75%');
+        document.documentElement.style.setProperty('--sidebar_w', `24vw`);
 
 
     } else {
@@ -174,8 +182,7 @@ function resizeGeneral() {
         const calcWidth = lerp(97.5, 75.0, interpolationFactor);
         const calSidebar = lerp(12.0, 24.0, interpolationFactor);
 
-        document.documentElement.style.setProperty('--main_w', `${calcWidth}vw`);
-        
+        document.documentElement.style.setProperty('--main_w', `${calcWidth}%`);
         document.documentElement.style.setProperty('--sidebar_w', `${calSidebar}vw`);
     }
 
