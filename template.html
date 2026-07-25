@@ -72,8 +72,8 @@ z-index: 5000;
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
 #header { 
-top: calc(var(--header_h) * -(expand_val/2);
-height: calc(var(--header_h) * expand_val);
+top: calc(var(--header_h) * (var(--expand_val)/-2));
+height: calc(var(--header_h) * var(--expand_val));
 
 display: flex;
 flex-direction: column;
