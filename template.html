@@ -1,54 +1,132 @@
 <!DOCTYPE html><html lang="ru"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
 <title>template</title>
-
 <script>
    const ua = navigator.userAgent.toLowerCase();
   window.isMobile = /iphone|ipad|android/.test(ua);
-  window.isLocal = (window.location.protocol === "file:");
   
   if (window.isMobile) {
     document.documentElement.classList.add('mobile');
   }
-console.log("Mobile",isMobile,"Local", isLocal);
 </script>
-
 <style>
 * {margin: 0; padding: 0; box-sizing: border-box;}
-[hidden] {display: none !important;}
+
 :root {
+--main_w: 75vw;
+--mbar_w: 12vw;
 --bgcolor: #2c2f34;
+--bars_h: 12vh;
 }
+
+[hidden] {display: none !important;}
 
 html, body {
-width: 100%;height: 100%;
+width: 100%;
 background-color: var(--bgcolor); 
-overflow-x: hidden;
 font-family: sans-serif;
-user-select: text;
-touch-action: manipulation;
 }
-.main{
-height: 100%; width: 50vw;
+
+#mainWindow {
+width: var(--main_w);
+min-height: 100vh; 
+transform: translateX(calc((100vw - var(--main_w)) / 2));
 background-color: red;
-}
-.flexBase{
 display: flex;
 flex-direction: column;
-align-items: flex-start; 
 }
 
-.flexBase{
-
+.horBar {
+width: 100%;
+height: var(--bars_h);
+flex-shrink: 0;
+background-color: rgba(0,0,255,.5);
+z-index: 9999;
 }
+
+#headerPage {
+position: sticky;
+top: 0;
+}
+#bottomPage {
+position: sticky;
+bottom: 0;
+}
+
+#middlePage {
+flex-grow: 1;
+display: flex;
+flex-direction: row;
+align-items: stretch; 
+}
+
+#elemViewer {
+margin: 5px;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+}
+
+#iconsColumn {
+position: sticky; 
+top: calc(var(--bars_h) + 5px);
+height: calc(100vh - var(--bars_h) * 2 - 10px);
+width: var(--mbar_w);
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+background-color: green;
+}
+
+.element {
+width: 100%;
+margin-bottom: 25px;
+background-color: green;
+}
+.element img {
+width: 100%;
+height: auto;
+display: block;
+}
+.mbtn {
+aspect-ratio: 1 / 1;
+margin-top: 5px;
+background-color: white;
+background-size: auto;
+}
+.ico{
+background-color: #373c43;
+background-repeat: no-repeat;
+background-position: center;
+background-size: contain; 
+}
+.ico.fp  { background-image: url('./assets/svg/FilledPlane.svg'); }
+
+
 
 </style>
+</head>
+<body>
 
-</head><body>
-<div class="main">    
+<div id="mainWindow">
+    <div class="horBar" id="headerPage"></div>
+
+    <div id="middlePage">
+        <div id="elemViewer">
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        </div>
+        <div id="iconsColumn"> 
+            <div class="mbtn ico fp"></div>
+            <div class="mbtn ico fp"></div>
+        </div>
+    </div>
+
+    <div class="horBar" id="bottomPage"></div>
 </div>
 
-</body></html>
-
+</body>
+</html>

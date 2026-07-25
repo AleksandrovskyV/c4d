@@ -14,7 +14,8 @@
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
 :root {
---mWidth: 75vw;
+--main_w: 75vw;
+--mbar_w: 12vw;
 --bgcolor: #2c2f34;
 --bars_h: 12vh;
 }
@@ -28,9 +29,9 @@ font-family: sans-serif;
 }
 
 #mainWindow {
-width: var(--mWidth);
+width: var(--main_w);
 min-height: 100vh; 
-transform: translateX(calc((100vw - var(--mWidth)) / 2));
+transform: translateX(calc((100vw - var(--main_w)) / 2));
 background-color: red;
 display: flex;
 flex-direction: column;
@@ -73,7 +74,7 @@ flex-direction: column;
 position: sticky; 
 top: calc(var(--bars_h) + 1vh);
 height: calc(100vh - var(--bars_h) * 2 - 2vh);
-
+width: var(--mbar_w);
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
@@ -92,8 +93,7 @@ height: auto;
 display: block;
 }
 .icon {
-width: 25px;
-height: 25px;
+aspect-ratio: 1 / 1;
 margin-bottom: 5px;
 background-color: white;
 }
