@@ -62,6 +62,9 @@ console.log("Mobile",isMobile,"Local", isLocal);
 --lc_color: #92a3bc;
 --ar_color: #acbfbe;
 --font_head: 72px;
+--font_title: 38px;
+--font_base: 20px;
+--font_icon: 28px;
 }
 
 @font-face { font-family: 'title';
@@ -85,7 +88,7 @@ touch-action: manipulation;
 p{
 color: #a3a3a3;
 display: block;
-font-size: 20px;
+font-size: var(--font_base);
 padding-top: 2px;
 padding-bottom: 4px;
 line-height: 1.2;
@@ -118,7 +121,7 @@ font-family: var(--titlefont);
 
 .titleLabel{
 color: #dfdfe0;
-font-size: 38px;
+font-size: var(--font_title);
 font-kerning: normal; 
 letter-spacing: -0.03em;
 padding-bottom: 1.4vh;
@@ -141,7 +144,7 @@ opacity: 0;
 
 h2.special{
 color: #698aa8;
-font-size: 20px;
+font-size: var(--font_base);
 font-kerning: normal; 
 letter-spacing: -0.03em;
 margin-bottom: 10px;
@@ -270,7 +273,7 @@ background-size: calc(var(--mbtn_size) * 0.85) calc(var(--mbtn_size) * 0.85);
 
 .mt_btn.wspc {
 font-family: var(--titlefont);
-font-size: 28px;
+font-size: var(--font_icon);
 border: 2px solid #7f6423;
 display: flex; padding: 0;
 box-sizing: border-box;
@@ -414,7 +417,7 @@ margin-bottom: auto;
 
 .webSidebarS button{
 font-family: var(--sidefont);
-font-size: 28px; 
+font-size: var(--font_icon); 
 color: var(--sbt_color);
 background-color: var(--bgcolor);
 text-decoration: underline;
@@ -434,7 +437,7 @@ color: #6d6a65;
 
 .sidebtn {
 font-family: var(--sidefont);
-font-size: 28px; 
+font-size: var(--font_icon); 
 color: var(--sbt_color);
 pointer-events: auto;
 text-align: left;
@@ -479,7 +482,7 @@ color: var(--accolor);
 .rem_und {
 display: inline-block;
 font-family: var(--sidefont);
-font-size: 28px;
+font-size: var(--font_icon);
 margin-left: 31px;
 color: var(--bgcolor);
 pointer-events: none;
@@ -820,8 +823,14 @@ display: none !important;
     :root {
     --topbar_h: 13vh !important;
     --botbar_h: 12vh !important; 
-    --mbtn_size: 42px !important;
-    --font_head: 46px !important;
+    --mbtn_size: 64px !important;
+    --font_head: 56px !important;
+
+
+    --font_title: 30px !important;
+    --font_base: 16px !important;
+    --font_icon: 20px !important;
+
     }
 }
 
