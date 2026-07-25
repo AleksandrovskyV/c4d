@@ -169,10 +169,18 @@ html:not(.mobile) .mbtn:hover {
 background-color: var(--accolor);
 }
 
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  :root {
+    --header_h: 60px;
+    --footer_h: 50px;
+    --spaces: 3px;
+  }
+}
 @media (max-width: 780px) {
     :root {
     --main_w: 97.5%;
     --sidebar_w: 12vw;
+
     }
 }
 
