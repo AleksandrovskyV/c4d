@@ -309,20 +309,6 @@ pointer-events: none;
 
 /* Paste Content */
 
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  :root {
-    --header_h: 100px;
-    --footer_h: 100px;
-    --spaces: 3px;
-    --font_head: 60px;
-    --font_btn:60px;
-    --sidebar_w: 64px;
-  }
-}
-
-/* Paste Content */
-
 /* Mobile */
 @media (max-width: 780px) { 
     :root {
@@ -338,8 +324,6 @@ pointer-events: none;
 
     .mob_hide{ display: none !important;
     }
-
-
 }
 
 /* Web */
@@ -349,6 +333,16 @@ pointer-events: none;
     }
 }
 
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  :root {
+    --header_h: 100px;
+    --footer_h: 100px;
+    --spaces: 3px;
+    --font_head: 60px;
+    --font_btn: 48px;
+    --sidebar_w: 64px;
+  }
+}
 </style>
 </head>
 <body>
@@ -566,7 +560,7 @@ function resizeGeneral() {
 
     if (nowWidth <= mobileWidth) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
-        document.documentElement.style.setProperty('--sidebar_w', `82px`);
+        //document.documentElement.style.setProperty('--sidebar_w', `82px`);
         
         
     } else if (nowWidth >= 1400) {
