@@ -340,7 +340,7 @@ pointer-events: none;
     --spaces: 3px;
     --font_head: 60px;
     --font_btn: 48px;
-    --sidebar_w: 64px;
+    --sidebar_w: 64px !important;
   }
 }
 </style>
@@ -558,9 +558,14 @@ function resizeGeneral() {
     isMobileWidth = nowWidth <= mobileWidth ? true : false;
     mobileShelf.hidden = !isMobileWidth; 
 
+    const isHighDPI = window.matchMedia(
+        '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
+    ).matches;
+
+    
     if (nowWidth <= mobileWidth) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
-        //document.documentElement.style.setProperty('--sidebar_w', `82px`);
+        document.documentElement.style.setProperty('--sidebar_w', `82px`);
         
         
     } else if (nowWidth >= 1400) {
