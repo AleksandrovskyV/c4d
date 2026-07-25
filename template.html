@@ -50,9 +50,9 @@ html, body {
 width: 100%;
 background-color: var(--bgcolor); 
 font-family: sans-serif;
-
+overflow-x: hidden;
+overflow-y: auto;
 touch-action: manipulation;
-overflow: hidden; 
 }
 
 h2{ 
@@ -112,11 +112,6 @@ transform: translateY(calc(var(--header_h) + var(--spaces)));
 display: flex; flex-direction: row;
 align-items: flex-start; 
 margin-bottom: calc(var(--footer_h) * 3);
-
-  height: calc(100vh - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
-
 }
 
 #pearlLine{
@@ -170,13 +165,7 @@ margin-right: var(--spaces);
 
 #mobileShelf {
 position: fixed; 
-
-/* top: calc(var(--header_h) + var(--spaces)); */
-top: 0;
-bottom: 0;
-margin-top: auto;
-margin-bottom: auto;
-
+top: calc(var(--header_h) + var(--spaces));
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 width: var(--sidebar_w);
 height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
