@@ -18,18 +18,20 @@
 --main_w: 75%;
 --sidebar_w: 200px;
 --sidemob_w: 12vw;
---header_h: 200px;
---footer_h: 200px;
+--header_h: 162px;
+--footer_h: 158px;
 --spaces: 5px;
 --expand_val: 3.0;
 
 --font_head: 72px;
+--font_btn: 32px;
 --titlefont: 'title', sans-serif;
 --sidefont: 'sidebar', sans-serif;
 --monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+--name_pr: #767676;
 --name_pg: #c8c8ca;
---name_sl: #636161;
---name_us: #424447;;
+--name_sl: #828282;
+--name_us: #424447;
 
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
@@ -98,12 +100,12 @@ align-items: flex-start;
 margin-bottom: calc(var(--footer_h) * 2);
 }
 
-
 #pearlLine{
 font-size: 19px;
 margin-top: auto;
 transform: translateY(8px);
 align-self: flex-start; 
+color: var(--name_pr);
 }
 
 #headerPage {
@@ -164,7 +166,7 @@ flex-grow: 0;
 aspect-ratio: 1 / 1;
 margin-top: var(--spaces);
 background-color: var(--bgcolor);
-background-size: auto; 
+background-size: 80%; 
 background-repeat: no-repeat;
 background-position: center;
 display: flex;
@@ -175,7 +177,7 @@ pointer-events: auto;
 }
 .mbtn.text {
 font-family: var(--titlefont);
-font-size: 6vw;
+font-size: var(--font_btn);
 border: 2px solid #7f6423;
 color: #dfdfe0;
 user-select: none;
@@ -314,6 +316,7 @@ pointer-events: none;
     --footer_h: 100px;
     --spaces: 3px;
     --font_head: 60px;
+    --font_btn:60px;
   }
 }
 
@@ -323,7 +326,7 @@ pointer-events: none;
 @media (max-width: 780px) { 
     :root {
     --main_w: 97.5%;
-    --sidebar_w: 12vw;
+    --sidebar_w: 82px;
     }
 
     #user_label:hover{
@@ -562,7 +565,7 @@ function resizeGeneral() {
 
     if (nowWidth <= mobileWidth) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
-        document.documentElement.style.setProperty('--sidebar_w', `12vw`);
+        document.documentElement.style.setProperty('--sidebar_w', `82px`);
         
         
     } else if (nowWidth >= 1400) {
