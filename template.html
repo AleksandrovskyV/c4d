@@ -16,7 +16,8 @@
 
 :root {
 --main_w: 75vw;
---iconbar_w: 12vw;
+--sidebar_w: 24vw;
+--sidemob_w: 12vw;
 --header_h: 12vh;;
 --footer_h: 12vh;
 --spaces: 5px;
@@ -52,7 +53,7 @@ bottom: calc(var(--footer_h) * -1);
 height: calc(var(--footer_h) * 2);
 }
 
-#middlePage {
+#mainPage {
 width: var(--main_w);
 Left: calc((100vw - var(--main_w)) / 2);
 transform:  translateX(calc((100vw - var(--main_w)) / 2)) 
@@ -69,7 +70,7 @@ margin: var(--spaces);
 }
 
 #iconsColumnFake {
-width: var(--iconbar_w);
+width: var(--sidebar_w);
 height: 100%;
 background-color: transparent;
 flex-shrink: 0; 
@@ -78,8 +79,8 @@ flex-shrink: 0;
 #iconsColumn {
 position: fixed; 
 top: calc(var(--header_h) + var(--spaces));
-left: calc(((100vw - var(--main_w)) / 2) + var(--main_w) - var(--iconbar_w));
-width: var(--iconbar_w);
+left: calc(((100vw - var(--main_w)) / 2) + var(--main_w) - var(--sidemob_w));
+width: var(--sidemob_w);
 height: calc(100vh - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
 
 display: flex;
@@ -91,7 +92,6 @@ background-color: green;
 .element {
 width: 100%;
 margin-bottom: 25px;
-background-color: green;
 }
 .element img {
 width: 100%;
@@ -122,16 +122,19 @@ background-position: center;
 
 <div id="header" class="linePage"></div>
 
-<div id="iconsColumn" > 
+<div id="iconsColumn"> 
     <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
 </div>
 
-<div id="middlePage">
+<div id="mainPage">
     <div id="ContentViewer">
-        <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="element">
+            <p>BlaBlaBlas</p>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png">
+        </div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
@@ -156,21 +159,24 @@ function resizeGeneral() {
 
     if (width <= mobile_width) { 
         document.documentElement.style.setProperty('--main_w', '97.5vw');
-        iconsColumn.hidden = false;
-        iconsColumnFake.hidden = false;
+
+        document.documentElement.style.setProperty('--sidebar_w', `${12}vw`);
+
         
     } else if (width >= 1400) {
         document.documentElement.style.setProperty('--main_w', '75vw');
-        iconsColumn.hidden = true;
-        iconsColumnFake.hidden = true;
+        
+        document.documentElement.style.setProperty('--sidebar_w', `${24}vw`);
+
 
     } else {
         const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
-        const calculatedWidth = lerp(97.5, 75.0, interpolationFactor);
+        const calcWidth = lerp(97.5, 75.0, interpolationFactor);
+        const calSidebar = lerp(12.0, 24.0, interpolationFactor);
 
-        document.documentElement.style.setProperty('--main_w', `${calculatedWidth}vw`);
-        iconsColumn.hidden = true;
-        iconsColumnFake.hidden = true;
+        document.documentElement.style.setProperty('--main_w', `${calcWidth}vw`);
+        
+        document.documentElement.style.setProperty('--sidebar_w', `${calSidebar}vw`);
     }
 
 }
