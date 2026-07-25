@@ -1,18 +1,14 @@
 <!DOCTYPE html><html lang="ru"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
 <title>template</title>
-
 <script>
    const ua = navigator.userAgent.toLowerCase();
   window.isMobile = /iphone|ipad|android/.test(ua);
-  window.isLocal = (window.location.protocol === "file:");
   
   if (window.isMobile) {
     document.documentElement.classList.add('mobile');
   }
-console.log("Mobile",isMobile,"Local", isLocal);
 </script>
 
 <style>
@@ -20,6 +16,7 @@ console.log("Mobile",isMobile,"Local", isLocal);
 [hidden] {display: none !important;}
 :root {
 --bgcolor: #2c2f34;
+--bars_h: 12vh;
 }
 
 html, body {
@@ -30,25 +27,101 @@ font-family: sans-serif;
 user-select: text;
 touch-action: manipulation;
 }
-.main{
-height: 100%; width: 50vw;
+
+#mainWindow{
+height:100%; width:75vw;
 background-color: red;
+transform: translateX(0%);
 }
-.flexBase{
+
+#middleWindow{
+display: flex;
+flex-direction: row;
+align-items: flex-start; 
+}
+
+#elemViewer{
+margin-left: 5px;
+width: auto;
+min-height: 100%;
+}
+
+#iconsColumn{
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+height: 100%;
+min-height: 100%;
+margin-left: 5px;
+background-color: green;
+}
+
+.flex{
 display: flex;
 flex-direction: column;
 align-items: flex-start; 
 }
 
-.flexBase{
+.bar{
+position: sticky;
+width: 100%;
+min-height: var(--bars_h);
+background-color: blue;
+z-index: 9999;
+}
+.bar.top{
+top: 0;
+margin-bottom: 1vh;
+}
+.bar.bot{
+bottom: 0; 
+}
 
+.element{
+min-width: 100%;
+width: auto;
+min-height: 1vh;
+margin-bottom: 25px;
+background-color: green;
+z-index: 9000;
+}
+
+.element img{
+width: 100%;
+height: auto;
+display: block;
+}
+.icon{
+width: 25px;
+height: 25px;
+margin-bottom: 5px;
+background-color: white;
 }
 
 </style>
 
 </head><body>
-<div class="main">    
+
+<div id="mainWindow" class="flex">
+    
+    <div class="bar top"></div>
+
+    <div id="middleWindow">
+        <div id="elemViewer" class="flex">
+            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
+            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
+            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
+            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
+        </div>
+
+        <div id="iconsColumn" class="flex"> 
+            <div class="icon"></div>
+            <div class="icon"></div>
+        </div>
+
+    </div>
+
+    <div class="bar bot"></div>
 </div>
 
 </body></html>
-
