@@ -16,7 +16,7 @@
 
 :root {
 --main_w: 75%;
---sidebar_w: 24vw;
+--sidebar_w: 200px;
 --sidemob_w: 12vw;
 --header_h: 12vh;
 --footer_h: 12vh;
@@ -103,10 +103,10 @@ display: block;
 
 #shelfFake {
 width: var(--sidebar_w);
-min-height: 1px;
+min-height: 12px;
 height: 100%;
 background-color: transparent;
-flex-shrink: 0; 
+flex-shrink: 0;
 background-color: blue;
 }
 
@@ -183,7 +183,7 @@ background-color: #848484;
 
 <div id="header" class="linePage"></div>
 
-<div id="mobileShelf"> 
+<div id="mobileShelf" hidden> 
     <div class="mbtn text top" id="switchLangMobile" >RU</div>
 
     <div id="ms_iconScripts">
@@ -241,7 +241,7 @@ function resizeGeneral() {
         
     } else if (width >= 1400) {
         document.documentElement.style.setProperty('--main_w', '75%');
-        document.documentElement.style.setProperty('--sidebar_w', `24vw`);
+        document.documentElement.style.setProperty('--sidebar_w', `400px`);
 
     } else {
         const interpolationFactor = (width - mobileWidth) / (1400 - mobileWidth);
@@ -249,6 +249,7 @@ function resizeGeneral() {
         const calSidebar = lerp(12.0, 24.0, interpolationFactor);
 
         document.documentElement.style.setProperty('--main_w', `${calcWidth}%`);
+        document.documentElement.style.setProperty('--sidebar_w', `400px`);
         //document.documentElement.style.setProperty('--sidebar_w', `${calSidebar}vw`);
     }
 }
