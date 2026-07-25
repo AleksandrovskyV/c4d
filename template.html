@@ -67,10 +67,10 @@ margin-right: auto;
 
 width: var(--main_w);
 background-color: var(--bgcolor); 
-z-index: 5000; 
+z-index: 6000; 
 }
 
-/* Высота в 2 раза больше, чтобы скрыть контент */
+/* Высота в 3 раза больше, чтобы скрыть контент */
 #header { 
 top: calc(
 ( var(--header_h) * var(--expand_val) - var(--header_h) )*-1 
@@ -103,6 +103,7 @@ margin-bottom: calc(var(--footer_h) * 2);
 font-size: 19px;
 margin-top: auto;
 transform: translateY(8px);
+align-self: flex-start; 
 }
 
 #headerPage {
@@ -291,6 +292,20 @@ color: var(--accolor);
 text-decoration: underline;
 }
 
+.plateFixed {
+position: fixed; 
+left: 0;
+width: 100vw; 
+background: red;
+z-index: 500; 
+pointer-events: auto; 
+}
+
+#topbarExpand {
+height: 20vh;
+top: -18vh;
+}
+
 /* Paste Content */
 
 
@@ -334,6 +349,8 @@ text-decoration: underline;
 </style>
 </head>
 <body>
+
+<div id="topbarExpand" class="plateFixed"></div>
 
 <div id="header" class="linePage">
     <h2 id="pearlLine">* pearl version</h2>
