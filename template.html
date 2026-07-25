@@ -21,7 +21,7 @@
 --header_h: 200px;
 --footer_h: 200px;
 --spaces: 5px;
---expand_val: 3;
+--expand_val: 3.0;
 
 --font_head: 72px;
 --titlefont: 'title', sans-serif;
@@ -72,8 +72,10 @@ z-index: 5000;
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
 #header { 
-top: calc(var(--header_h) * (var(--expand_val)/-2));
-height: calc(var(--header_h) * var(--expand_val));
+top: calc(
+( var(--header_h) * var(--expand_val) - var(--header_h) )*-1 
+);
+height: calc( var(--header_h) * var(--expand_val) );
 
 display: flex;
 flex-direction: column;
