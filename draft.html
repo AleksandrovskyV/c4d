@@ -63,8 +63,11 @@ console.log("Mobile",isMobile,"Local", isLocal);
 --ar_color: #acbfbe;
 --font_head: 72px;
 --font_title: 38px;
---font_base: 20px;
+--font_mtitl: 30px;
 --font_icon: 28px;
+--font_tube: 22px;
+--font_base: 20px;
+--font_perl: 18px;
 }
 
 @font-face { font-family: 'title';
@@ -345,7 +348,7 @@ z-index: 9950;
 
 #pearlLine{
 color: #767676;
-font-size: 19px;
+font-size: var(--font_perl);
 margin-top: auto;
 transform: translateY(8px);
 }
@@ -524,7 +527,7 @@ padding-top: 2vh;
 
 h2.sidelink{
 margin-left: 140px;
-font-size: 30px;
+font-size: var(--font_mtitl);
 padding: 3vh 0px;
 }
 
@@ -615,7 +618,7 @@ color: var(--accolor);
 color:#a3a3a3;
 }
 .srtc.d{
-font-size: 18px;
+font-size: var(--font_perl);
 }
 .offset {margin-left: 4px; 
 }
@@ -826,10 +829,12 @@ display: none !important;
     --mbtn_size: 64px !important;
     --font_head: 56px !important;
 
-
-    --font_title: 30px !important;
-    --font_base: 16px !important;
-    --font_icon: 20px !important;
+    --font_title: 28px;
+    --font_mtitl: 22px;
+    --font_icon: 21px;
+    --font_tube: 16px;
+    --font_base: 15px;
+    --font_perl: 13px;
 
     }
 }
@@ -987,8 +992,8 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" style="margin-top: 1.2vh;" >
 
-                                <p class="about_us" style="font-size: 22px; font-style: italic;">It`s a plane.. And it has fillets "</p>
-                                <p class="about_ru" style="font-size: 22px; font-style: italic;" hidden>Плоскость c глубиной и мягкими углами "</p>
+                                <p class="about_us" style="font-size: var(----font_tube); font-style: italic;">It`s a plane.. And it has fillets "</p>
+                                <p class="about_ru" style="font-size: var(----font_tube); font-style: italic;" hidden>Плоскость c глубиной и мягкими углами "</p>
 
                                 <div class="rowline pad jsb">
                                     <div class="tested">
@@ -1056,12 +1061,12 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
                                 Button for fast writing an <span class="marked">MP4</span> file with <span class="marked">_#</span><br>
                                 - version token. Uses active "Render Settings"<br>
                                 </p>
 
-                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
                                 Кнопка быстрого рендера <span class="marked">MP4</span> файла с <span class="marked">_#</span><br>
                                 - номером итерации. Использует текущие<br>"Render Settings"...<br>
                                 </p>
@@ -1155,15 +1160,15 @@ display: none !important;
 
                             <div class="aboutIconRow" style="margin-top: 0px;" >
 
-                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px; color: #999">+ </span>
+                                <h2 class="titleLabel" style="font-size: var(----font_tube); display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px; color: #999">+ </span>
                                 Matrix Preserve</span></span> 
                                 </h2>
 
-                                <p class="about_us" style="font-size: 20px; line-height: 1.3;">
+                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.3;">
                                 Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
                                 </p>
 
-                                <p class="about_ru" style="font-size: 20px; line-height: 1.3;" hidden>
+                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.3;" hidden>
                                 Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
                                 </p>
 
@@ -1178,20 +1183,20 @@ display: none !important;
                         </div>
                     </div>
 
-                    <div class="rowline" style="padding-bottom:20px">
+                    <div class="rowline" style="padding-bottom:var(--font_base)">
                         <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
+                                <h2 class="titleLabel" style="font-size: var(----font_tube); display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
                                 </h2>
 
-                                <p class="about_us_s" style="font-size: 20px; line-height: 1.3;">
+                                <p class="about_us_s" style="font-size: var(--font_base); line-height: 1.3;">
                                     Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_s" style="font-size: 20px; line-height: 1.3;" hidden>
+                                <p class="about_ru_s" style="font-size: var(--font_base); line-height: 1.3;" hidden>
                                     Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
                                 </p>
 
@@ -1211,17 +1216,17 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <h2 class="titleLabel" style="font-size: 22px; display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
+                                <h2 class="titleLabel" style="font-size: var(----font_tube); display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
                                 </h2>
 
-                                <p class="about_us_g" style="font-size: 20px; line-height: 1.3;">
+                                <p class="about_us_g" style="font-size: var(--font_base); line-height: 1.3;">
 
                                 Swap 2 selected texture tags in Object Manager<br>
                                 * If select 2 objects - swap last texture tags<br>
                                 * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_g" style="font-size: 20px; line-height: 1.3;" hidden>
+                                <p class="about_ru_g" style="font-size: var(--font_base); line-height: 1.3;" hidden>
                                 Смена 2 выбранных tex тегов в ObjectManager<br>
                                 * Выбирая 2 объекта, меняет их крайние теги<br>
                                 * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
@@ -1287,14 +1292,14 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us_g" style="font-size: 20px; line-height: 1.3;">
+                                <p class="about_us_g" style="font-size: var(--font_base); line-height: 1.3;">
 
                                 Swap 2 selected texture tags in Object Manager<br>
                                 * If select 2 objects - swap last texture tags<br>
                                 * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_g" style="font-size: 20px; line-height: 1.3;" hidden>
+                                <p class="about_ru_g" style="font-size: var(--font_base); line-height: 1.3;" hidden>
                                 Смена 2 выбранных tex тегов в ObjectManager<br>
                                 * Выбирая 2 объекта, меняет их крайние теги<br>
                                 * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
@@ -1353,11 +1358,11 @@ display: none !important;
 
                             <div class="aboutIconRow" style="margin-top: 0px;" >
 
-                                <p class="about_us" style="font-size: 20px; line-height: 1.3;">
+                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.3;">
                                 Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
                                 </p>
 
-                                <p class="about_ru" style="font-size: 20px; line-height: 1.3;" hidden>
+                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.3;" hidden>
                                 Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
                                 </p>
 
@@ -1415,16 +1420,16 @@ display: none !important;
                         </h2>
                     </div>
 
-                    <div class="rowline" style="padding-bottom:20px">
+                    <div class="rowline" style="padding-bottom:var(--font_base)">
                         <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
-                                <p class="about_us_s" style="font-size: 20px; line-height: 1.3;">
+                                <p class="about_us_s" style="font-size: var(--font_base); line-height: 1.3;">
                                     Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_s" style="font-size: 20px; line-height: 1.3;" hidden>
+                                <p class="about_ru_s" style="font-size: var(--font_base); line-height: 1.3;" hidden>
                                     Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
                                 </p>
 
@@ -1488,11 +1493,11 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
                                 Сamera linked to the active one via CameraMorph tag. Includes optional Xpresso to expand your render area while strictly maintaining the original focal length
                                                                 </p>
 
-                                                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
                                 Камера привязанная к активной, через CameraMorph тег. Включает возможность расширить зону рендера без искажения фокусного расстояния
                                                                 </p>
 
@@ -1577,13 +1582,13 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
                                 Extended this
                                 <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">workflow</a> for 
                                 <br>Arnold String Attribute<br>Automating it...?
                                 </p>
 
-                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
 
                                 <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">Расширенный</a> процесс
                                 <br>работы с Arnold String Attribute<br>Cильно его ускоряя...? 
@@ -1670,11 +1675,11 @@ display: none !important;
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: 20px; line-height: 1.5;">
+                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
                                     Built to <br>be tested...
                                 </p>
 
-                                <p class="about_ru" style="font-size: 20px; line-height: 1.5;" hidden>
+                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
                                     Создан через<br>тестирование...
                                 </p>
 
@@ -1691,11 +1696,11 @@ display: none !important;
                             <div id="aboutControlsText" class="about_с_us" > 
                                 <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
                                     01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
-                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
                                 - Low-poly mouth setup with small trick * Pose Morph Tag<br></span></p>
                                 <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
                                     02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
-                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
                                 - Prepared Octane AOVs * with .aep files include...<br></span>
                                 </p>
                             </div>
@@ -1703,11 +1708,11 @@ display: none !important;
                             <div id="aboutControlsText" class="about_с_ru" hidden>  
                                  <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
                                     01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
-                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
                                 - Простая установка рта с хитростью * Pose Morph Tag<br></span></p>
                                 <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
                                     02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
-                                <span style="font-size: 18px; color: #757575; font-weight: 200 !important;">
+                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
                                 - Подготовленные OctaneAOVs * содержит .aep<br></span>
                                 </p>
                             </div>
