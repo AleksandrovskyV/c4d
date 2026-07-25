@@ -17,7 +17,8 @@
 :root {
 --main_w: 75vw;
 --iconbar_w: 12vw;
---bars_h: 12vh;
+--header_h: 12vh;;
+--footer_h: 12vh;
 --spaces: 5px;
 --bgcolor: #2c2f34;
 }
@@ -36,24 +37,29 @@ overflow-y: auto;
 position: fixed; 
 Left: calc((100vw - var(--main_w)) / 2);
 width: var(--main_w);
-height: calc(var(--bars_h) * 2);
 background-color: red; 
 z-index: 9999; 
 }
 
-#header { top: calc(var(--bars_h) * -1);
+/* Высота в 2 раза больше, чтобы скрыть контент */
+#header { 
+top: calc(var(--header_h) * -1);
+height: calc(var(--header_h) * 2);
 }
 
-#footer { bottom: calc(var(--bars_h) * -1);
+#footer { 
+bottom: calc(var(--footer_h) * -1);
+height: calc(var(--footer_h) * 2);
 }
 
 #middlePage {
 width: var(--main_w);
 Left: calc((100vw - var(--main_w)) / 2);
-transform: translateX(calc((100vw - var(--main_w)) / 2)) translateY(calc(var(--bars_h) + var(--spaces)));
+transform:  translateX(calc((100vw - var(--main_w)) / 2)) 
+            translateY(calc(var(--header_h) + var(--spaces)));
 display: flex; flex-direction: row;
 align-items: flex-start; 
-margin-bottom: calc(var(--bars_h) * 2);
+margin-bottom: calc(var(--footer_h) * 2);
 }
 
 #ContentViewer {
@@ -71,16 +77,15 @@ flex-shrink: 0;
 
 #iconsColumn {
 position: fixed; 
-top: calc(var(--bars_h) + var(--spaces));
-height: calc(100vh - var(--bars_h) * 2 - var(--spaces) * 2);
-width: var(--iconbar_w);
+top: calc(var(--header_h) + var(--spaces));
 left: calc(((100vw - var(--main_w)) / 2) + var(--main_w) - var(--iconbar_w));
+width: var(--iconbar_w);
+height: calc(100vh - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
 
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
 background-color: green;
-z-index: 9000;
 }
 
 .element {
@@ -105,13 +110,19 @@ background-position: center;
 
 #fp { background-image: url('./assets/svg/FilledPlane.svg'); }
 
+@media (max-width: 780px) {
+    :root {
+    --main_w: 97.5%;
+    }
+}
+
 </style>
 </head>
 <body>
 
 <div id="header" class="linePage"></div>
 
-<div id="iconsColumn"> 
+<div id="iconsColumn" > 
     <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
     <div id ="fp" class="mbtn"></div>
@@ -125,12 +136,53 @@ background-position: center;
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
     </div>
-    <div id="iconsColumnFake"></div>
+    <div id="iconsColumnFake" ></div>
 </div>
 
 <div id="footer" class="linePage"></div>
 
 </div>
+
+<script>
+function lerp(start, end, amt) {
+    return (1 - amt) * start + amt * end;
+}
+
+function resizeGeneral() {
+    const width = window.innerWidth;
+    const mobile_width = 780+1;
+    const iconsColumn = document.getElementById('iconsColumn');
+    const iconsColumnFake = document.getElementById('iconsColumnFake');
+
+    if (width <= mobile_width) { 
+        document.documentElement.style.setProperty('--main_w', '97.5vw');
+        iconsColumn.hidden = false;
+        iconsColumnFake.hidden = false;
+        
+    } else if (width >= 1400) {
+        document.documentElement.style.setProperty('--main_w', '75vw');
+        iconsColumn.hidden = true;
+        iconsColumnFake.hidden = true;
+
+    } else {
+        const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
+        const calculatedWidth = lerp(97.5, 75.0, interpolationFactor);
+
+        document.documentElement.style.setProperty('--main_w', `${calculatedWidth}vw`);
+        iconsColumn.hidden = true;
+        iconsColumnFake.hidden = true;
+    }
+
+}
+
+function firstStart() {
+    resizeGeneral();
+}
+
+window.onload = firstStart;
+window.addEventListener('resize', resizeGeneral);
+
+</script>
 
 </body>
 </html>
