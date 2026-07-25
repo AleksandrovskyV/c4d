@@ -89,21 +89,18 @@ width: 100%;
 height: auto;
 display: block;
 }
+
 .mbtn {
 aspect-ratio: 1 / 1;
 margin-top: 5px;
-background-color: white;
-background-size: auto;
-}
-.ico{
+
 background-color: #373c43;
+background-size: auto; 
 background-repeat: no-repeat;
 background-position: center;
-background-size: contain; 
 }
-.ico.fp  { background-image: url('./assets/svg/FilledPlane.svg'); }
 
-
+#fp { background-image: url('./assets/svg/FilledPlane.svg'); }
 
 </style>
 </head>
@@ -120,8 +117,8 @@ background-size: contain;
             <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         </div>
         <div id="iconsColumn"> 
-            <div class="mbtn ico fp"></div>
-            <div class="mbtn ico fp"></div>
+            <div id ="fp" class="mbtn"></div>
+            <div id ="fp" class="mbtn"></div>
         </div>
     </div>
 
