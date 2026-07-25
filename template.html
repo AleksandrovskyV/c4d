@@ -165,7 +165,11 @@ margin-right: var(--spaces);
 
 #mobileShelf {
 position: fixed; 
-top: calc(var(--header_h) + var(--spaces));
+
+/* top: calc(var(--header_h) + var(--spaces)); */
+top: 50%;
+transform: translateY(-50%);
+
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 width: var(--sidebar_w);
 height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
