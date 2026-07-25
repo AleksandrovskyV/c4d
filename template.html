@@ -88,6 +88,16 @@ margin: var(--spaces);
 min-width: 0; 
 }
 
+.element {
+width: 100%;
+margin-bottom: 25px;
+min-width: 0; 
+}
+.element img {
+max-width: 100%;
+height: auto;
+display: block;
+}
 
 #shelfFake {
 width: var(--sidebar_w);
@@ -123,11 +133,11 @@ display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
+z-index: 9999;
 }
-
 .mbtn.text {
 font-family: var(--titlefont);
-font-size: 28px;
+font-size: auto;
 border: 2px solid #7f6423;;
 background-color: var(--bgcolor);
 color: #dfdfe0;
@@ -143,20 +153,8 @@ margin-top: 24px;
 html:not(.mobile) .mbtn:hover {
 background-color: var(--accolor);
 }
-
 .mbtn.active { 
 background-color: #848484;
-}
-
-.element {
-width: 100%;
-margin-bottom: 25px;
-min-width: 0; 
-}
-.element img {
-max-width: 100%;
-height: auto;
-display: block;
 }
 
 #fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
