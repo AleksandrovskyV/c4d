@@ -10,15 +10,16 @@
     document.documentElement.classList.add('mobile');
   }
 </script>
+
 <style>
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
 :root {
 --main_w: 75vw;
---mbar_w: 12vw;
---bgcolor: #2c2f34;
+--iconbar_w: 12vw;
 --bars_h: 12vh;
 --spaces: 5px;
+--bgcolor: #2c2f34;
 }
 
 [hidden] {display: none !important;}
@@ -27,12 +28,10 @@ html, body {
 width: 100%;
 background-color: var(--bgcolor); 
 font-family: sans-serif;
-/* Разрешаем только вертикальный скролл страницы */
 overflow-x: hidden;
 overflow-y: auto;
 }
 
-/* header и bottom делаем в два раза выше, чтобы скрыть проплывающий контент */
 #headerPage {
 position: fixed; 
 top: calc(var(--bars_h) * -1);
@@ -45,7 +44,7 @@ z-index: 9999;
 
 #bottomPage {
 position: fixed; 
-bottom: calc(var(--bars_h) * -1); /* ИЗМЕНЕНО: прижимаем к самому низу экрана */
+bottom: calc(var(--bars_h) * -1);
 width: var(--main_w);
 height: calc(var(--bars_h) * 2);
 transform: translateX(calc((100vw - var(--main_w)) / 2));
@@ -55,17 +54,13 @@ z-index: 9999;
 
 #middlePage {
 width: var(--main_w);
-/* ИЗМЕНЕНО: убрали жесткую высоту 100vh, чтобы страница скроллилась на всю длину карточек */
-/* ИСПРАВЛЕНО: обернули сложение в calc() и добавили обязательные пробелы */
 transform: translateX(calc((100vw - var(--main_w)) / 2)) translateY(calc(var(--bars_h) + var(--spaces)));
-display: flex;
-flex-direction: row;
-align-items: stretch; 
-/* Даем нижний отступ, чтобы контент не обрезался нижним баром при максимальном скролле */
-padding-bottom: calc(var(--bars_h) + var(--spaces) * 3);
+display: flex;flex-direction: row;
+align-items: flex-start; 
+margin-bottom: calc(var(--bars_h) * 2);
 }
 
-#elemViewer {
+#ContentViewer {
 margin: var(--spaces);
 flex-grow: 1;
 display: flex;
@@ -73,27 +68,23 @@ flex-direction: column;
 }
 
 #iconsColumnFake {
-width: var(--mbar_w);
-/* ИЗМЕНЕНО: убрали min-height: 100vh, чтобы фейк просто держал ширину внутри middlePage */
-flex-shrink: 0;
-background-color: transparent; /* Делаем невидимым, он нужен только для резерва места */
+width: var(--iconbar_w);
+height: 100%;
+background-color: transparent;
 }
 
 #iconsColumn {
 position: fixed; 
-/* ИЗМЕНЕНО: выставляем высоту строго под видимое окно между красными барами */
 top: calc(var(--bars_h) + var(--spaces));
 height: calc(100vh - var(--bars_h) * 2 - var(--spaces) * 2);
-width: var(--mbar_w);
-
-/* ИСПРАВЛЕНО: точное позиционирование по X по правому краю макета */
-left: calc(((100vw - var(--main_w)) / 2) + var(--main_w) - var(--mbar_w));
+width: var(--iconbar_w);
+left: calc(((100vw - var(--main_w)) / 2) + var(--main_w) - var(--iconbar_w));
 
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
 background-color: green;
-z-index: 9000; /* Стоит под барами, чтобы иконки плавно прятались за шапку */
+z-index: 9000;
 }
 
 .element {
@@ -130,7 +121,7 @@ background-position: center;
 </div>
 
 <div id="middlePage">
-    <div id="elemViewer">
+    <div id="ContentViewer">
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
