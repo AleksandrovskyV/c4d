@@ -26,9 +26,13 @@
 --titlefont: 'title', sans-serif;
 --sidefont: 'sidebar', sans-serif;
 --monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+--name_pg: #c8c8ca;
+--name_sl: #636161;
+--name_us: #424447;;
 
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
+--accolor_grey: #848484;
 }
 
 [hidden] {display: none !important;}
@@ -47,11 +51,11 @@ overflow-x: hidden;
 overflow-y: auto;
 touch-action: manipulation;
 }
+
 h2{ 
 color: #dfdfe0;
 font-family: var(--titlefont);
 }
-
 
 .linePage {
 position: fixed; 
@@ -61,10 +65,8 @@ margin-left: auto;
 margin-right: auto;
 
 width: var(--main_w);
-background-color: red; 
+background-color: var(--bgcolor); 
 z-index: 5000; 
-
-
 }
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
@@ -98,6 +100,7 @@ font-size: 19px;
 margin-top: auto;
 transform: translateY(8px);
 }
+
 #headerPage {
 display: flex;
 flex-direction: row;
@@ -182,7 +185,7 @@ margin-bottom: 12px;
 margin-top: 12px;
 }
 .mbtn.active { 
-background-color: #848484;
+background-color: var(--accolor_grey);
 }
 html:not(.mobile) .mbtn:hover {
 background-color: var(--accolor);
@@ -199,10 +202,32 @@ background-color: var(--accolor);
 #tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
 
 /* Paste Content */
-.namepageS {
-color: #c8c8ca;
-font-size: var(--font_head); 
+button {
+background: none;
+border: 0px solid transparent;
+margin: 0;
+pointer-events: auto;
+}
+
+button:hover {
+color: var(--accolor_grey);
+}
+
+button.active {
+color: var(--accolor);
+}
+
+#header button{
 font-family: var(--titlefont);
+letter-spacing: -0.04em;
+font-size: var(--font_head); 
+}
+
+
+.namepageDecor {
+font-family: var(--titlefont);
+font-size: var(--font_head); 
+color: var(--name_pg);
 text-align: left;
 white-space: nowrap; 
 font-kerning: normal; 
@@ -211,29 +236,26 @@ letter-spacing: -0.03em;
 pointer-events: none;
 user-select: none;
 }
-
-button {
-background: none;
-border: 0px solid transparent;
-font-family: var(--titlefont);
-letter-spacing: -0.04em;
-margin: 0;
-font-size: var(--font_head); 
-pointer-events: auto;
+.headDivider { 
+color: var(--name_sl);
 }
 
-button:hover {
-color: #848484;
+#namepage_mob { 
+color: var(--name_pg);
 }
-
-button.active {
-color: var(--accolor);
+#user_label { 
+color: var(--name_us);
+}
+#user_label:hover{
+text-decoration: underline;
+cursor: pointer;
 }
 
 .base_btn {
+font-family: var(--titlefont);
 font-size: var(--font_head); 
 color: #828282;
-font-family: var(--titlefont);
+
 text-decoration: none;
 pointer-events: auto;
 text-align: right;
@@ -242,13 +264,18 @@ white-space: nowrap;
 font-kerning: normal; 
 letter-spacing: -0.03em;
 }
-.subl {
+
+.headerBtn { /* open_btn */
+color: #828282;
 text-decoration: underline;
+cursor: pointer;
+}
+.headerBtn:not(.active):hover {
+filter: brightness(0.85); 
 }
 .base_btn:not(.active):hover {
 filter: brightness(0.85); 
 }
-
 .base_btn:active,
 .base_btn.active:active {
 color: #6d6a65 !important; 
@@ -256,18 +283,10 @@ color: #6d6a65 !important;
 .base_btn.active {
 color: var(--accolor);
 }
-
-#namepage_mob { 
-color: #c8c8ca;
-}
-#slash_mob { 
-color: #636161;
-}
-.open_btn {
-color: #828282;
+.subl {
 text-decoration: underline;
-cursor: pointer;
 }
+
 /* Paste Content */
 
 
@@ -279,15 +298,28 @@ cursor: pointer;
   }
 }
 
-@media (max-width: 780px) {
+/* Paste Content */
+
+/* Mobile */
+@media (max-width: 780px) { 
     :root {
     --main_w: 97.5%;
     --sidebar_w: 12vw;
     }
 
+    #user_label:hover{
+        text-decoration: none;
+        cursor: default;
+        pointer-events: none;
+    }
+
     .mob_hide{ display: none !important;
     }
+
+
 }
+
+/* Web */
 @media (min-width: 780px) {
 
     .web_hide{ display: none !important;
@@ -303,14 +335,15 @@ cursor: pointer;
 
     <div id="headerPage">
           <div id="prebtn">
-              <div    id="namepage"     class="namepageS mob_hide" tabindex="0"><span id="namepageText">C4D</span><span class="name_slash">  /</span></div>
+              <div    id="namepage"     class="namepageDecor mob_hide" tabindex="0"><span id="namepageText">C4D</span> <span class="headDivider">  /</span></div>
               <button id="namepage_mob" class="web_hide">C4D</button>
           </div>
 
-          <button id="slash_mob" class="web_hide">/</button>
-          <button id="prjbtn_mob" class="open_btn web_hide mclickcfunc" data-func="prj_mob" >PRJ</button>
-          <button id="sepa"   data-func="home"  class="mclickcfunc">&amp;</button>
-          <div    id="scrbtn" data-func="scr"   class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+          <button class="headDivider web_hide">/</button>
+
+          <button id="prjbtn_mob"   class="mclickcfunc headerBtn web_hide" data-func="prj_mob"          >PRJ</button>
+          <button id="user_label"   class="mclickcfunc"                    data-func="home"             >&amp;</button>
+          <div    id="scrbtn"       class="mclickcfunc base_btn "          data-func="scr" tabindex="0" ><span class="headDivider mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
     </div>
 </div>
 
@@ -357,26 +390,166 @@ function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
 }
 
-const mobileShelf = document.getElementById('mobileShelf');
+let translated = false; 
+let switchSides = false; 
+
 const mobileWidth = 780+1;
+let nowWidth = window.innerWidth;
+
+let isMobileWidth = nowWidth <= mobileWidth ? true : false;
+
+const headerPage = document.getElementById('headerPage');
+const pearlLine = document.getElementById('pearlLine');
+const namepageText = document.getElementById('namepageText');
+const centralText = document.getElementById('user_label');
+
+const scriptBtn   = document.getElementById('scrbtn');
+const scriptBtnText = document.getElementById('scr_text');
+
+const mobileShelf = document.getElementById('mobileShelf');
+
+
+const nameCases = {
+    'namepage': ['C4D', 'CINEMA 4D'], 
+    'central': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
+};
+
+const reductionOrder = [
+  { key: 'namepage', element: namepageText },
+  { key: 'central', element: centralText },
+];
+
+function textShortChecker() {
+  const currentIndices = {
+    namepage: nameCases.namepage.length - 1,
+    central: nameCases.central.length - 1,
+  };
+
+  const updateDOM = () => {
+    
+    const nowWidth = window.innerWidth;
+    
+    if (nowWidth >= 960 && nowWidth<1300) {
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&_DATA";
+    }else if (nowWidth < 960){
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&";
+    }else{
+        namepageText.textContent = nameCases.namepage[currentIndices.namepage];
+        centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
+    }
+
+    if(namepageText.textContent==="C4D"){
+        pearlLine.textContent = "* pearl";
+    }else{
+        pearlLine.textContent = "* pearl edition";
+    }
+
+    if(nowWidth<mobileWidth*.7){
+        if(scriptBtnText){ 
+            scriptBtnText.textContent = "SCR" + "\u00A0";
+        }
+    }else{
+        if(scriptBtnText){ 
+            scriptBtnText.textContent = "SCRIPTS";
+        }   
+    }
+
+  };
+    
+  updateDOM();
+
+  const isOverflowing = () => {
+    return headerPage.scrollWidth > headerPage.clientWidth;
+  };
+  let step = 0;
+  
+  while (isOverflowing() && step < reductionOrder.length) {
+    const currentTarget = reductionOrder[step];
+    
+    if (currentIndices[currentTarget.key] > 0) {
+      currentIndices[currentTarget.key]--;
+      updateDOM();
+    } else {
+      step++;
+    }
+  }
+}
+
+function updateResponsiveText() {
+    const nowWidth = window.innerWidth;
+    const langPrefix = translated ? 'ru' : 'us';
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        let text = '';
+        
+        if (nowWidth <= 1000) {
+            text = texblock.dataset[`${langPrefix}Short` ] || texblock.dataset[`${langPrefix}Mid`];
+        } else if (nowWidth > 1000 && nowWidth <= 1400) {
+            text = texblock.dataset[`${langPrefix}Mid`];
+        } else if (nowWidth > 1400 && nowWidth <= 1700) {
+            text = texblock.dataset[`${langPrefix}Mid` ];
+        }
+
+        if (!text) {
+            text = texblock.dataset[langPrefix];
+        }
+
+        if (text) {
+            texblock.textContent = text;
+        }
+    });
+}
+
+function updateShortShelf() {
+     // Сверх мелкий грид
+    const shelf = document.getElementById('shortshelf');
+    if (!shelf) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const isMobileLayout = document.documentElement.classList.contains('mobile');
+
+    if (width < 600 && height < 600 && !isMobileLayout) {
+
+        shelf.hidden = false;
+        shortShelfActive =true;
+
+        const buttons = shelf.querySelectorAll('.mt_btn');
+        const count = buttons.length;
+
+        const cols = Math.ceil(Math.sqrt(count)); 
+        shelf.style.setProperty('--cols', cols);
+
+    } else {
+        shelf.setAttribute('hidden', '');
+        shelf.style.removeProperty('display');
+        shelf.hidden = true;
+        shortShelfActive =false;
+    }
+}
+
 
 function resizeGeneral() {
-    const width = window.innerWidth;
 
-    let fmw = width <= mobileWidth ? true : false;
-    mobileShelf.hidden = !fmw; 
+    nowWidth = window.innerWidth;
 
-    if (width <= mobileWidth) { 
+    isMobileWidth = nowWidth <= mobileWidth ? true : false;
+    mobileShelf.hidden = !isMobileWidth; 
+
+    if (nowWidth <= mobileWidth) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
         document.documentElement.style.setProperty('--sidebar_w', `12vw`);
         
         
-    } else if (width >= 1400) {
+    } else if (nowWidth >= 1400) {
         document.documentElement.style.setProperty('--main_w', '75%');
         document.documentElement.style.setProperty('--sidebar_w', `400px`);
 
     } else {
-        const interpolationFactor = (width - mobileWidth) / (1400 - mobileWidth);
+        const interpolationFactor = (nowWidth - mobileWidth) / (1400 - mobileWidth);
         const calcWidth = lerp(97.5, 75.0, interpolationFactor);
         const calSidebar = lerp(12.0, 24.0, interpolationFactor);
 
@@ -384,10 +557,32 @@ function resizeGeneral() {
         document.documentElement.style.setProperty('--sidebar_w', `400px`);
         //document.documentElement.style.setProperty('--sidebar_w', `${calSidebar}vw`);
     }
+
+    //gifSizeChecker();
+
+    textShortChecker();
+    updateResponsiveText();
+
+    if(!isMobileWidth){
+       updateShortShelf(); 
+    }
+}
+
+
+function setActiveHeaderBtn(){
+    if(!scriptBtn) return
+
+    scriptBtn.classList.add('active'); 
+    lastCheckedMainTabs = [scriptBtn];
+
+
 }
 
 function firstStart() {
     resizeGeneral();
+
+    if(isMobile) setActiveHeaderBtn();
+
 }
 
 window.onload = firstStart;

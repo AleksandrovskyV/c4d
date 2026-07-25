@@ -839,7 +839,7 @@ display: none !important;
 
           <button data-func="prj_mob" id="prjbtn_mob" class="open_btn mclickcfunc" >PRJ</button>
           <button data-func="home" id="sepa" class="mclickcfunc">&amp;</button>
-          <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+          <div    data-func="scr" id="scrbtn" class="base_btn mclickcfunc" tabindex="0"><span class="mob_hide">/  </span> <span id="scr_text" class="subl">SCRIPTS</span></div>
         </div>
     </div>
 
@@ -1751,6 +1751,7 @@ const swapButton = document.getElementById('swapside');
 const swapMobile = document.getElementById('swapside_mobile');
 
 const mainMenu= document.getElementById('mainMenu');
+
 let translated = false; 
 let switchSides = false; 
 
@@ -2537,7 +2538,6 @@ function firstStart() {
             
             if(scr_text){ scr_text.textContent = "SCR" + "\u00A0";
             }
-
         }
 
         let lastTouchEnd = 0;
