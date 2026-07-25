@@ -292,19 +292,18 @@ color: var(--accolor);
 text-decoration: underline;
 }
 
-.plateFixed {
+#tgHeaderFix {
 position: fixed; 
 left: 0;
+top: -18vh;
+height: 20vh;
 width: 100vw; 
 background: var(--bgcolor);
 z-index: 500; 
-pointer-events: auto; 
+pointer-events: none; 
 }
 
-#topbarExpand {
-height: 20vh;
-top: -18vh;
-}
+
 
 /* Paste Content */
 
@@ -350,7 +349,7 @@ top: -18vh;
 </head>
 <body>
 
-<div id="topbarExpand" class="plateFixed"></div>
+<div id="tgHeaderFix" ></div>
 
 <div id="header" class="linePage">
     <h2 id="pearlLine">* pearl version</h2>
