@@ -12,7 +12,7 @@
 </script>
 
 <style>
-* {margin: 0; padding: 0; box-sizing: border-box;}
+* {margin: 0; padding: 0; box-sizing: border-box; pointer-events: none}
 
 :root {
 --main_w: 75%;
@@ -56,9 +56,7 @@ margin-right: auto;
 
 width: var(--main_w);
 background-color: red; 
-z-index: 9999; 
-user-select: none;
-pointer-events: none;
+z-index: 5000; 
 }
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
@@ -127,7 +125,7 @@ flex-grow: 0;
 .mbtn {
 aspect-ratio: 1 / 1;
 margin-top: var(--spaces);
-background-color: #373c43;
+background-color: var(--bgcolor);
 background-size: auto; 
 background-repeat: no-repeat;
 background-position: center;
@@ -136,14 +134,13 @@ align-items: center;
 justify-content: center;
 cursor: pointer;
 pointer-events: auto;
-z-index: 10000;
 }
 .mbtn.text {
 font-family: var(--titlefont);
-font-size: auto;
+font-size: 6vw;
 border: 2px solid #7f6423;;
-background-color: var(--bgcolor);
 color: #dfdfe0;
+user-select: none;
 }
 
 .mbtn.top { 
@@ -151,10 +148,6 @@ margin-bottom: 12px;
 }
 .mbtn.bot {
 margin-top: 12px;
-}
-
-html:not(.mobile) .mbtn:hover {
-background-color: var(--accolor);
 }
 .mbtn.active { 
 background-color: #848484;
@@ -169,6 +162,10 @@ background-color: #848484;
 
 #aws  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
 #tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
+
+html:not(.mobile) .mbtn:hover {
+background-color: var(--accolor);
+}
 
 @media (max-width: 780px) {
     :root {
