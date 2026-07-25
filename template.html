@@ -21,10 +21,22 @@
 --header_h: 12vh;
 --footer_h: 12vh;
 --spaces: 5px;
+
+--titlefont: 'title', sans-serif;
+--sidefont: 'sidebar', sans-serif;
+--monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
 --bgcolor: #2c2f34;
+--accolor: #dd9f17;
 }
 
 [hidden] {display: none !important;}
+
+@font-face { font-family: 'title';
+src: url('./assets/fonts/GeistMono-SemiBold.ttf') format('truetype'); }
+
+@font-face { font-family: 'sidebar';
+src: url('./assets/fonts/GeistMono-Medium.ttf') format('truetype'); }
 
 html, body {
 width: 100%;
@@ -32,18 +44,19 @@ background-color: var(--bgcolor);
 font-family: sans-serif;
 overflow-x: hidden;
 overflow-y: auto;
+touch-action: manipulation;
 }
 
 .linePage {
-  position: fixed; 
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  
-  width: var(--main_w);
-  background-color: red; 
-  z-index: 9999; 
+position: fixed; 
+left: 0;
+right: 0;
+margin-left: auto;
+margin-right: auto;
+
+width: var(--main_w);
+background-color: red; 
+z-index: 9999; 
 }
 
 /* Высота в 2 раза больше, чтобы скрыть контент */
@@ -76,17 +89,16 @@ min-width: 0;
 }
 
 
-#iconsColumnFake {
+#shelfFake {
 width: var(--sidebar_w);
 min-height: 1px;
 height: 100%;
 background-color: transparent;
 flex-shrink: 0; 
 background-color: blue;
-z-index: 9500;
 }
 
-#iconsColumn {
+#mobileShelf {
 position: fixed; 
 top: calc(var(--header_h) + var(--spaces));
 right: calc((100% - var(--main_w)) / 2);
@@ -97,6 +109,7 @@ display: flex;
 flex-direction: column;
 justify-content: flex-end;
 background-color: green;
+flex-grow: 0;
 }
 
 .element {
@@ -117,9 +130,44 @@ background-color: #373c43;
 background-size: auto; 
 background-repeat: no-repeat;
 background-position: center;
+
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
 }
 
-#fp { background-image: url('./assets/svg/FilledPlane.svg'); }
+.mbtn.text {
+font-family: var(--titlefont);
+font-size: 28px;
+border: 2px solid #7f6423;;
+background-color: var(--bgcolor);
+color: #dfdfe0;
+}
+.mbtn.top { 
+margin-bottom: 24px;
+}
+.mbtn.bot {
+margin-top: 24px;
+}
+
+html:not(.mobile) .mbtn:hover {
+background-color: var(--accolor);
+}
+
+.mbtn.active { 
+background-color: #848484;
+}
+
+#fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
+#mpv { background-image: url('./assets/svg/MP4Vidoc.svg'); }
+#swm { background-image: url('./assets/svg/SwapMats.svg'); }
+#map { background-image: url('./assets/svg/MatrixPreserve.svg'); }
+#ctv { background-image: url('./assets/svg/ObjectColorToVertexColor.svg'); }
+#cam { background-image: url('./assets/svg/LinkedCamera.svg'); }
+
+#aws  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
+#tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
 
 @media (max-width: 780px) {
     :root {
@@ -134,11 +182,24 @@ background-position: center;
 
 <div id="header" class="linePage"></div>
 
-<div id="iconsColumn"> 
-    <div id ="fp" class="mbtn"></div>
-    <div id ="fp" class="mbtn"></div>
-    <div id ="fp" class="mbtn"></div>
-    <div id ="fp" class="mbtn"></div>
+<div id="mobileShelf"> 
+    <div class="mbtn text top" id="switchLangMobile" >RU</div>
+
+    <div id="ms_iconScripts">
+        <div class="mbtn" id ="fpl" data-func="filletplane"></div>
+        <div class="mbtn" id ="mpv" data-func="mp4vidoc"></div>
+        <div class="mbtn" id ="swm" data-func="swap_mats"></div>
+        <div class="mbtn" id ="map" data-func="matrix_preserve"></div>
+        <div class="mbtn" id ="ctv" data-func="objcolor_to_vercolor"></div>
+        <div class="mbtn" id ="cam" data-func="linked_camera"></div>
+    </div>
+        
+    <div id="ms_iconProjects" hidden>
+        <div class="mbtn" id ="aws" data-func="ar_wf_string"></div>
+        <div class="mbtn" id ="tsm" data-func="test_smile"></div>
+    </div>
+
+    <div class="mbtn text bot" id="nextElemBtn">▼</div>
 </div>
 
 <div id="mainPage">
@@ -151,7 +212,7 @@ background-position: center;
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
     </div>
-    <div id="iconsColumnFake" ></div>
+    <div id="shelfFake" ></div>
 </div>
 
 <div id="footer" class="linePage"></div>
@@ -163,22 +224,31 @@ function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
 }
 
+const mobileShelf = document.getElementById('mobileShelf');
+const mobileWidth = 780+1;
+
 function resizeGeneral() {
     const width = window.innerWidth;
-    const mobile_width = 780+1;
 
-    if (width <= mobile_width) { 
+    let fmw = width <= mobileWidth ? true : false;
+
+    if (fmw) {
+        if(mobileShelf.hidden != false) mobileShelf.hidden = true; 
+    } else { 
+        if(mobileShelf.hidden != true) mobileShelf.hidden = false;
+    }
+
+    if (width <= mobileWidth) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
         document.documentElement.style.setProperty('--sidebar_w', `12vw`);
-
+        
         
     } else if (width >= 1400) {
         document.documentElement.style.setProperty('--main_w', '75%');
         document.documentElement.style.setProperty('--sidebar_w', `24vw`);
 
-
     } else {
-        const interpolationFactor = (width - mobile_width) / (1400 - mobile_width);
+        const interpolationFactor = (width - mobileWidth) / (1400 - mobileWidth);
         const calcWidth = lerp(97.5, 75.0, interpolationFactor);
         const calSidebar = lerp(12.0, 24.0, interpolationFactor);
 
