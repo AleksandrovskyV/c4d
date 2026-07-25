@@ -167,8 +167,10 @@ margin-right: var(--spaces);
 position: fixed; 
 
 /* top: calc(var(--header_h) + var(--spaces)); */
-top: 50%;
-transform: translateY(-50%);
+ top: 0;
+bottom: 0;
+margin-top: auto;
+margin-bottom: auto;
 
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 width: var(--sidebar_w);
