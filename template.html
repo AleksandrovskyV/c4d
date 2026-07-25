@@ -18,8 +18,8 @@
 --main_w: 75%;
 --sidebar_w: 200px;
 --sidemob_w: 12vw;
---header_h: 12vh;
---footer_h: 12vh;
+--header_h: 200px;
+--footer_h: 200px;
 --spaces: 5px;
 
 --titlefont: 'title', sans-serif;
@@ -113,7 +113,7 @@ position: fixed;
 top: calc(var(--header_h) + var(--spaces));
 right: calc((100% - var(--main_w)) / 2);
 width: var(--sidebar_w);
-height: calc(100vh - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
 
 display: flex;
 flex-direction: column;
