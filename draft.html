@@ -2,7 +2,7 @@
 
 <meta charset="UTF-8">
 <meta name="description" content="Scripts & Projects for Cinema 4D" />
-<meta name="viewport" content="width=device-width, initial-scale=0.66">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>c4d</title>
 
@@ -814,6 +814,14 @@ display: none !important;
     cursor: default;
     pointer-events: none;
     user-select: none;
+    }
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    :root {
+    --topbar_h: 13vh !important;
+    --botbar_h: 12vh !important; 
+    --mbtn_size: 42px !important;
+    --font_head: 46px !important;
     }
 }
 
@@ -1739,9 +1747,6 @@ display: none !important;
 <script>
 
 let mobile  = false;
-let activeElement = null;
-
-
 let backupSoloCheck = null;
 let shortShelfActive = false;
 

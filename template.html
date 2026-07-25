@@ -90,6 +90,20 @@ bottom: calc(var(--footer_h) * -1);
 height: calc(var(--footer_h) * 2);
 }
 
+#bottomShadowRow {
+position: fixed;
+left: 0;
+width: 100vw;
+height: 128px; 
+bottom: calc(var(--footer_h));
+background-image: url('./assets/shadow_sample.png');
+background-repeat: repeat-x; 
+background-position: bottom left; 
+z-index: 2000; 
+pointer-events: none; 
+}
+
+
 #mainPage {
 width: var(--main_w);
 margin-left: auto;
@@ -97,7 +111,7 @@ margin-right: auto;
 transform: translateY(calc(var(--header_h) + var(--spaces)));
 display: flex; flex-direction: row;
 align-items: flex-start; 
-margin-bottom: calc(var(--footer_h) * 2);
+margin-bottom: calc(var(--footer_h) * 3);
 }
 
 #pearlLine{
@@ -125,6 +139,7 @@ flex-grow: 1;
 margin-top: var(--spaces);
 margin-right: calc(var(--spaces)*2);
 min-width: 0; 
+
 }
 
 .element {
@@ -160,6 +175,7 @@ flex-direction: column;
 justify-content: flex-end;
 background-color: green;
 flex-grow: 0;
+z-index: 5000;
 }
 
 .mbtn {
@@ -309,7 +325,6 @@ pointer-events: none;
 }
 
 
-
 /* Paste Content */
 
 /* Mobile */
@@ -351,6 +366,7 @@ pointer-events: none;
 <body>
 
 <div id="tgHeaderFix" ></div>
+<div id="bottomShadowRow"></div>
 
 <div id="header" class="linePage">
     <h2 id="pearlLine">* pearl version</h2>
@@ -373,7 +389,7 @@ pointer-events: none;
 <div id="mobileShelf" hidden> 
     <div class="mbtn text top" id="switchLangMobile" >RU</div>
 
-    <div id="ms_iconScripts">
+    <div id="toolbar_scr">
         <div class="mbtn" id ="fpl" data-func="filletplane"></div>
         <div class="mbtn" id ="mpv" data-func="mp4vidoc"></div>
         <div class="mbtn" id ="swm" data-func="swap_mats"></div>
@@ -382,7 +398,7 @@ pointer-events: none;
         <div class="mbtn" id ="cam" data-func="linked_camera"></div>
     </div>
         
-    <div id="ms_iconProjects" hidden>
+    <div id="toolbar_prj" hidden>
         <div class="mbtn" id ="aws" data-func="ar_wf_string"></div>
         <div class="mbtn" id ="tsm" data-func="test_smile"></div>
     </div>
@@ -414,6 +430,8 @@ function lerp(start, end, amt) {
 
 let translated = false; 
 let switchSides = false; 
+let backupSoloCheck = null;
+let shortShelfActive = false;
 
 const mobileWidth = 780+1;
 let nowWidth = window.innerWidth;
@@ -425,11 +443,104 @@ const pearlLine = document.getElementById('pearlLine');
 const namepageText = document.getElementById('namepageText');
 const centralText = document.getElementById('user_label');
 
-const scriptBtn   = document.getElementById('scrbtn');
+const scriptBtn     = document.getElementById('scrbtn');
 const scriptBtnText = document.getElementById('scr_text');
+
+const langButton = document.getElementById('switch_lang');
+
+const viewCodeBtn = document.getElementById('viewcode');
+const nextElem_btn = document.getElementById('mob_next');
+const switchLangMobile = document.getElementById('switchLangMobile');
+
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
 
 const mobileShelf = document.getElementById('mobileShelf');
 
+
+/// USER INTERFACE - GLOBAL SWAPS
+
+let gifmobileflag = false;
+let isTransitBlocked = false;
+let shifting = false;
+
+function switchToMobile(mobile_state) {
+    mobile = mobile_state;
+    const hide_flag = mobile ? false : true;
+    const unhide_flag = mobile ? true : false;
+
+    const webSidebar =  document.getElementById('webSidebar');
+    const webTrickbar =  document.getElementById('webTrickbar');
+
+    if(webSidebar && webTrickbar){
+        webSidebar.hidden = unhide_flag;
+        webTrickbar.hidden = unhide_flag;       
+    }
+    document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
+    document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
+    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
+
+    if(isMobile){
+        document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
+    }
+}
+
+function transitElements(toContainerSelector, targetSelector) {
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const destination = block.querySelector(toContainerSelector);
+        const targetElement = block.querySelector(targetSelector);
+
+        if (destination && targetElement) {
+            if (!destination.contains(targetElement)) {
+                destination.appendChild(targetElement);
+            }
+        }
+    });
+}
+
+function transitAllGifs(to_mobile, hard) {
+    if (hard){
+        isTransitBlocked = false;
+    }
+    if (isTransitBlocked) return;
+    shifting = true;
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const webPlaceholder = block.querySelector('.gif_placeholder_web');
+        const mobilePlaceholder = block.querySelector('.gif_placeholder_mobile');
+        const gifPreview = block.querySelector('.gifpreview');
+
+        const elemChecker = gifPreview && webPlaceholder && mobilePlaceholder;
+
+        if (!elemChecker) return;
+
+        if (to_mobile) {
+            mobilePlaceholder.appendChild(gifPreview);
+            if (!gifmobileflag) {
+                gifmobileflag = true;
+            }
+        } else {
+            webPlaceholder.appendChild(gifPreview);
+            if (gifmobileflag) {
+                gifmobileflag = false;
+            }
+        }
+    });
+
+    shifting = false;
+    isTransitBlocked = true;
+
+    setTimeout(() => {
+        isTransitBlocked = false;
+    }, 500); 
+}
+
+function gifSizeChecker() {
+    const gif_align = window.innerWidth<1790;
+    transitAllGifs(gif_align, true); 
+}
+
+
+/// USER INTERFACE - TEXT AND LANG
 
 const nameCases = {
     'namepage': ['C4D', 'CINEMA 4D'], 
@@ -441,7 +552,7 @@ const reductionOrder = [
   { key: 'central', element: centralText },
 ];
 
-function textShortChecker() {
+function headerTextShorter() {
   const currentIndices = {
     namepage: nameCases.namepage.length - 1,
     central: nameCases.central.length - 1,
@@ -525,6 +636,96 @@ function updateResponsiveText() {
     });
 }
 
+function changeMobileDownloadBtn(check) {
+    const mob_str_a = document.getElementById('mob_str_a');
+    const mob_str_b = document.getElementById('mob_str_b');
+
+    const langPrefix = translated ? 'ru' : 'us';
+    const keySuffix = check ? '-p' : ''; 
+    const fullAttributeName = `data-${langPrefix}${keySuffix}`;
+
+    mob_str_a.textContent = mob_str_a.getAttribute(fullAttributeName);
+    mob_str_b.textContent = mob_str_b.getAttribute(fullAttributeName);
+}
+
+function renderSwapButtons() {
+    const langPrefix = translated ? 'ru' : 'us'; 
+    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
+
+    if (swapButton && swapButton.dataset[attributeName]) {
+        swapButton.textContent = swapButton.dataset[attributeName];
+    }
+    if (swapMobile && swapMobile.dataset[attributeName]) {
+        swapMobile.textContent = swapMobile.dataset[attributeName];
+    }
+}
+
+function soloCheck(state) {
+     // Выбор активного элемента на странице
+
+    if(shortShelfActive) return;
+
+    const blocks = document.querySelectorAll('.elementBlock');
+
+    if (blocks.length === 0) return;
+
+    if (state) {
+        if (!backupSoloCheck) {
+            backupSoloCheck = new Map();
+            blocks.forEach(block => {
+                backupSoloCheck.set(block, block.hidden);
+            });
+        }
+
+        const screenCenterY = window.innerHeight / 2;
+        let closestBlock = null;
+        let minDifference = Infinity;
+
+        blocks.forEach(block => {
+            const rect = block.getBoundingClientRect();
+            const blockCenterY = rect.top + rect.height / 2;
+            const difference = Math.abs(blockCenterY - screenCenterY);
+
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestBlock = block;
+            }
+        });
+
+        blocks.forEach(block => {
+            if (block === closestBlock) {
+                block.hidden = false;
+            } else {
+                block.hidden = true;
+            }
+        });
+        
+        const targetBtnName = closestBlock ? closestBlock.id : null;
+        if (targetBtnName) {
+            const buttons = document.querySelectorAll('.mt_btn');
+            
+            buttons.forEach(btn => {
+                if (btn.dataset.func === targetBtnName) {
+                    btn.classList.add('active');
+                    lastCheckedButtons = [btn].filter(Boolean);
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+    } else {
+        if (backupSoloCheck) {
+            blocks.forEach(block => {
+                if (backupSoloCheck.has(block)) {
+                    block.hidden = backupSoloCheck.get(block);
+                }
+            });
+            backupSoloCheck = null;
+        }
+    }
+}
+
 function updateShortShelf() {
      // Сверх мелкий грид
     const shelf = document.getElementById('shortshelf');
@@ -553,6 +754,253 @@ function updateShortShelf() {
     }
 }
 
+// BTN LOGIC
+let lastCheckedMainTabs = []; 
+let lastCheckedButtons = []; 
+let lastCheckedU = null;
+let lastCheckedT = null;
+
+function nextElement() {
+    const toolbarPrj = document.getElementById('toolbar_prj');
+    const toolbarScr = document.getElementById('toolbar_scr');
+    
+    function activateNextInContainer(container) {
+        if (!container || container.hidden) return;
+        
+        const buttons = container.querySelectorAll('.clickfunc');
+        if (buttons.length === 0) return;
+
+        let activeIndex = -1;
+        
+        buttons.forEach((btn, index) => {
+            if (btn.classList.contains('active')) {
+                activeIndex = index;
+            }
+        });
+        
+        const nextIndex = (activeIndex + 1) % buttons.length;
+        const nextButton = buttons[nextIndex];
+
+        if (nextButton) {
+            nextButton.click();
+        }
+    }
+
+    activateNextInContainer(toolbarPrj);
+    activateNextInContainer(toolbarScr);
+}
+function viewCurrentCode(){
+    const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
+                                     .find(block => !block.hidden);
+
+    if (currentVisibleBlock) {
+        const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
+        
+        if (downloadLink && downloadLink.href) {
+            window.open(downloadLink.href, '_blank');
+        } 
+    } else {
+        console.warn("На экране нет активных или видимых блоков elementBlock.");
+    }
+}
+
+document.getElementById('shortshelf')?.addEventListener('click', function(event) {
+    const btn = event.target.closest('.mt_btn');
+    if (!btn) return;
+
+    const funcName = btn.dataset.func;    
+    const element = document.getElementById(funcName);
+
+    if (funcName === 'randomize') {
+
+        return;
+    }else{
+        if (element) {
+            console.log(`Скачивание скрипта для: ${funcName}`);
+            const downloadLink = element.querySelector('.texlink.dn');
+            if (downloadLink && downloadLink.href) {
+                window.open(downloadLink.href, '_blank');
+            } 
+
+        } else {
+            console.log("Элемент не найден");
+        }
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
+    const width = window.innerWidth;
+    let sizeIsMobile = false;
+
+    if (width < mobileWidth) sizeIsMobile = true;
+
+    if (currentBtn) {
+        
+        const isMainTabClick = currentBtn.classList.contains('mclickcfunc');
+
+        if (!sizeIsMobile || isMainTabClick) {
+            lastCheckedMainTabs.forEach(btn => {
+                if (btn) btn.classList.remove("active");
+            });
+            if (isMainTabClick) lastCheckedMainTabs = []; // Сбрасываем кэш вкладок
+        }
+
+        // Одиночные кнопки и внутренние спаны стираем всегда при любом клике
+        lastCheckedButtons.forEach(btn => {
+            if (btn) btn.classList.remove("active");
+        });
+        if (lastCheckedU) lastCheckedU.classList.remove("active");
+        if (lastCheckedT) lastCheckedT.classList.remove("active");
+
+        lastCheckedU = null;
+        lastCheckedT = null;
+
+
+        // 2. ЛОГИКА ОПРЕДЕЛЕНИЯ И КЭШИРОВАНИЯ АКТИВНЫХ ЭЛЕМЕНТОВ
+        if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
+            const btnWeb = document.getElementById('prjbtn');
+            const btnMob = document.getElementById('prjbtn_mob');
+            
+            // На мобилках сохраняем в отдельный неприкосновенный кэш вкладок
+            if (sizeIsMobile) {
+                lastCheckedMainTabs = [btnWeb, btnMob].filter(Boolean);
+                lastCheckedButtons = []; // Дочерний кэш чист
+            } else {
+                lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
+            }
+
+            toolbar_prj.hidden = false;
+            toolbar_scr.hidden = true;
+            
+            changeMobileDownloadBtn(true);
+
+        } else if (currentBtn.id === "scrbtn") {
+            const btnWeb = document.getElementById('scrbtn');
+            
+            if (sizeIsMobile) {
+                lastCheckedMainTabs = [btnWeb].filter(Boolean);
+                lastCheckedButtons = [];
+            } else {
+                lastCheckedButtons = [btnWeb].filter(Boolean);
+            }
+
+            toolbar_prj.hidden = true;
+            toolbar_scr.hidden = false;
+            
+            changeMobileDownloadBtn(false);
+
+        } else if (currentBtn.id === "sepa") {
+            if (sizeIsMobile) {
+                lastCheckedMainTabs.forEach(btn => btn && btn.classList.remove("active"));
+                lastCheckedMainTabs = [];
+            }
+            lastCheckedButtons = [];
+            
+        } else {
+            // Если кликнули по элементу тулбара (clickfunc), пишем его строго в дочерний кэш
+            lastCheckedButtons = [currentBtn];
+            lastCheckedU = currentBtn.querySelector('.sel_pre');
+            lastCheckedT = currentBtn.querySelector('.sid_tex');
+        }
+
+        lastCheckedMainTabs.forEach(btn => btn.classList.add("active"));
+        
+        // Зажигаем текущие кликнутые элементы и спаны
+        lastCheckedButtons.forEach(btn => btn.classList.add("active"));
+        if (lastCheckedU) lastCheckedU.classList.add("active");
+        if (lastCheckedT) lastCheckedT.classList.add("active");
+
+
+        // --- ФИЛЬТРАЦИЯ КОНТЕНТА ---
+        if (currentBtn.classList.contains('clickfunc')) {
+            const target_func = currentBtn.dataset.func;
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                block.hidden = (block.id !== target_func);
+            });
+        }
+
+        // 2. Сортировка SCRIPTS
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn")){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "script" || tag === "script_pack");
+            });
+        }
+
+        // 3. Сортировка PROJECTS
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                const tag = block.dataset.tag;
+                block.hidden = !(tag === "project" || tag === "project_pack");
+            });
+        }
+
+        // 4. Сортировка для SEPA (Показать всё, кроме вложенных скриптов)
+        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && currentBtn.id === "sepa") {
+            document.querySelectorAll('.elementBlock').forEach(block => {
+                block.hidden = (block.dataset.tag === "script_inpack");
+            });
+        }
+    }
+
+
+    const gifCont = event.target.closest('.gifpreview');
+    
+    if (!gifCont) return;
+
+    const img = gifCont.querySelector('img');
+    let video = gifCont.querySelector('video');
+    
+    const mediaUrl = img ? img.getAttribute('data-src') : video.getAttribute('src');
+    const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
+    
+    const isVideo = mediaUrl.endsWith('.mp4');
+
+    if (gifCont.classList.contains('playing')) {
+        gifCont.classList.remove('playing');
+        
+        if (isVideo && video) {
+            video.pause();
+        } else if (img) {
+            img.src = posterUrl;
+        }
+    } else {
+        gifCont.classList.add('playing');
+        
+        if (isVideo) {
+            if (!video) {
+                video = document.createElement('video');
+                video.src = mediaUrl;
+                video.poster = posterUrl;
+                video.loop = true;
+                video.muted = true;
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.preload = 'auto';
+                img.remove();
+                gifCont.insertBefore(video, gifCont.firstChild);
+            }
+            video.play().catch(err => console.log("Автоплей заблокирован:", err));
+        } else {
+            if (img && mediaUrl) {
+                img.src = mediaUrl;
+            }
+        }
+    }
+});
+
+
+// BTN CONNECT
+
+if (nextElem_btn) nextElem_btn.onclick = () => nextElement();
+if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
+
+if (langButton) langButton.onclick = () => switchLang();
+if (switchLangMobile) switchLangMobile.onclick = () => switchLang();
+if (swapButton) swapButton.onclick = () => switchSide();
+if (swapMobile) swapMobile.onclick = () => switchSide();
+
 
 function resizeGeneral() {
 
@@ -566,6 +1014,26 @@ function resizeGeneral() {
     ).matches;
 
     
+
+    if (nowWidth < mobileWidth) { 
+        switchToMobile(true);
+        transitElements('.about_placeholder_mob', '.about_extend', false);
+        
+    } else if (nowWidth > 1400) {
+        switchToMobile(false);
+        transitElements('.about_placeholder_web', '.about_extend', false);
+
+    } else {
+        switchToMobile(false);
+    }
+
+    if(nowWidth<mobileWidth){
+        soloCheck(true);
+    }else{
+        soloCheck(false);
+    }
+
+
     if (nowWidth <= mobileWidth) { 
         document.documentElement.style.setProperty('--main_w', '97.5%');
         document.documentElement.style.setProperty('--sidebar_w', `82px`);
@@ -585,14 +1053,19 @@ function resizeGeneral() {
         //document.documentElement.style.setProperty('--sidebar_w', `${calSidebar}vw`);
     }
 
-    //gifSizeChecker();
+    gifSizeChecker();
 
-    textShortChecker();
+    headerTextShorter();
     updateResponsiveText();
 
     if(!isMobileWidth){
        updateShortShelf(); 
     }
+
+    //const zagl = document.getElementById('zagl');
+    //zagl.classList.add("close"); 
+    //zagl.hidden = true;
+
 }
 
 
@@ -607,9 +1080,28 @@ function setActiveHeaderBtn(){
 function firstStart() {
     resizeGeneral();
 
-    if(isMobile) setActiveHeaderBtn();
+    if (isMobile) {
 
+        setActiveHeaderBtn();
+
+        let lastTouchEnd = 0;
+        
+        document.addEventListener('touchend', function (event) {
+            const now = Date.now();
+            
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+                
+                if (event.target && typeof event.target.click === 'function') {
+                    event.target.click();
+                }
+            }
+            lastTouchEnd = now;
+        }, { passive: false }); 
+    }
 }
+
+
 
 window.onload = firstStart;
 window.addEventListener('resize', resizeGeneral);
