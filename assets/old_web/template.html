@@ -10,115 +10,115 @@
     document.documentElement.classList.add('mobile');
   }
 </script>
-
 <style>
 * {margin: 0; padding: 0; box-sizing: border-box;}
-[hidden] {display: none !important;}
+
 :root {
+--mWidth: 75vw;
 --bgcolor: #2c2f34;
 --bars_h: 12vh;
 }
 
+[hidden] {display: none !important;}
+
 html, body {
-width: 100%;height: 100%;
-background-color: var(--bgcolor); 
-overflow-x: hidden;
-font-family: sans-serif;
-user-select: text;
-touch-action: manipulation;
-}
-
-#mainWindow{
-height:100%; width:75vw;
-background-color: red;
-transform: translateX(0%);
-}
-
-#middleWindow{
-display: flex;
-flex-direction: row;
-align-items: flex-start; 
-}
-
-#elemViewer{
-margin-left: 5px;
-width: auto;
-min-height: 100%;
-}
-
-#iconsColumn{
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-height: 100%;
-min-height: 100%;
-margin-left: 5px;
-background-color: green;
-}
-
-.flex{
-display: flex;
-flex-direction: column;
-align-items: flex-start; 
-}
-
-.bar{
 width: 100%;
-min-height: var(--bars_h);
+background-color: var(--bgcolor); 
+font-family: sans-serif;
+}
+
+#mainWindow {
+width: var(--mWidth);
+min-height: 100vh; 
+transform: translateX(calc((100vw - var(--mWidth)) / 2));
+background-color: red;
+display: flex;
+flex-direction: column;
+}
+
+.horBar {
+width: 100%;
+height: var(--bars_h);
+flex-shrink: 0;
 background-color: rgba(0,0,255,.5);
 z-index: 9999;
 }
-.bar.top{
-margin-bottom: 1vh;
+
+#headerPage {
+position: sticky;
+top: 0;
+margin-bottom: 1vh;  
 }
-.bar.bot{
+#bottomPage {
+position: sticky;
+bottom: 0;
+margin-top: 1vh;
 }
 
-.element{
-min-width: 100%;
-width: auto;
-min-height: 1vh;
+#middlePage {
+flex-grow: 1;
+display: flex;
+flex-direction: row;
+align-items: stretch; 
+}
+
+#elemViewer {
+margin-left: 5px;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+}
+
+#iconsColumn {
+position: sticky; 
+top: calc(var(--bars_h) + 1vh);
+height: calc(100vh - var(--bars_h) * 2 - 2vh);
+
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+margin-left: 5px;
+background-color: green;
+}
+
+.element {
+width: 100%;
 margin-bottom: 25px;
 background-color: green;
-z-index: 9000;
 }
-
-.element img{
+.element img {
 width: 100%;
 height: auto;
 display: block;
 }
-.icon{
+.icon {
 width: 25px;
 height: 25px;
 margin-bottom: 5px;
 background-color: white;
 }
-
 </style>
+</head>
+<body>
 
-</head><body>
+<div id="mainWindow">
+    <div class="horBar" id="headerPage"></div>
 
-<div id="mainWindow" class="flex">
-    
-    <div class="bar top"></div>
-
-    <div id="middleWindow">
-        <div id="elemViewer" class="flex">
-            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
-            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
-            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
-            <div class="element"> <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"> </img></div>
+    <div id="middlePage">
+        <div id="elemViewer">
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+            <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
         </div>
-
-        <div id="iconsColumn" class="flex"> 
+        <div id="iconsColumn"> 
             <div class="icon"></div>
             <div class="icon"></div>
         </div>
-
     </div>
 
-    <div class="bar bot"></div>
+    <div class="horBar" id="bottomPage"></div>
 </div>
 
-</body></html>
+</body>
+</html>
