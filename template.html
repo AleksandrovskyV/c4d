@@ -1345,8 +1345,10 @@ function resizeGeneral() {
     if(!isMobileWidth){
        updateShortShelf(); 
     }
-    if(isMobileWidth) hideOverflowingButtons();
-    
+    if(isMobileWidth){
+      hideOverflowingButtons();  
+    } 
+
     //const zagl = document.getElementById('zagl');
     //zagl.classList.add("close"); 
     //zagl.hidden = true;
