@@ -962,7 +962,18 @@ function nextElement() {
         });
         
         const nextIndex = (activeIndex + 1) % buttons.length;
-        const nextButton = buttons[nextIndex];
+        let nextButton = buttons[nextIndex];
+
+        // ПРОВЕРКА: Если следующая кнопка скрыта, крутим карусель
+        if (nextButton && nextButton.hidden) {
+            const firstButton = buttons[0];
+            container.appendChild(firstButton);
+
+            hideOverflowingButtons();
+
+            const updatedButtons = container.querySelectorAll('.clickfunc');
+            nextButton = updatedButtons[nextIndex];
+        }
 
         if (nextButton) {
             nextButton.click();
@@ -972,6 +983,7 @@ function nextElement() {
     activateNextInContainer(toolbarPrj);
     activateNextInContainer(toolbarScr);
 }
+
 function viewCurrentCode(){
     const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
                                      .find(block => !block.hidden);
@@ -1125,7 +1137,7 @@ document.addEventListener('click', (event) => {
                 block.hidden = (block.dataset.tag === "script_inpack");
             });
         }
-        
+
         hideOverflowingButtons();
     }
 
@@ -1178,10 +1190,10 @@ document.addEventListener('click', (event) => {
 
 // BTN CONNECT
 
-const nextElem_btn     = document.getElementById('mob_next');
-const viewCodeBtn      = document.getElementById('viewcode');
+const nextElemBtn  = document.getElementById('nextElemBtn');
+const viewCodeBtn  = document.getElementById('viewcode');
 
-const langButton = document.getElementById('switch_lang');
+const langButton   = document.getElementById('switch_lang');
 const switchLangMobile = document.getElementById('switchLangMobile');
 
 const swapButton = document.getElementById('swapside');
