@@ -435,13 +435,13 @@ function lerp(start, end, amt) {
 
 const mobileWidth = 780+1;
 
-/// USER INTERFACE - GLOBAL SWAPS
-
 let nowWidth = window.innerWidth;
 let isMobileWidth = nowWidth <= mobileWidth ? true : false;
 
 let translated = false; 
 let switchSides = false; 
+
+/// USER INTERFACE - GLOBAL SWAPS
 
 let backupSoloCheck = null;
 let shortShelfActive = false;
@@ -450,24 +450,69 @@ let gifmobileflag = false;
 let isTransitBlocked = false;
 let shifting = false;
 
-function switchToMobile(mobile_state) {
-    mobile = mobile_state;
-    const hide_flag = mobile ? false : true;
-    const unhide_flag = mobile ? true : false;
+function soloCheck(state) {
+     // Выбор активного элемента на странице
 
-    const webSidebar =  document.getElementById('webSidebar');
-    const webTrickbar =  document.getElementById('webTrickbar');
+    if(shortShelfActive) return;
 
-    if(webSidebar && webTrickbar){
-        webSidebar.hidden = unhide_flag;
-        webTrickbar.hidden = unhide_flag;       
-    }
-    document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
-    document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
-    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
+    const blocks = document.querySelectorAll('.elementBlock');
 
-    if(isMobile){
-        document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
+    if (blocks.length === 0) return;
+
+    if (state) {
+        if (!backupSoloCheck) {
+            backupSoloCheck = new Map();
+            blocks.forEach(block => {
+                backupSoloCheck.set(block, block.hidden);
+            });
+        }
+
+        const screenCenterY = window.innerHeight / 2;
+        let closestBlock = null;
+        let minDifference = Infinity;
+
+        blocks.forEach(block => {
+            const rect = block.getBoundingClientRect();
+            const blockCenterY = rect.top + rect.height / 2;
+            const difference = Math.abs(blockCenterY - screenCenterY);
+
+            if (difference < minDifference) {
+                minDifference = difference;
+                closestBlock = block;
+            }
+        });
+
+        blocks.forEach(block => {
+            if (block === closestBlock) {
+                block.hidden = false;
+            } else {
+                block.hidden = true;
+            }
+        });
+        
+        const targetBtnName = closestBlock ? closestBlock.id : null;
+        if (targetBtnName) {
+            const buttons = document.querySelectorAll('.mt_btn');
+            
+            buttons.forEach(btn => {
+                if (btn.dataset.func === targetBtnName) {
+                    btn.classList.add('active');
+                    lastCheckedButtons = [btn].filter(Boolean);
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+    } else {
+        if (backupSoloCheck) {
+            blocks.forEach(block => {
+                if (backupSoloCheck.has(block)) {
+                    block.hidden = backupSoloCheck.get(block);
+                }
+            });
+            backupSoloCheck = null;
+        }
     }
 }
 
@@ -523,6 +568,78 @@ function transitAllGifs(to_mobile, hard) {
 function gifSizeChecker() {
     const gif_align = window.innerWidth<1790;
     transitAllGifs(gif_align, true); 
+}
+
+function switchSide() {
+    switchSides = !switchSides;
+    
+    const mainMenu = document.getElementById('mainMenu');
+    
+    if(mainMenu){
+        mainMenu.classList.toggle('swap')
+    }
+    
+
+    const right = document.getElementById('webTrickbar');
+    const rightMobile = document.getElementById('mobileTrickbar');
+
+    const left = document.getElementById('webTrickbarSwap');
+    const leftMobile = document.getElementById('mobileTrickbarSwap');
+
+    const width = window.innerWidth;
+
+    if (width < mobile_width && switchSides){
+        left.hidden = true;
+    }else{
+        left.hidden = !switchSides;
+    }
+
+    right.hidden = switchSides;
+    rightMobile.hidden = switchSides;
+    leftMobile.hidden = !switchSides;
+
+    const downPackage = document.getElementById('down_package');
+    const viewCode = document.getElementById('viewcode');
+
+    if (downPackage && viewCode) {
+        const dummy = downPackage.cloneNode(false);
+        downPackage.replaceWith(dummy);
+        viewCode.replaceWith(downPackage);
+        dummy.replaceWith(viewCode);
+
+        if(switchSides){
+            viewCode.classList.remove('rtext');
+            downPackage.classList.add('rtext');
+        }else{
+            viewCode.classList.add('rtext');
+            downPackage.classList.remove('rtext');
+        }
+    }
+
+
+
+    renderSwapButtons();
+}
+
+function switchToMobile(mobile_state) {
+    mobile = mobile_state;
+    const hide_flag = mobile ? false : true;
+    const unhide_flag = mobile ? true : false;
+
+    const webSidebar =  document.getElementById('webSidebar');
+    const webTrickbar =  document.getElementById('webTrickbar');
+
+    if(webSidebar && webTrickbar){
+        webSidebar.hidden = unhide_flag;
+        webTrickbar.hidden = unhide_flag;       
+    }
+    document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
+    document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
+    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
+
+    if(isMobile){
+        document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
+    }
 }
 
 
@@ -662,72 +779,6 @@ function renderSwapButtons() {
     }
 }
 
-function soloCheck(state) {
-     // Выбор активного элемента на странице
-
-    if(shortShelfActive) return;
-
-    const blocks = document.querySelectorAll('.elementBlock');
-
-    if (blocks.length === 0) return;
-
-    if (state) {
-        if (!backupSoloCheck) {
-            backupSoloCheck = new Map();
-            blocks.forEach(block => {
-                backupSoloCheck.set(block, block.hidden);
-            });
-        }
-
-        const screenCenterY = window.innerHeight / 2;
-        let closestBlock = null;
-        let minDifference = Infinity;
-
-        blocks.forEach(block => {
-            const rect = block.getBoundingClientRect();
-            const blockCenterY = rect.top + rect.height / 2;
-            const difference = Math.abs(blockCenterY - screenCenterY);
-
-            if (difference < minDifference) {
-                minDifference = difference;
-                closestBlock = block;
-            }
-        });
-
-        blocks.forEach(block => {
-            if (block === closestBlock) {
-                block.hidden = false;
-            } else {
-                block.hidden = true;
-            }
-        });
-        
-        const targetBtnName = closestBlock ? closestBlock.id : null;
-        if (targetBtnName) {
-            const buttons = document.querySelectorAll('.mt_btn');
-            
-            buttons.forEach(btn => {
-                if (btn.dataset.func === targetBtnName) {
-                    btn.classList.add('active');
-                    lastCheckedButtons = [btn].filter(Boolean);
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-
-    } else {
-        if (backupSoloCheck) {
-            blocks.forEach(block => {
-                if (backupSoloCheck.has(block)) {
-                    block.hidden = backupSoloCheck.get(block);
-                }
-            });
-            backupSoloCheck = null;
-        }
-    }
-}
-
 function updateShortShelf() {
      // Сверх мелкий грид
     const shelf = document.getElementById('shortshelf');
@@ -756,6 +807,67 @@ function updateShortShelf() {
     }
 }
 
+function switchLang() {
+    translated = !translated;
+
+    if (langButtonMobile) {
+        langButtonMobile.textContent = translated ? "US" : "RU";
+    }
+
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us');
+        const ru_text = block.querySelector('.about_ru');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_s');
+        const ru_text = block.querySelector('.about_ru_s');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_g');
+        const ru_text = block.querySelector('.about_ru_g');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_с_us');
+        const ru_text = block.querySelector('.about_с_ru');
+
+        const ru_text_mob = block.querySelector('.about_с_ru_mb');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+
+            if(ru_text_mob && isMobile){
+
+                ru_text_mob.hidden = translated ? false : true;
+            }else{
+                ru_text.hidden = translated ? false : true;                
+            }
+        }
+    });
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        
+        texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
+    });
+
+    updateResponsiveText();
+    renderSwapButtons();
+}
 
 // BTN LOGIC
 
