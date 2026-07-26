@@ -883,7 +883,7 @@ display: none !important;
         <div    data-func="linked_camera" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
         
         <h2  class="sidelink"> <a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-        <div    data-func="prjbtn" class="base_btn mclickcfunc" tabindex="0" id="prjbtn" ><span>/  </span><span class="subl">PROJECTS</span></div>
+        <div    data-func="prjbtn" class="base_btn mclickcfunc" tabindex="0" id="prjbtn" ><span>/  </span> <span class="subl">PROJECTS</span></div>
         <div style="height: 2.5vh;"></div>
         <div    data-func="arnold_rand_texture" class="sidebtn clickfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
         <div    data-func="test_head" class="sidebtn clickfunc"        tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
@@ -1771,19 +1771,102 @@ display: none !important;
 
 <script>
 
-let mobile  = false;
-let backupSoloCheck = null;
-let shortShelfActive = false;
+function lerp(start, end, amt) {
+    return (1 - amt) * start + amt * end;
+}
+
+
+const mobile_width = 780+1;
 
 const langButton = document.getElementById('switch_lang');
 const langButtonMobile = document.getElementById('mob_lang');
 const swapButton = document.getElementById('swapside');
 const swapMobile = document.getElementById('swapside_mobile');
 
-const mainMenu= document.getElementById('mainMenu');
+const mainMenu = document.getElementById('mainMenu');
+
+const viewCodeBtn  = document.getElementById('viewcode');
+const mob_next_btn = document.getElementById('mob_next');
+
+let mobile  = false;
+let backupSoloCheck = null;
+let shortShelfActive = false;
+
+
+/// USER INTERFACE - TEXT AND LANG
 
 let translated = false; 
-let switchSides = false; 
+let switchSides = false;
+
+let gifmobileflag = false;
+let isTransitBlocked = false;
+let shifting = false;
+
+const nameCases = {
+    'namepage': ['C4D', 'CINEMA 4D'], 
+    'central': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
+};
+
+
+const namepageText = document.getElementById('namepageText');
+const centralText = document.getElementById('sepa');
+
+const reductionOrder = [
+  { key: 'namepage', element: namepageText },
+  { key: 'central', element: centralText },
+];
+
+function textShortChecker() {
+  const currentIndices = {
+    namepage: nameCases.namepage.length - 1,
+    central: nameCases.central.length - 1,
+  };
+
+  const headerPage = document.getElementById('headerPage');
+  const pearlLine = document.getElementById('pearlLine');
+
+  const updateDOM = () => {
+    
+    const width = window.innerWidth;
+    
+    if (width >= 960 && width<1300) {
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&_DATA";//nameCases.central[currentIndices.central];
+    }else if (width < 960){
+        namepageText.textContent = "C4D";
+        centralText.textContent = "&";//nameCases.central[currentIndices.central];
+    }else{
+        namepageText.textContent = nameCases.namepage[currentIndices.namepage];
+        // width fix
+        centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
+    }
+
+    if(namepageText.textContent==="C4D"){
+        pearlLine.textContent = "* pearl";
+    }else{
+        pearlLine.textContent = "* pearl edition";
+    }
+
+  };
+    
+  updateDOM();
+
+  const isOverflowing = () => {
+    return headerPage.scrollWidth > headerPage.clientWidth;
+  };
+  let step = 0;
+  
+  while (isOverflowing() && step < reductionOrder.length) {
+    const currentTarget = reductionOrder[step];
+    
+    if (currentIndices[currentTarget.key] > 0) {
+      currentIndices[currentTarget.key]--;
+      updateDOM();
+    } else {
+      step++;
+    }
+  }
+}
 
 function soloCheck(state) {
     if(shortShelfActive) return;
@@ -1849,68 +1932,6 @@ function soloCheck(state) {
     }
 }
 
-function nextElement() {
-    const toolbarPrj = document.getElementById('toolbar_prj');
-    const toolbarScr = document.getElementById('toolbar_scr');
-    
-    function activateNextInContainer(container) {
-        // Если контейнер скрыт (через hidden), мы его полностью игнорируем
-        if (!container || container.hidden) return;
-        
-        const buttons = container.querySelectorAll('.clickfunc');
-        if (buttons.length === 0) return;
-
-        let activeIndex = -1;
-        
-        buttons.forEach((btn, index) => {
-            if (btn.classList.contains('active')) {
-                activeIndex = index;
-            }
-        });
-        
-        const nextIndex = (activeIndex + 1) % buttons.length;
-        const nextButton = buttons[nextIndex];
-
-        if (nextButton) {
-            nextButton.click();
-        }
-    }
-
-    activateNextInContainer(toolbarPrj);
-    activateNextInContainer(toolbarScr);
-}
-
-const viewCodeBtn = document.getElementById('viewcode');
-
-if (viewCodeBtn) {
-    viewCodeBtn.addEventListener('click', (event) => {
-        event.preventDefault(); 
-
-        const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
-                                         .find(block => !block.hidden);
-
-        if (currentVisibleBlock) {
-            const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
-            
-            if (downloadLink && downloadLink.href) {
-                window.open(downloadLink.href, '_blank');
-            } 
-        } else {
-            console.warn("На экране нет активных или видимых блоков elementBlock.");
-        }
-    });
-}
-const mob_next_btn = document.getElementById('mob_next');
-if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
-
-
-let lastCheckedMainTabs = []; 
-let lastCheckedButtons = []; 
-let lastCheckedU = null;
-let lastCheckedT = null;
-
-const mobile_width = 780+1;
-
 function changeMobileDownloadBtn(check) {
     const mob_str_a = document.getElementById('mob_str_a');
     const mob_str_b = document.getElementById('mob_str_b');
@@ -1923,7 +1944,314 @@ function changeMobileDownloadBtn(check) {
     mob_str_b.textContent = mob_str_b.getAttribute(fullAttributeName);
 }
 
+function swapTestedAndYoutube(mobile_state) {
+    document.querySelectorAll('.rowline.pad').forEach(container => {
+        const ytLink = container.querySelector('.texlink.yt');
+        const testedBlock = container.querySelector('.tested');
 
+        if (!ytLink || !testedBlock) return;
+
+        if (mobile_state) {
+            const ytParagraph = ytLink.closest('p') || ytLink;
+        
+            if (ytParagraph.nextElementSibling !== testedBlock) {
+                container.insertBefore(testedBlock, ytParagraph.nextSibling);
+            }
+        } else {
+            const ytParagraph = ytLink.closest('p') || ytLink;
+            
+            if (testedBlock.nextElementSibling !== ytParagraph) {
+                container.insertBefore(ytParagraph, testedBlock.nextSibling);
+            }
+        }
+    });
+}
+
+function renderSwapButtons() {
+    const langPrefix = translated ? 'ru' : 'us'; 
+    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
+
+    if (swapButton && swapButton.dataset[attributeName]) {
+        swapButton.textContent = swapButton.dataset[attributeName];
+    }
+    if (swapMobile && swapMobile.dataset[attributeName]) {
+        swapMobile.textContent = swapMobile.dataset[attributeName];
+    }
+}
+
+function transitElements(toContainerSelector, targetSelector) {
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const destination = block.querySelector(toContainerSelector);
+        const targetElement = block.querySelector(targetSelector);
+
+        if (destination && targetElement) {
+            if (!destination.contains(targetElement)) {
+                destination.appendChild(targetElement);
+            }
+        }
+    });
+}
+
+function transitAllGifs(to_mobile, hard) {
+    if (hard){
+        isTransitBlocked = false;
+    }
+    if (isTransitBlocked) return;
+    shifting = true;
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const webPlaceholder = block.querySelector('.gif_placeholder_web');
+        const mobilePlaceholder = block.querySelector('.gif_placeholder_mobile');
+        const gifPreview = block.querySelector('.gifpreview');
+
+        const elemChecker = gifPreview && webPlaceholder && mobilePlaceholder;
+
+        if (!elemChecker) return;
+
+        if (to_mobile) {
+            mobilePlaceholder.appendChild(gifPreview);
+            if (!gifmobileflag) {
+                gifmobileflag = true;
+            }
+        } else {
+            webPlaceholder.appendChild(gifPreview);
+            if (gifmobileflag) {
+                gifmobileflag = false;
+            }
+        }
+    });
+
+    shifting = false;
+    isTransitBlocked = true;
+
+    setTimeout(() => {
+        isTransitBlocked = false;
+    }, 500); 
+}
+
+function gifSizeChecker() {
+    const gif_align = window.innerWidth<1790;
+    //console.log("gf", gif_align)
+    transitAllGifs(gif_align, true); 
+}
+
+function updateResponsiveText() {
+    const width = window.innerWidth;
+    const langPrefix = translated ? 'ru' : 'us'; // Определяем текущий язык
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        let text = '';
+        
+        if (width <= 1000) {
+            text = texblock.dataset[`${langPrefix}Short` ] || texblock.dataset[`${langPrefix}Mid`];
+        } else if (width > 1000 && width <= 1400) {
+            text = texblock.dataset[`${langPrefix}Mid`];
+        } else if (width > 1400 && width <= 1700) {
+            text = texblock.dataset[`${langPrefix}Mid` ];
+        }
+
+        if (!text) {
+            text = texblock.dataset[langPrefix];
+        }
+
+        if (text) {
+            texblock.textContent = text;
+        }
+    });
+}
+
+function updateShortShelf() {
+    const shelf = document.getElementById('shortshelf');
+    if (!shelf) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const isMobileLayout = document.documentElement.classList.contains('mobile');
+
+    // Условие отображения: ширина < 900 И высота < 600 И на HTML нет класса mobile
+    if (width < 600 && height < 600 && !isMobileLayout) {
+
+        shelf.hidden = false;
+        shortShelfActive =true;
+
+
+        const buttons = shelf.querySelectorAll('.mt_btn');
+        const count = buttons.length;
+
+        const cols = Math.ceil(Math.sqrt(count)); 
+        shelf.style.setProperty('--cols', cols);
+
+    } else {
+        shelf.setAttribute('hidden', '');
+        shelf.style.removeProperty('display');
+        shelf.hidden = true;
+        shortShelfActive =false;
+    }
+}
+
+
+function switchLang() {
+    translated = !translated;
+
+    if (langButtonMobile) {
+        langButtonMobile.textContent = translated ? "US" : "RU";
+    }
+
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us');
+        const ru_text = block.querySelector('.about_ru');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_s');
+        const ru_text = block.querySelector('.about_ru_s');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_us_g');
+        const ru_text = block.querySelector('.about_ru_g');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+            ru_text.hidden = translated ? false : true;
+        }
+    });
+    document.querySelectorAll('.elementBlock').forEach(block => {
+        const us_text = block.querySelector('.about_с_us');
+        const ru_text = block.querySelector('.about_с_ru');
+
+        const ru_text_mob = block.querySelector('.about_с_ru_mb');
+
+        if (ru_text && us_text) {
+            us_text.hidden = translated ? true : false;
+
+            if(ru_text_mob && isMobile){
+
+                ru_text_mob.hidden = translated ? false : true;
+            }else{
+                ru_text.hidden = translated ? false : true;                
+            }
+        }
+    });
+
+    document.querySelectorAll('.lngsup').forEach(texblock => {
+        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        
+        texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
+    });
+
+    updateResponsiveText();
+    renderSwapButtons();
+}
+
+function switchSide() {
+    switchSides = !switchSides;
+    mainMenu.classList.toggle('swap')
+
+    const right = document.getElementById('webTrickbar');
+    const rightMobile = document.getElementById('mobileTrickbar');
+
+    const left = document.getElementById('webTrickbarSwap');
+    const leftMobile = document.getElementById('mobileTrickbarSwap');
+
+    const width = window.innerWidth;
+
+    if (width < mobile_width && switchSides){
+        left.hidden = true;
+    }else{
+        left.hidden = !switchSides;
+    }
+
+    right.hidden = switchSides;
+    rightMobile.hidden = switchSides;
+    leftMobile.hidden = !switchSides;
+
+    const downPackage = document.getElementById('down_package');
+    const viewCode = document.getElementById('viewcode');
+
+    if (downPackage && viewCode) {
+        const dummy = downPackage.cloneNode(false);
+        downPackage.replaceWith(dummy);
+        viewCode.replaceWith(downPackage);
+        dummy.replaceWith(viewCode);
+
+        if(switchSides){
+            viewCode.classList.remove('rtext');
+            downPackage.classList.add('rtext');
+        }else{
+            viewCode.classList.add('rtext');
+            downPackage.classList.remove('rtext');
+        }
+    }
+
+
+
+    renderSwapButtons();
+}
+
+function switchToMobile(mobile_state) {
+    //console.log("mobile", mobile_state);
+    
+    mobile = mobile_state;
+    const hide_flag = mobile ? false : true;
+    const unhide_flag = mobile ? true : false;
+
+    const mobileToolbar = document.getElementById('mobileToolbar');
+    const mobileTrickbar = document.getElementById('mobileTrickbar');
+
+    const mobile_push = document.getElementById('mobile_push');
+
+    mobileToolbar.hidden = hide_flag;
+    mobileTrickbar.hidden = hide_flag;
+    mobile_push.hidden = hide_flag;
+
+    const webSidebar =  document.getElementById('webSidebar');
+    const webTrickbar =  document.getElementById('webTrickbar');
+    webSidebar.hidden = unhide_flag;
+    webTrickbar.hidden = unhide_flag;
+
+    document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
+    document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
+    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
+
+    if(isMobile){
+        document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
+    }
+    
+
+    const bottomPage = document.getElementById('bottomPage');
+    const bottomPageMobile = document.getElementById('bottomPageMobile');
+    bottomPage.hidden = unhide_flag;
+    bottomPageMobile.hidden = hide_flag;
+
+    //swapTestedAndYoutube(mobile)
+
+    const namepage = document.getElementById('namepage');
+    const namepage_mob = document.getElementById('namepage_mob');
+    const slash_mob = document.getElementById('slash_mob');
+
+    const prjbtn_mob = document.getElementById('prjbtn_mob');   
+
+    namepage.hidden = unhide_flag;
+    namepage_mob.hidden = hide_flag;
+    slash_mob.hidden = hide_flag;
+    prjbtn_mob.hidden = hide_flag;
+}
+
+// BTN LOGIC
+
+let lastCheckedMainTabs = []; 
+let lastCheckedButtons = []; 
+let lastCheckedU = null;
+let lastCheckedT = null;
 
 document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
@@ -2087,362 +2415,61 @@ document.addEventListener('click', (event) => {
     }
 });
 
-
-let gifmobileflag = false;
-let isTransitBlocked = false;
-let shifting = false;
-
-function transitElements(toContainerSelector, targetSelector) {
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const destination = block.querySelector(toContainerSelector);
-        const targetElement = block.querySelector(targetSelector);
-
-        if (destination && targetElement) {
-            if (!destination.contains(targetElement)) {
-                destination.appendChild(targetElement);
-            }
-        }
-    });
-}
-
-function transitAllGifs(to_mobile, hard) {
-    if (hard){
-        isTransitBlocked = false;
-    }
-    if (isTransitBlocked) return;
-    shifting = true;
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const webPlaceholder = block.querySelector('.gif_placeholder_web');
-        const mobilePlaceholder = block.querySelector('.gif_placeholder_mobile');
-        const gifPreview = block.querySelector('.gifpreview');
-
-        const elemChecker = gifPreview && webPlaceholder && mobilePlaceholder;
-
-        if (!elemChecker) return;
-
-        if (to_mobile) {
-            mobilePlaceholder.appendChild(gifPreview);
-            if (!gifmobileflag) {
-                gifmobileflag = true;
-            }
-        } else {
-            webPlaceholder.appendChild(gifPreview);
-            if (gifmobileflag) {
-                gifmobileflag = false;
-            }
-        }
-    });
-
-    shifting = false;
-    isTransitBlocked = true;
-
-    setTimeout(() => {
-        isTransitBlocked = false;
-    }, 500); 
-}
-
-function gifSizeChecker() {
-    const gif_align = window.innerWidth<1790;
-    //console.log("gf", gif_align)
-    transitAllGifs(gif_align, true); 
-}
-
-
-
-function renderSwapButtons() {
-    const langPrefix = translated ? 'ru' : 'us'; 
-    const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
-
-    if (swapButton && swapButton.dataset[attributeName]) {
-        swapButton.textContent = swapButton.dataset[attributeName];
-    }
-    if (swapMobile && swapMobile.dataset[attributeName]) {
-        swapMobile.textContent = swapMobile.dataset[attributeName];
-    }
-}
-
-function updateResponsiveText() {
-    const width = window.innerWidth;
-    const langPrefix = translated ? 'ru' : 'us'; // Определяем текущий язык
-
-    document.querySelectorAll('.lngsup').forEach(texblock => {
-        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
-        let text = '';
+function nextElement() {
+    const toolbarPrj = document.getElementById('toolbar_prj');
+    const toolbarScr = document.getElementById('toolbar_scr');
+    
+    function activateNextInContainer(container) {
+        // Если контейнер скрыт (через hidden), мы его полностью игнорируем
+        if (!container || container.hidden) return;
         
-        if (width <= 1000) {
-            text = texblock.dataset[`${langPrefix}Short` ] || texblock.dataset[`${langPrefix}Mid`];
-        } else if (width > 1000 && width <= 1400) {
-            text = texblock.dataset[`${langPrefix}Mid`];
-        } else if (width > 1400 && width <= 1700) {
-            text = texblock.dataset[`${langPrefix}Mid` ];
-        }
+        const buttons = container.querySelectorAll('.clickfunc');
+        if (buttons.length === 0) return;
 
-        if (!text) {
-            text = texblock.dataset[langPrefix];
-        }
-
-        if (text) {
-            texblock.textContent = text;
-        }
-    });
-}
-
-function switchLang() {
-    translated = !translated;
-
-    if (langButtonMobile) {
-        langButtonMobile.textContent = translated ? "US" : "RU";
-    }
-
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_us');
-        const ru_text = block.querySelector('.about_ru');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
-    });
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_us_s');
-        const ru_text = block.querySelector('.about_ru_s');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
-    });
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_us_g');
-        const ru_text = block.querySelector('.about_ru_g');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-            ru_text.hidden = translated ? false : true;
-        }
-    });
-    document.querySelectorAll('.elementBlock').forEach(block => {
-        const us_text = block.querySelector('.about_с_us');
-        const ru_text = block.querySelector('.about_с_ru');
-
-        const ru_text_mob = block.querySelector('.about_с_ru_mb');
-
-        if (ru_text && us_text) {
-            us_text.hidden = translated ? true : false;
-
-            if(ru_text_mob && isMobile){
-
-                ru_text_mob.hidden = translated ? false : true;
-            }else{
-                ru_text.hidden = translated ? false : true;                
-            }
-        }
-    });
-
-    document.querySelectorAll('.lngsup').forEach(texblock => {
-        if (texblock.id === 'swapside' || texblock.id === 'swapside_mobile') return;
+        let activeIndex = -1;
         
-        texblock.textContent = translated ? texblock.dataset.ru : texblock.dataset.us;
-    });
+        buttons.forEach((btn, index) => {
+            if (btn.classList.contains('active')) {
+                activeIndex = index;
+            }
+        });
+        
+        const nextIndex = (activeIndex + 1) % buttons.length;
+        const nextButton = buttons[nextIndex];
 
-    updateResponsiveText();
-    renderSwapButtons();
-}
-
-function switchSide() {
-    switchSides = !switchSides;
-    mainMenu.classList.toggle('swap')
-
-    const right = document.getElementById('webTrickbar');
-    const rightMobile = document.getElementById('mobileTrickbar');
-
-    const left = document.getElementById('webTrickbarSwap');
-    const leftMobile = document.getElementById('mobileTrickbarSwap');
-
-    const width = window.innerWidth;
-
-    if (width < mobile_width && switchSides){
-        left.hidden = true;
-    }else{
-        left.hidden = !switchSides;
-    }
-
-    right.hidden = switchSides;
-    rightMobile.hidden = switchSides;
-    leftMobile.hidden = !switchSides;
-
-    const downPackage = document.getElementById('down_package');
-    const viewCode = document.getElementById('viewcode');
-
-    if (downPackage && viewCode) {
-        const dummy = downPackage.cloneNode(false);
-        downPackage.replaceWith(dummy);
-        viewCode.replaceWith(downPackage);
-        dummy.replaceWith(viewCode);
-
-        if(switchSides){
-            viewCode.classList.remove('rtext');
-            downPackage.classList.add('rtext');
-        }else{
-            viewCode.classList.add('rtext');
-            downPackage.classList.remove('rtext');
+        if (nextButton) {
+            nextButton.click();
         }
     }
 
-
-
-    renderSwapButtons();
+    activateNextInContainer(toolbarPrj);
+    activateNextInContainer(toolbarScr);
 }
+
+function viewCurrentCode(){
+    const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
+                                     .find(block => !block.hidden);
+
+    if (currentVisibleBlock) {
+        const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
+        
+        if (downloadLink && downloadLink.href) {
+            window.open(downloadLink.href, '_blank');
+        } 
+    } else {
+        console.warn("На экране нет активных или видимых блоков elementBlock.");
+    }
+}
+
+// BTN CONNECT
+if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
+if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
 
 if (langButton) langButton.onclick = () => switchLang();
 if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
 if (swapButton) swapButton.onclick = () => switchSide();
 if (swapMobile) swapMobile.onclick = () => switchSide();
 
-
-function swapTestedAndYoutube(mobile_state) {
-    document.querySelectorAll('.rowline.pad').forEach(container => {
-        const ytLink = container.querySelector('.texlink.yt');
-        const testedBlock = container.querySelector('.tested');
-
-        if (!ytLink || !testedBlock) return;
-
-        if (mobile_state) {
-            const ytParagraph = ytLink.closest('p') || ytLink;
-        
-            if (ytParagraph.nextElementSibling !== testedBlock) {
-                container.insertBefore(testedBlock, ytParagraph.nextSibling);
-            }
-        } else {
-            const ytParagraph = ytLink.closest('p') || ytLink;
-            
-            if (testedBlock.nextElementSibling !== ytParagraph) {
-                container.insertBefore(ytParagraph, testedBlock.nextSibling);
-            }
-        }
-    });
-}
-
-function switchToMobile(mobile_state) {
-    //console.log("mobile", mobile_state);
-    
-    mobile = mobile_state;
-    const hide_flag = mobile ? false : true;
-    const unhide_flag = mobile ? true : false;
-
-    const mobileToolbar = document.getElementById('mobileToolbar');
-    const mobileTrickbar = document.getElementById('mobileTrickbar');
-
-    const mobile_push = document.getElementById('mobile_push');
-
-    mobileToolbar.hidden = hide_flag;
-    mobileTrickbar.hidden = hide_flag;
-    mobile_push.hidden = hide_flag;
-
-    const webSidebar =  document.getElementById('webSidebar');
-    const webTrickbar =  document.getElementById('webTrickbar');
-    webSidebar.hidden = unhide_flag;
-    webTrickbar.hidden = unhide_flag;
-
-    document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
-    document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
-    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
-
-    if(isMobile){
-        document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
-    }
-    
-
-    const bottomPage = document.getElementById('bottomPage');
-    const bottomPageMobile = document.getElementById('bottomPageMobile');
-    bottomPage.hidden = unhide_flag;
-    bottomPageMobile.hidden = hide_flag;
-
-    //swapTestedAndYoutube(mobile)
-
-    const namepage = document.getElementById('namepage');
-    const namepage_mob = document.getElementById('namepage_mob');
-    const slash_mob = document.getElementById('slash_mob');
-
-    const prjbtn_mob = document.getElementById('prjbtn_mob');   
-
-    namepage.hidden = unhide_flag;
-    namepage_mob.hidden = hide_flag;
-    slash_mob.hidden = hide_flag;
-    prjbtn_mob.hidden = hide_flag;
-}
-
-
-function lerp(start, end, amt) {
-    return (1 - amt) * start + amt * end;
-}
-
-
-// ResizeChecker //
-const nameCases = {
-    'namepage': ['C4D', 'CINEMA 4D'], 
-    'central': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
-};
-
-const headerPage = document.getElementById('headerPage');
-const namepageText = document.getElementById('namepageText');
-const centralText = document.getElementById('sepa');
-
-const reductionOrder = [
-  { key: 'namepage', element: namepageText },
-  { key: 'central', element: centralText },
-];
-
-const pearlLine = document.getElementById('pearlLine');
-
-function textShortChecker() {
-  const currentIndices = {
-    namepage: nameCases.namepage.length - 1,
-    central: nameCases.central.length - 1,
-  };
-
-  const updateDOM = () => {
-    
-    const width = window.innerWidth;
-    
-    if (width >= 960 && width<1300) {
-        namepageText.textContent = "C4D";
-        centralText.textContent = "&_DATA";//nameCases.central[currentIndices.central];
-    }else if (width < 960){
-        namepageText.textContent = "C4D";
-        centralText.textContent = "&";//nameCases.central[currentIndices.central];
-    }else{
-        namepageText.textContent = nameCases.namepage[currentIndices.namepage];
-        // width fix
-        centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
-    }
-
-    if(namepageText.textContent==="C4D"){
-        pearlLine.textContent = "* pearl";
-    }else{
-        pearlLine.textContent = "* pearl edition";
-    }
-
-  };
-    
-  updateDOM();
-
-  const isOverflowing = () => {
-    return headerPage.scrollWidth > headerPage.clientWidth;
-  };
-  let step = 0;
-  
-  while (isOverflowing() && step < reductionOrder.length) {
-    const currentTarget = reductionOrder[step];
-    
-    if (currentIndices[currentTarget.key] > 0) {
-      currentIndices[currentTarget.key]--;
-      updateDOM();
-    } else {
-      step++;
-    }
-  }
-}
 
 document.getElementById('shortshelf')?.addEventListener('click', function(event) {
     const btn = event.target.closest('.mt_btn');
@@ -2467,36 +2494,6 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
         }
     }
 });
-
-function updateShortShelf() {
-    const shelf = document.getElementById('shortshelf');
-    if (!shelf) return;
-
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const isMobileLayout = document.documentElement.classList.contains('mobile');
-
-    // Условие отображения: ширина < 900 И высота < 600 И на HTML нет класса mobile
-    if (width < 600 && height < 600 && !isMobileLayout) {
-
-        shelf.hidden = false;
-        shortShelfActive =true;
-
-
-        const buttons = shelf.querySelectorAll('.mt_btn');
-        const count = buttons.length;
-
-        const cols = Math.ceil(Math.sqrt(count)); 
-        shelf.style.setProperty('--cols', cols);
-
-    } else {
-        shelf.setAttribute('hidden', '');
-        shelf.style.removeProperty('display');
-        shelf.hidden = true;
-        shortShelfActive =false;
-    }
-}
-
 
 function resizeGlobalCanvas() {
     const width = window.innerWidth;
@@ -2553,8 +2550,6 @@ function resizeGlobalCanvas() {
     zagl.classList.add("close"); 
     //zagl.hidden = true;
 }
-
-
 
 function firstStart() {
     resizeGlobalCanvas();
