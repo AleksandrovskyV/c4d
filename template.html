@@ -206,7 +206,7 @@ align-items: flex-end;
 pointer-events: auto;
 }
 
-#ContentViewer {
+#contentViewer {
 display: flex;
 flex-direction: column;
 flex-grow: 1;
@@ -214,6 +214,10 @@ margin-top: var(--spaces);
 margin-right: calc(var(--spaces)*2);
 min-width: 0;
 }
+#contentViewer.swap {
+margin-right: 0;
+}
+
 
 .elementBlock {
 width: 100%;
@@ -235,11 +239,17 @@ flex-shrink: 0;
 background-color: blue;
 margin-right: var(--spaces);
 }
+#shelfFake.swap{
+margin-right: 0;
+margin-left: var(--spaces);   
+}
 
 .sShelfMobile {
 position: fixed; 
+
 top: calc(var(--header_h) + var(--spaces));
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
+
 width: var(--sidebar_w);
 height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2 );
 
@@ -262,7 +272,11 @@ justify-content: flex-end;
 z-index: 8000;
 background-color: transparent;
 pointer-events: none;
+}
 
+.sShelfMobile.swap {
+left: calc( ( ( 100% - var(--main_w) ) / 2 )  );
+right: auto;
 }
 
 .mbtn {
@@ -527,14 +541,14 @@ html.mobile #gitline{
 
     <div class="mbtn text bot tr" id="ghostOverlap"></div>
 
-    <div class="sShelfMobile overlap" >
+    <div id="ghostShelfMobile" class="sShelfMobile overlap" >
         <div class="mbtn text bot up" id="nextElemBtn">▼</div>
     </div>
 
 </div>
 
 <div id="mainPage">
-    <div id="ContentViewer">
+    <div id="contentViewer">
         
         <div class="elementBlock" id="filletplane" data-tag="script">
             <h2>Fillet Plane</h2>
@@ -770,21 +784,25 @@ function gifSizeChecker() {
 function switchSide() {
     switchSides = !switchSides;
     
-    const mainMenu = document.getElementById('mainMenu');
+    const sideShelfMobile = document.getElementById('sideShelfMobile');
+    const ghostShelfMobile = document.getElementById('ghostShelfMobile');
     
-    if(mainMenu){
-        mainMenu.classList.toggle('swap')
-    }
+
 
     const container = document.getElementById('mainPage');
-    const ContentViewer = document.getElementById('ContentViewer');
+    const contentViewer = document.getElementById('contentViewer');
     const shelfFake = document.getElementById('shelfFake');
+    
+    if(sideShelfMobile && ghostShelfMobile && contentViewer){
+        sideShelfMobile.classList.toggle('swap');
+        ghostShelfMobile.classList.toggle('swap');
+        contentViewer.classList.toggle('swap');
+    }
 
     if(switchSides){
-        container.insertBefore(shelfFake,ContentViewer); 
-
+        container.insertBefore(shelfFake,contentViewer); 
     }else{
-        container.insertBefore(ContentViewer, shelfFake); 
+        container.insertBefore(contentViewer, shelfFake); 
     }
 
     const downPackage = document.getElementById('down_package');
@@ -1420,7 +1438,6 @@ function resizeGeneral() {
     const sideShelfMobile = document.getElementById('sideShelfMobile');
     
     if(sideShelfMobile){
-       
        sideShelfMobile.hidden = !isMobileWidth; 
     }
      
