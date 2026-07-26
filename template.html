@@ -710,20 +710,24 @@ function hideOverflowingButtons() {
   const ghostHeight = ghost.offsetHeight;
   const safeHeight = containerBottom - ghostHeight * 0.8;
 
-
+  // --- АРХИТЕКТУРНАЯ ЗАЩИТА АКТИВНОГО ЭЛЕМЕНТА ---
   const activeBtn = activeShelf.querySelector('.cfunc.active, .mbtn.active');
   
   if (activeBtn) {
     activeBtn.hidden = false;
     
+    // Если активная кнопка не влезает в безопасную зону
     if (activeBtn.getBoundingClientRect().bottom > safeHeight) {
       const firstButton = buttons[0];
       if (firstButton && firstButton !== activeBtn) {
+        // Перемещаем ПЕРВУЮ кнопку в конец, тем самым подтягивая активную кнопку ВВЕРХ
         activeShelf.appendChild(firstButton);
+        // Обновляем список кнопок после изменения DOM структуры
         buttons = activeShelf.querySelectorAll('.mbtn');
       }
     }
   }
+  // ----------------------------------------------
 
   let hasHiddenElements = false;
   
