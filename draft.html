@@ -1770,33 +1770,19 @@ display: none !important;
 
 
 <script>
-
 function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
 }
 
-
 const mobile_width = 780+1;
-
-const langButton = document.getElementById('switch_lang');
-const langButtonMobile = document.getElementById('mob_lang');
-const swapButton = document.getElementById('swapside');
-const swapMobile = document.getElementById('swapside_mobile');
-
-const mainMenu = document.getElementById('mainMenu');
-
-const viewCodeBtn  = document.getElementById('viewcode');
-const mob_next_btn = document.getElementById('mob_next');
-
-let mobile  = false;
-let backupSoloCheck = null;
-let shortShelfActive = false;
-
 
 /// USER INTERFACE - TEXT AND LANG
 
 let translated = false; 
 let switchSides = false;
+
+let backupSoloCheck = null;
+let shortShelfActive = false;
 
 let gifmobileflag = false;
 let isTransitBlocked = false;
@@ -1971,6 +1957,10 @@ function renderSwapButtons() {
     const langPrefix = translated ? 'ru' : 'us'; 
     const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
 
+    const swapButton = document.getElementById('swapside');
+    const swapMobile = document.getElementById('swapside_mobile');
+
+
     if (swapButton && swapButton.dataset[attributeName]) {
         swapButton.textContent = swapButton.dataset[attributeName];
     }
@@ -2089,7 +2079,6 @@ function updateShortShelf() {
     }
 }
 
-
 function switchLang() {
     translated = !translated;
 
@@ -2154,7 +2143,13 @@ function switchLang() {
 
 function switchSide() {
     switchSides = !switchSides;
-    mainMenu.classList.toggle('swap')
+    
+    const mainMenu = document.getElementById('mainMenu');
+    
+    if(mainMenu){
+        mainMenu.classList.toggle('swap')
+    }
+    
 
     const right = document.getElementById('webTrickbar');
     const rightMobile = document.getElementById('mobileTrickbar');
@@ -2200,7 +2195,7 @@ function switchSide() {
 function switchToMobile(mobile_state) {
     //console.log("mobile", mobile_state);
     
-    mobile = mobile_state;
+    const mobile = mobile_state;
     const hide_flag = mobile ? false : true;
     const unhide_flag = mobile ? true : false;
 
@@ -2245,6 +2240,7 @@ function switchToMobile(mobile_state) {
     slash_mob.hidden = hide_flag;
     prjbtn_mob.hidden = hide_flag;
 }
+
 
 // BTN LOGIC
 
@@ -2298,15 +2294,6 @@ function viewCurrentCode(){
         console.warn("На экране нет активных или видимых блоков elementBlock.");
     }
 }
-
-// BTN CONNECT
-if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
-if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
-
-if (langButton) langButton.onclick = () => switchLang();
-if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
-if (swapButton) swapButton.onclick = () => switchSide();
-if (swapMobile) swapMobile.onclick = () => switchSide();
 
 document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
@@ -2493,6 +2480,27 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
         }
     }
 });
+
+// BTN CONNECT
+
+const viewCodeBtn  = document.getElementById('viewcode');
+const mob_next_btn = document.getElementById('mob_next');
+
+const langButton = document.getElementById('switch_lang');
+const langButtonMobile = document.getElementById('mob_lang');
+
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
+
+if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
+if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
+
+if (langButton) langButton.onclick = () => switchLang();
+if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
+
+if (swapButton) swapButton.onclick = () => switchSide();
+if (swapMobile) swapMobile.onclick = () => switchSide();
+
 
 // INIT AND LOADING
 

@@ -367,7 +367,7 @@ pointer-events: none;
 <div id="bottomShadowRow"></div>
 
 <div id="header" class="linePage">
-    <h2 id="pearlLine">* pearl version</h2>
+    <h2  id="pearlLine">* pearl version</h2>
 
     <div id="headerPage">
 
@@ -382,7 +382,7 @@ pointer-events: none;
 
           <button id="usertext"   class="mclickcfunc"                            data-func="home"     >&amp;</button>
           
-          <div    id="scrbtn"       class="base_btn mclickcfunc"     tabindex="0"  data-func="scr" >
+          <div    id="scrbtn"     class="base_btn mclickcfunc"     tabindex="0"  data-func="scr" >
                 <span class="headDivider hideMobile">/  </span> 
                 <span class="utContent undlink " >SCRIPTS</span> 
           </div>
@@ -433,32 +433,18 @@ function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
 }
 
+const mobileWidth = 780+1;
+
+/// USER INTERFACE - GLOBAL SWAPS
+
+let nowWidth = window.innerWidth;
+let isMobileWidth = nowWidth <= mobileWidth ? true : false;
+
 let translated = false; 
 let switchSides = false; 
 
 let backupSoloCheck = null;
 let shortShelfActive = false;
-
-const mobileWidth = 780+1;
-let nowWidth = window.innerWidth;
-
-let isMobileWidth = nowWidth <= mobileWidth ? true : false;
-
-
-
-const langButton = document.getElementById('switch_lang');
-
-const viewCodeBtn      = document.getElementById('viewcode');
-const nextElem_btn     = document.getElementById('mob_next');
-const switchLangMobile = document.getElementById('switchLangMobile');
-
-const swapButton = document.getElementById('swapside');
-const swapMobile = document.getElementById('swapside_mobile');
-
-const sideShelfMobile = document.getElementById('sideShelfMobile');
-
-
-/// USER INTERFACE - GLOBAL SWAPS
 
 let gifmobileflag = false;
 let isTransitBlocked = false;
@@ -665,6 +651,9 @@ function renderSwapButtons() {
     const langPrefix = translated ? 'ru' : 'us'; 
     const attributeName = switchSides ? `${langPrefix}Swap` : langPrefix;
 
+    const swapButton = document.getElementById('swapside');
+    const swapMobile = document.getElementById('swapside_mobile');
+
     if (swapButton && swapButton.dataset[attributeName]) {
         swapButton.textContent = swapButton.dataset[attributeName];
     }
@@ -767,7 +756,9 @@ function updateShortShelf() {
     }
 }
 
+
 // BTN LOGIC
+
 let lastCheckedMainTabs = []; 
 let lastCheckedButtons = []; 
 let lastCheckedU = null;
@@ -1006,11 +997,21 @@ document.addEventListener('click', (event) => {
 
 // BTN CONNECT
 
+const nextElem_btn     = document.getElementById('mob_next');
+const viewCodeBtn      = document.getElementById('viewcode');
+
+const langButton = document.getElementById('switch_lang');
+const switchLangMobile = document.getElementById('switchLangMobile');
+
+const swapButton = document.getElementById('swapside');
+const swapMobile = document.getElementById('swapside_mobile');
+
 if (nextElem_btn) nextElem_btn.onclick = () => nextElement();
 if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
 
 if (langButton) langButton.onclick = () => switchLang();
 if (switchLangMobile) switchLangMobile.onclick = () => switchLang();
+
 if (swapButton) swapButton.onclick = () => switchSide();
 if (swapMobile) swapMobile.onclick = () => switchSide();
 
@@ -1020,7 +1021,13 @@ function resizeGeneral() {
     nowWidth = window.innerWidth;
 
     isMobileWidth = nowWidth <= mobileWidth ? true : false;
-    sideShelfMobile.hidden = !isMobileWidth; 
+
+    const sideShelfMobile = document.getElementById('sideShelfMobile');
+    
+    if(sideShelfMobile){
+       sideShelfMobile.hidden = !isMobileWidth; 
+    }
+     
 
     const isHighDPI = window.matchMedia(
         '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
