@@ -140,12 +140,12 @@ margin-right: calc(var(--spaces)*2);
 min-width: 0;
 }
 
-.element {
+.elementBlock {
 width: 100%;
 margin-bottom: 25px;
 min-width: 0; 
 }
-.element img {
+.elementBlock img {
 width: 100%;
 height: auto;
 display: block;
@@ -444,13 +444,28 @@ pointer-events: none;
 
 <div id="mainPage">
     <div id="ContentViewer">
-        <div class="element">
-            <p>BlaBlaBlas</p>
+        
+        <div class="elementBlock" id="filletplane" data-tag="script">
+            <h2>Fillet Plane</h2>
             <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png">
         </div>
-        <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
-        <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
-        <div class="element"><img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+
+        <div class="elementBlock" id="mp4vidoc"  data-tag="script" >
+            <h2>MP4 Vidoc</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="helpers"   data-tag="script_pack">
+            <h2>Helpers</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="swap_mats" data-tag="script_inpack">
+            <h2>Swap Mats</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="arnold_rand_texture"  data-tag="project">
+            <h2>Arnold Rand Tex</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="test_head"  data-tag="project">
+            <h2>Test Head</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+
     </div>
     <div id="shelfFake" ></div>
 </div>
@@ -1199,7 +1214,7 @@ const switchLangMobile = document.getElementById('switchLangMobile');
 const swapButton = document.getElementById('swapside');
 const swapMobile = document.getElementById('swapside_mobile');
 
-if (nextElem_btn) nextElem_btn.onclick = () => nextElement();
+if (nextElemBtn) nextElemBtn.onclick = () => nextElement();
 if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
 
 if (langButton) langButton.onclick = () => switchLang();
