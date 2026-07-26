@@ -404,11 +404,11 @@ pointer-events: none;
 
           <div class="namepageDecor headDivider hideWeb">/</div>
 
-          <button id="prjbtn_mob" class="headerBtn mclickcfunc hideWeb"          data-func="prj_mob"  >PRJ</button>
+          <button id="prjbtn_mob" class="headerBtn hideWeb mfunc"          data-func="prj_mob"  >PRJ</button>
 
-          <button id="usertext"   class="mclickcfunc"                            data-func="home"     >&amp;</button>
+          <button id="usertext"   class="mfunc"                            data-func="home"     >&amp;</button>
           
-          <div    id="scrbtn"     class="base_btn mclickcfunc"     tabindex="0"  data-func="scr" >
+          <div    id="scrbtn"     class="base_btn mfunc"     tabindex="0"  data-func="scr" >
                 <span class="headDivider hideMobile">/  </span> 
                 <span class="utContent undlink " >SCRIPTS</span> 
           </div>
@@ -418,20 +418,20 @@ pointer-events: none;
 
 
 <div id="sideShelfMobile" class="sShelfMobile" hidden> 
-    <div class="mbtn text top" id="switchLangMobile" >RU</div>
+    <div class="mbtn text top" id="langButtonMobile" >RU</div>
 
     <div id="shelfScripts">
-        <div class="mbtn" id ="fpl" data-func="filletplane"></div>
-        <div class="mbtn" id ="mpv" data-func="mp4vidoc"></div>
-        <div class="mbtn" id ="swm" data-func="swap_mats"></div>
-        <div class="mbtn" id ="map" data-func="matrix_preserve"></div>
-        <div class="mbtn" id ="ctv" data-func="objcolor_to_vercolor"></div>
-        <div class="mbtn" id ="cam" data-func="linked_camera"></div>
+        <div class="mbtn cfunc" id ="fpl" data-func="filletplane"></div>
+        <div class="mbtn cfunc" id ="mpv" data-func="mp4vidoc"></div>
+        <div class="mbtn cfunc" id ="swm" data-func="swap_mats"></div>
+        <div class="mbtn cfunc" id ="map" data-func="matrix_preserve"></div>
+        <div class="mbtn cfunc" id ="ctv" data-func="objcolor_to_vercolor"></div>
+        <div class="mbtn cfunc" id ="cam" data-func="linked_camera"></div>
     </div>
         
     <div id="shelfProject" hidden>
-        <div class="mbtn" id ="aws" data-func="ar_wf_string"></div>
-        <div class="mbtn" id ="tsm" data-func="test_smile"></div>
+        <div class="mbtn cfunc" id ="aws" data-func="ar_wf_string"></div>
+        <div class="mbtn cfunc" id ="tsm" data-func="test_smile"></div>
     </div>
 
     <div class="mbtn text bot tr" id="ghostOverlap"></div>
@@ -459,10 +459,19 @@ pointer-events: none;
         <div class="elementBlock" id="swap_mats" data-tag="script_inpack">
             <h2>Swap Mats</h2>
             <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
-        <div class="elementBlock" id="arnold_rand_texture"  data-tag="project">
+        <div class="elementBlock" id="matrix_preserve" data-tag="script_inpack">
+            <h2>Matrix Preserv</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="objcolor_to_vercolor" data-tag="script_inpack">
+            <h2>ObjColor to VerColor</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="linked_camera" data-tag="script">
+            <h2>Linked Camera</h2>
+            <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
+        <div class="elementBlock" id="ar_wf_string"  data-tag="project">
             <h2>Arnold Rand Tex</h2>
             <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
-        <div class="elementBlock" id="test_head"  data-tag="project">
+        <div class="elementBlock" id="test_smile"  data-tag="project">
             <h2>Test Head</h2>
             <img src="https://vsky.space/c4d/assets/prvgif/helpers_poster.png"></div>
 
@@ -538,7 +547,7 @@ function soloCheck(state) {
         
         const targetBtnName = closestBlock ? closestBlock.id : null;
         if (targetBtnName) {
-            const buttons = document.querySelectorAll('.mt_btn');
+            const buttons = document.querySelectorAll('.mbtn');
             
             buttons.forEach(btn => {
                 if (btn.dataset.func === targetBtnName) {
@@ -691,7 +700,7 @@ function switchToMobile(mobile_state) {
 function hideOverflowingButtons() {
   const container = document.getElementById('sideShelfMobile');
   const ghost = document.getElementById('ghostOverlap');
-  const switchLangMobile = document.getElementById('switchLangMobile');
+  const langButtonMobile = document.getElementById('langButtonMobile');
   
   const activeShelf = container.querySelector('#shelfScripts:not([hidden]), #shelfProject:not([hidden])');
   
@@ -716,10 +725,10 @@ function hideOverflowingButtons() {
   });
 
   if (hasHiddenElements) {
-    switchLangMobile.style.setProperty('margin-top', '0px', 'important');
+    langButtonMobile.style.setProperty('margin-top', '0px', 'important');
     ghost.style.setProperty('margin-top', 'auto', 'important');
   } else {
-    switchLangMobile.style.removeProperty('margin-top');
+    langButtonMobile.style.removeProperty('margin-top');
     ghost.style.removeProperty('margin-top');
   }
 }
@@ -835,9 +844,15 @@ function updateResponsiveText() {
 }
 
 function changeMobileDownloadBtn(check) {
+
     const mob_str_a = document.getElementById('mob_str_a');
     const mob_str_b = document.getElementById('mob_str_b');
 
+    if(!(mob_str_a && mob_str_b)){
+
+        console.log("changeMobileDownloadBtn - Disable")
+        return
+    }
     const langPrefix = translated ? 'ru' : 'us';
     const keySuffix = check ? '-p' : ''; 
     const fullAttributeName = `data-${langPrefix}${keySuffix}`;
@@ -875,7 +890,7 @@ function updateShortShelf() {
         shelf.hidden = false;
         shortShelfActive =true;
 
-        const buttons = shelf.querySelectorAll('.mt_btn');
+        const buttons = shelf.querySelectorAll('.mbtn');
         const count = buttons.length;
 
         const cols = Math.ceil(Math.sqrt(count)); 
@@ -965,7 +980,9 @@ function nextElement() {
     function activateNextInContainer(container) {
         if (!container || container.hidden) return;
         
-        const buttons = container.querySelectorAll('.clickfunc');
+        //const buttons = container.querySelectorAll('[data-func]');
+        const buttons = container.querySelectorAll('.cfunc');
+        
         if (buttons.length === 0) return;
 
         let activeIndex = -1;
@@ -986,12 +1003,14 @@ function nextElement() {
 
             hideOverflowingButtons();
 
-            const updatedButtons = container.querySelectorAll('.clickfunc');
-            nextButton = updatedButtons[nextIndex];
+            //const updatedButtons = container.querySelectorAll('[data-func]');
+            const updatedButtons = container.querySelectorAll('.cfunc');
+            nextButton = updatedButtons[nextIndex -1];
         }
 
         if (nextButton) {
             nextButton.click();
+            nextButton.classList.add('active');
         }
     }
 
@@ -1015,7 +1034,7 @@ function viewCurrentCode(){
 }
 
 document.getElementById('shortshelf')?.addEventListener('click', function(event) {
-    const btn = event.target.closest('.mt_btn');
+    const btn = event.target.closest('.mbtn');
     if (!btn) return;
 
     const funcName = btn.dataset.func;    
@@ -1039,7 +1058,8 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
 });
 
 document.addEventListener('click', (event) => {
-    const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
+    const currentBtn = event.target.closest('.cfunc, .mfunc');
+
     const width = window.innerWidth;
     let sizeIsMobile = false;
 
@@ -1047,7 +1067,7 @@ document.addEventListener('click', (event) => {
 
     if (currentBtn) {
         
-        const isMainTabClick = currentBtn.classList.contains('mclickcfunc');
+        const isMainTabClick = currentBtn.classList.contains('mfunc');
 
         if (!sizeIsMobile || isMainTabClick) {
             lastCheckedMainTabs.forEach(btn => {
@@ -1108,7 +1128,7 @@ document.addEventListener('click', (event) => {
             lastCheckedButtons = [];
             
         } else {
-            // Если кликнули по элементу тулбара (clickfunc), пишем его строго в дочерний кэш
+            // Если кликнули по элементу тулбара (cfunc), пишем его строго в дочерний кэш
             lastCheckedButtons = [currentBtn];
             lastCheckedU = currentBtn.querySelector('.sel_pre');
             lastCheckedT = currentBtn.querySelector('.sid_tex');
@@ -1123,7 +1143,7 @@ document.addEventListener('click', (event) => {
 
 
         // --- ФИЛЬТРАЦИЯ КОНТЕНТА ---
-        if (currentBtn.classList.contains('clickfunc')) {
+        if (currentBtn.classList.contains('cfunc')) {
             const target_func = currentBtn.dataset.func;
             document.querySelectorAll('.elementBlock').forEach(block => {
                 block.hidden = (block.id !== target_func);
@@ -1131,7 +1151,7 @@ document.addEventListener('click', (event) => {
         }
 
         // 2. Сортировка SCRIPTS
-        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "scrbtn")){
+        if (!isMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "script" || tag === "script_pack");
@@ -1139,7 +1159,7 @@ document.addEventListener('click', (event) => {
         }
 
         // 3. Сортировка PROJECTS
-        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (!isMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "project" || tag === "project_pack");
@@ -1147,7 +1167,7 @@ document.addEventListener('click', (event) => {
         }
 
         // 4. Сортировка для SEPA (Показать всё, кроме вложенных скриптов)
-        if (!isMobile && currentBtn.classList.contains('mclickcfunc') && currentBtn.id === "sepa") {
+        if (!isMobile && currentBtn.classList.contains('mfunc') && currentBtn.id === "sepa") {
             document.querySelectorAll('.elementBlock').forEach(block => {
                 block.hidden = (block.dataset.tag === "script_inpack");
             });
@@ -1209,7 +1229,8 @@ const nextElemBtn  = document.getElementById('nextElemBtn');
 const viewCodeBtn  = document.getElementById('viewcode');
 
 const langButton   = document.getElementById('switch_lang');
-const switchLangMobile = document.getElementById('switchLangMobile');
+const langButtonMobile = document.getElementById('langButtonMobile');
+
 
 const swapButton = document.getElementById('swapside');
 const swapMobile = document.getElementById('swapside_mobile');
@@ -1218,7 +1239,7 @@ if (nextElemBtn) nextElemBtn.onclick = () => nextElement();
 if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
 
 if (langButton) langButton.onclick = () => switchLang();
-if (switchLangMobile) switchLangMobile.onclick = () => switchLang();
+if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
 
 if (swapButton) swapButton.onclick = () => switchSide();
 if (swapMobile) swapMobile.onclick = () => switchSide();
