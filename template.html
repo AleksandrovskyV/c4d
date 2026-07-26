@@ -666,6 +666,7 @@ let lastCheckedButtons = [];
 let lastCheckedU = null;
 let lastCheckedT = null;
 
+
 function soloCheck(state) {
      // Выбор активного элемента на странице
 
@@ -1330,15 +1331,16 @@ document.addEventListener('click', (event) => {
         }
 
         // 2. Сортировка SCRIPTS
-        if (!isMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
+        if (!isMobile && !sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "script" || tag === "script_pack");
             });
         }
 
+
         // 3. Сортировка PROJECTS
-        if (!isMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (!isMobile && !sizeIsMobile &&currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "project" || tag === "project_pack");
@@ -1352,20 +1354,32 @@ document.addEventListener('click', (event) => {
             });
         }
 
-        // 2. Сортировка SCRIPTS на мобильном
-        if (sizeIsMobile && isMobile &&currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
+
+        if (sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
             const container = document.getElementById('shelfScripts');
             const firstButton = container.firstElementChild;
             firstButton.classList.add("active");
+
+            const targetId = firstButton.dataset.func;
+            const blocks = document.querySelectorAll('.elementBlock');
+            blocks.forEach(block => {
+                block.hidden = (block.id !== targetId);
+            });
+
         }
 
-        // 3. Сортировка PROJECTS на мобильном 
-        if (sizeIsMobile && isMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             const container = document.getElementById('shelfProject');
             const firstButton = container.firstElementChild;
             firstButton.classList.add("active");
 
+            const targetId = firstButton.dataset.func;
+            const blocks = document.querySelectorAll('.elementBlock');
+            blocks.forEach(block => {
+                block.hidden = (block.id !== targetId);
+            });
         }
+
         hideOverflowingButtons();
     }
 
