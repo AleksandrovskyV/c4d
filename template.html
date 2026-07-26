@@ -1286,7 +1286,7 @@ function resizeGeneral() {
     const sideShelfMobile = document.getElementById('sideShelfMobile');
     
     if(sideShelfMobile){
-       if(isMobileWidth) hideOverflowingButtons();
+       
        sideShelfMobile.hidden = !isMobileWidth; 
     }
      
@@ -1345,7 +1345,8 @@ function resizeGeneral() {
     if(!isMobileWidth){
        updateShortShelf(); 
     }
-
+    if(isMobileWidth) hideOverflowingButtons();
+    
     //const zagl = document.getElementById('zagl');
     //zagl.classList.add("close"); 
     //zagl.hidden = true;
@@ -1365,13 +1366,11 @@ function setActiveHeaderBtn(){
 }
 
 function firstStart() {
-    hideOverflowingButtons();
     resizeGeneral();
 
     if (isMobile) {
 
         setActiveHeaderBtn();
-
 
         let lastTouchEnd = 0;
         
