@@ -125,13 +125,22 @@ pointer-events: auto;
 }
 a.link.b {color: #279ae3}
 
-a.link:hover { color: #a3a3a3; }
-
 a.link.drs { text-decoration: none; }
 
+a.link:hover { color: #a3a3a3; }
 
 
 
+#down_package a.link:hover,
+#viewcode a.link:hover {
+    color: #ababab; 
+}
+
+
+#down_package a.link:hover .selector,
+#viewcode a.link:hover .selector {
+    color: var(--accolor);
+}
 
 a.gitlink { color: var(--ftcolor); 
 }
@@ -411,7 +420,6 @@ z-index: 500;
 pointer-events: none; 
 }
 
-
 #mob_str_a:hover{
 color: var(--accolor);
 }
@@ -427,10 +435,9 @@ pointer-events: auto;
 user-select: none;
 }
 
-
-
 /* Paste Content */
 
+/* Mobile */
 html.mobile #bottomPageMobile{
     padding-top: 2vh;
 }
@@ -438,7 +445,6 @@ html.mobile #gitline{
     padding-bottom: 2vh;
 }
 
-/* Mobile */
 @media (max-width: 779.98px) {
     :root {
     --main_w: 97.5%;
@@ -591,7 +597,12 @@ html.mobile #gitline{
                 </a>
             </h2>
             
-            <h2 class="footText lngsup" id="swapside" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *" >* left-handed *</h2>
+            <h2 class="footText lngsup" id="swapside" 
+                data-ru="* я левша *" 
+                data-ru-swap="* я правша *" 
+                data-us="* left-handed *" 
+                data-us-swap="* right-handed *" >
+                * left-handed *</h2>
             
             <h2 class="footText lngsup" id="switch_lang" 
                 data-us="и не знаю английский *" 
@@ -607,14 +618,14 @@ html.mobile #gitline{
         <div id="bottomPageMobile" class="footerElements hideWeb">
 
             <h2 id="down_package"><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">
-                <u style="text-decoration: underline;"class="lngsup" data-ru="скачать" data-us="download">download</u> 
+                <u style="text-decoration: underline;" class="selector lngsup " data-ru="скачать" data-us="download">download</u> 
                 <div class="lngsup" data-ru="архив" data-us="shelf">shelf</div> </a> 
             </h2>
             
             <h2 class="footText lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
             
             <h2 id="viewcode" class="rtext"> <a class="link drs" href="">
-                <u id="mob_str_a" style="text-decoration: underline;" class="lngsup" data-ru="глянуть" data-us="viewcode" data-ru-p="скачать" data-us-p="download">viewcode</u> 
+                <u id="mob_str_a" style="text-decoration: underline;" class="selector lngsup" data-ru="глянуть" data-us="viewcode" data-ru-p="скачать" data-us-p="download">viewcode</u> 
                 <div id="mob_str_b" class="lngsup" data-ru="скрипт" data-us="script" data-ru-p="проект" data-us-p="project">script</div> </a> 
             </h2> 
         </div>
