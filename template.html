@@ -59,55 +59,13 @@ overflow-y: auto;
 touch-action: manipulation;
 }
 
+a, h2 { pointer-events: auto;
+}
+
 h2{ 
 color: #dfdfe0;
 font-family: var(--titlefont);
-pointer-events: auto;
 }
-
-.linePage {
-position: fixed; 
-left: 0;
-right: 0;
-margin-left: auto;
-margin-right: auto;
-
-width: var(--main_w);
-
-
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-flex-grow: 0;
-
-background-color: var(--bgcolor); 
-z-index: 6000; 
-
-}
-
-a {
-pointer-events: auto;
-}
-
-/* Высота в 3 раза больше, чтобы скрыть контент */
-#header { 
-top: calc(
-( var(--header_h) * var(--expand_val) - var(--header_h) )*-1 
-);
-height: calc( var(--header_h) * var(--expand_val) );
-}
-
-#footer { 
-bottom: calc(var(--footer_h) * -1);
-height: calc(var(--footer_h) * 2);
-align-items: center;
-pointer-events: auto;
-}
-
-#footer h2{
-font-size: var(--font_foot);
-}
-
 
 h2.special{
 color: #698aa8;
@@ -129,19 +87,6 @@ a.link.drs { text-decoration: none; }
 
 a.link:hover { color: #a3a3a3; }
 
-
-
-#down_package a.link:hover,
-#viewcode a.link:hover {
-    color: #ababab; 
-}
-
-
-#down_package a.link:hover .selector,
-#viewcode a.link:hover .selector {
-    color: var(--accolor);
-}
-
 a.gitlink { color: var(--ftcolor); 
 }
 a.gitlink:hover { color: var(--accolor); 
@@ -149,6 +94,55 @@ a.gitlink:hover { color: var(--accolor);
 a.gitlink_mob { color: var(--gitcolor); 
 }
 a.gitlink_mob:hover { color: var(--accolor_grey);
+}
+
+.linePage {
+position: fixed; 
+left: 0;
+right: 0;
+margin-left: auto;
+margin-right: auto;
+
+width: var(--main_w);
+
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+flex-grow: 0;
+
+background-color: var(--bgcolor); 
+z-index: 6000; 
+
+}
+
+/* Высота в 3 раза больше, чтобы скрыть контент */
+#header { 
+top: calc(
+( var(--header_h) * var(--expand_val) - var(--header_h) )*-1 
+);
+height: calc( var(--header_h) * var(--expand_val) );
+}
+
+#footer { 
+bottom: calc(var(--footer_h) * -1);
+height: calc(var(--footer_h) * 2);
+align-items: center;
+pointer-events: auto;
+}
+
+#footer h2{
+font-size: var(--font_foot);
+}
+
+.footerElements {
+display: flex; flex-direction: row;
+width: 100%;
+justify-content: space-between;
+
+align-items: flex-start; 
+
+pointer-events: auto;
+user-select: none;
 }
 
 .footText {
@@ -161,6 +155,16 @@ html:not(.mobile) .footText:hover {
 color: #dd9f17; 
 }
 
+
+#down_package a.link:hover,
+#viewcode a.link:hover {
+    color: #ababab; 
+}
+
+#down_package a.link:hover .selector,
+#viewcode a.link:hover .selector {
+    color: var(--accolor);
+}
 
 #bottomShadowRow {
 position: fixed;
@@ -201,7 +205,6 @@ justify-content: space-between;
 align-items: flex-end; 
 pointer-events: auto;
 }
-
 
 #ContentViewer {
 display: flex;
@@ -418,21 +421,6 @@ width: 100vw;
 background: var(--bgcolor);
 z-index: 500; 
 pointer-events: none; 
-}
-
-#mob_str_a:hover{
-color: var(--accolor);
-}
-
-.footerElements {
-display: flex; flex-direction: row;
-width: 100%;
-justify-content: space-between;
-
-align-items: flex-start; 
-
-pointer-events: auto;
-user-select: none;
 }
 
 /* Paste Content */
