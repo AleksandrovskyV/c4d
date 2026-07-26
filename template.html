@@ -703,6 +703,13 @@ function hideOverflowingButtons() {
   const ghost = document.getElementById('ghostOverlap');
   const langButtonMobile = document.getElementById('langButtonMobile');
   
+    // --- КРИТИЧЕСКИЙ СБРОС ДЛЯ СТАБИЛЬНОГО РЕ СТИЛИЗАЦИИ ---
+  // Сбрасываем кастомные маргины, чтобы они не искажали координаты кнопок при замере в цикле!
+  langButtonMobile.style.removeProperty('margin-top');
+  langButtonMobile.style.removeProperty('margin-bottom');
+  ghost.style.removeProperty('margin-top');
+  // -------------------------------------------------------
+  
   const activeShelf = container.querySelector('#shelfScripts:not([hidden]), #shelfProject:not([hidden])');
   if (!activeShelf) return;
 
@@ -746,22 +753,15 @@ function hideOverflowingButtons() {
     const visibleButtons = Array.from(buttons).filter(btn => !btn.hidden);
     const lastVisibleBtn = visibleButtons[visibleButtons.length - 1];
 
-    // ЗАЩИТА: Расчет отступов запускаем только если осталась хотя бы одна видимая кнопка
     if (lastVisibleBtn) {
       const heightToLastBtn = lastVisibleBtn.offsetTop + lastVisibleBtn.offsetHeight;
       let diff = (containerBottom - container.getBoundingClientRect().top - ghostHeight) - heightToLastBtn;
-      const targetMargin = Math.max(0, Math.floor(diff / 2));
+      const targetMargin = Math.max(0, Math.round(diff / 4) * 2);
 
       langButtonMobile.style.setProperty('margin-bottom', `${targetMargin}px`, 'important');
     } else {
-      // Если видимых кнопок не осталось совсем, обнуляем нижний маргин кнопки языка
       langButtonMobile.style.setProperty('margin-bottom', '0px', 'important');
     }
-    
-  } else {
-    langButtonMobile.style.removeProperty('margin-top');
-    langButtonMobile.style.removeProperty('margin-bottom');
-    ghost.style.removeProperty('margin-top');
   }
 }
 
@@ -1278,7 +1278,7 @@ if (swapMobile) swapMobile.onclick = () => switchSide();
 
 
 function resizeGeneral() {
-
+    
     nowWidth = window.innerWidth;
 
     isMobileWidth = nowWidth <= mobileWidth ? true : false;
@@ -1286,6 +1286,7 @@ function resizeGeneral() {
     const sideShelfMobile = document.getElementById('sideShelfMobile');
     
     if(sideShelfMobile){
+       if(isMobileWidth) hideOverflowingButtons();
        sideShelfMobile.hidden = !isMobileWidth; 
     }
      
@@ -1339,7 +1340,7 @@ function resizeGeneral() {
     headerTextShorter();
     updateResponsiveText();
 
-    hideOverflowingButtons();
+    
 
     if(!isMobileWidth){
        updateShortShelf(); 
