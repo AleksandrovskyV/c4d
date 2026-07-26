@@ -1370,6 +1370,9 @@ document.addEventListener('click', (event) => {
                 block.hidden = (block.id !== targetId);
             });
 
+            lastCheckedButtons = [firstButton];
+            lastCheckedU = firstButton.querySelector('.sel_pre');
+            lastCheckedT = firstButton.querySelector('.sid_tex');
         }
 
         if (sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
@@ -1382,6 +1385,9 @@ document.addEventListener('click', (event) => {
             blocks.forEach(block => {
                 block.hidden = (block.id !== targetId);
             });
+            lastCheckedButtons = [firstButton];
+            lastCheckedU = firstButton.querySelector('.sel_pre');
+            lastCheckedT = firstButton.querySelector('.sid_tex');
         }
 
         hideOverflowingButtons();
