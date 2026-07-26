@@ -447,24 +447,7 @@ html.mobile #gitline{
     padding-bottom: 2vh;
 }
 
-@media (orientation: landscape) {
-    html.mobile :root {
-        /*--sidebar_w: 60px;  Корректируем размеры под горизонтальный экран */
-        --bgcolor: red;
-    }
-    
-    html.mobile .linePage {
-        background-color: red;
-    }
-    html.mobile #bottomPageMobile {
-        padding-top: 1vh; /* Уменьшаем отступы, так как высота экрана стала маленькой */
-    }
-    html.mobile #gitline {
-        padding-bottom: 1vh;
-    }
 
-
-}
 
 @media (max-width: 779.98px) {
     :root {
@@ -509,6 +492,21 @@ html.mobile #gitline{
   }
 }
 
+@media (orientation: landscape) {
+    html.mobile :root {
+        /*--sidebar_w: 60px;   */
+        /*--bgcolor: red;*/
+    }
+    
+    html.mobile #footer{
+       transform: translateY(12vh); 
+    }
+    
+    html.mobile #gitline {
+        padding-bottom: 1vh;
+    }
+
+}
 </style>
 </head>
 <body>
