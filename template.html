@@ -1163,10 +1163,11 @@ function nextElement() {
         if (buttons.length === 0) return;
 
         let activeIndex = -1;
-        
+        let activeBtn = null;
         buttons.forEach((btn, index) => {
             if (btn.classList.contains('active')) {
                 activeIndex = index;
+                activeBtn = btn;
             }
         });
         
@@ -1186,8 +1187,11 @@ function nextElement() {
         }
 
         if (nextButton) {
+            if(activeBtn){
+              activeBtn.classList.remove("active");  
+            }
+            
             nextButton.click();
-            nextButton.classList.add('active');
         }
     }
 
