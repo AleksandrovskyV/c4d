@@ -236,7 +236,7 @@ min-height: 12px;
 height: 100%;
 background-color: transparent;
 flex-shrink: 0;
-background-color: blue;
+/*  background-color: blue; */
 margin-right: var(--spaces);
 }
 #shelfFake.swap{
@@ -445,6 +445,23 @@ html.mobile #bottomPageMobile{
 }
 html.mobile #gitline{
     padding-bottom: 2vh;
+}
+
+@media (orientation: landscape) {
+
+    html.mobile.linePage {
+        background-color: red;
+    }
+    html.mobile #bottomPageMobile {
+        padding-top: 1vh; /* Уменьшаем отступы, так как высота экрана стала маленькой */
+    }
+    html.mobile #gitline {
+        padding-bottom: 1vh;
+    }
+    html.mobile :root {
+        /*--sidebar_w: 60px;  Корректируем размеры под горизонтальный экран */
+    }
+
 }
 
 @media (max-width: 779.98px) {
