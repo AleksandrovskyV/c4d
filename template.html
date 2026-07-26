@@ -104,6 +104,11 @@ align-items: center;
 pointer-events: auto;
 }
 
+#footer h2{
+font-size: var(--font_foot);
+}
+
+
 h2.special{
 color: #698aa8;
 font-size: var(--font_base);
@@ -411,31 +416,23 @@ pointer-events: none;
 color: var(--accolor);
 }
 
-.bottomPageS {
+.footerElements {
 display: flex; flex-direction: row;
 width: 100%;
 justify-content: space-between;
+
 align-items: flex-start; 
 
 pointer-events: auto;
 user-select: none;
 }
 
-#footer h2{
-font-size: var(--font_foot);
-}
-
-
-.botTexLine {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-width: 100%;
-user-select: none;
-}
 
 
 /* Paste Content */
+html.mobile {
+    margin-top: ;
+}
 
 /* Mobile */
 @media (max-width: 779.98px) {
@@ -578,7 +575,7 @@ user-select: none;
 
 <div id="footer" class="linePage">
 
-        <div id="bottomPage" class="bottomPageS hideMobile">
+        <div id="bottomPage" class="footerElements hideMobile">
             <h2>
                 <a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
                    data-us="* alright, go to github" 
@@ -604,7 +601,7 @@ user-select: none;
             </h2>
         </div>
 
-        <div class="botTexLine hideWeb">
+        <div id="bottomPageMobile" class="footerElements hideWeb">
 
             <h2 id="down_package"><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">
                 <u style="text-decoration: underline;"class="lngsup" data-ru="скачать" data-us="download">download</u> 
