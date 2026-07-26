@@ -103,7 +103,6 @@ z-index: 2000;
 pointer-events: none; 
 }
 
-
 #mainPage {
 width: var(--main_w);
 margin-left: auto;
@@ -133,13 +132,12 @@ pointer-events: auto;
 
 
 #ContentViewer {
-display: flex; 
+display: flex;
 flex-direction: column;
 flex-grow: 1;
 margin-top: var(--spaces);
 margin-right: calc(var(--spaces)*2);
-min-width: 0; 
-
+min-width: 0;
 }
 
 .element {
@@ -163,7 +161,7 @@ background-color: blue;
 margin-right: var(--spaces);
 }
 
-#mobileShelf {
+#sideShelfMobile {
 position: fixed; 
 top: calc(var(--header_h) + var(--spaces));
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
@@ -249,7 +247,6 @@ letter-spacing: -0.04em;
 font-size: var(--font_head); 
 }
 
-
 .namepageDecor {
 font-family: var(--titlefont);
 font-size: var(--font_head); 
@@ -269,10 +266,10 @@ color: var(--name_sl);
 #namepage_mob { 
 color: var(--name_pg);
 }
-#user_label { 
+#usertext { 
 color: var(--name_us);
 }
-#user_label:hover{
+#usertext:hover{
 text-decoration: underline;
 cursor: pointer;
 }
@@ -309,15 +306,15 @@ color: #6d6a65 !important;
 .base_btn.active {
 color: var(--accolor);
 }
-.subl {
+.undlink {
 text-decoration: underline;
 }
 
 #tgHeaderFix {
 position: fixed; 
 left: 0;
-top: -18vh;
-height: 20vh;
+top: -38vh;
+height: 40vh;
 width: 100vw; 
 background: var(--bgcolor);
 z-index: 500; 
@@ -334,23 +331,24 @@ pointer-events: none;
     --sidebar_w: 82px;
     }
 
-    #user_label:hover{
+    #usertext:hover{
         text-decoration: none;
         cursor: default;
         pointer-events: none;
     }
 
-    .mob_hide{ display: none !important;
+    .hideMobile{ display: none !important;
     }
 }
 
 /* Web */
 @media (min-width: 780px) {
 
-    .web_hide{ display: none !important;
+    .hideWeb{ display: none !important;
     }
 }
 
+/* DPI SCALING ATTR */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   :root {
     --header_h: 100px;
@@ -372,24 +370,31 @@ pointer-events: none;
     <h2 id="pearlLine">* pearl version</h2>
 
     <div id="headerPage">
-          <div id="prebtn">
-              <div    id="namepage"     class="namepageDecor mob_hide" tabindex="0"><span id="namepageText">C4D</span> <span class="headDivider">  /</span></div>
-              <button id="namepage_mob" class="web_hide">C4D</button>
+
+          <div    id="namepage"   class="namepageDecor" tabindex="0">
+                <span class="utContent">C4D</span> 
+                <span class="headDivider hideMobile">  /</span>
           </div>
 
-          <button class="headDivider web_hide">/</button>
+          <div class="namepageDecor headDivider hideWeb">/</div>
 
-          <button id="prjbtn_mob"   class="mclickcfunc headerBtn web_hide" data-func="prj_mob"          >PRJ</button>
-          <button id="user_label"   class="mclickcfunc"                    data-func="home"             >&amp;</button>
-          <div    id="scrbtn"       class="mclickcfunc base_btn "          data-func="scr" tabindex="0" ><span class="headDivider mob_hide">/  </span><span id="scr_text" class="subl">SCRIPTS</span></div>
+          <button id="prjbtn_mob" class="headerBtn mclickcfunc hideWeb"          data-func="prj_mob"  >PRJ</button>
+
+          <button id="usertext"   class="mclickcfunc"                            data-func="home"     >&amp;</button>
+          
+          <div    id="scrbtn"       class="base_btn mclickcfunc"     tabindex="0"  data-func="scr" >
+                <span class="headDivider hideMobile">/  </span> 
+                <span class="utContent undlink " >SCRIPTS</span> 
+          </div>
+
     </div>
 </div>
 
 
-<div id="mobileShelf" hidden> 
+<div id="sideShelfMobile" hidden> 
     <div class="mbtn text top" id="switchLangMobile" >RU</div>
 
-    <div id="toolbar_scr">
+    <div id="shelfScripts">
         <div class="mbtn" id ="fpl" data-func="filletplane"></div>
         <div class="mbtn" id ="mpv" data-func="mp4vidoc"></div>
         <div class="mbtn" id ="swm" data-func="swap_mats"></div>
@@ -398,7 +403,7 @@ pointer-events: none;
         <div class="mbtn" id ="cam" data-func="linked_camera"></div>
     </div>
         
-    <div id="toolbar_prj" hidden>
+    <div id="shelfProject" hidden>
         <div class="mbtn" id ="aws" data-func="ar_wf_string"></div>
         <div class="mbtn" id ="tsm" data-func="test_smile"></div>
     </div>
@@ -430,6 +435,7 @@ function lerp(start, end, amt) {
 
 let translated = false; 
 let switchSides = false; 
+
 let backupSoloCheck = null;
 let shortShelfActive = false;
 
@@ -438,24 +444,18 @@ let nowWidth = window.innerWidth;
 
 let isMobileWidth = nowWidth <= mobileWidth ? true : false;
 
-const headerPage = document.getElementById('headerPage');
-const pearlLine = document.getElementById('pearlLine');
-const namepageText = document.getElementById('namepageText');
-const centralText = document.getElementById('user_label');
-
-const scriptBtn     = document.getElementById('scrbtn');
-const scriptBtnText = document.getElementById('scr_text');
+const headerPage  = document.getElementById('headerPage');
 
 const langButton = document.getElementById('switch_lang');
 
-const viewCodeBtn = document.getElementById('viewcode');
-const nextElem_btn = document.getElementById('mob_next');
+const viewCodeBtn      = document.getElementById('viewcode');
+const nextElem_btn     = document.getElementById('mob_next');
 const switchLangMobile = document.getElementById('switchLangMobile');
 
 const swapButton = document.getElementById('swapside');
 const swapMobile = document.getElementById('swapside_mobile');
 
-const mobileShelf = document.getElementById('mobileShelf');
+const sideShelfMobile = document.getElementById('sideShelfMobile');
 
 
 /// USER INTERFACE - GLOBAL SWAPS
@@ -542,60 +542,73 @@ function gifSizeChecker() {
 
 /// USER INTERFACE - TEXT AND LANG
 
-const nameCases = {
-    'namepage': ['C4D', 'CINEMA 4D'], 
-    'central': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
-};
-
-const reductionOrder = [
-  { key: 'namepage', element: namepageText },
-  { key: 'central', element: centralText },
-];
-
 function headerTextShorter() {
-  const currentIndices = {
-    namepage: nameCases.namepage.length - 1,
-    central: nameCases.central.length - 1,
-  };
+    const headerPage = document.getElementById('headerPage');
 
-  const updateDOM = () => {
-    
-    const nowWidth = window.innerWidth;
-    
-    if (nowWidth >= 960 && nowWidth<1300) {
-        namepageText.textContent = "C4D";
-        centralText.textContent = "&_DATA";
-    }else if (nowWidth < 960){
-        namepageText.textContent = "C4D";
-        centralText.textContent = "&";
-    }else{
-        namepageText.textContent = nameCases.namepage[currentIndices.namepage];
-        centralText.textContent = "\u00A0" + nameCases.central[currentIndices.central] + "\u00A0";
-    }
+    const pearlLine  = document.getElementById('pearlLine');
+    const namepage   = document.getElementById('namepage');
+    const usertext   = document.getElementById('usertext');
+    const endsection = document.getElementById('scrbtn');
 
-    if(namepageText.textContent==="C4D"){
-        pearlLine.textContent = "* pearl";
-    }else{
-        pearlLine.textContent = "* pearl edition";
-    }
+    // Выбираем первый активный utContent внутри namepage
+    const namepageText = namepage ? namepage.querySelector('.utContent') : null;
+    const lastbtnText  = endsection ? endsection.querySelector('.utContent') : null;
 
-    if(nowWidth<mobileWidth*.7){
-        if(scriptBtnText){ 
-            scriptBtnText.textContent = "SCR" + "\u00A0";
+    const nameCases = {
+        'namepage': ['C4D', 'CINEMA 4D'], 
+        'usertext': ['&','&_DATA','&_USERDATA','VSKY_USERDATA']
+    };
+        
+    const currentIndices = {
+        namepage: nameCases.namepage.length - 1,
+        usertext: nameCases.usertext.length - 1,
+    };
+
+    const reductionOrder = [
+        { key: 'namepage' },
+        { key: 'usertext' },
+    ];
+
+    const updateDOM = () => {
+        const nowWidth = window.innerWidth;
+
+        const allRules = (namepageText && usertext && lastbtnText && pearlLine);
+        if (!allRules) return;
+
+        if (nowWidth >= 960 && nowWidth < 1300) {
+            namepageText.textContent = "C4D";
+            usertext.textContent = "&_DATA";
+        } else if (nowWidth < 960) {
+            namepageText.textContent = "C4D";
+            usertext.textContent = "&";
+        } else {
+            namepageText.textContent = nameCases.namepage[currentIndices.namepage];
+            usertext.textContent = "\u00A0" + nameCases.usertext[currentIndices.usertext] + "\u00A0";
         }
-    }else{
-        if(scriptBtnText){ 
-            scriptBtnText.textContent = "SCRIPTS";
-        }   
-    }
 
-  };
+        if (namepageText.textContent === "C4D") {
+            pearlLine.textContent = "* pearl";
+        } else {
+            pearlLine.textContent = "* pearl edition";
+        }
+
+        const currentMobileWidth = typeof mobileWidth !== 'undefined' ? mobileWidth : 768;
+
+        if (nowWidth < currentMobileWidth * 0.7) {
+            lastbtnText.textContent = "SCR" + "\u00A0";
+        } else {
+            lastbtnText.textContent = "SCRIPTS";
+        }
+    };
     
   updateDOM();
+
+  if (!headerPage) return;
 
   const isOverflowing = () => {
     return headerPage.scrollWidth > headerPage.clientWidth;
   };
+  
   let step = 0;
   
   while (isOverflowing() && step < reductionOrder.length) {
@@ -605,7 +618,7 @@ function headerTextShorter() {
       currentIndices[currentTarget.key]--;
       updateDOM();
     } else {
-      step++;
+      step++; 
     }
   }
 }
@@ -761,8 +774,8 @@ let lastCheckedU = null;
 let lastCheckedT = null;
 
 function nextElement() {
-    const toolbarPrj = document.getElementById('toolbar_prj');
-    const toolbarScr = document.getElementById('toolbar_scr');
+    const toolbarPrj = document.getElementById('shelfProject');
+    const toolbarScr = document.getElementById('shelfScripts');
     
     function activateNextInContainer(container) {
         if (!container || container.hidden) return;
@@ -870,8 +883,8 @@ document.addEventListener('click', (event) => {
                 lastCheckedButtons = [btnWeb, btnMob].filter(Boolean);
             }
 
-            toolbar_prj.hidden = false;
-            toolbar_scr.hidden = true;
+            shelfProject.hidden = false;
+            shelfScripts.hidden = true;
             
             changeMobileDownloadBtn(true);
 
@@ -885,8 +898,8 @@ document.addEventListener('click', (event) => {
                 lastCheckedButtons = [btnWeb].filter(Boolean);
             }
 
-            toolbar_prj.hidden = true;
-            toolbar_scr.hidden = false;
+            shelfProject.hidden = true;
+            shelfScripts.hidden = false;
             
             changeMobileDownloadBtn(false);
 
@@ -1007,7 +1020,7 @@ function resizeGeneral() {
     nowWidth = window.innerWidth;
 
     isMobileWidth = nowWidth <= mobileWidth ? true : false;
-    mobileShelf.hidden = !isMobileWidth; 
+    sideShelfMobile.hidden = !isMobileWidth; 
 
     const isHighDPI = window.matchMedia(
         '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
@@ -1070,6 +1083,9 @@ function resizeGeneral() {
 
 
 function setActiveHeaderBtn(){
+
+    const scriptBtn = document.getElementById('scrbtn');
+    
     if(!scriptBtn) return
 
     scriptBtn.classList.add('active'); 
