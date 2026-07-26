@@ -166,7 +166,7 @@ position: fixed;
 top: calc(var(--header_h) + var(--spaces));
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 width: var(--sidebar_w);
-height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2 );
 
 display: flex;
 flex-direction: column;
@@ -177,6 +177,8 @@ z-index: 5000;
 }
 
 .sShelfMobile.overlap {
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
+
 min-height: calc( var(--sidebar_w)*2 );
 display: flex;
 flex-direction: column;
@@ -225,6 +227,7 @@ margin-top: 12px;
 .mbtn.bot.tr {
 pointer-events: none;
 background-color: transparent;
+border: 0px solid transparent;
 }
 .mbtn.bot.up{
 margin-top: auto !important;
@@ -236,9 +239,6 @@ background-color: var(--accolor_grey);
 html:not(.mobile) .mbtn:hover {
 background-color: var(--accolor);
 }
-
-
-
 
 
 #fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
@@ -434,7 +434,7 @@ pointer-events: none;
         <div class="mbtn" id ="tsm" data-func="test_smile"></div>
     </div>
 
-    <div class="mbtn text bot tr" id=""></div>
+    <div class="mbtn text bot tr" id="ghostOverlap"></div>
 
     <div class="sShelfMobile overlap" >
         <div class="mbtn text bot up" id="nextElemBtn">▼</div>
@@ -671,6 +671,37 @@ function switchToMobile(mobile_state) {
     if(isMobile){
         document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
     }
+}
+
+function hideOverflowingButtons() {
+  const container = document.getElementById('sideShelfMobile');
+  const buttons = container.querySelectorAll('#shelfScripts .mbtn, #shelfProject .mbtn');
+
+  const containerBottom = container.getBoundingClientRect().bottom;
+  const ghost = document.getElementById('ghostOverlap');
+  const ghostHeight = ghost.offsetHeight;
+  const safeHeight = containerBottom - ghostHeight*0.8;
+  const switchLangMobile = document.getElementById('switchLangMobile');
+
+  let hasHiddenElements = false;
+  
+  buttons.forEach(btn => {
+    btn.hidden = false;
+    const btnBottom = btn.getBoundingClientRect().bottom;
+
+    if (btnBottom > safeHeight) {
+      btn.hidden = true;
+      hasHiddenElements = true; 
+    }
+  });
+
+  if (hasHiddenElements) {
+    switchLangMobile.style.setProperty('margin-top', '0px', 'important');
+    ghost.style.setProperty('margin-top', 'auto', 'important');
+  } else 
+    switchLangMobile.style.removeProperty('margin-top', '0px', 'important');{
+    ghost.style.removeProperty('margin-top');
+  }
 }
 
 
@@ -1221,6 +1252,8 @@ function resizeGeneral() {
 
     headerTextShorter();
     updateResponsiveText();
+
+    hideOverflowingButtons();
 
     if(!isMobileWidth){
        updateShortShelf(); 
