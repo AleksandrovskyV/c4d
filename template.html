@@ -161,7 +161,7 @@ background-color: blue;
 margin-right: var(--spaces);
 }
 
-#sideShelfMobile {
+.sShelfMobile {
 position: fixed; 
 top: calc(var(--header_h) + var(--spaces));
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
@@ -170,10 +170,22 @@ height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
 
 display: flex;
 flex-direction: column;
-justify-content: flex-end;
+justify-content: flex-start;
 background-color: green;
 flex-grow: 0;
 z-index: 5000;
+}
+
+.sShelfMobile.overlap {
+min-height: calc( var(--sidebar_w)*2 );
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+
+z-index: 8000;
+background-color: transparent;
+pointer-events: none;
+
 }
 
 .mbtn {
@@ -202,18 +214,32 @@ line-height: 0;
 padding-top: 4px; 
 }
 
-.mbtn.top { 
+.mbtn.top {
+padding-top: 0;
+margin-top: auto;
 margin-bottom: 12px;
 }
 .mbtn.bot {
 margin-top: 12px;
 }
+.mbtn.bot.tr {
+pointer-events: none;
+background-color: transparent;
+}
+.mbtn.bot.up{
+margin-top: auto !important;
+}
+
 .mbtn.active { 
 background-color: var(--accolor_grey);
 }
 html:not(.mobile) .mbtn:hover {
 background-color: var(--accolor);
 }
+
+
+
+
 
 #fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
 #mpv { background-image: url('./assets/svg/MP4Vidoc.svg'); }
@@ -391,7 +417,7 @@ pointer-events: none;
 </div>
 
 
-<div id="sideShelfMobile" hidden> 
+<div id="sideShelfMobile" class="sShelfMobile" hidden> 
     <div class="mbtn text top" id="switchLangMobile" >RU</div>
 
     <div id="shelfScripts">
@@ -408,7 +434,12 @@ pointer-events: none;
         <div class="mbtn" id ="tsm" data-func="test_smile"></div>
     </div>
 
-    <div class="mbtn text bot" id="nextElemBtn">▼</div>
+    <div class="mbtn text bot tr" id=""></div>
+
+    <div class="sShelfMobile overlap" >
+        <div class="mbtn text bot up" id="nextElemBtn">▼</div>
+    </div>
+
 </div>
 
 <div id="mainPage">
@@ -645,6 +676,7 @@ function switchToMobile(mobile_state) {
 
 /// USER INTERFACE - TEXT AND LANG
 
+/// этот метод лучше полностью перенести на css
 function headerTextShorter() {
     const headerPage = document.getElementById('headerPage');
 
