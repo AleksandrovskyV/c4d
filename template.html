@@ -709,7 +709,7 @@ function hideOverflowingButtons() {
   langButtonMobile.style.removeProperty('margin-bottom');
   ghost.style.removeProperty('margin-top');
   // -------------------------------------------------------
-  
+
   const activeShelf = container.querySelector('#shelfScripts:not([hidden]), #shelfProject:not([hidden])');
   if (!activeShelf) return;
 
@@ -1365,11 +1365,13 @@ function setActiveHeaderBtn(){
 }
 
 function firstStart() {
+    hideOverflowingButtons();
     resizeGeneral();
 
     if (isMobile) {
 
         setActiveHeaderBtn();
+
 
         let lastTouchEnd = 0;
         
