@@ -703,14 +703,27 @@ function hideOverflowingButtons() {
   const langButtonMobile = document.getElementById('langButtonMobile');
   
   const activeShelf = container.querySelector('#shelfScripts:not([hidden]), #shelfProject:not([hidden])');
-  
   if (!activeShelf) return;
 
-  const buttons = activeShelf.querySelectorAll('.mbtn');
-
+  let buttons = activeShelf.querySelectorAll('.mbtn');
   const containerBottom = container.getBoundingClientRect().bottom;
   const ghostHeight = ghost.offsetHeight;
   const safeHeight = containerBottom - ghostHeight * 0.8;
+
+
+  const activeBtn = activeShelf.querySelector('.cfunc.active, .mbtn.active');
+  
+  if (activeBtn) {
+    activeBtn.hidden = false;
+    
+    if (activeBtn.getBoundingClientRect().bottom > safeHeight) {
+      const firstButton = buttons[0];
+      if (firstButton && firstButton !== activeBtn) {
+        activeShelf.appendChild(firstButton);
+        buttons = activeShelf.querySelectorAll('.mbtn');
+      }
+    }
+  }
 
   let hasHiddenElements = false;
   
@@ -1005,7 +1018,7 @@ function nextElement() {
 
             //const updatedButtons = container.querySelectorAll('[data-func]');
             const updatedButtons = container.querySelectorAll('.cfunc');
-            nextButton = updatedButtons[nextIndex -1];
+            nextButton = updatedButtons[activeIndex]; // индексы смещаются поэтому берем этот же
         }
 
         if (nextButton) {
