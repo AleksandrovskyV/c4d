@@ -9,6 +9,17 @@
   if (window.isMobile) {
     document.documentElement.classList.add('mobile');
   }
+
+  const isTelegram = 
+    (typeof window.TelegramWebviewProxy !== 'undefined') || // WebView в iOS (ссылки из чата)
+    (typeof window.TelegramWebviewProxyProto !== 'undefined') || // Доп. прокси iOS
+    (typeof window.TelegramWebview !== 'undefined') || // WebView в Android
+    (typeof window.Telegram !== 'undefined') || // Telegram Mini Apps (все ОС)
+    ua.includes('telegram'); // Резерв для Android User-Agent
+
+  if (isTelegram) {
+    document.documentElement.classList.add('telegram');
+  }
 </script>
 
 <style>
@@ -40,6 +51,7 @@
 --gitcolor: #698aa8;
 
 --font_foot: 24px;
+--font_perl: 18px;
 }
 
 [hidden] {display: none !important;}
@@ -190,7 +202,7 @@ margin-bottom: calc(var(--footer_h) * 3);
 }
 
 #pearlLine{
-font-size: 19px;
+font-size: var(--font_perl);
 margin-top: auto;
 transform: translateY(8px);
 align-self: flex-start; 
@@ -493,24 +505,26 @@ html.mobile #gitline{
 }
 
 @media (orientation: landscape) {
-    html.mobile :root {
-        /*--sidebar_w: 60px;   */
-        /*--bgcolor: red;*/
+    html.mobile.telegram {
+         /*--bgcolor: red;*/
     }
 
+    html.mobile.telegram #header { 
+        transform: translateY( -12vh );
+    }
+
+    /* Это везде хорошо */
     html.mobile #bottomShadowRow{
-       transform: translateY( calc( var(--footer_h) *3 ) ); 
+       bottom: calc(var(--footer_h) - var(--footer_h)/2);
+       transform: translateY( 3vh ); 
     }
 
     html.mobile #footer{
-       transform: translateY( calc( var(--footer_h) *3 ) );  
+       bottom: calc( var(--footer_h)*-1 - var(--footer_h)/2 );
+       transform: translateY( 3vh );
     }
-    
-    html.mobile #gitline {
-        padding-bottom: 1vh;
-    }
-
 }
+
 </style>
 </head>
 <body>
