@@ -448,8 +448,12 @@ html.mobile #gitline{
 }
 
 @media (orientation: landscape) {
-
-    html.mobile.linePage {
+    html.mobile :root {
+        /*--sidebar_w: 60px;  Корректируем размеры под горизонтальный экран */
+        --bgcolor: red;
+    }
+    
+    html.mobile .linePage {
         background-color: red;
     }
     html.mobile #bottomPageMobile {
@@ -458,9 +462,7 @@ html.mobile #gitline{
     html.mobile #gitline {
         padding-bottom: 1vh;
     }
-    html.mobile :root {
-        /*--sidebar_w: 60px;  Корректируем размеры под горизонтальный экран */
-    }
+
 
 }
 
