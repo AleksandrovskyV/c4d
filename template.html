@@ -36,6 +36,10 @@
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
 --accolor_grey: #848484;
+--ftcolor: #ababab;
+--gitcolor: #698aa8;
+
+--font_foot: 24px;
 }
 
 [hidden] {display: none !important;}
@@ -58,6 +62,7 @@ touch-action: manipulation;
 h2{ 
 color: #dfdfe0;
 font-family: var(--titlefont);
+pointer-events: auto;
 }
 
 .linePage {
@@ -68,8 +73,19 @@ margin-left: auto;
 margin-right: auto;
 
 width: var(--main_w);
+
+
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+flex-grow: 0;
+
 background-color: var(--bgcolor); 
 z-index: 6000; 
+}
+
+a {
+pointer-events: auto;
 }
 
 /* Высота в 3 раза больше, чтобы скрыть контент */
@@ -78,17 +94,58 @@ top: calc(
 ( var(--header_h) * var(--expand_val) - var(--header_h) )*-1 
 );
 height: calc( var(--header_h) * var(--expand_val) );
-
-display: flex;
-flex-direction: column;
-align-items: flex-end;
-flex-grow: 0;
 }
 
 #footer { 
 bottom: calc(var(--footer_h) * -1);
 height: calc(var(--footer_h) * 2);
+align-items: center;
+pointer-events: auto;
 }
+
+h2.special{
+color: #698aa8;
+font-size: var(--font_base);
+font-kerning: normal; 
+letter-spacing: -0.03em;
+margin-bottom: 10px;
+}
+
+h2.rtext {text-align: right;}
+
+a.link { 
+color: #ababab; 
+pointer-events: auto;
+}
+a.link.b {color: #279ae3}
+
+a.link:hover { color: #a3a3a3; }
+
+a.link.drs { text-decoration: none; }
+
+
+
+
+
+a.gitlink { color: var(--ftcolor); 
+}
+a.gitlink:hover { color: var(--accolor); 
+}
+a.gitlink_mob { color: var(--gitcolor); 
+}
+a.gitlink_mob:hover { color: var(--accolor_grey);
+}
+
+.footText {
+color: var(--ftcolor);
+text-decoration: underline; 
+cursor: pointer;
+}
+
+html:not(.mobile) .footText:hover {
+color: #dd9f17; 
+}
+
 
 #bottomShadowRow {
 position: fixed;
@@ -349,10 +406,38 @@ pointer-events: none;
 }
 
 
+#mob_str_a:hover{
+color: var(--accolor);
+}
+
+.bottomPageS {
+display: flex; flex-direction: row;
+width: 100%;
+justify-content: space-between;
+align-items: flex-start; 
+
+pointer-events: auto;
+user-select: none;
+}
+
+.botTexLine h2{
+font-size: var(--font_foot);
+}
+
+
+.botTexLine {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+width: 100%;
+user-select: none;
+}
+
+
 /* Paste Content */
 
 /* Mobile */
-@media (max-width: 780px) { 
+@media (max-width: 779.98px) {
     :root {
     --main_w: 97.5%;
     --sidebar_w: 82px;
@@ -384,8 +469,18 @@ pointer-events: none;
     --font_head: 60px;
     --font_btn: 32px !important;
     --sidebar_w: 64px !important;
+
+    --font_title: 20px;
+    --font_mtitl: 22px;
+    --font_icon: 22px;
+    --font_tube: 14px;
+    --font_base: 12px;
+    --font_perl: 13px;
+    --font_foot: 16px;
+
   }
 }
+
 </style>
 </head>
 <body>
@@ -480,7 +575,53 @@ pointer-events: none;
     <div id="shelfFake" ></div>
 </div>
 
-<div id="footer" class="linePage"></div>
+<div id="footer" class="linePage">
+
+        <div id="bottomPage" class="bottomPageS hideMobile">
+            <h2>
+                <a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
+                   data-us="* alright, go to github" 
+                   data-us-mid="* alright, github" 
+                   data-us-short="*  github" 
+                   data-ru="* круто, но дай гитхаб" 
+                   data-ru-mid="* круто, гитхаб" 
+                   data-ru-short="* гитхаб">
+                   * alright, go to github
+                </a>
+            </h2>
+            
+            <h2 class="footText lngsup" id="swapside" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *" >* left-handed *</h2>
+            
+            <h2 class="footText lngsup" id="switch_lang" 
+                data-us="и не знаю английский *" 
+                data-us-mid="знать английский? *" 
+                data-us-short="английский!? *"
+                data-ru="i don't know russian *" 
+                data-ru-mid="u know russian? *" 
+                data-ru-short="russian!? *">
+                и не знаю английский *
+            </h2>
+        </div>
+
+        <div class="botTexLine hideWeb">
+
+            <h2 id="down_package"><a class="link drs" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">
+                <u style="text-decoration: underline;"class="lngsup" data-ru="скачать" data-us="download">download</u> 
+                <div class="lngsup" data-ru="архив" data-us="shelf">shelf</div> </a> 
+            </h2>
+            
+            <h2 class="footText lngsup" id="swapside_mobile" data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
+            
+            <h2 id="viewcode" class="rtext"> <a class="link drs" href="">
+                <u id="mob_str_a" style="text-decoration: underline;" class="lngsup" data-ru="глянуть" data-us="viewcode" data-ru-p="скачать" data-us-p="download">viewcode</u> 
+                <div id="mob_str_b" class="lngsup" data-ru="скрипт" data-us="script" data-ru-p="проект" data-us-p="project">script</div> </a> 
+            </h2> 
+        </div>
+
+      <h2><a class="gitlink_mob hideWeb lngsup" data-ru="гитхаб" data-us="github" href="https://github.com/AleksandrovskyV/c4d/">github</a> </h2>  
+</div>
+
+
 
 </div>
 
@@ -634,25 +775,17 @@ function switchSide() {
     if(mainMenu){
         mainMenu.classList.toggle('swap')
     }
-    
 
-    const right = document.getElementById('webTrickbar');
-    const rightMobile = document.getElementById('mobileTrickbar');
+    const container = document.getElementById('mainPage');
+    const ContentViewer = document.getElementById('ContentViewer');
+    const shelfFake = document.getElementById('shelfFake');
 
-    const left = document.getElementById('webTrickbarSwap');
-    const leftMobile = document.getElementById('mobileTrickbarSwap');
+    if(switchSides){
+        container.insertBefore(shelfFake,ContentViewer); 
 
-    const width = window.innerWidth;
-
-    if (width < mobile_width && switchSides){
-        left.hidden = true;
     }else{
-        left.hidden = !switchSides;
+        container.insertBefore(ContentViewer, shelfFake); 
     }
-
-    right.hidden = switchSides;
-    rightMobile.hidden = switchSides;
-    leftMobile.hidden = !switchSides;
 
     const downPackage = document.getElementById('down_package');
     const viewCode = document.getElementById('viewcode');
@@ -676,6 +809,8 @@ function switchSide() {
 
     renderSwapButtons();
 }
+
+
 
 function switchToMobile(mobile_state) {
     mobile = mobile_state;
@@ -1369,6 +1504,7 @@ function setActiveHeaderBtn(){
 
 function firstStart() {
     resizeGeneral();
+
 
     if (isMobile) {
 
