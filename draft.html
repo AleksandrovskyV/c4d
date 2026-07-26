@@ -2253,6 +2253,61 @@ let lastCheckedButtons = [];
 let lastCheckedU = null;
 let lastCheckedT = null;
 
+function nextElement() {
+    const toolbarPrj = document.getElementById('toolbar_prj');
+    const toolbarScr = document.getElementById('toolbar_scr');
+    
+    function activateNextInContainer(container) {
+        // Если контейнер скрыт (через hidden), мы его полностью игнорируем
+        if (!container || container.hidden) return;
+        
+        const buttons = container.querySelectorAll('.clickfunc');
+        if (buttons.length === 0) return;
+
+        let activeIndex = -1;
+        
+        buttons.forEach((btn, index) => {
+            if (btn.classList.contains('active')) {
+                activeIndex = index;
+            }
+        });
+        
+        const nextIndex = (activeIndex + 1) % buttons.length;
+        const nextButton = buttons[nextIndex];
+
+        if (nextButton) {
+            nextButton.click();
+        }
+    }
+
+    activateNextInContainer(toolbarPrj);
+    activateNextInContainer(toolbarScr);
+}
+
+function viewCurrentCode(){
+    const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
+                                     .find(block => !block.hidden);
+
+    if (currentVisibleBlock) {
+        const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
+        
+        if (downloadLink && downloadLink.href) {
+            window.open(downloadLink.href, '_blank');
+        } 
+    } else {
+        console.warn("На экране нет активных или видимых блоков elementBlock.");
+    }
+}
+
+// BTN CONNECT
+if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
+if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
+
+if (langButton) langButton.onclick = () => switchLang();
+if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
+if (swapButton) swapButton.onclick = () => switchSide();
+if (swapMobile) swapMobile.onclick = () => switchSide();
+
 document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.clickfunc, .mclickcfunc');
     const width = window.innerWidth;
@@ -2415,62 +2470,6 @@ document.addEventListener('click', (event) => {
     }
 });
 
-function nextElement() {
-    const toolbarPrj = document.getElementById('toolbar_prj');
-    const toolbarScr = document.getElementById('toolbar_scr');
-    
-    function activateNextInContainer(container) {
-        // Если контейнер скрыт (через hidden), мы его полностью игнорируем
-        if (!container || container.hidden) return;
-        
-        const buttons = container.querySelectorAll('.clickfunc');
-        if (buttons.length === 0) return;
-
-        let activeIndex = -1;
-        
-        buttons.forEach((btn, index) => {
-            if (btn.classList.contains('active')) {
-                activeIndex = index;
-            }
-        });
-        
-        const nextIndex = (activeIndex + 1) % buttons.length;
-        const nextButton = buttons[nextIndex];
-
-        if (nextButton) {
-            nextButton.click();
-        }
-    }
-
-    activateNextInContainer(toolbarPrj);
-    activateNextInContainer(toolbarScr);
-}
-
-function viewCurrentCode(){
-    const currentVisibleBlock = Array.from(document.querySelectorAll('.elementBlock'))
-                                     .find(block => !block.hidden);
-
-    if (currentVisibleBlock) {
-        const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
-        
-        if (downloadLink && downloadLink.href) {
-            window.open(downloadLink.href, '_blank');
-        } 
-    } else {
-        console.warn("На экране нет активных или видимых блоков elementBlock.");
-    }
-}
-
-// BTN CONNECT
-if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
-if (mob_next_btn) mob_next_btn.onclick = () => nextElement();
-
-if (langButton) langButton.onclick = () => switchLang();
-if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
-if (swapButton) swapButton.onclick = () => switchSide();
-if (swapMobile) swapMobile.onclick = () => switchSide();
-
-
 document.getElementById('shortshelf')?.addEventListener('click', function(event) {
     const btn = event.target.closest('.mt_btn');
     if (!btn) return;
@@ -2494,6 +2493,8 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
         }
     }
 });
+
+// INIT AND LOADING
 
 function resizeGlobalCanvas() {
     const width = window.innerWidth;
