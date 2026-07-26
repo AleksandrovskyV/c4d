@@ -204,6 +204,7 @@ cursor: pointer;
 pointer-events: auto;
 background-color: #373c43;
 }
+
 .mbtn.text {
 background-color: var(--bgcolor);
 font-family: var(--titlefont);
@@ -716,13 +717,10 @@ function hideOverflowingButtons() {
   if (activeBtn) {
     activeBtn.hidden = false;
     
-    // Если активная кнопка не влезает в безопасную зону
     if (activeBtn.getBoundingClientRect().bottom > safeHeight) {
       const firstButton = buttons[0];
       if (firstButton && firstButton !== activeBtn) {
-        // Перемещаем ПЕРВУЮ кнопку в конец, тем самым подтягивая активную кнопку ВВЕРХ
         activeShelf.appendChild(firstButton);
-        // Обновляем список кнопок после изменения DOM структуры
         buttons = activeShelf.querySelectorAll('.mbtn');
       }
     }
@@ -744,8 +742,25 @@ function hideOverflowingButtons() {
   if (hasHiddenElements) {
     langButtonMobile.style.setProperty('margin-top', '0px', 'important');
     ghost.style.setProperty('margin-top', 'auto', 'important');
+
+    const visibleButtons = Array.from(buttons).filter(btn => !btn.hidden);
+    const lastVisibleBtn = visibleButtons[visibleButtons.length - 1];
+
+    // ЗАЩИТА: Расчет отступов запускаем только если осталась хотя бы одна видимая кнопка
+    if (lastVisibleBtn) {
+      const heightToLastBtn = lastVisibleBtn.offsetTop + lastVisibleBtn.offsetHeight;
+      let diff = (containerBottom - container.getBoundingClientRect().top - ghostHeight) - heightToLastBtn;
+      const targetMargin = Math.max(0, Math.floor(diff / 2));
+
+      langButtonMobile.style.setProperty('margin-bottom', `${targetMargin}px`, 'important');
+    } else {
+      // Если видимых кнопок не осталось совсем, обнуляем нижний маргин кнопки языка
+      langButtonMobile.style.setProperty('margin-bottom', '0px', 'important');
+    }
+    
   } else {
     langButtonMobile.style.removeProperty('margin-top');
+    langButtonMobile.style.removeProperty('margin-bottom');
     ghost.style.removeProperty('margin-top');
   }
 }
