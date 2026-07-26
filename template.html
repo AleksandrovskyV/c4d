@@ -11,10 +11,10 @@
   }
 
   const isTelegram = 
-    (typeof window.TelegramWebviewProxy !== 'undefined') || // WebView в iOS (ссылки из чата)
-    (typeof window.TelegramWebviewProxyProto !== 'undefined') || // Доп. прокси iOS
-    (typeof window.TelegramWebview !== 'undefined') || // WebView в Android
-    (typeof window.Telegram !== 'undefined') || // Telegram Mini Apps (все ОС)
+    (typeof window.TelegramWebviewProxy !== 'undefined') ||
+    (typeof window.TelegramWebviewProxyProto !== 'undefined') ||
+    (typeof window.TelegramWebview !== 'undefined') ||
+    (typeof window.Telegram !== 'undefined') ||
     ua.includes('telegram'); // Резерв для Android User-Agent
 
   if (isTelegram) {
@@ -26,6 +26,7 @@
 * {margin: 0; padding: 0; box-sizing: border-box; pointer-events: none}
 
 :root {
+--scrollbar-width: calc(100vw - 100%);
 --main_w: 75%;
 --sidebar_w: 200px;
 --sidemob_w: 12vw;
@@ -46,12 +47,16 @@
 
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
---accolor_grey: #848484;
+--accolor_grey: #858997;
+--accolor_alt: #858997;
 --ftcolor: #ababab;
 --gitcolor: #698aa8;
 
+--font_side: 28px;
 --font_foot: 24px;
 --font_perl: 18px;
+
+--sbt_color: #a4a4a4;
 }
 
 [hidden] {display: none !important;}
@@ -69,6 +74,22 @@ font-family: sans-serif;
 overflow-x: hidden;
 overflow-y: auto;
 touch-action: manipulation;
+user-select: none;
+}
+html {
+
+    scrollbar-gutter: stable;
+}
+
+/* Отключаем выделение абсолютно везде, включая ссылки и кнопки */
+a, button, .mbtn, [class*="btn"] {
+-webkit-user-select: none; /* Прослойка для iOS Safari */
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+
+/* Отключает появление системного меню при долгом тапе (iOS Callout) */
+-webkit-touch-callout: none; 
 }
 
 a, h2 { pointer-events: auto;
@@ -251,6 +272,7 @@ flex-shrink: 0;
 /*  background-color: blue; */
 margin-right: var(--spaces);
 }
+
 #shelfFake.swap{
 margin-right: 0;
 margin-left: var(--spaces);   
@@ -263,7 +285,7 @@ top: calc(var(--header_h) + var(--spaces));
 right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 
 width: var(--sidebar_w);
-height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2 );
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 8);
 
 display: flex;
 flex-direction: column;
@@ -274,7 +296,7 @@ z-index: 5000;
 }
 
 .sShelfMobile.overlap {
-height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 2);
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 8); /* *2 */
 
 min-height: calc( var(--sidebar_w)*2 );
 display: flex;
@@ -310,13 +332,21 @@ background-color: #373c43;
 background-color: var(--bgcolor);
 font-family: var(--titlefont);
 font-size: var(--font_btn);
-border: 2px solid #7f6423;
-color: #dfdfe0;
+border: 2px solid #3f4b5b;
+color: var(--ftcolor);
 
-user-select: none;
 line-height: 0;
 padding-top: 4px; 
 }
+
+html.mobile .mbtn:active {
+    background-color: #3f4b5b; /* Цвет кнопки при нажатии */
+    background-size: 75%; 
+    color: #ffffff;            /* Цвет текста при нажатии */
+    font-size: calc(var(--font_btn)*0.9);
+}
+
+
 
 .mbtn.top {
 padding-top: 0;
@@ -340,6 +370,7 @@ background-color: var(--accolor_grey);
 }
 html:not(.mobile) .mbtn:hover {
 background-color: var(--accolor);
+color: white;
 }
 
 
@@ -361,9 +392,7 @@ margin: 0;
 pointer-events: auto;
 }
 
-button:hover {
-color: var(--accolor_grey);
-}
+
 
 button.active {
 color: var(--accolor);
@@ -397,10 +426,7 @@ color: var(--name_pg);
 #usertext { 
 color: var(--name_us);
 }
-#usertext:hover{
-text-decoration: underline;
-cursor: pointer;
-}
+
 
 .base_btn {
 font-family: var(--titlefont);
@@ -450,6 +476,121 @@ pointer-events: none;
 }
 
 /* Paste Content */
+h2.sidelink{
+margin-left: 140px;
+font-size: var(--font_side);
+padding: 3vh 0px;
+}
+
+#webSidebar {
+position: fixed; 
+
+top: calc(var(--header_h) + var(--spaces));
+right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
+
+display: flex; 
+flex-direction: column;
+margin-bottom: auto;
+z-index: 9000;
+
+}
+
+#webSidebar.swap{
+left: calc( ( ( 100% - var(--main_w) ) / 2 )  );
+right: auto;
+}
+
+
+#webSidebar button{
+font-family: var(--sidefont);
+font-size: var(--font_side); 
+color: var(--sbt_color);
+background-color: var(--bgcolor);
+text-decoration: underline;
+text-align: left;
+margin-left: 140px;
+line-height: 1.6;
+cursor: pointer;
+pointer-events: auto;
+}
+
+#webSidebar button:hover{
+color: var(--accolor);
+}
+#webSidebar button:active{
+color: #6d6a65;
+}
+
+#kpr{
+color: transparent;
+user-select: none;
+pointer-events: none;
+}
+
+.sidebtn {
+font-family: var(--sidefont);
+font-size: var(--font_side); 
+color: var(--sbt_color);
+pointer-events: auto;
+text-align: left;
+margin-left: 140px;
+cursor: pointer;
+white-space: nowrap; 
+font-kerning: normal; 
+letter-spacing: -0.03em;
+line-height: 1.6;
+background-color: rgba(44, 47, 52, 0.5);
+}
+.sidebtn.active{
+}
+
+#webSidebar.swap .sidebtn{
+margin-left: 0px !important;
+}
+#webSidebar.swap .sidelink{
+margin-left: 0px !important;
+}
+
+.sid_tex {
+text-decoration: underline;
+}
+.sel_pre{
+color: var(--sbt_color);
+}
+.sel_pre.a.active{
+color: var(--fp_color);
+}
+.sel_pre.b.active{
+color: var(--mp_color);
+}
+.sel_pre.c.active{
+color: var(--hp_color);
+}
+.sel_pre.d.active{
+color: var(--lc_color);
+}
+.sel_pre.e.active{
+color: var(--ar_color);
+}
+
+.sid_tex.active{
+color: #565656;
+}
+.sidebtn:hover {
+color: var(--accolor);
+}
+.rem_und {
+display: inline-block;
+font-family: var(--sidefont);
+font-size: var(--font_side);
+margin-left: 31px;
+color: var(--bgcolor);
+pointer-events: none;
+text-align: left;
+letter-spacing: -0.03em;
+line-height: 1.6;
+}
+
 
 /* Mobile */
 html.mobile #bottomPageMobile{
@@ -470,6 +611,7 @@ html.mobile #gitline{
         text-decoration: none;
         cursor: default;
         pointer-events: none;
+
     }
 
     .hideMobile{ display: none !important;
@@ -478,7 +620,11 @@ html.mobile #gitline{
 
 /* Web */
 @media (min-width: 780px) {
-
+    #usertext:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    filter: brightness(1.20); 
+    }
     .hideWeb{ display: none !important;
     }
 }
@@ -490,12 +636,12 @@ html.mobile #gitline{
     --footer_h: 100px;
     --spaces: 3px;
     --font_head: 60px;
-    --font_btn: 32px !important;
+    --font_btn: 28px !important;
     --sidebar_w: 64px !important;
 
     --font_title: 20px;
     --font_mtitl: 22px;
-    --font_icon: 22px;
+    --font_side: 22px;
     --font_tube: 14px;
     --font_base: 12px;
     --font_perl: 13px;
@@ -550,13 +696,25 @@ html.mobile #gitline{
           
           <div    id="scrbtn"     class="base_btn mfunc"     tabindex="0"  data-func="scr" >
                 <span class="headDivider hideMobile">/  </span> 
-                <span class="utContent undlink " >SCRIPTS</span> 
+                <span class="utContent undlink " >SCRIPT</span> 
           </div>
 
     </div>
 </div>
 
-
+      <div id="webSidebar" class=" hideMobile">
+            <div style="height: 2.5vh;"></div>
+            <div    data-func="filletplane"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
+            <div    data-func="mp4vidoc"      class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
+            <div    data-func="helpers"       class="sidebtn cfunc" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
+            <div    data-func="linked_camera" class="sidebtn cfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
+            
+            <h2  class="sidelink"><span id="kpr" hidden>- </span><a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+            <div    data-func="prjbtn" class="base_btn mfunc" tabindex="0" id="prjbtn" ><span id="preproj">/</span> <span class="undlink">PRJECT</span></div>
+            <div style="height: 2.5vh;"></div>
+            <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
+            <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
+        </div>
 <div id="sideShelfMobile" class="sShelfMobile" hidden> 
     <div class="mbtn text top" id="langButtonMobile" >RU</div>
 
@@ -832,15 +990,27 @@ function switchSide() {
     const contentViewer = document.getElementById('contentViewer');
     const shelfFake = document.getElementById('shelfFake');
     
+    const webSidebar = document.getElementById('webSidebar');
+    const kpr = document.getElementById('kpr')
+    const preproj = document.getElementById('preproj')
+    
     if(sideShelfMobile && ghostShelfMobile && contentViewer){
         sideShelfMobile.classList.toggle('swap');
         ghostShelfMobile.classList.toggle('swap');
         contentViewer.classList.toggle('swap');
     }
+    if(webSidebar){
+        webSidebar.classList.toggle('swap');
+    }
 
     if(switchSides){
         container.insertBefore(shelfFake,contentViewer); 
+        kpr.hidden = false;
+        preproj.hidden = true;
+
     }else{
+        kpr.hidden = true;
+        preproj.hidden = false;
         container.insertBefore(contentViewer, shelfFake); 
     }
 
@@ -1006,7 +1176,7 @@ function headerTextShorter() {
         if (nowWidth < currentMobileWidth * 0.7) {
             lastbtnText.textContent = "SCR" + "\u00A0";
         } else {
-            lastbtnText.textContent = "SCRIPTS";
+            lastbtnText.textContent = "SCRIPT";
         }
     };
     
@@ -1338,7 +1508,7 @@ document.addEventListener('click', (event) => {
             
             changeMobileDownloadBtn(false);
 
-        } else if (currentBtn.id === "sepa") {
+        } else if (currentBtn.id === "usertext") {
             if (sizeIsMobile) {
                 lastCheckedMainTabs.forEach(btn => btn && btn.classList.remove("active"));
                 lastCheckedMainTabs = [];
@@ -1369,7 +1539,7 @@ document.addEventListener('click', (event) => {
             });
         }
 
-        // 2. Сортировка SCRIPTS
+        // 2. Сортировка SCRIPT
         if (!isMobile && !sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
@@ -1378,7 +1548,7 @@ document.addEventListener('click', (event) => {
         }
 
 
-        // 3. Сортировка PROJECTS
+        // 3. Сортировка PRJECT
         if (!isMobile && !sizeIsMobile &&currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
@@ -1386,8 +1556,8 @@ document.addEventListener('click', (event) => {
             });
         }
 
-        // 4. Сортировка для SEPA (Показать всё, кроме вложенных скриптов)
-        if (!isMobile && currentBtn.classList.contains('mfunc') && currentBtn.id === "sepa") {
+        // 4. Сортировка для usertext (Показать всё, кроме вложенных скриптов)
+        if (!isMobile && currentBtn.classList.contains('mfunc') && currentBtn.id === "usertext") {
             document.querySelectorAll('.elementBlock').forEach(block => {
                 block.hidden = (block.dataset.tag === "script_inpack");
             });
