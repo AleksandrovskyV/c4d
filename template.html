@@ -661,6 +661,11 @@ let gifmobileflag = false;
 let isTransitBlocked = false;
 let shifting = false;
 
+let lastCheckedMainTabs = []; 
+let lastCheckedButtons = []; 
+let lastCheckedU = null;
+let lastCheckedT = null;
+
 function soloCheck(state) {
      // Выбор активного элемента на странице
 
@@ -787,8 +792,6 @@ function switchSide() {
     const sideShelfMobile = document.getElementById('sideShelfMobile');
     const ghostShelfMobile = document.getElementById('ghostShelfMobile');
     
-
-
     const container = document.getElementById('mainPage');
     const contentViewer = document.getElementById('contentViewer');
     const shelfFake = document.getElementById('shelfFake');
@@ -824,7 +827,6 @@ function switchSide() {
     }
 
     renderSwapButtons();
-
 }
 
 
@@ -834,13 +836,6 @@ function switchToMobile(mobile_state) {
     const hide_flag = mobile ? false : true;
     const unhide_flag = mobile ? true : false;
 
-    const webSidebar =  document.getElementById('webSidebar');
-    const webTrickbar =  document.getElementById('webTrickbar');
-
-    if(webSidebar && webTrickbar){
-        webSidebar.hidden = unhide_flag;
-        webTrickbar.hidden = unhide_flag;       
-    }
     document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
     document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
     document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
@@ -1152,10 +1147,7 @@ function switchLang() {
 
 // BTN LOGIC
 
-let lastCheckedMainTabs = []; 
-let lastCheckedButtons = []; 
-let lastCheckedU = null;
-let lastCheckedT = null;
+
 
 function nextElement() {
     const toolbarPrj = document.getElementById('shelfProject');
@@ -1264,6 +1256,7 @@ document.addEventListener('click', (event) => {
         lastCheckedButtons.forEach(btn => {
             if (btn) btn.classList.remove("active");
         });
+
         if (lastCheckedU) lastCheckedU.classList.remove("active");
         if (lastCheckedT) lastCheckedT.classList.remove("active");
 
@@ -1288,6 +1281,7 @@ document.addEventListener('click', (event) => {
             shelfScripts.hidden = true;
             
             changeMobileDownloadBtn(true);
+
 
         } else if (currentBtn.id === "scrbtn") {
             const btnWeb = document.getElementById('scrbtn');
@@ -1322,6 +1316,7 @@ document.addEventListener('click', (event) => {
         
         // Зажигаем текущие кликнутые элементы и спаны
         lastCheckedButtons.forEach(btn => btn.classList.add("active"));
+
         if (lastCheckedU) lastCheckedU.classList.add("active");
         if (lastCheckedT) lastCheckedT.classList.add("active");
 
@@ -1357,6 +1352,20 @@ document.addEventListener('click', (event) => {
             });
         }
 
+        // 2. Сортировка SCRIPTS на мобильном
+        if (sizeIsMobile && isMobile &&currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
+            const container = document.getElementById('shelfScripts');
+            const firstButton = container.firstElementChild;
+            firstButton.classList.add("active");
+        }
+
+        // 3. Сортировка PROJECTS на мобильном 
+        if (sizeIsMobile && isMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+            const container = document.getElementById('shelfProject');
+            const firstButton = container.firstElementChild;
+            firstButton.classList.add("active");
+
+        }
         hideOverflowingButtons();
     }
 
