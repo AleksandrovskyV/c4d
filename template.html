@@ -675,13 +675,18 @@ function switchToMobile(mobile_state) {
 
 function hideOverflowingButtons() {
   const container = document.getElementById('sideShelfMobile');
-  const buttons = container.querySelectorAll('#shelfScripts .mbtn, #shelfProject .mbtn');
+  const ghost = document.getElementById('ghostOverlap');
+  const switchLangMobile = document.getElementById('switchLangMobile');
+  
+  const activeShelf = container.querySelector('#shelfScripts:not([hidden]), #shelfProject:not([hidden])');
+  
+  if (!activeShelf) return;
+
+  const buttons = activeShelf.querySelectorAll('.mbtn');
 
   const containerBottom = container.getBoundingClientRect().bottom;
-  const ghost = document.getElementById('ghostOverlap');
   const ghostHeight = ghost.offsetHeight;
-  const safeHeight = containerBottom - ghostHeight*0.8;
-  const switchLangMobile = document.getElementById('switchLangMobile');
+  const safeHeight = containerBottom - ghostHeight * 0.8;
 
   let hasHiddenElements = false;
   
@@ -698,12 +703,11 @@ function hideOverflowingButtons() {
   if (hasHiddenElements) {
     switchLangMobile.style.setProperty('margin-top', '0px', 'important');
     ghost.style.setProperty('margin-top', 'auto', 'important');
-  } else 
-    switchLangMobile.style.removeProperty('margin-top', '0px', 'important');{
+  } else {
+    switchLangMobile.style.removeProperty('margin-top');
     ghost.style.removeProperty('margin-top');
   }
 }
-
 
 /// USER INTERFACE - TEXT AND LANG
 
