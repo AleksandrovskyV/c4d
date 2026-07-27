@@ -1244,7 +1244,12 @@ function headerTextShorter() {
         const currentMobileWidth = typeof mobileWidth !== 'undefined' ? mobileWidth : 768;
 
         if (nowWidth < currentMobileWidth * 0.7) {
-            lastbtnText.textContent = "SCR" + "\u00A0";
+            if(swapFlag) lastbtnText.textContent = "SCR";
+            if(!swapFlag) lastbtnText.textContent = "SCR" + "\u00A0";
+
+            if(!swapFlag) lastbtnText.textContent = "C4D";
+            if(swapFlag) lastbtnText.textContent = "C4D" + "\u00A0";
+
         } else {
             lastbtnText.textContent = "SCRIPTS";
         }
