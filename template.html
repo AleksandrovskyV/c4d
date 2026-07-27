@@ -48,8 +48,8 @@
 --font_btn: 32px;
 
 --font_title: 38px;
---font_tube: 22px;
---font_base: 20px;
+--font_midl: 22px;
+--font_base: 19px;
 
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
@@ -96,7 +96,7 @@
 --font_btn: 28px !important;
 
 --font_title: 20px;
---font_tube: 14px;
+--font_midl: 14px;
 --font_base: 12px;
 
 
@@ -144,7 +144,9 @@ user-select: none;
 -webkit-touch-callout: none; 
 }
 
-a,p,h2 { pointer-events: auto;
+a,p,h2 { 
+pointer-events: auto;
+user-select: auto !important;
 }
 
 h2{ 
@@ -159,8 +161,9 @@ font-kerning: normal;
 letter-spacing: -0.03em;
 margin-bottom: 10px;
 }
-
-h2.rtext {text-align: right;}
+h2.rtext {
+text-align: right;
+}
 
 p{
 color: #a3a3a3;
@@ -168,36 +171,49 @@ display: block;
 font-size: var(--font_base);
 padding-top: 2px;
 padding-bottom: 4px;
-line-height: 1.2;
+line-height: 1.3;
 letter-spacing: +0.01em;
 }
 
-p .marked{ color: #e0dfdf;
+.based, .based p {
+    font-size: var(--font_base); 
+    line-height: 1.5 !important;
+}
+
+.tinpack, .tinpack p{
+font-size: var(--font_base); 
+line-height: 1.3
+}
+
+.italy p{
+font-style: italic;
+}
+.marked{ 
+color: #e0dfdf;
 }
 
 p .link { color: #dd9f17; }
 p .link:hover { color: #a3a3a3;}
 
-.texlink { 
+.plink { 
 letter-spacing: +0.02em;
 color: #ababab; 
 }
-.texlink.yt:hover { color: #f74545;}
-
-.texlink.dn { 
-margin-left: auto;
+.plink.yt:hover { color: #f74545;
 }
-.texlink.dn:hover { color: var(--accolor);}
 
-a.link { 
-color: #ababab; 
+.plink.dn { margin-left: auto;
 }
-a.link.b {color: #279ae3}
+.plink.dn:hover { color: var(--accolor);}
 
-a.link.drs { text-decoration: none; }
-
-a.link:hover { color: #a3a3a3; }
-
+a.link {  color: #ababab; 
+}
+a.link.b { color: #279ae3
+}
+a.link.drs { text-decoration: none; 
+}
+a.link:hover { color: #a3a3a3; 
+}
 a.gitlink { color: var(--ftcolor); 
 }
 a.gitlink:hover { color: var(--accolor); 
@@ -207,6 +223,16 @@ a.gitlink_mob { color: var(--gitcolor);
 a.gitlink_mob:hover { color: var(--accolor_grey);
 }
 
+.fileLine{
+width: 540px; 
+line-height: 1.5; 
+padding-bottom: 14px;
+}
+.fileText{
+font-size: var(--font_perl); 
+color: #757575; 
+font-weight: 200   
+}
 .titleLabel{
 color: #dfdfe0;
 font-size: var(--font_title);
@@ -214,7 +240,9 @@ font-kerning: normal;
 letter-spacing: -0.03em;
 padding-bottom: 1.4vh;
 }
-
+.tMidText{
+font-size: var(--font_midl)
+}
 
 .linePage {
 position: fixed; 
@@ -754,8 +782,9 @@ flex-direction: row;
 }
 
 .aboutIconRow { 
-min-width: 424px;
-width: 460px;
+min-width: 460px;
+/*width: 460px;*/
+padding-right: 30px;
 }
 
 .about_extend { 
@@ -821,8 +850,23 @@ padding-bottom: 1vh;
 padding-bottom: 10px;
 }
 
+/* Фиксированная зона сетки 
+.mobextend {
+  width: 500px;
+}
 
+.mobextend b{
+  width: 540px;
+}
 
+.mobextend c{
+  width: 520px;
+}
+
+.mobextendG{
+  width: 520px;
+}
+*/
 
 /*ShortShelf*/
 
@@ -881,6 +925,7 @@ padding-bottom: 2vh;
     }
 }
 
+
 /* Web */
 @media (min-width: 780px) {
     #usertext:hover{
@@ -891,7 +936,14 @@ padding-bottom: 2vh;
     .hideWeb{ display: none !important;
     }
 }
-
+@media (max-width: 1790px){
+    .gif_placeholder_web {
+    padding-right: 0px;
+    }
+    .elementBlock{
+        padding-bottom: 4vh;
+    }
+}
 /* DPI Scale */
 @media (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), 
        (min-resolution: 192dpi) and (orientation: landscape) {
@@ -988,7 +1040,10 @@ html.mobile {
 
     <div    class="menusp"> </div>
 
-    <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
+    <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0">
+        <span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> 
+        <span class="rem_und"></span>Workflow</span> 
+    </div>
     <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
 </div>
 
@@ -1058,8 +1113,8 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" style="margin-top: 1.2vh;" >
 
-                                <p class="about_us" style="font-size: var(--font_tube); font-style: italic;">It`s a plane.. And it has fillets "</p>
-                                <p class="about_ru" style="font-size: var(--font_tube); font-style: italic;" hidden>Плоскость c глубиной и мягкими углами "</p>
+                                <p class="about_us tMidText italy" >It`s a plane.. And it has fillets "</p>
+                                <p class="about_ru tMidText italy" hidden>Плоскость c глубиной и мягкими углами "</p>
 
                                 <div class="rowline pad jsb">
                                     <div class="tested">
@@ -1069,7 +1124,7 @@ html.mobile {
                                         </p>
                                     </div>
                                     <p class="downlink">
-                                        <a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                        <a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Filled%20Plane.py"
                                         >download</a>
                                     </p>
@@ -1127,12 +1182,12 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
+                                <p class="about_us based">
                                 Button for fast writing an <span class="marked">MP4</span> file with <span class="marked">_#</span><br>
                                 - version token. Uses active "Render Settings"<br>
                                 </p>
 
-                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
+                                <p class="about_ru based" hidden>
                                 Кнопка быстрого рендера <span class="marked">MP4</span> файла с <span class="marked">_#</span><br>
                                 - номером итерации. Использует текущие<br>"Render Settings"...<br>
                                 </p>
@@ -1141,8 +1196,8 @@ html.mobile {
                                      <div class="tested">
                                           <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R23</span></p>
                                      </div>
-                                     <p><a class="texlink yt" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
-                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p><a class="plink yt" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
+                                     <p class="downlink"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
                                         >download</a></p>
                                 </div>
@@ -1164,7 +1219,7 @@ html.mobile {
                                 </p>
                             </div>
                             
-                            <div id="aboutControlsText" class="about_с_ru" style="width: 560px;" hidden> <p>
+                            <div id="aboutControlsText" class="about_с_ru mobextendG"  hidden> <p>
                                   <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
@@ -1226,20 +1281,20 @@ html.mobile {
 
                             <div class="aboutIconRow" style="margin-top: 0px;" >
 
-                                <h2 class="titleLabel" style="font-size: var(--font_tube); display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px; color: #999">+ </span>
+                                <h2 class="titleLabel tMidText" style="display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px; color: #999">+ </span>
                                 Matrix Preserve</span></span> 
                                 </h2>
 
-                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.3;">
+                                <p class="about_us tinpack" >
                                 Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
                                 </p>
 
-                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.3;" hidden>
+                                <p class="about_ru tinpack" hidden>
                                 Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
                                 </p>
 
                                 <div class="rowline jsb "style="justify-content: left;">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py"
                                         >download</a>
                                     </p>
@@ -1255,19 +1310,19 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <h2 class="titleLabel" style="font-size: var(--font_tube); display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
+                                <h2 class="titleLabel tMidText" style="display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
                                 </h2>
 
-                                <p class="about_us_s" style="font-size: var(--font_base); line-height: 1.3;">
+                                <p class="about_us_s tinpack" >
                                     Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_s" style="font-size: var(--font_base); line-height: 1.3;" hidden>
+                                <p class="about_ru_s tinpack"  hidden>
                                     Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
                                 </p>
 
                                 <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py"
                                         >download</a></p>
                                 </div>
@@ -1282,24 +1337,24 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <h2 class="titleLabel" style="font-size: var(--font_tube); display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
+                                <h2 class="titleLabel tMidText" style="display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
                                 </h2>
 
-                                <p class="about_us_g" style="font-size: var(--font_base); line-height: 1.3;">
+                                <p class="about_us_g tinpack" >
 
                                 Swap 2 selected texture tags in Object Manager<br>
                                 * If select 2 objects - swap last texture tags<br>
                                 * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_g" style="font-size: var(--font_base); line-height: 1.3;" hidden>
+                                <p class="about_ru_g tinpack"  hidden>
                                 Смена 2 выбранных tex тегов в ObjectManager<br>
                                 * Выбирая 2 объекта, меняет их крайние теги<br>
                                 * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
                                 </p>
 
                                 <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
                                 </div>
@@ -1358,21 +1413,21 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us_g" style="font-size: var(--font_base); line-height: 1.3;">
+                                <p class="about_us_g pack tinpack" >
 
                                 Swap 2 selected texture tags in Object Manager<br>
                                 * If select 2 objects - swap last texture tags<br>
                                 * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_g" style="font-size: var(--font_base); line-height: 1.3;" hidden>
+                                <p class="about_ru_g tinpack"  hidden>
                                 Смена 2 выбранных tex тегов в ObjectManager<br>
                                 * Выбирая 2 объекта, меняет их крайние теги<br>
                                 * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
                                 </p>
 
                                 <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
                                 </div>
@@ -1424,16 +1479,16 @@ html.mobile {
 
                             <div class="aboutIconRow" style="margin-top: 0px;" >
 
-                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.3;">
+                                <p class="about_us tinpack" >
                                 Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
                                 </p>
 
-                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.3;" hidden>
+                                <p class="about_ru tinpack"  hidden>
                                 Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
                                 </p>
 
                                 <div class="rowline jsb "style="justify-content: left;">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py"
                                         >download</a>
                                     </p>
@@ -1491,16 +1546,16 @@ html.mobile {
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
-                                <p class="about_us_s" style="font-size: var(--font_base); line-height: 1.3;">
+                                <p class="about_us_s tinpack" >
                                     Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
                                 </p>
 
-                                <p class="about_ru_s" style="font-size: var(--font_base); line-height: 1.3;" hidden>
+                                <p class="about_ru_s tinpack"  hidden>
                                     Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
                                 </p>
 
                                 <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py"
                                         >download</a></p>
                                 </div>
@@ -1559,11 +1614,11 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
+                                <p class="about_us based" >
                                 Сamera linked to the active one via CameraMorph tag. Includes optional Xpresso to expand your render area while strictly maintaining the original focal length
                                                                 </p>
 
-                                                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
+                                                                <p class="about_ru based" hidden>
                                 Камера привязанная к активной, через CameraMorph тег. Включает возможность расширить зону рендера без искажения фокусного расстояния
                                                                 </p>
 
@@ -1571,7 +1626,7 @@ html.mobile {
                                                                      <div class="tested">
                                                                           <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R20</span></p>
                                                                      </div>
-                                                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                                                     <p class="downlink"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                                                         href="https://vsky.space/c4d/vsky.scripts/Linked%20Camera.py"
                                                                         >download</a></p>
                                                                 </div>
@@ -1582,11 +1637,11 @@ html.mobile {
 
                                                     <div class="about_placeholder_web">
                                                         
-                                                        <div class="about_extend" style="width: 500px;">
+                                                        <div class="about_extend mobextend">
                                                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Особенности:" data-us="Features:">Features:</h2></div>
 
                                             
-                                                            <div id="aboutControlsText" class="about_с_us" > <p style="width: 540px; line-height: 1.5;">
+                                                            <div id="aboutControlsText" class="about_с_us based" > <p class="mobextend b">
                                 - Camera is created on the top level, ready for baking the original PSR animation data<br>
                                 - Ready-to-use Render Settings tailored for the expanded region via Xpresso tag<br>
                                 - The entire сamera setup can be completely removed along with Render Settings in one click<br>
@@ -1594,8 +1649,8 @@ html.mobile {
                                 </p>
                             </div>
                             
-                            <div id="aboutControlsText" class="about_с_ru" hidden>  
-                                <p style="width: 520px; line-height: 1.5;">
+                            <div id="aboutControlsText" class="about_с_ru based" hidden>  
+                                <p class="mobextend c">
                                 - Камера создаётся на верхнем уровне, что удобно для запекания исходной PSR-анимации<br>
                                 - Для расширенной области рендера через Xpresso тег создаётся готовый профиль Render Settings<br>
                                 - Опция для удаления добавленной камеры, включая профиль "Render Settings", в один клик<br>
@@ -1648,15 +1703,15 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
+                                <p class="about_us based" >
                                 Extended this
-                                <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">workflow</a> for 
+                                <a class="plink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">workflow</a> for 
                                 <br>Arnold String Attribute<br>Automating it...?
                                 </p>
 
-                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
+                                <p class="about_ru based" hidden>
 
-                                <a class="texlink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">Расширенный</a> процесс
+                                <a class="plink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">Расширенный</a> процесс
                                 <br>работы с Arnold String Attribute<br>Cильно его ускоряя...? 
                                 </p>
 
@@ -1664,7 +1719,7 @@ html.mobile {
                                      <div class="tested">
                                           <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">??</span></p>
                                      </div>
-                                     <p class="downlink"><a class="texlink dn lngsup" data-ru="скачать" data-us="download" 
+                                     <p class="downlink"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/ARND_STRING_ATR_EXT/ARND_STRING_ATR_EXT_V2.zip"
                                         >download</a></p>
                                 </div>
@@ -1675,24 +1730,24 @@ html.mobile {
 
                     <div class="about_placeholder_web">
                         
-                        <div class="about_extend" style="width: 500px;">
+                        <div class="about_extend" class="mobextend">
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Особенности:" data-us="Features:">Features:</h2></div>
 
             
-                            <div id="aboutControlsText" class="about_с_us" > 
-                                <p style="width: 540px; line-height: 1.5;">
+                            <div id="aboutControlsText" class="about_с_us based" > 
+                                <p class="mobextend b">
                                 - Manual path setup for a selected object<br>
                                 - PBR texture slots & randomization<br>
-                                - Workflow tutorial on <a class="texlink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+                                - Workflow tutorial on <a class="plink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
 
                                 </p>
                             </div>
                             
-                            <div id="aboutControlsText" class="about_с_ru" hidden>  
-                                <p style="width: 520px; line-height: 1.5;">
+                            <div id="aboutControlsText" class="about_с_ru based" hidden>  
+                                <p class="mobextend c">
                                 - Можно точечно задать путь у выбранного объекта<br>
                                 - Наличие слотов для PBR-текстур и рандомизация<br>
-                                - Разбор процесса на <a class="texlink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+                                - Разбор процесса на <a class="plink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
                                 </p>
                             </div>
 
@@ -1741,11 +1796,11 @@ html.mobile {
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
 
-                                <p class="about_us" style="font-size: var(--font_base); line-height: 1.5;">
+                                <p class="about_us based">
                                     Built to <br>be tested...
                                 </p>
 
-                                <p class="about_ru" style="font-size: var(--font_base); line-height: 1.5;" hidden>
+                                <p class="about_ru based" hidden>
                                     Создан через<br>тестирование...
                                 </p>
 
@@ -1755,30 +1810,29 @@ html.mobile {
 
                     <div class="about_placeholder_web">
                         
-                        <div class="about_extend" style="width: 500px;">
+                        <div class="about_extend mobextend">
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Файлы:" data-us="Files:">Files:</h2></div>
-
             
                             <div id="aboutControlsText" class="about_с_us" > 
-                                <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
-                                    01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
-                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
+                                <p class="fileLine">
+                                    01. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
+                                <span class="fileText">
                                 - Low-poly mouth setup with small trick * Pose Morph Tag<br></span></p>
-                                <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
-                                    02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
-                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
+                                <p class="fileLine" >
+                                    02. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
+                                <span class="fileText">
                                 - Prepared Octane AOVs * with .aep files include...<br></span>
                                 </p>
                             </div>
                             
                             <div id="aboutControlsText" class="about_с_ru" hidden>  
-                                 <p style="width: 540px; line-height: 1.5;padding-bottom: 14px;">
-                                    01. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
-                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
+                                 <p class="fileLine">
+                                    01. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
+                                <span class="fileText">
                                 - Простая установка рта с хитростью * Pose Morph Tag<br></span></p>
-                                <p style="width: 540px; line-height: 1.5; padding-bottom: 14px;" >
-                                    02. <a class="texlink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
-                                <span style="font-size: var(--font_perl); color: #757575; font-weight: 200 !important;">
+                                <p class="fileLine" >
+                                    02. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
+                                <span class="fileText">
                                 - Подготовленные OctaneAOVs * содержит .aep<br></span>
                                 </p>
                             </div>
@@ -2520,7 +2574,7 @@ function viewCurrentCode(){
                                      .find(block => !block.hidden);
 
     if (currentVisibleBlock) {
-        const downloadLink = currentVisibleBlock.querySelector('.texlink.dn');
+        const downloadLink = currentVisibleBlock.querySelector('.plink.dn');
         
         if (downloadLink && downloadLink.href) {
             window.open(downloadLink.href, '_blank');
@@ -2543,7 +2597,7 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
     }else{
         if (element) {
             console.log(`Скачивание скрипта для: ${funcName}`);
-            const downloadLink = element.querySelector('.texlink.dn');
+            const downloadLink = element.querySelector('.plink.dn');
             if (downloadLink && downloadLink.href) {
                 window.open(downloadLink.href, '_blank');
             } 
