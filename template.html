@@ -912,22 +912,7 @@ function soloCheck(state) {
             });
         }
 
-        const screenCenterY = window.innerHeight / 4;
         let closestBlock = null;
-        let minDifference = Infinity;
-        /*
-        blocks.forEach(block => {
-            const rect = block.getBoundingClientRect();
-            const blockCenterY = rect.top + rect.height / 2;
-            const difference = Math.abs(blockCenterY - screenCenterY);
-
-            if (difference < minDifference) {
-                minDifference = difference;
-                closestBlock = block;
-            }
-        });
-        */
-
         const topOffset = 180; 
 
         for (let i = 0; i < blocks.length; i++) {
@@ -957,7 +942,6 @@ function soloCheck(state) {
             buttons.forEach(btn => {
                 if (btn.dataset.func === targetBtnName) {
                     btn.classList.add('active');
-                    //console.log(btn);
                     lastCheckedButtons = [btn].filter(Boolean);
                 } else {
                     btn.classList.remove('active');
@@ -1888,11 +1872,6 @@ function resizeGeneral() {
     if(isMobileWidth){
       hideOverflowingButtons();  
     } 
-
-    //const zagl = document.getElementById('zagl');
-    //zagl.classList.add("close"); 
-    //zagl.hidden = true;
-
 }
 
 
