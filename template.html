@@ -244,7 +244,7 @@ display: flex;
 flex-direction: column;
 flex-grow: 1;
 margin-top: var(--spaces);
-margin-right: calc(var(--spaces)*2);
+margin-right: calc(var(--spaces)); /**2*/
 min-width: 0;
 }
 #contentViewer.swap {
@@ -275,17 +275,17 @@ margin-right: var(--spaces);
 
 #shelfFake.swap{
 margin-right: 0;
-margin-left: var(--spaces);   
+margin-left: calc(var(--spaces)*2);   
 }
 
-.sShelfMobile {
+.shelfMobile {
 position: fixed; 
 
 top: calc(var(--header_h) + var(--spaces));
-right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
+right: calc( ( ( 100% - var(--main_w) ) / 2 )  ); /* + var(--spaces)  */
 
 width: var(--sidebar_w);
-height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 8);
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 7);
 
 display: flex;
 flex-direction: column;
@@ -295,8 +295,8 @@ flex-grow: 0;
 z-index: 5000;
 }
 
-.sShelfMobile.overlap {
-height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 8); /* *2 */
+.shelfMobile.overlap {
+height: calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 7); /* *2 */
 
 min-height: calc( var(--sidebar_w)*2 );
 display: flex;
@@ -308,7 +308,7 @@ background-color: transparent;
 pointer-events: none;
 }
 
-.sShelfMobile.swap {
+.shelfMobile.swap {
 left: calc( ( ( 100% - var(--main_w) ) / 2 )  );
 right: auto;
 }
@@ -391,8 +391,6 @@ border: 0px solid transparent;
 margin: 0;
 pointer-events: auto;
 }
-
-
 
 button.active {
 color: var(--accolor);
@@ -715,7 +713,7 @@ html.mobile #gitline{
             <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
             <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
         </div>
-<div id="sideShelfMobile" class="sShelfMobile" hidden> 
+<div id="sideShelfMobile" class="shelfMobile" hidden> 
     <div class="mbtn text top" id="langButtonMobile" >RU</div>
 
     <div id="shelfScripts">
@@ -734,7 +732,7 @@ html.mobile #gitline{
 
     <div class="mbtn text bot tr" id="ghostOverlap"></div>
 
-    <div id="ghostShelfMobile" class="sShelfMobile overlap" >
+    <div id="ghostShelfMobile" class="shelfMobile overlap" >
         <div class="mbtn text bot up" id="nextElemBtn">▼</div>
     </div>
 
@@ -994,10 +992,12 @@ function switchSide() {
     const kpr = document.getElementById('kpr')
     const preproj = document.getElementById('preproj')
     
-    if(sideShelfMobile && ghostShelfMobile && contentViewer){
+    if(sideShelfMobile && ghostShelfMobile && contentViewer && shelfFake){
         sideShelfMobile.classList.toggle('swap');
         ghostShelfMobile.classList.toggle('swap');
         contentViewer.classList.toggle('swap');
+        shelfFake.classList.toggle('swap');
+        
     }
     if(webSidebar){
         webSidebar.classList.toggle('swap');
@@ -1110,6 +1110,10 @@ function hideOverflowingButtons() {
       const heightToLastBtn = lastVisibleBtn.offsetTop + lastVisibleBtn.offsetHeight;
       let diff = (containerBottom - container.getBoundingClientRect().top - ghostHeight) - heightToLastBtn;
       const targetMargin = Math.max(0, Math.round(diff / 4) * 2);
+
+      if(targetMargin<0){
+
+      }
 
       langButtonMobile.style.setProperty('margin-bottom', `${targetMargin}px`, 'important');
     } else {
