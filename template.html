@@ -1177,6 +1177,7 @@ function hideOverflowingButtons() {
 /// USER INTERFACE - TEXT AND LANG
 
 /// этот метод лучше полностью перенести на css
+/// этот метод лучше полностью перенести на css
 function headerTextShorter() {
     const headerPage = document.getElementById('headerPage');
 
@@ -1187,7 +1188,7 @@ function headerTextShorter() {
 
     // Выбираем первый активный utContent внутри namepage
     const namepageText = namepage ? namepage.querySelector('.utContent') : null;
-    const lastbtnText  = endsection ? endsection.querySelector('.utContent') : null;
+    const scrBtn  = endsection ? endsection.querySelector('.utContent') : null;
 
     const nameCases = {
         'namepage': ['C4D', 'CINEMA 4D'], 
@@ -1207,7 +1208,7 @@ function headerTextShorter() {
     const updateDOM = () => {
         const nowWidth = window.innerWidth;
 
-        const allRules = (namepageText && usertext && lastbtnText && pearlLine);
+        const allRules = (namepageText && usertext && scrBtn && pearlLine);
         if (!allRules) return;
 
 
@@ -1244,15 +1245,26 @@ function headerTextShorter() {
         const currentMobileWidth = typeof mobileWidth !== 'undefined' ? mobileWidth : 768;
 
         if (nowWidth < currentMobileWidth * 0.7) {
-            if(swapFlag)  lastbtnText.textContent = "SCR";
-            if(!swapFlag) lastbtnText.textContent = "SCR" + "\u00A0";
-
-            if(!swapFlag) namepageText.textContent = "C4D";
-            if(swapFlag)  namepageText.textContent = "C4D" + "\u00A0";
-
-        } else {
-            lastbtnText.textContent = "SCRIPTS";
+            scrBtn.textContent = "SCR";
+        }else{
+            scrBtn.textContent = "SCRIPTS";
         }
+
+        const btnlast = headerPage.lastElementChild;
+        const lastText = btnlast.querySelector('.utContent');
+        const nowText = lastText.textContent;
+        
+        if (nowWidth < currentMobileWidth * 0.7) {
+
+            
+            if(lastText.textContent === "C4D"){
+                lastText.textContent = nowText + "_";
+            }else{
+                lastText.textContent = nowText + "\u00A0";
+            }
+            console.log("lastText", nowText, lastText.textContent);
+        }
+
     };
     
   updateDOM();
