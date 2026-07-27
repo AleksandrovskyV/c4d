@@ -77,8 +77,7 @@ touch-action: manipulation;
 user-select: none;
 }
 html {
-
-    scrollbar-gutter: stable;
+scrollbar-gutter: stable; /*места под скролл чтобы не прыгало*/
 }
 
 /* Отключаем выделение абсолютно везде, включая ссылки и кнопки */
@@ -493,6 +492,7 @@ flex-direction: column;
 margin-bottom: auto;
 z-index: 12;
 
+
 }
 
 #webSidebar.swap{
@@ -594,7 +594,9 @@ line-height: 1.6;
 .leftSideText{
 text-align: left !important;
 }
-
+.menusp{
+height: 2.5vh;
+}
 
 /* Mobile */
 
@@ -652,24 +654,48 @@ padding-bottom: 2vh;
   }
 }
 
+@media (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), 
+       (min-resolution: 192dpi) and (orientation: landscape) {
+    :root {
+        --sidebar_w: 200px !important;
+    }
+    #namepage, #scrbtn, #usertext{
+        user-select: none !important;
+        pointer-events: none !important;
+        touch-action: none !important;
+    }
+}
+
 @media (orientation: landscape) {
-    html.mobile.telegram {
+    html.mobile {
+        .sidelink{
+        display: none !important;
+        }
+        #prjbtn{
+        display: none !important;
+        }
+        .menusp{
+        display: none !important;
+        }
+
+        .telegram {
          /*--bgcolor: red;*/
-    }
+        }
 
-    html.mobile.telegram #header { 
+        .telegram #header { 
         transform: translateY( -12vh );
-    }
+        }
 
-    /* Это везде хорошо */
-    html.mobile #bottomShadowRow{
-       bottom: calc(var(--footer_h) - var(--footer_h)/2);
-       transform: translateY( 3vh ); 
-    }
+        /* Это везде хорошо */
+        #bottomShadowRow{
+        bottom: calc(var(--footer_h) - var(--footer_h)/2);
+        transform: translateY( 3vh ); 
+        }
 
-    html.mobile #footer{
-       bottom: calc( var(--footer_h)*-1 - var(--footer_h)/2 );
-       transform: translateY( 3vh );
+        #footer{
+        bottom: calc( var(--footer_h)*-1 - var(--footer_h)/2 );
+        transform: translateY( 3vh );
+        }
     }
 }
 
@@ -705,20 +731,21 @@ padding-bottom: 2vh;
 </div>
 
       <div id="webSidebar" class=" hideMobile">
-            <div style="height: 2.5vh;"></div>
+            <div    class="menusp" ></div>
             <div    data-func="filletplane"  class="sidebtn cfunc" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
             <div    data-func="mp4vidoc"     class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
             <div    data-func="helpers"      class="sidebtn cfunc" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
             <div    data-func="linked_camera"class="sidebtn cfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
             
-            <h2  class="sidelink"><span id="kpr" hidden>- </span><a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+            <h2   id="menulink"  class="sidelink"><span id="kpr" hidden>- </span><a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
             
             <div    data-func="prjbtn"       class="base_btn mfunc" tabindex="0" id="prjbtn" >
                 <span class="headDivider">/ </span>
                 <span class="undlink">PRJECTS</span>
             </div>
 
-            <div    style="height: 2.5vh;"> </div>
+            <div    class="menusp"> </div>
+            
             <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
             <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
         </div>
@@ -1256,7 +1283,6 @@ function headerTextShorter() {
         
         if (nowWidth < currentMobileWidth * 0.7) {
 
-            
             if(lastText.textContent === "C4D"){
                 lastText.textContent = nowText + "_";
             }else{
@@ -1696,6 +1722,12 @@ document.addEventListener('click', (event) => {
         }
 
         hideOverflowingButtons();
+
+        window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Делает прокрутку плавной
+        });
+
     }
 
 
