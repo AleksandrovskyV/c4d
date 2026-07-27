@@ -745,7 +745,7 @@ padding-bottom: 2vh;
             </div>
 
             <div    class="menusp"> </div>
-            
+
             <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0"><span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> <span class="rem_und"></span>Workflow</span> </div>
             <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
         </div>
@@ -882,6 +882,7 @@ let swapFlag = false;
 /// USER INTERFACE - GLOBAL SWAPS
 
 let backupSoloCheck = null;
+let soloCheckActive = false;
 let shortShelfActive = false;
 
 let gifmobileflag = false;
@@ -911,10 +912,10 @@ function soloCheck(state) {
             });
         }
 
-        const screenCenterY = window.innerHeight / 2;
+        const screenCenterY = window.innerHeight / 4;
         let closestBlock = null;
         let minDifference = Infinity;
-
+        /*
         blocks.forEach(block => {
             const rect = block.getBoundingClientRect();
             const blockCenterY = rect.top + rect.height / 2;
@@ -925,6 +926,21 @@ function soloCheck(state) {
                 closestBlock = block;
             }
         });
+        */
+
+        const topOffset = 180; 
+
+        for (let i = 0; i < blocks.length; i++) {
+            const block = blocks[i];
+            const rect = block.getBoundingClientRect();
+
+            // Элемент считается видимым, если его низ опустился ниже нашей линии отступа
+            if (rect.bottom > topOffset && rect.top < window.innerHeight) {
+                closestBlock = block;
+                break; 
+            }
+        }
+
 
         blocks.forEach(block => {
             if (block === closestBlock) {
@@ -941,12 +957,14 @@ function soloCheck(state) {
             buttons.forEach(btn => {
                 if (btn.dataset.func === targetBtnName) {
                     btn.classList.add('active');
+                    //console.log(btn);
                     lastCheckedButtons = [btn].filter(Boolean);
                 } else {
                     btn.classList.remove('active');
                 }
             });
         }
+        soloCheckActive=true;
 
     } else {
         if (backupSoloCheck) {
@@ -957,6 +975,7 @@ function soloCheck(state) {
             });
             backupSoloCheck = null;
         }
+        soloCheckActive=false;
     }
 }
 
@@ -1288,7 +1307,7 @@ function headerTextShorter() {
             }else{
                 lastText.textContent = nowText + "\u00A0";
             }
-            console.log("lastText", nowText, lastText.textContent);
+            //console.log("lastText", nowText, lastText.textContent);
         }
 
     };
@@ -1831,9 +1850,9 @@ function resizeGeneral() {
     }
 
     if(nowWidth<mobileWidth){
-        soloCheck(true);
+        if(!soloCheckActive)soloCheck(true);
     }else{
-        soloCheck(false);
+        if(soloCheckActive)soloCheck(false);
     }
 
 
