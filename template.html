@@ -201,10 +201,20 @@ p .link:hover { color: #a3a3a3;}
 letter-spacing: +0.02em;
 color: #ababab; 
 }
+
+
+.plink.yt.ext{
+    margin-right: 62px;
+}
+.tested{
+    padding-right: 62px;
+}
+
 .plink.yt:hover { color: #f74545;
 }
 
-.plink.dn { margin-left: auto;
+.plink.dn { 
+    margin-left: auto;
 }
 .plink.dn:hover { color: var(--accolor);}
 
@@ -744,14 +754,20 @@ color: var(--bgcolor) !important;
 .rowline {
 display: flex;
 flex-direction: row;
-
 }
+
 .rowline.pad{
 margin-top: 0.8vh;
 }
 
 .rowline.jsb{
 justify-content: space-between;
+}
+
+
+
+.aboutElement{
+width: 100%;
 }
 
 .srtc {
@@ -796,10 +812,12 @@ display: flex;
 flex-direction: row;
 }
 
+
+
+
 .aboutIconRow { 
-min-width: 460px;
-/*width: 460px;*/
-padding-right: 30px;
+
+width: 100%;
 }
 
 .aboutIconRow.fixed { 
@@ -808,7 +826,7 @@ width: 460px;
 
 .about_extend { 
 margin-top: 2vh;
-min-width: 480px;
+
 }
 
 /* gifplayer */
@@ -1149,13 +1167,13 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="fpl" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" style="margin-top: 1.2vh;" >
 
                                 <p class="about_us tMidText italy" >It`s a plane.. And it has fillets "</p>
                                 <p class="about_ru tMidText italy" hidden>Плоскость c глубиной и мягкими углами "</p>
 
-                                <div class="rowline pad jsb">
+                                <div class="rowline pad downline">
                                     <div class="tested">
                                         <p>
                                             <span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span>
@@ -1218,7 +1236,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="mpv" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <p class="about_us based">
@@ -1231,11 +1249,11 @@ html.mobile {
                                 - номером итерации. Использует текущие<br>"Render Settings"...<br>
                                 </p>
 
-                                <div class="rowline pad jsb">
+                                <div class="rowline pad downline">
                                      <div class="tested">
                                           <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R23</span></p>
                                      </div>
-                                     <p><a class="plink yt" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
+                                     <p><a class="plink yt ext" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
                                      <p class="downlink"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py"
                                         >download</a></p>
@@ -1313,10 +1331,10 @@ html.mobile {
                         </h2>
                     </div>
 
-                    <div class="rowline">
+                    <div class="rowline" style="padding-bottom:var(--font_base)">
                         <div class="imageIcon"><div class="mbtn disable" id ="map" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
 
                             <div class="aboutIconRow" style="margin-top: 0px;" >
 
@@ -1325,15 +1343,24 @@ html.mobile {
                                 </h2>
 
                                 <p class="about_us tinpack" >
-                                Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class="marked">R23</span>
+                                Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object</span>
                                 </p>
 
                                 <p class="about_ru tinpack" hidden>
-                                Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
+                                Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет
                                 </p>
 
-                                <div class="rowline jsb "style="justify-content: left;">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
+                                <div class="rowline downline "style="justify-content: left;">
+
+
+                                    <div class="tested">
+                                        <p>
+                                            <span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span>
+                                            <span class="marked">R23</span>
+                                        </p>
+                                    </div>
+
+                                     <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py"
                                         >download</a>
                                     </p>
@@ -1346,22 +1373,32 @@ html.mobile {
                     <div class="rowline" style="padding-bottom:var(--font_base)">
                         <div class="imageIcon"><div class="mbtn disable" id ="ctv" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <h2 class="titleLabel tMidText" style="display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>ObjectColor<span style="color: #888"> to </span>VertexColor </span></span> 
                                 </h2>
 
                                 <p class="about_us_s tinpack" >
-                                    Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
+                                    Convert object color from polygon object<br>to Vertex Color Tag<br>
                                 </p>
 
                                 <p class="about_ru_s tinpack"  hidden>
-                                    Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
+                                    Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag<br>
                                 </p>
 
-                                <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
+                                <div class="rowline downline">
+
+
+
+                                    <div class="tested">
+                                        <p>
+                                            <span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span>
+                                            <span class="marked">R23</span>
+                                        </p>
+                                    </div>
+
+                                     <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py"
                                         >download</a></p>
                                 </div>
@@ -1373,7 +1410,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="swm" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <h2 class="titleLabel tMidText" style="display: inline-block;padding-bottom: 0px; "><span style="padding-left: 0px;  color: #999">+ </span>Swap Maps </span></span> 
@@ -1383,17 +1420,27 @@ html.mobile {
 
                                 Swap 2 selected texture tags in Object Manager<br>
                                 * If select 2 objects - swap last texture tags<br>
-                                * If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class="marked">R23</span><br>
+                                * If object has no tag - scan children and find first<br>object with tag for swap<br>
                                 </p>
 
                                 <p class="about_ru_g tinpack"  hidden>
                                 Смена 2 выбранных tex тегов в ObjectManager<br>
                                 * Выбирая 2 объекта, меняет их крайние теги<br>
-                                * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
+                                * Если объект без тега, ищет первый дочерний с его наличием
                                 </p>
 
-                                <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
+                                <div class="rowline downline">
+
+
+
+                                    <div class="tested">
+                                        <p>
+                                            <span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span>
+                                            <span class="marked">R23</span>
+                                        </p>
+                                    </div>
+
+                                     <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
                                 </div>
@@ -1449,7 +1496,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="swm" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <p class="about_us_g pack tinpack" >
@@ -1465,8 +1512,8 @@ html.mobile {
                                 * Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class="marked">R23</span>
                                 </p>
 
-                                <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
+                                <div class="rowline downline">
+                                     <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
                                 </div>
@@ -1514,7 +1561,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="map" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
 
                             <div class="aboutIconRow" style="margin-top: 0px;" >
 
@@ -1526,8 +1573,8 @@ html.mobile {
                                 Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class="marked">R23</span>
                                 </p>
 
-                                <div class="rowline jsb "style="justify-content: left;">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px); height: auto;"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
+                                <div class="rowline downline left">
+                                     <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py"
                                         >download</a>
                                     </p>
@@ -1583,7 +1630,7 @@ html.mobile {
                     <div class="rowline" style="padding-bottom:var(--font_base)">
                         <div class="imageIcon"><div class="mbtn disable" id ="ctv" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
                                 <p class="about_us_s tinpack" >
                                     Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class="marked">R23</span><br>
@@ -1593,8 +1640,8 @@ html.mobile {
                                     Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class="marked">R23</span><br>
                                 </p>
 
-                                <div class="rowline jsb">
-                                     <p class="downlink" style=" margin-left: auto; transform: translateY(-8px);"><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
+                                <div class="rowline downline">
+                                     <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py"
                                         >download</a></p>
                                 </div>
@@ -1650,7 +1697,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="cam" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <p class="about_us based" >
@@ -1661,7 +1708,7 @@ html.mobile {
                                 Камера привязанная к активной, через CameraMorph тег. Включает возможность расширить зону рендера без искажения фокусного расстояния
                                                                 </p>
 
-                                                                <div class="rowline pad jsb">
+                                                                <div class="rowline pad downline">
                                                                      <div class="tested">
                                                                           <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">R20</span></p>
                                                                      </div>
@@ -1739,7 +1786,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="aws" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <p class="about_us based" >
@@ -1754,7 +1801,7 @@ html.mobile {
                                 <br>работы с Arnold String Attribute<br>Cильно его ускоряя...? 
                                 </p>
 
-                                <div class="rowline pad jsb">
+                                <div class="rowline pad downline">
                                      <div class="tested">
                                           <p><span class="lngsup" data-ru="На базе: " data-us="Tested: ">Tested: </span><span class="marked">??</span></p>
                                      </div>
@@ -1832,7 +1879,7 @@ html.mobile {
                     <div class="rowline">
                         <div class="imageIcon"><div class="mbtn disable" id ="tsm" ></div></div>
 
-                        <div id="aboutElement" >
+                        <div class="aboutElement" >
                             <div class="aboutIconRow" >
 
                                 <p class="about_us based">
