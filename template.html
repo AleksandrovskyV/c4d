@@ -802,6 +802,10 @@ min-width: 460px;
 padding-right: 30px;
 }
 
+.aboutIconRow.fixed { 
+width: 460px;
+}
+
 .about_extend { 
 margin-top: 2vh;
 min-width: 480px;
@@ -960,8 +964,12 @@ padding-bottom: 2vh;
     #filletplane .aboutIconRow {
         margin-top: clamp(0px, (100vw - 1790px) * 0.3, 6vh);
     }
-    #mp4vidoc .aboutIconRow {
-        margin-top: clamp(0px, (100vw - 1790px) * 0.1, 2vh);
+}
+
+@media (min-width: 1790px){
+    .aboutIconRow {
+        width: 460px !important;
+        margin-top: clamp(0px, (100vw - 1790px) * 0.1, 4vh);
     }
 }
 
@@ -971,10 +979,6 @@ padding-bottom: 2vh;
     }
     .elementBlock{
         padding-bottom: 4vh;
-    }
-    
-    .aboutIconRow { 
-    width: 460px;
     }
 }
 /* DPI Scale */
@@ -2994,10 +2998,13 @@ function firstStart() {
         //const usertext   = document.getElementById('usertext');
         //usertext.click();
 
-        const zagl = document.getElementById('zagl');
-        zagl.classList.add("close"); 
+ 
 
     }
+
+    const zagl = document.getElementById('zagl');
+    zagl.classList.add("close");
+
 }
 
 
