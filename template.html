@@ -154,6 +154,7 @@ top: calc(
 ( var(--header_h) * var(--expand_val) - var(--header_h) )*-1 
 );
 height: calc( var(--header_h) * var(--expand_val) );
+z-index: 9000;
 }
 
 #footer { 
@@ -489,7 +490,7 @@ right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 display: flex; 
 flex-direction: column;
 margin-bottom: auto;
-z-index: 9000;
+z-index: 12;
 
 }
 
@@ -779,13 +780,13 @@ html.mobile #gitline{
 
         <div id="bottomPage" class="footerElements hideMobile">
             <h2>
-                <a class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
+                <a id="glp" class="gitlink lngsup" href="https://github.com/AleksandrovskyV/c4d/"
                    data-us="* alright, go to github" 
                    data-us-mid="* alright, github" 
                    data-us-short="*  github" 
                    data-ru="* круто, но дай гитхаб" 
                    data-ru-mid="* круто, гитхаб" 
-                   data-ru-short="* гитхаб">
+                   data-ru-short="* гитхаб   .">
                    * alright, go to github
                 </a>
             </h2>
@@ -1227,7 +1228,21 @@ function updateResponsiveText() {
         }
 
         if (text) {
-            texblock.textContent = text;
+            if(texblock.id=="glp" ){
+                texblock.textContent = text; 
+
+                if(nowWidth <= 1000){
+                    texblock.style.setProperty('margin-right', `${76}px`, 'important');
+                }else{
+                    texblock.style.removeProperty('margin-right');
+                }
+                
+                
+            }else{
+               texblock.textContent = text; 
+
+            }
+            
         }
     });
 }
