@@ -27,6 +27,11 @@
 
 :root {
 --scrollbar-width: calc(100vw - 100%);
+
+--titlefont: 'title', sans-serif;
+--sidefont: 'sidebar', sans-serif;
+--monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
 --main_w: 75%;
 --sidebar_w: 200px;
 --sidemob_w: 12vw;
@@ -35,15 +40,16 @@
 --spaces: 5px;
 --expand_val: 3.0;
 
+--font_perl: 18px;
 --font_head: 72px;
+--font_foot: 24px;
+
+--font_side: 28px;
 --font_btn: 32px;
---titlefont: 'title', sans-serif;
---sidefont: 'sidebar', sans-serif;
---monofont: Consolas, "Liberation Mono", Menlo, Courier, monospace;
---name_pr: #767676;
---name_pg: #c8c8ca;
---name_sl: #828282;
---name_us: #424447;
+
+--font_title: 38px;
+--font_tube: 22px;
+--font_base: 20px;
 
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
@@ -52,11 +58,18 @@
 --ftcolor: #ababab;
 --gitcolor: #698aa8;
 
---font_side: 28px;
---font_foot: 24px;
---font_perl: 18px;
+--name_pr: #767676;
+--name_pg: #c8c8ca;
+--name_sl: #828282;
+--name_us: #424447;
 
 --sbt_color: #a4a4a4;
+--fp_color: #1cf975;
+--mp_color: #dd9f17;
+--hp_color: #45a2de;
+--lc_color: #92a3bc;
+--ar_color: #acbfbe;
+
 
 --dpiScale: false;
 --mobileAlbum: false;
@@ -73,17 +86,20 @@
 --header_h: 100px;
 --footer_h: 100px;
 --spaces: 3px;
---font_head: 60px;
---font_btn: 28px !important;
 --sidebar_w: 64px !important;
 
---font_title: 20px;
---font_mtitl: 22px;
+--font_perl: 13px;
+--font_head: 60px;
+--font_foot: 16px;
+
 --font_side: 22px;
+--font_btn: 28px !important;
+
+--font_title: 20px;
 --font_tube: 14px;
 --font_base: 12px;
---font_perl: 13px;
---font_foot: 16px;
+
+
     }
 }
 
@@ -128,7 +144,7 @@ user-select: none;
 -webkit-touch-callout: none; 
 }
 
-a, h2 { pointer-events: auto;
+a,p,h2 { pointer-events: auto;
 }
 
 h2{ 
@@ -146,9 +162,35 @@ margin-bottom: 10px;
 
 h2.rtext {text-align: right;}
 
+p{
+color: #a3a3a3;
+display: block;
+font-size: var(--font_base);
+padding-top: 2px;
+padding-bottom: 4px;
+line-height: 1.2;
+letter-spacing: +0.01em;
+}
+
+p .marked{ color: #e0dfdf;
+}
+
+p .link { color: #dd9f17; }
+p .link:hover { color: #a3a3a3;}
+
+.texlink { 
+letter-spacing: +0.02em;
+color: #ababab; 
+}
+.texlink.yt:hover { color: #f74545;}
+
+.texlink.dn { 
+margin-left: auto;
+}
+.texlink.dn:hover { color: var(--accolor);}
+
 a.link { 
 color: #ababab; 
-pointer-events: auto;
 }
 a.link.b {color: #279ae3}
 
@@ -164,6 +206,15 @@ a.gitlink_mob { color: var(--gitcolor);
 }
 a.gitlink_mob:hover { color: var(--accolor_grey);
 }
+
+.titleLabel{
+color: #dfdfe0;
+font-size: var(--font_title);
+font-kerning: normal; 
+letter-spacing: -0.03em;
+padding-bottom: 1.4vh;
+}
+
 
 .linePage {
 position: fixed; 
@@ -409,6 +460,12 @@ background-color: var(--accolor);
 color: white;
 }
 
+.mbtn.disable {
+user-select: none;
+pointer-events: none;
+width: 100%;height: 100%;
+background-color: transparent;
+}
 
 #fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
 #mpv { background-image: url('./assets/svg/MP4Vidoc.svg'); }
@@ -639,6 +696,134 @@ height: 2.5vh;
 color: var(--bgcolor) !important;
 }
 
+/* CONTENT */
+
+.rowline {
+display: flex;
+flex-direction: row;
+
+}
+.rowline.pad{
+margin-top: 0.8vh;
+}
+
+.rowline.jsb{
+justify-content: space-between;
+}
+
+.srtc {
+font-family: var(--monofont);
+color: var(--accolor);
+}
+.srtc .txt {color: #e0e0e0; 
+}
+.srtc .dsh {color: #e0e0e0; 
+}
+.srtc .plus {
+color:#a3a3a3;
+}
+.srtc.d{
+font-size: var(--font_perl);
+}
+.offset {margin-left: 4px; 
+}
+
+.imageIcon {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center; 
+width: 117px;
+height: 117px;
+aspect-ratio: 1 / 1; 
+background-color: #26282c; 
+margin-right: 20px;
+}
+
+.line_struct {
+border-left: 6px solid currentColor; 
+border-bottom: 6px solid currentColor; 
+margin-right: 1vh;
+height: calc(2.0vh + 26px);
+width: 1.5vh;
+}
+
+.iconBlock {
+display: flex;
+flex-direction: row;
+}
+
+.aboutIconRow { 
+min-width: 424px;
+width: 460px;
+}
+
+.about_extend { 
+margin-top: 2vh;
+min-width: 480px;
+}
+
+/* gifplayer */
+.no_gif{
+pointer-events: none;
+cursor: default;
+}
+
+.gif_placeholder_web {
+max-width: 680px;
+padding-right: 28px;
+}
+
+.gifpreview {
+position: relative;
+min-width: 260px;
+width: 100%;
+display: inline-block;
+cursor: pointer;
+overflow: hidden;
+}
+.gifpreview img, 
+.gifpreview video {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+.gifpreview .overlay {
+position: absolute;
+top: 0;left: 0;
+width: 100%;height: 100%;
+background-color: rgba(67, 77, 91, 0.7);
+display: flex;
+justify-content: center;
+align-items: center;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f4f4f4' d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 60px 60px;
+transition: background-size 0.1s ease, opacity 0.1s ease;
+pointer-events: auto;
+user-select: none;
+}
+
+
+.gifpreview:hover .overlay {
+background-size: 72px 72px; 
+}
+.gifpreview.playing .overlay {
+opacity: 0;
+}
+
+.elementBlock{
+padding-bottom: 1vh;
+}
+.about_placeholder_mob{
+padding-bottom: 10px;
+}
+
+
+
+
 /*ShortShelf*/
 
 /* Фиксированная зона сетки */
@@ -868,7 +1053,7 @@ html.mobile {
                     </div>
                     
                     <div class="rowline">
-                        <div class="imageIconS" ><div class="ico fp titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="fpl" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" style="margin-top: 1.2vh;" >
@@ -937,7 +1122,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico mpr titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="mpv" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1035,7 +1220,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico map titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="map" ></div></div>
 
                         <div id="aboutElement" >
 
@@ -1065,7 +1250,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline" style="padding-bottom:var(--font_base)">
-                        <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="ctv" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1092,7 +1277,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico swm titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="swm" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1168,7 +1353,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico swm titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="swm" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1233,7 +1418,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico map titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="map" ></div></div>
 
                         <div id="aboutElement" >
 
@@ -1302,7 +1487,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline" style="padding-bottom:var(--font_base)">
-                        <div class="imageIconS"><div class="ico ctv titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="ctv" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1369,7 +1554,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico lk titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="cam" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1458,7 +1643,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico at titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="aws" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1551,7 +1736,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIconS"><div class="ico thd titleIco"></div></div>
+                        <div class="imageIcon"><div class="mbtn disable" id ="tsm" ></div></div>
 
                         <div id="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1948,7 +2133,7 @@ function switchToMobile(mobile_state) {
 
     document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
     document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
-    document.querySelectorAll('.imageIconS').forEach(el => el.hidden = unhide_flag);
+    document.querySelectorAll('.imageIcon').forEach(el => el.hidden = unhide_flag);
 
     if(isMobile){
         document.querySelectorAll('.downlink').forEach(el => el.hidden = unhide_flag);
