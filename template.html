@@ -51,6 +51,8 @@
 --font_midl: 22px;
 --font_base: 19px;
 
+--font_file: 18px;
+
 --bgcolor: #2c2f34;
 --accolor: #dd9f17;
 --accolor_grey: #858997;
@@ -96,9 +98,9 @@
 --font_btn: 28px !important;
 
 --font_title: 20px;
---font_midl: 14px;
---font_base: 12px;
-
+--font_midl: 17px;
+--font_base: 14px;
+--font_file: 10px;
 
     }
 }
@@ -176,8 +178,8 @@ letter-spacing: +0.01em;
 }
 
 .based, .based p {
-    font-size: var(--font_base); 
-    line-height: 1.5 !important;
+font-size: var(--font_base); 
+line-height: 1.3;
 }
 
 .tinpack, .tinpack p{
@@ -229,9 +231,9 @@ line-height: 1.5;
 padding-bottom: 14px;
 }
 .fileText{
-font-size: var(--font_perl); 
+font-size: var(--font_file);
 color: #757575; 
-font-weight: 200   
+font-weight: 200;
 }
 .titleLabel{
 color: #dfdfe0;
@@ -612,9 +614,7 @@ right: calc( ( ( 100% - var(--main_w) ) / 2 ) + var(--spaces) );
 display: flex; 
 flex-direction: column;
 margin-bottom: auto;
-z-index: 12;
-
-
+z-index: 1000;
 }
 
 #webSidebar.swap{
@@ -872,14 +872,14 @@ padding-bottom: 10px;
 
 /* Фиксированная зона сетки */
 #shortshelf {
-    width: 420px;
-    height: 420px;
-    flex-shrink: 0; /* Запрещаем флексу сжимать этот квадрат */
-    box-sizing: border-box;
-    display: grid !important; 
-    grid-template-columns: repeat(var(--cols, 3), 1fr); 
-    grid-auto-rows: 1fr; 
-    gap: 6px; 
+width: 420px;
+height: 420px;
+flex-shrink: 0; /* Запрещаем флексу сжимать этот квадрат */
+box-sizing: border-box;
+display: grid !important; 
+grid-template-columns: repeat(var(--cols, 3), 1fr); 
+grid-auto-rows: 1fr; 
+gap: 6px; 
 }
 
 /* Медиазапрос для экранов МЕНЬШЕ 520px */
@@ -904,7 +904,6 @@ html.mobile #shelfWrapper {
     display: none !important;
 }
 
-
 /* Mobile */
 
 html.mobile #bottomPageMobile{
@@ -924,6 +923,12 @@ padding-bottom: 2vh;
     .hideMobile{ display: none !important;
     }
 }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+
+    .controlSpawn, .controlSpawn * {
+        font-size: 8px !important;
+    }   
+}
 
 
 /* Web */
@@ -936,6 +941,15 @@ padding-bottom: 2vh;
     .hideWeb{ display: none !important;
     }
 }
+@media (min-width: 1790px){
+    #filletplane .aboutIconRow {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.3, 6vh);
+    }
+    #mp4vidoc .aboutIconRow {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.1, 2vh);
+    }
+}
+
 @media (max-width: 1790px){
     .gif_placeholder_web {
     padding-right: 0px;
@@ -956,6 +970,8 @@ padding-bottom: 2vh;
     .undlink {
     text-decoration: none;
     }
+
+
 }
 
 @media (orientation: landscape) {
@@ -1162,7 +1178,7 @@ html.mobile {
 
         </div>
 
-        <div class="elementBlock" hidden id="mp4vidoc"  data-tag="script">
+        <div class="elementBlock" id="mp4vidoc"  data-tag="script">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--accolor)"></div>
 
@@ -1212,21 +1228,21 @@ html.mobile {
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
 
             
-                            <div id="aboutControlsText" class="about_с_us"> <p>
+                            <div id="aboutControlsText" class="about_с_us controlSpawn"> <p>
                                   <span class="srtc">[ <span class="txt">LMB</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Active settings via Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> ALT</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> SHIFT</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via BG Process<br><br>
                                 </p>
                             </div>
                             
-                            <div id="aboutControlsText" class="about_с_ru mobextendG"  hidden> <p>
+                            <div id="aboutControlsText" class="about_с_ru controlSpawn mobextendG"  hidden> <p>
                                   <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
                                 </p>
                             </div>
                             
-                            <div id="aboutControlsText" class="about_с_ru_mb" hidden> <p>
+                            <div id="aboutControlsText" class="about_с_ru_mb controlSpawn" hidden> <p>
                                   <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">ЛКМ<span class="plus">+</span>АЛЬТ</span> ]&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">ЛКМ<span class="plus">+</span>ШИФТ</span> ]&nbsp;</span>Драфт вьюпорта сквозь PViewer<br><br>
@@ -1260,7 +1276,7 @@ html.mobile {
 
         </div>
 
-        <div class="elementBlock" hidden id="helpers" data-tag="script_pack"  >
+        <div class="elementBlock" id="helpers" data-tag="script_pack"  >
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--hp_color)"></div>
 
@@ -1393,7 +1409,7 @@ html.mobile {
             </div>
         </div>
 
-        <div class="elementBlock" hidden id="swap_mats" data-tag="script_inpack"  hidden>
+        <div class="elementBlock" id="swap_mats" data-tag="script_inpack"  hidden>
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--hp_color)"></div>
 
@@ -1458,7 +1474,7 @@ html.mobile {
             </div>
         </div>
 
-        <div class="elementBlock" hidden id="matrix_preserve" data-tag="script_inpack"  hidden>
+        <div class="elementBlock" id="matrix_preserve" data-tag="script_inpack"  hidden>
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--hp_color)"></div>
 
@@ -1527,7 +1543,7 @@ html.mobile {
             </div>
         </div>
 
-        <div class="elementBlock" hidden id="objcolor_to_vercolor" data-tag="script_inpack"  hidden>
+        <div class="elementBlock" id="objcolor_to_vercolor" data-tag="script_inpack"  hidden>
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--hp_color)"></div>
 
@@ -1594,7 +1610,7 @@ html.mobile {
         </div>
 
 
-        <div class="elementBlock" hidden id="linked_camera"  data-tag="script" style="padding-bottom: 40px;">
+        <div class="elementBlock" id="linked_camera"  data-tag="script" style="padding-bottom: 40px;">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--lc_color)"></div>
 
@@ -1683,7 +1699,7 @@ html.mobile {
             </div>
         </div>
 
-        <div class="elementBlock" hidden id="ar_wf_string"  data-tag="project" style="padding-bottom: 40px;">
+        <div class="elementBlock" id="ar_wf_string"  data-tag="project" style="padding-bottom: 40px;">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--ar_color)"></div>
 
@@ -1776,7 +1792,7 @@ html.mobile {
             </div>
         </div>
 
-        <div class="elementBlock" hidden id="test_smile"  data-tag="project">
+        <div class="elementBlock" id="test_smile"  data-tag="project">
             <div class="iconBlock" > 
                 <div class="line_struct" style="color: var(--ar_color)"></div>
 
@@ -2921,11 +2937,8 @@ function resizeGeneral() {
 
 
 function setActiveHeaderBtn(){
-
     const scriptBtn = document.getElementById('scrbtn');
-    
     if(!scriptBtn) return
-
     scriptBtn.classList.add('active'); 
     lastCheckedMainTabs = [scriptBtn];
 
@@ -2935,11 +2948,10 @@ function firstStart() {
     resizeGeneral();
     const cv = document.getElementById('contentViewer');
     cv.hidden = false;
+    
     const header = document.getElementById('header');
     header.classList.remove("spawn"); 
 
-
-    //zagl.hidden = true;
 
     if (isMobile) {
 
@@ -2959,6 +2971,9 @@ function firstStart() {
             }
             lastTouchEnd = now;
         }, { passive: false }); 
+    }else{
+        //const usertext   = document.getElementById('usertext');
+        //usertext.click();
     }
 }
 
