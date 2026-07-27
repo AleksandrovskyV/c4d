@@ -987,7 +987,7 @@ function gifSizeChecker() {
     transitAllGifs(gif_align, true); 
 }
 
-function swapPage() {
+function swapPageSide() {
     swapFlag = !swapFlag;
     
     const sideShelfMobile = document.getElementById('sideShelfMobile');
@@ -1085,6 +1085,7 @@ function swapPage() {
     }
 
     renderSwapButtons();
+    headerTextShorter();
 }
 
 
@@ -1176,7 +1177,6 @@ function hideOverflowingButtons() {
 
 /// USER INTERFACE - TEXT AND LANG
 
-/// этот метод лучше полностью перенести на css
 /// этот метод лучше полностью перенести на css
 function headerTextShorter() {
     const headerPage = document.getElementById('headerPage');
@@ -1763,8 +1763,8 @@ if (viewCodeBtn) viewCodeBtn.onclick = () => viewCurrentCode();
 if (langButton) langButton.onclick = () => switchLang();
 if (langButtonMobile) langButtonMobile.onclick = () => switchLang();
 
-if (swapButton) swapButton.onclick = () => swapPage();
-if (swapMobile) swapMobile.onclick = () => swapPage();
+if (swapButton) swapButton.onclick = () => swapPageSide();
+if (swapMobile) swapMobile.onclick = () => swapPageSide();
 
 
 function resizeGeneral() {
