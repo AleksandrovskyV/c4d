@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="ru"><head>
-<meta charset="UTF-8">
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>template</title>
 <script>
@@ -15,15 +14,22 @@
     (typeof window.TelegramWebviewProxyProto !== 'undefined') ||
     (typeof window.TelegramWebview !== 'undefined') ||
     (typeof window.Telegram !== 'undefined') ||
-    ua.includes('telegram'); // Резерв для Android User-Agent
+    ua.includes('telegram'); // Резерв для Android
 
   if (isTelegram) {
     document.documentElement.classList.add('telegram');
   }
 </script>
-
 <style>
-* {margin: 0; padding: 0; box-sizing: border-box; pointer-events: none}
+
+@font-face { font-family: 'title';
+src: url('./assets/fonts/GeistMono-SemiBold.ttf') format('truetype'); }
+
+@font-face { font-family: 'sidebar';
+src: url('./assets/fonts/GeistMono-Medium.ttf') format('truetype'); }
+
+* {margin: 0; padding: 0; box-sizing: border-box; }
+[hidden] {display: none !important;}
 
 :root {
 --scrollbar-width: calc(100vw - 100%);
@@ -101,7 +107,6 @@
 --font_midl: 17px;
 --font_base: 14px;
 --font_file: 14px;
-
     }
 }
 
@@ -113,15 +118,6 @@
     }
 }
 
-@font-face { font-family: 'title';
-src: url('./assets/fonts/GeistMono-SemiBold.ttf') format('truetype'); }
-
-@font-face { font-family: 'sidebar';
-src: url('./assets/fonts/GeistMono-Medium.ttf') format('truetype'); }
-
-[hidden] {display: none !important;}
-
-
 html, body {
 width: 100%;
 background-color: var(--bgcolor); 
@@ -129,26 +125,24 @@ font-family: sans-serif;
 overflow-x: hidden;
 overflow-y: auto;
 touch-action: manipulation;
-user-select: none;
 }
 html {
-scrollbar-gutter: stable; /*места под скролл чтобы не прыгало*/
+scrollbar-gutter: stable; /* резерв места для скролла */
 }
 
-/* Отключаем выделение абсолютно везде, включая ссылки и кнопки */
+/* выделение текста у кнопок */
 a, button, .mbtn, [class*="btn"] {
--webkit-user-select: none; /* Прослойка для iOS Safari */
+-webkit-user-select: none;
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
-
-/* Отключает появление системного меню при долгом тапе (iOS Callout) */
 -webkit-touch-callout: none; 
 }
 
-a,p,h2 { 
-pointer-events: auto;
-user-select: auto !important;
+a, p, h2 { 
+  pointer-events: auto;
+  user-select: auto;
+  -webkit-touch-callout: default;
 }
 
 h2{ 
@@ -203,19 +197,18 @@ letter-spacing: +0.02em;
 color: #ababab; 
 }
 
-
 .plink.yt.ext{
-    margin-right: 62px;
+margin-right: 62px;
 }
 .tested{
-    padding-right: 62px;
+padding-right: 62px;
 }
 
 .plink.yt:hover { color: #f74545;
 }
 
 .plink.dn { 
-    margin-left: auto;
+margin-left: auto;
 }
 .plink.dn:hover { color: var(--accolor);}
 
@@ -277,8 +270,7 @@ z-index: 6000;
 
 .overlay_fill{
 position: fixed;
-top: 0;
-left: 0;
+top: 0; left: 0;
 width: 100%; height: 100%;
 background-color: var(--bgcolor);
 z-index: 9990;
@@ -354,6 +346,7 @@ background-repeat: repeat-x;
 background-position: bottom left; 
 z-index: 2000; 
 pointer-events: none; 
+user-select: none;
 }
 
 #mainPage {
@@ -372,6 +365,7 @@ margin-top: auto;
 transform: translateY(8px);
 align-self: flex-start; 
 color: var(--name_pr);
+user-select: none;
 }
 
 #headerPage {
@@ -388,7 +382,7 @@ display: flex;
 flex-direction: column;
 flex-grow: 1;
 margin-top: var(--spaces);
-margin-right: calc(var(--spaces)); /**2*/
+margin-right: calc(var(--spaces));
 min-width: 0;
 }
 #contentViewer.swap {
@@ -400,12 +394,15 @@ margin-right: 0;
 width: 100%;
 margin-bottom: 25px;
 min-width: 0; 
+
 }
 .elementBlock img {
 width: 100%;
 height: auto;
 display: block;
 }
+
+
 
 #shelfFake {
 width: var(--sidebar_w);
@@ -490,7 +487,6 @@ color: #ffffff;
 font-size: calc(var(--font_btn)*0.9);
 }
 
-
 .mbtn.top {
 padding-top: 0;
 margin-top: auto;
@@ -533,7 +529,6 @@ background-color: transparent;
 #aws  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
 #tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
 
-/* Paste Content */
 button {
 background: none;
 border: 0px solid transparent;
@@ -574,7 +569,6 @@ color: var(--name_pg);
 color: var(--name_us);
 }
 
-
 .base_btn {
 font-family: var(--titlefont);
 font-size: var(--font_head); 
@@ -587,11 +581,9 @@ cursor: pointer;
 white-space: nowrap; 
 font-kerning: normal; 
 letter-spacing: -0.03em;
-
-
 }
 
-.headerBtn { /* open_btn */
+.headerBtn { 
 color: #828282;
 text-decoration: underline;
 cursor: pointer;
@@ -624,7 +616,6 @@ z-index: 500;
 pointer-events: none; 
 }
 
-/* Paste Content */
 h2.sidelink{
 margin-left: 140px;
 font-size: var(--font_side);
@@ -647,7 +638,6 @@ z-index: 1000;
 left: calc( ( ( 100% - var(--main_w) ) / 2 )  );
 right: auto;
 }
-
 
 #webSidebar button{
 font-family: var(--sidefont);
@@ -731,9 +721,9 @@ color: var(--accolor);
 display: inline-block;
 font-family: var(--sidefont);
 font-size: var(--font_side);
-margin-left: 31px;
 color: var(--bgcolor);
 pointer-events: none;
+user-select: none;
 text-align: left;
 letter-spacing: -0.03em;
 line-height: 1.6;
@@ -769,6 +759,7 @@ width: 100%;
 .srtc {
 font-family: var(--monofont);
 color: var(--accolor);
+font-size: 21px;
 }
 .srtc .txt {color: #e0e0e0; 
 }
@@ -795,21 +786,16 @@ background-color: #26282c;
 margin-right: 20px;
 }
 
-.line_struct {
-border-left: 6px solid currentColor; 
-border-bottom: 6px solid currentColor; 
-margin-right: 1vh;
-height: calc(2.0vh + 26px);
-width: 1.5vh;
-}
-
 .iconBlock {
 display: flex;
 flex-direction: row;
 }
 
-.aboutIconRow { 
+.aboutIconBlock { 
 width: 100%;
+}
+.aboutIconRow { 
+min-width: 370px;
 }
 
 .about_extend { 
@@ -818,13 +804,13 @@ margin-top: 2vh;
 }
 
 /* gifplayer */
-.no_gif{
+.gifdis{
 pointer-events: none;
 cursor: default;
 }
 
 .gif_placeholder_web {
-max-width: 680px;
+/*max-width: 680px;*/
 padding-right: 28px;
 }
 
@@ -875,8 +861,6 @@ padding-bottom: 10px;
 }
 
 /*ShortShelf*/
-
-/* Фиксированная зона сетки */
 #shortshelf {
 width: 420px;
 height: 420px;
@@ -917,6 +901,7 @@ html.mobile #gitline{
 padding-bottom: 2vh;
 }
 
+
 @media (max-width: 779.98px) {
     .fileLine{
         width: auto; 
@@ -950,14 +935,23 @@ padding-bottom: 2vh;
     }
 }
 @media (min-width: 1790px){
-    #filletplane .aboutIconRow {
-        margin-top: clamp(0px, (100vw - 1790px) * 0.3, 6vh);
+    #filletplane .aboutIconBlock {
+        margin-top: clamp(0px, (100vw - 1790px) * 0.3, 8vh);
     }
 }
 
 @media (min-width: 1790px){
+    .gifpreview{
+        width: clamp(500px, 30vw, 890px);  
+        max-width: 660px;
+        flex-shrink: 0; 
+    }
+    .aboutIconBlock {
+        width: auto;
+        margin-top: clamp(0px, (100vw - 1790px) * 0.1, 4vh);
+    }
     .aboutIconRow {
-        width: 460px !important;
+        max-width: auto;
         margin-top: clamp(0px, (100vw - 1790px) * 0.1, 4vh);
     }
 }
@@ -967,7 +961,7 @@ padding-bottom: 2vh;
     padding-right: 0px;
     }
     .elementBlock{
-        padding-bottom: 4vh;
+    padding-bottom: 4vh;
     }
 }
 /* DPI Scale */
@@ -1070,7 +1064,7 @@ html.mobile {
 
     <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0">
         <span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> 
-        <span class="rem_und"></span>Workflow</span> 
+        <span class="rem_und">&nbsp;&nbsp;</span>Workflow</span> 
     </div>
     <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
 </div>
@@ -1120,14 +1114,11 @@ html.mobile {
 <div id="mainPage">
     <div id="contentViewer">
         
-
         <div class="elementBlock" id="filletplane" data-tag="script" >
-            <div class="iconBlock" > 
-                <div class="line_struct" style="color: var(--fp_color)" hidden></div>
-                
+            <div class="iconBlock" >                 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon"> 
                         <h2 class="titleLabel"> <span class="cmark" style="color: var(--fp_color)" >* </span>
@@ -1194,7 +1185,7 @@ html.mobile {
             <div class="iconBlock" > 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span>
@@ -1237,7 +1228,6 @@ html.mobile {
                         <div class="about_extend" >
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
 
-            
                             <div id="aboutControlsText" class="about_с_us controlSpawn"> <p>
                                   <span class="srtc">[ <span class="txt">LMB</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Active settings via Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> ALT</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via Picture Viewer<br>
@@ -1260,7 +1250,6 @@ html.mobile {
                             </div>
 
                         </div>
-
 
                     </div>
                 </div>
@@ -1290,7 +1279,7 @@ html.mobile {
             <div class="iconBlock" > 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
@@ -1310,7 +1299,7 @@ html.mobile {
                                 </h2>
 
                                 <p class="about_us tinpack" >
-                                Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object</span>
+                                Matrix Object to single mesh ~ color transfer to VertexColor Tag. Alt mode preserve as cubes with save color to object</span>
                                 </p>
 
                                 <p class="about_ru tinpack" hidden>
@@ -1451,7 +1440,7 @@ html.mobile {
 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
@@ -1497,13 +1486,13 @@ html.mobile {
                 <div class="about_placeholder_mob">
                 </div>
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_gif">
+                    <div class="gifpreview gifdis">
 
                         <img src="./assets/prvgif/swap_maps_poster.png" 
                              data-poster="./assets/prvgif/swap_maps_poster.png" 
                              alt="poster" />
 
-                        <div class=" no_gif"></div>
+                        <div class=" gifdis"></div>
                     </div>
                 </div>
 
@@ -1514,7 +1503,7 @@ html.mobile {
             <div class="iconBlock" > 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
@@ -1553,7 +1542,6 @@ html.mobile {
                         <div class="about_extend">
                         </div>
 
-
                     </div>
                 </div>
             </div>
@@ -1564,13 +1552,13 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_gif">
+                    <div class="gifpreview gifdis">
 
                         <img src="./assets/prvgif/matrix_preserve_poster.png" 
                              data-poster="./assets/prvgif/matrix_preserve_poster.png" 
                              alt="poster" />
 
-                        <div class=" no_gif"></div>
+                        <div class=" gifdis"></div>
                     </div>
                 </div>
 
@@ -1581,7 +1569,7 @@ html.mobile {
             <div class="iconBlock" > 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
@@ -1628,12 +1616,12 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_gif">
+                    <div class="gifpreview gifdis">
                         <img src="./assets/prvgif/color_to_vertex_poster.png" 
                              data-poster="./assets/prvgif/color_to_vertex_poster.png" 
                              alt="poster" />
 
-                        <div class=" no_gif"></div>
+                        <div class=" gifdis"></div>
                     </div>
                 </div>
 
@@ -1641,12 +1629,11 @@ html.mobile {
 
         </div>
 
-
         <div class="elementBlock" id="linked_camera"  data-tag="script" style="padding-bottom: 40px;">
             <div class="iconBlock" > 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel"> <span class="cmark" style="color: var(--lc_color)" >* </span>
@@ -1734,7 +1721,7 @@ html.mobile {
 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel"> <span class="cmark" style="color: var(--ar_color)" >* </span>
@@ -1784,7 +1771,6 @@ html.mobile {
                                 - Manual path setup for a selected object<br>
                                 - PBR texture slots & randomization<br>
                                 - Workflow tutorial on <a class="plink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
-
                                 </p>
                             </div>
                             
@@ -1826,7 +1812,7 @@ html.mobile {
 
                 <div class="gif_placeholder_web"></div>
 
-                <div class="aboutIconRow" >
+                <div class="aboutIconBlock" >
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel"> <span class="cmark" style="color: var(--accolor)" >* </span>
@@ -1841,11 +1827,11 @@ html.mobile {
                             <div class="aboutIconRow" >
 
                                 <p class="about_us based">
-                                    Built to <br>be tested...
+                                    Created to <br>be tested...
                                 </p>
 
                                 <p class="about_ru based" hidden>
-                                    Создан через<br>тестирование...
+                                    Созданный быть,<br>протестированн...<br> 
                                 </p>
 
                             </div>
@@ -1893,12 +1879,12 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview no_gif">
+                    <div class="gifpreview gifdis">
                         <img src="./assets/prvgif/no_poster_v2.png" 
                              data-poster="./assets/prvgif/no_poster_v2.png" 
                              alt="poster" />
 
-                        <div class="no_gif"></div>
+                        <div class="gifdis"></div>
                     </div>
                 </div>
 
@@ -1997,7 +1983,6 @@ let lastCheckedButtons = [];
 let lastCheckedU = null;
 let lastCheckedT = null;
 
-
 function soloCheck(state) {
      // Выбор активного элемента на странице
 
@@ -2022,13 +2007,11 @@ function soloCheck(state) {
             const block = blocks[i];
             const rect = block.getBoundingClientRect();
 
-            // Элемент считается видимым, если его низ опустился ниже нашей линии отступа
             if (rect.bottom > topOffset && rect.top < window.innerHeight) {
                 closestBlock = block;
                 break; 
             }
         }
-
 
         blocks.forEach(block => {
             if (block === closestBlock) {
@@ -2176,8 +2159,6 @@ function swapPageSide() {
                 
         scrSlash.innerHTML = " /"+"&nbsp;"+"  "+"&nbsp;";
         prjSlash.innerHTML = " /";
-         
-        //preslsh.hidden = true;
 
     }else{
         container.insertBefore(contentViewer, shelfFake); 
@@ -2196,8 +2177,6 @@ function swapPageSide() {
 
         scrSlash.innerHTML = "/ ";
         prjSlash.innerHTML = "/ ";
-
-        //preslsh.hidden = false;
     }
 
     const downPackage = document.getElementById('down_package');
@@ -2229,8 +2208,6 @@ function switchToMobile(mobile_state) {
     const hide_flag = mobile ? false : true;
     const unhide_flag = mobile ? true : false;
 
-    //document.querySelectorAll('.line_struct').forEach(el => el.hidden = hide_flag);
-    //document.querySelectorAll('.cmark').forEach(el => el.hidden = unhide_flag);
     if(mobile){
         document.querySelectorAll('.cmark').forEach(el => el.textContent = " └ ");
     }else{
@@ -2466,7 +2443,6 @@ function updateResponsiveText() {
                texblock.textContent = text; 
 
             }
-            
         }
     });
 }
@@ -2907,12 +2883,9 @@ function resizeGeneral() {
        sideShelfMobile.hidden = !isMobileWidth; 
     }
      
-
     const isHighDPI = window.matchMedia(
         '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
     ).matches;
-
-    
 
     if (nowWidth < mobileWidth) { 
         switchToMobile(true);
@@ -2952,8 +2925,6 @@ function resizeGeneral() {
             document.documentElement.style.setProperty('--sidebar_w', `400px`);
             //document.documentElement.style.setProperty('--sidebar_w', `${calSidebar}vw`);
         }
-
-
     }
 
 
@@ -3015,17 +2986,11 @@ function firstStart() {
     }else{
         //const usertext   = document.getElementById('usertext');
         //usertext.click();
-
- 
-
     }
 
     const zagl = document.getElementById('zagl');
     zagl.classList.add("close");
-
 }
-
-
 
 window.onload = firstStart;
 window.addEventListener('resize', resizeGeneral);
