@@ -1011,12 +1011,13 @@ background-size: 72px 72px;
   font-size: 18px;
   font-weight: 500;
   opacity: 0;
-  transition: opacity 2.0s;
+  visibility: hidden; 
+  transition: opacity 2.0s ease, visibility 2.0s ease;
 }
-
 
 .gifpreview .loader-hint.visible {
   opacity: 1;
+  visibility: visible;
 }
 
 .gifpreview.playing .overlay {
@@ -2869,9 +2870,6 @@ function ensureLoader(overlay) {
             <div class="loader-hint hint-bottom">${textBottom}</div>
         </div>
     `;
-    
-    // Скрываем подсказки по умолчанию через CSS, пока не пройдут 7 секунд
-    overlay.querySelectorAll('.loader-hint').forEach(el => el.style.display = 'none');
 }
 
 //Выгружает медиафайл конкретного элемента из оперативной памяти
@@ -3201,10 +3199,9 @@ document.addEventListener('click', (event) => {
         vpnHintTimeout = setTimeout(() => {
             const hints = overlay.querySelectorAll('.loader-hint');
             hints.forEach(hint => {
-                hint.style.display = 'block'; // Показываем в DOM
-                setTimeout(() => hint.classList.add('visible'), 10); 
+                hint.classList.add('visible'); // Просто добавляем класс, CSS сделает всё остальное плавно
             });
-        }, 6750); // 7000мс минус 250мс, которые уже прошли до появления лоадера
+        }, 6750); //7 секунд
     }, 250);
 
     const radius = 36;
