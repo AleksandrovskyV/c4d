@@ -2839,7 +2839,7 @@ function ensureLoader(overlay) {
     `;
 }
 
-//* Выгружает медиафайл конкретного элемента из оперативной памяти
+//Выгружает медиафайл конкретного элемента из оперативной памяти
 function freeMediaMemory(gifCont) {
     if (!gifCont) return;
 
@@ -2881,9 +2881,7 @@ function freeMediaMemory(gifCont) {
     }
 }
 
-/**
- * Выгружает ВСЕ загруженные гифки и видео на текущей странице
- */
+//Выгружает ВСЕ загруженные гифки и видео на текущей странице
 function freeAllMediaMemory() {
     const loadedContainers = document.querySelectorAll('.gifpreview[data-loaded-url]');
     loadedContainers.forEach(container => {
@@ -3151,23 +3149,31 @@ document.addEventListener('click', (event) => {
         return;
     }
 
-    gifCont.classList.add('loading');
-    ensureLoader(overlay);
+       // Переменные для контроля состояния
+    let isFastDownload = true; 
+    let showLoaderTimeout = null;
+    let minDisplayPromise = Promise.resolve(); // По умолчанию пустой промис (0 мс задержки)
 
-    const circle = overlay.querySelector('.loader-circle');
-    const text = overlay.querySelector('.loader-text');
+    // ТРИГГЕР МЕДЛЕННОГО ИНТЕРНЕТА: Включается только если скачивание идет дольше 250мс
+    showLoaderTimeout = setTimeout(() => {
+        isFastDownload = false; // Интернет медленный, ставим флаг
+        gifCont.classList.add('loading');
+        ensureLoader(overlay);
+        
+        // Только ТЕПЕРЬ нам нужна задержка плавности, чтобы лоадер не исчез слишком резко
+        minDisplayPromise = new Promise(resolve => setTimeout(resolve, 400));
+    }, 250);
+
     const radius = 36;
     const circumference = 2 * Math.PI * radius;
 
-    fetch(mediaUrl)
+    // Запускаем скачивание
+    const fetchPromise = fetch(mediaUrl)
         .then(response => {
             if (!response.ok) throw new Error('Ошибка сети');
             
             const contentLength = response.headers.get('content-length');
-            if (!contentLength) {
-                text.textContent = '...';
-                return response.blob();
-            }
+            if (!contentLength) return response.blob();
 
             const total = parseInt(contentLength, 10);
             let loaded = 0;
@@ -3185,9 +3191,14 @@ document.addEventListener('click', (event) => {
                                 loaded += value.length;
                                 const percent = Math.round((loaded / total) * 100);
                                 
-                                text.textContent = `${percent}%`;
-                                const offset = circumference - (percent / 100) * circumference;
-                                circle.style.strokeDashoffset = offset;
+                                // Обновляем UI, только если медленный интернет УЖЕ включил лоадер
+                                const activeText = overlay.querySelector('.loader-text');
+                                const activeCircle = overlay.querySelector('.loader-circle');
+                                if (activeText) activeText.textContent = `${percent}%`;
+                                if (activeCircle) {
+                                    const offset = circumference - (percent / 100) * circumference;
+                                    activeCircle.style.strokeDashoffset = offset;
+                                }
 
                                 controller.enqueue(value);
                                 read();
@@ -3197,18 +3208,31 @@ document.addEventListener('click', (event) => {
                     }
                 })
             ).blob();
-        })
-        .then(blob => {
-            const blobUrl = URL.createObjectURL(blob);
-            gifCont.dataset.loadedUrl = blobUrl;
-            
+        });
+
+    // Обработка завершения скачивания
+    fetchPromise.then(blob => {
+        clearTimeout(showLoaderTimeout); // Убиваем таймер появления лоадера
+
+        const blobUrl = URL.createObjectURL(blob);
+        gifCont.dataset.loadedUrl = blobUrl;
+
+        if (isFastDownload) {
+            // ЕСЛИ СКАЧАЛОСЬ БЫСТРО (на ПК): Мгновенно включаем без единого кадра лоадера
             gifCont.classList.remove('loading');
             startPlayback(gifCont, blobUrl, isVideo, img, video);
-        })
-        .catch(err => {
-            console.error("Ошибка загрузки:", err);
-            gifCont.classList.remove('loading');
-        });
+        } else {
+            // ЕСЛИ СКАЧАЛОСЬ МЕДЛЕННО (на мобильном): Ждем плавного завершения анимации круга
+            minDisplayPromise.then(() => {
+                gifCont.classList.remove('loading');
+                startPlayback(gifCont, blobUrl, isVideo, img, video);
+            });
+        }
+    }).catch(err => {
+        clearTimeout(showLoaderTimeout);
+        console.error("Ошибка загрузки:", err);
+        gifCont.classList.remove('loading');
+    });
 });
 
 
