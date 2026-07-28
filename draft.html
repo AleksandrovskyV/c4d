@@ -995,6 +995,32 @@ background-size: 72px 72px;
   font-weight: bold;
 }
 
+.gifpreview .loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 15px;
+}
+
+
+.gifpreview .loader-hint {
+  color: #f4f4f4;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.gifpreview .loader-hint.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .gifpreview.playing .overlay {
 opacity: 0;
 }
@@ -2826,17 +2852,28 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
 });
 
 function ensureLoader(overlay) {
-    if (overlay.querySelector('.loader-container')) return;
+    if (overlay.querySelector('.loader-wrapper')) return;
+    
+    // Проверяем вашу переменную translated (true - RU, false - EN)
+    const textTop = translated ? "Может..." : "Maybe...";
+    const textBottom = translated ? "без VPn..." : "off VPn...";
     
     overlay.innerHTML = `
-        <div class="loader-container">
-            <svg class="loader-svg" viewBox="0 0 80 80">
-                <circle class="loader-circle-bg" cx="40" cy="40" r="36"></circle>
-                <circle class="loader-circle" cx="40" cy="40" r="36"></circle>
-            </svg>
-            <span class="loader-text">0%</span>
+        <div class="loader-wrapper">
+            <div class="loader-hint hint-top">${textTop}</div>
+            <div class="loader-container">
+                <svg class="loader-svg" viewBox="0 0 80 80">
+                    <circle class="loader-circle-bg" cx="40" cy="40" r="36"></circle>
+                    <circle class="loader-circle" cx="40" cy="40" r="36"></circle>
+                </svg>
+                <span class="loader-text">0%</span>
+            </div>
+            <div class="loader-hint hint-bottom">${textBottom}</div>
         </div>
     `;
+    
+    // Скрываем подсказки по умолчанию через CSS, пока не пройдут 7 секунд
+    overlay.querySelectorAll('.loader-hint').forEach(el => el.style.display = 'none');
 }
 
 //Выгружает медиафайл конкретного элемента из оперативной памяти
@@ -3152,22 +3189,30 @@ document.addEventListener('click', (event) => {
        // Переменные для контроля состояния
     let isFastDownload = true; 
     let showLoaderTimeout = null;
-    let minDisplayPromise = Promise.resolve(); // По умолчанию пустой промис (0 мс задержки)
+    let vpnHintTimeout = null; // Таймер для долгой загрузки (VPN)
+    let minDisplayPromise = Promise.resolve();
 
-    // ТРИГГЕР МЕДЛЕННОГО ИНТЕРНЕТА: Включается только если скачивание идет дольше 250мс
+    // ТРИГГЕР МЕДЛЕННОГО ИНТЕРНЕТА (250мс)
     showLoaderTimeout = setTimeout(() => {
-        isFastDownload = false; // Интернет медленный, ставим флаг
+        isFastDownload = false;
         gifCont.classList.add('loading');
         ensureLoader(overlay);
-        
-        // Только ТЕПЕРЬ нам нужна задержка плавности, чтобы лоадер не исчез слишком резко
         minDisplayPromise = new Promise(resolve => setTimeout(resolve, 400));
+
+        // ТРИГГЕР ПОДСКАЗКИ О VPN (7 секунд после старта загрузки)
+        vpnHintTimeout = setTimeout(() => {
+            const hints = overlay.querySelectorAll('.loader-hint');
+            hints.forEach(hint => {
+                hint.style.display = 'block'; // Показываем в DOM
+                setTimeout(() => hint.classList.add('visible'), 10); // Плавно проявляем через opacity
+            });
+        }, 6750); // 7000мс минус 250мс, которые уже прошли до появления лоадера
     }, 250);
 
     const radius = 36;
     const circumference = 2 * Math.PI * radius;
 
-    // Запускаем скачивание
+    // Скачивание файла
     const fetchPromise = fetch(mediaUrl)
         .then(response => {
             if (!response.ok) throw new Error('Ошибка сети');
@@ -3191,7 +3236,6 @@ document.addEventListener('click', (event) => {
                                 loaded += value.length;
                                 const percent = Math.round((loaded / total) * 100);
                                 
-                                // Обновляем UI, только если медленный интернет УЖЕ включил лоадер
                                 const activeText = overlay.querySelector('.loader-text');
                                 const activeCircle = overlay.querySelector('.loader-circle');
                                 if (activeText) activeText.textContent = `${percent}%`;
@@ -3210,19 +3254,17 @@ document.addEventListener('click', (event) => {
             ).blob();
         });
 
-    // Обработка завершения скачивания
     fetchPromise.then(blob => {
-        clearTimeout(showLoaderTimeout); // Убиваем таймер появления лоадера
+        clearTimeout(showLoaderTimeout);
+        clearTimeout(vpnHintTimeout); // Обязательно сбрасываем 7-секундный таймер
 
         const blobUrl = URL.createObjectURL(blob);
         gifCont.dataset.loadedUrl = blobUrl;
 
         if (isFastDownload) {
-            // ЕСЛИ СКАЧАЛОСЬ БЫСТРО (на ПК): Мгновенно включаем без единого кадра лоадера
             gifCont.classList.remove('loading');
             startPlayback(gifCont, blobUrl, isVideo, img, video);
         } else {
-            // ЕСЛИ СКАЧАЛОСЬ МЕДЛЕННО (на мобильном): Ждем плавного завершения анимации круга
             minDisplayPromise.then(() => {
                 gifCont.classList.remove('loading');
                 startPlayback(gifCont, blobUrl, isVideo, img, video);
@@ -3230,11 +3272,11 @@ document.addEventListener('click', (event) => {
         }
     }).catch(err => {
         clearTimeout(showLoaderTimeout);
+        clearTimeout(vpnHintTimeout); // Сбрасываем при ошибке
         console.error("Ошибка загрузки:", err);
         gifCont.classList.remove('loading');
     });
 });
-
 
 // BTN CONNECT
 
