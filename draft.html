@@ -807,6 +807,16 @@ margin-top: 0.8vh;
 .rowline.jsb{
 justify-content: space-between;
 }
+.rowline.one{
+align-items: center;
+justify-content: center;
+}
+.downlink.one{
+font-size: 24px;
+margin-left:0px !important;
+margin-top:12px !important;
+}
+
 .aboutElement{
 width: 100%;
 }
@@ -1558,7 +1568,7 @@ html.mobile {
                                      <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
-                                     <p class="downlink plink check lngsup" id="prv_swp_btn" data-ru="проверить!" data-us="test it!" 
+                                     <p class="downlink hideMobile prv_swp_btn plink check lngsup " data-ru="проверить!" data-us="test it!" 
                                         >test it!</p>
                                 </div>
                             </div>
@@ -1589,6 +1599,10 @@ html.mobile {
 
                         <div class=" gifdis"></div>
                     </div>
+                </div>
+                <div class="rowline one downline hideWeb">
+                     <p class="downlink one prv_swp_btn plink check lngsup" data-ru="проверить!" data-us="test it!" 
+                        >test it!</p>
                 </div>
 
             </div>
@@ -2752,7 +2766,7 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
 
 document.addEventListener('click', (event) => {
 
-    const swapped = event.target.closest('#prv_swp_btn');
+    const swapped = event.target.closest('.prv_swp_btn');
     if(swapped){
         const a = document.getElementById('prv_swp_a');
         const b = document.getElementById('prv_swp_b');
