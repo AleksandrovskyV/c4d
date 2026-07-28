@@ -3127,6 +3127,10 @@ document.addEventListener('click', (event) => {
     const overlay = gifCont.querySelector('.overlay');
 
     const mediaUrl = img ? img.getAttribute('data-src') : video.getAttribute('src');
+    if (mediaUrl && !gifCont.dataset.originalSrc) {
+        gifCont.dataset.originalSrc = mediaUrl; // Запоминаем оригинальный путь
+    }
+
     const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
     const isVideo = mediaUrl ? mediaUrl.endsWith('.mp4') : false;
 
