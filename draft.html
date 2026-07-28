@@ -221,6 +221,16 @@ letter-spacing: +0.02em;
 color: #ababab; 
 }
 
+.plink.check{
+margin-left: 62px;
+white-space: nowrap;
+text-decoration: underline;
+cursor: pointer;
+user-select: none;
+}
+.plink.check:hover { color: var(--hp_color);
+}
+
 .plink.yt.ext{
 margin-right: 62px;
 }
@@ -554,15 +564,22 @@ width: 100%;height: 100%;
 background-color: transparent;
 }
 
-#fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
-#mpv { background-image: url('./assets/svg/MP4Vidoc.svg'); }
-#swm { background-image: url('./assets/svg/SwapMats.svg'); }
-#map { background-image: url('./assets/svg/MatrixPreserve.svg'); }
-#ctv { background-image: url('./assets/svg/ObjectColorToVertexColor.svg'); }
-#cam { background-image: url('./assets/svg/LinkedCamera.svg'); }
+.fpl { background-image: url('./assets/svg/FilledPlane.svg'); }
+.mpv { background-image: url('./assets/svg/MP4Vidoc.svg'); }
+.swm { background-image: url('./assets/svg/SwapMats_Base.svg'); }
+.map { background-image: url('./assets/svg/MatrixPreserve.svg'); }
+.ctv { background-image: url('./assets/svg/ObjectColorToVertexColor.svg'); }
+.cam { background-image: url('./assets/svg/LinkedCamera.svg'); }
 
-#aws  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
-#tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
+.aws  { background-image: url('./assets/svg/ArnoldWorkflow.svg'); }
+.tsm  { background-image: url('./assets/svg/TestSmile_Alt.svg'); }
+
+
+html.swapPage .swm { background-image: url('./assets/svg/SwapMats_Alt.svg');  }
+
+/* Базовые стили */
+.swm.swmToggle { background-image: url('./assets/svg/SwapMats_Alt.svg'); }
+html.swapPage .swm.swmToggle { background-image: url('./assets/svg/SwapMats_Base.svg'); }
 
 button {
 background: none;
@@ -1141,14 +1158,14 @@ html.mobile {
 
 <div id="shelfWrapper" hidden> 
     <div id="shortshelf">
-        <div data-func="filletplane"         class="mbtn" id ="fpl" ></div>
-        <div data-func="mp4vidoc"            class="mbtn" id ="mpv" ></div>
-        <div data-func="swap_mats"           class="mbtn" id ="swm" ></div>
-        <div data-func="matrix_preserve"     class="mbtn" id ="map" ></div>
-        <div data-func="test_head"           class="mbtn" id ="tsm" ></div>
-        <div data-func="objcolor_to_vercolor"class="mbtn" id ="ctv" ></div>
-        <div data-func="arnold_rand_texture" class="mbtn" id ="aws" ></div>
-        <div data-func="linked_camera"       class="mbtn" id ="cam" ></div>
+        <div data-func="filletplane"         class="mbtn fpl" ></div>
+        <div data-func="mp4vidoc"            class="mbtn mpv" ></div>
+        <div data-func="swap_mats"           class="mbtn swm" ></div>
+        <div data-func="matrix_preserve"     class="mbtn map" ></div>
+        <div data-func="test_head"           class="mbtn tsm" ></div>
+        <div data-func="objcolor_to_vercolor"class="mbtn ctv" ></div>
+        <div data-func="arnold_rand_texture" class="mbtn aws" ></div>
+        <div data-func="linked_camera"       class="mbtn cam" ></div>
 
 
         <div data-func="rand_btn"            class="mbtn text" id ="rnd" >?</div>
@@ -1160,17 +1177,17 @@ html.mobile {
     <div class="mbtn text top" id="langButtonMobile" >RU</div>
 
     <div id="shelfScripts">
-        <div class="mbtn cfunc" id ="fpl" data-func="filletplane"></div>
-        <div class="mbtn cfunc" id ="mpv" data-func="mp4vidoc"></div>
-        <div class="mbtn cfunc" id ="swm" data-func="swap_mats"></div>
-        <div class="mbtn cfunc" id ="map" data-func="matrix_preserve"></div>
-        <div class="mbtn cfunc" id ="ctv" data-func="objcolor_to_vercolor"></div>
-        <div class="mbtn cfunc" id ="cam" data-func="linked_camera"></div>
+        <div class="mbtn fpl cfunc" data-func="filletplane"></div>
+        <div class="mbtn mpv cfunc" data-func="mp4vidoc"></div>
+        <div class="mbtn swm cfunc" data-func="swap_mats"></div>
+        <div class="mbtn map cfunc" data-func="matrix_preserve"></div>
+        <div class="mbtn ctv cfunc" data-func="objcolor_to_vercolor"></div>
+        <div class="mbtn cam cfunc" data-func="linked_camera"></div>
     </div>
         
     <div id="shelfProject" hidden>
-        <div class="mbtn cfunc" id ="aws" data-func="ar_wf_string"></div>
-        <div class="mbtn cfunc" id ="tsm" data-func="test_smile"></div>
+        <div class="mbtn aws cfunc" data-func="ar_wf_string"></div>
+        <div class="mbtn tsm cfunc" data-func="test_smile"></div>
     </div>
 
     <div class="mbtn text bot tr" id="ghostOverlap"></div>
@@ -1197,7 +1214,7 @@ html.mobile {
                     </div>
                     
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="fpl" ></div></div>
+                        <div class="imageIcon"><div class="mbtn fpl disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" style="margin-top: 1.2vh;" >
@@ -1264,7 +1281,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="mpv" ></div></div>
+                        <div class="imageIcon"><div class="mbtn mpv disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1358,7 +1375,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline" style="padding-bottom:var(--font_base)">
-                        <div class="imageIcon"><div class="mbtn disable" id ="map" ></div></div>
+                        <div class="imageIcon"><div class="mbtn map disable" ></div></div>
 
                         <div class="aboutElement" >
 
@@ -1397,7 +1414,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline" style="padding-bottom:var(--font_base)">
-                        <div class="imageIcon"><div class="mbtn disable" id ="ctv" ></div></div>
+                        <div class="imageIcon"><div class="mbtn ctv disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1434,7 +1451,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="swm" ></div></div>
+                        <div class="imageIcon"><div class="mbtn swm disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1519,7 +1536,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="swm" ></div></div>
+                        <div class="imageIcon"><div class="mbtn swm disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1541,6 +1558,8 @@ html.mobile {
                                      <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
+                                     <p class="downlink plink check lngsup" id="prv_swp_btn" data-ru="проверить!" data-us="test it!" 
+                                        >test it!</p>
                                 </div>
                             </div>
                         </div>
@@ -1558,12 +1577,12 @@ html.mobile {
                 <div class="gif_placeholder_mobile">
                     <div class="gifpreview gifdis">
 
-                        <img class="previewDeSwap"
+                        <img class="previewDeSwap" id="prv_swp_a"
                              src="./assets/prvgif/swap_maps_poster.png" 
                              data-poster="./assets/prvgif/swap_maps_poster.png" 
                              alt="poster" />
 
-                        <img class="previewSwap" hidden 
+                        <img class="previewSwap" id="prv_swp_b" 
                              src="./assets/prvgif/swap_maps_poster_alt.png" 
                              data-poster="./assets/prvgif/swap_maps_poster_alt.png" 
                              alt="poster" />
@@ -1588,7 +1607,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="map" ></div></div>
+                        <div class="imageIcon"><div class="mbtn map disable" ></div></div>
 
                         <div class="aboutElement" >
 
@@ -1654,7 +1673,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline" style="padding-bottom:var(--font_base)">
-                        <div class="imageIcon"><div class="mbtn disable" id ="ctv" ></div></div>
+                        <div class="imageIcon"><div class="mbtn ctv disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1718,7 +1737,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="cam" ></div></div>
+                        <div class="imageIcon"><div class="mbtn cam disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1806,7 +1825,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="aws" ></div></div>
+                        <div class="imageIcon"><div class="mbtn aws disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -1897,7 +1916,7 @@ html.mobile {
                     </div>
 
                     <div class="rowline">
-                        <div class="imageIcon"><div class="mbtn disable" id ="tsm" ></div></div>
+                        <div class="imageIcon"><div class="mbtn tsm disable" ></div></div>
 
                         <div class="aboutElement" >
                             <div class="aboutIconRow" >
@@ -2732,6 +2751,26 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
 });
 
 document.addEventListener('click', (event) => {
+
+    const swapped = event.target.closest('#prv_swp_btn');
+    if(swapped){
+        const a = document.getElementById('prv_swp_a');
+        const b = document.getElementById('prv_swp_b');
+        if (a && b) {
+            a.classList.toggle('previewDeSwap');
+            b.classList.toggle('previewSwap');
+            a.classList.toggle('previewSwap');
+            b.classList.toggle('previewDeSwap');
+        }
+
+        const icons = document.querySelectorAll('.swm');
+        icons.forEach(icon => {
+            icon.classList.toggle('swmToggle');
+        });
+
+        return
+    }
+
     const currentBtn = event.target.closest('.cfunc, .mfunc');
 
     const width = window.innerWidth;
