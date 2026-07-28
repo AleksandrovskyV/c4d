@@ -1011,14 +1011,12 @@ background-size: 72px 72px;
   font-size: 18px;
   font-weight: 500;
   opacity: 0;
-  transform: translateY(5px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 2.0s;
 }
 
 
 .gifpreview .loader-hint.visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .gifpreview.playing .overlay {
@@ -3204,7 +3202,7 @@ document.addEventListener('click', (event) => {
             const hints = overlay.querySelectorAll('.loader-hint');
             hints.forEach(hint => {
                 hint.style.display = 'block'; // Показываем в DOM
-                setTimeout(() => hint.classList.add('visible'), 10); // Плавно проявляем через opacity
+                setTimeout(() => hint.classList.add('visible'), 10); 
             });
         }, 6750); // 7000мс минус 250мс, которые уже прошли до появления лоадера
     }, 250);
