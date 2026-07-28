@@ -3570,6 +3570,9 @@ function resizeGeneral() {
         refreshActiveButtonFlag = false;
     }
     refreshActiveButton();
+
+    const mp = document.getElementById('mainPage');
+    if(mp.hidden) mp.hidden = false;
 }
 
 
