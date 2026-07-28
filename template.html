@@ -254,6 +254,12 @@ font-size: var(--font_midl)
 html.mobile.swapPage .cmark {
 display: none !important;
 }
+.marksafe{
+color: transparent;    
+}
+html.mobile.swapPage .marksafe{
+display: none !important; 
+}
 
 .linePage {
 position: fixed; 
@@ -1589,7 +1595,7 @@ html.mobile {
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel" style="padding-bottom:1vh" ><span class="cmark" style="color: var(--hp_color)">* </span>
-                            <span>ObjectColor to VertexColor</span> 
+                            <span>ObjectColor to<span class="hideWeb"><br></span><span class="marksafe">__</span>VertexColor</span> 
                         </h2>
                     </div>
 
@@ -1741,7 +1747,7 @@ html.mobile {
                     
                     <div id="nameIcon">
                         <h2 class="titleLabel"> <span class="cmark" style="color: var(--ar_color)" >* </span>
-                            <span>Arnold Workflow<br>      "user_data_string"</span>
+                            <span>Arnold Workflow<br><span class="marksafe">__</span>"user_data_string"</span>
                         </h2>
                     </div>
 
