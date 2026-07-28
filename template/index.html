@@ -1218,7 +1218,7 @@ html.mobile {
 <div id="tgHeaderFix" ></div>
 <div id="bottomShadowRow"></div>
 
-<div id="zagl" class="overlay_fill"></div>
+
 
 <div id="header" class="linePage spawn">
     <h2  id="pearlLine">* pearl version</h2>
@@ -3518,12 +3518,23 @@ function firstStart() {
         //usertext.click();
     }
 
-    const zagl = document.getElementById('zagl');
-    zagl.classList.add("close");
+    //const zagl = document.getElementById('zagl');
+    //zagl.classList.add("close");
 }
 
-window.onload = firstStart;
+// Было:
+// window.onload = firstStart;
+
+// Стало:
+document.addEventListener('DOMContentLoaded', () => {
+    firstStart(); 
+});
+
 window.addEventListener('resize', resizeGeneral);
+
+
+
+
 
 </script>
 
