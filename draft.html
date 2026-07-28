@@ -885,8 +885,6 @@ justify-content: center;
 margin-left: calc(var(--spaces)*4);
 }
 
-
-
 .aboutElement{
 width: 100%;
 }
@@ -972,6 +970,7 @@ background-position: center;
 
 }
 
+
 .gifdis{
 pointer-events: none;
 cursor: default;
@@ -998,6 +997,37 @@ height: auto;
 display: block;
 user-select: none;
 }
+
+#fpl_poster{
+aspect-ratio: 1100 / 720;
+}
+#mpv_poster{
+aspect-ratio: 900 / 585;
+}
+
+#hlp_poster{
+aspect-ratio: 900 / 600;
+}
+
+#swm_poster{
+aspect-ratio: 900 / 585;
+}
+#map_poster{
+aspect-ratio: 900 / 585;
+}
+#ctv_poster{
+aspect-ratio: 900 / 585;
+}
+
+#cam_poster{
+aspect-ratio: 1100 / 720;
+}
+#aws_poster{
+aspect-ratio: 1100 / 720;
+}
+
+
+
 .gifpreview .overlay {
 position: absolute;
 top: 0;left: 0;
@@ -1378,7 +1408,7 @@ html.mobile {
 
 </div>
 
-<div id="mainPage">
+<div id="mainPage" hidden>
     <div id="contentViewer">
         
         <div class="elementBlock" id="filletplane" data-tag="script" >
@@ -1433,7 +1463,7 @@ html.mobile {
                     </div>
 
                     <div class="gif_placeholder_mobile">
-                        <div class="gifpreview">
+                        <div class="gifpreview" id="fpl_poster">
                             <img preload="auto" 
                                  src="./assets/prvgif/fillet_plane_poster.png" 
                                  data-src="./assets/fillet_plane_preview.gif" 
@@ -1528,7 +1558,7 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview">
+                    <div class="gifpreview" id="mpv_poster">
                         <img src="./assets/prvgif/mp4_preview_poster.png" 
                              data-src="./assets/mp4_vidoc_pillow.gif" 
                              data-poster="./assets/prvgif/mp4_preview_poster.png" 
@@ -1687,7 +1717,7 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview">
+                    <div class="gifpreview" id="hlp_poster">
 
                         <img src="./assets/prvgif/helpers_poster.png" 
                              data-src="./assets/matrix_preserve.mp4" 
@@ -1757,7 +1787,7 @@ html.mobile {
                 <div class="about_placeholder_mob">
                 </div>
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview gifdis">
+                    <div class="gifpreview gifdis" id="swm_poster">
 
                         <img class="previewDeSwap" id="prv_swp_a"
                              src="./assets/prvgif/swap_maps_poster.png" 
@@ -1833,7 +1863,7 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview gifdis">
+                    <div class="gifpreview gifdis" id="map_poster">
 
                         <img src="./assets/prvgif/matrix_preserve_poster.png" 
                              data-poster="./assets/prvgif/matrix_preserve_poster.png" 
@@ -1897,7 +1927,7 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview gifdis">
+                    <div class="gifpreview gifdis" id="ctv_poster">
                         <img src="./assets/prvgif/color_to_vertex_poster.png" 
                              data-poster="./assets/prvgif/color_to_vertex_poster.png" 
                              alt="poster" />
@@ -1984,7 +2014,7 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview">
+                    <div class="gifpreview" id="cam_poster">
                         <img src="./assets/prvgif/LinkedCamera_poster.png" 
                              data-src="./assets/Camera_Morph_Link_with_Extend-Region_Value.gif" 
                              data-poster="./assets/prvgif/LinkedCamera_poster.png" 
@@ -2075,7 +2105,7 @@ html.mobile {
                 </div>
 
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview">
+                    <div class="gifpreview" id="aws_poster">
                         <img src="./assets/prvgif/ArnoldRandomizer_poster.png"
                              data-src="./assets/Arnold_String-Path_Randomizer_Selector.gif" 
                              data-poster="./assets/prvgif/ArnoldRandomizer_poster.png"
@@ -3593,13 +3623,11 @@ function firstStart() {
 // Стало:
 document.addEventListener('DOMContentLoaded', () => {
     firstStart(); 
+    const mp = document.getElementById('mainPage');
+    mp.hidden = false;
 });
 
 window.addEventListener('resize', resizeGeneral);
-
-
-
-
 
 </script>
 
