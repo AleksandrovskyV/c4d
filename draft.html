@@ -2871,12 +2871,17 @@ function ensureLoader(overlay) {
     if (overlay.querySelector('.loader-wrapper')) return;
     
     // Проверяем вашу переменную translated (true - RU, false - EN)
-    const textTop = translated ? "Может..." : "Maybe...";
-    const textBottom = translated ? "без VPn..." : "off VPn...";
+    const ru_top = "Может...";
+    const ru_bot = "без VPn...";
+    const us_top = "Maybe...";
+    const us_bot = "off VPn...";
+    
+    const textTop = translated ? ru_top : us_top;
+    const textBottom = translated ? ru_bot : us_bot;
     
     overlay.innerHTML = `
         <div class="loader-wrapper">
-            <div class="loader-hint hint-top">${textTop}</div>
+            <div class="loader-hint hint-top lngsup" data-ru="${ru_top}" data-us="${us_top}">${textTop}</div>
             <div class="loader-container">
                 <svg class="loader-svg" viewBox="0 0 80 80">
                     <circle class="loader-circle-bg" cx="40" cy="40" r="36"></circle>
@@ -2884,7 +2889,7 @@ function ensureLoader(overlay) {
                 </svg>
                 <span class="loader-text">0%</span>
             </div>
-            <div class="loader-hint hint-bottom">${textBottom}</div>
+            <div class="loader-hint hint-bottom lngsup" data-ru="${ru_bot}" data-us="${us_bot}">${textBottom}</div>
         </div>
     `;
 }
