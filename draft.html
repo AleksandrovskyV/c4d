@@ -2839,6 +2839,58 @@ function ensureLoader(overlay) {
     `;
 }
 
+//* Выгружает медиафайл конкретного элемента из оперативной памяти
+function freeMediaMemory(gifCont) {
+    if (!gifCont) return;
+
+    const blobUrl = gifCont.dataset.loadedUrl;
+    if (blobUrl) {
+        URL.revokeObjectURL(blobUrl);
+        delete gifCont.dataset.loadedUrl;
+    }
+
+    gifCont.classList.remove('playing', 'loading');
+
+    const img = gifCont.querySelector('img');
+    const video = gifCont.querySelector('video');
+    const posterUrl = img ? img.getAttribute('data-poster') : (video ? video.getAttribute('poster') : null);
+
+    // 3. Очищаем видео-элемент
+    if (video) {
+        video.pause();
+        video.src = '';
+        video.load();
+        
+        // Если изначально там была картинка (а видео создавалось динамически), возвращаем картинку
+        if (posterUrl) {
+            const restoreImg = document.createElement('img');
+            restoreImg.src = posterUrl;
+            restoreImg.setAttribute('data-poster', posterUrl);
+            
+            // Восстанавливаем оригинальный data-src для последующих загрузок
+            const originalSrc = video.getAttribute('data-src') || gifCont.dataset.originalSrc;
+            if (originalSrc) restoreImg.setAttribute('data-src', originalSrc);
+            
+            video.remove();
+            gifCont.insertBefore(restoreImg, gifCont.firstChild);
+        }
+    } 
+    // 4. Очищаем картинку (возвращаем постер)
+    else if (img && posterUrl) {
+        img.src = posterUrl;
+    }
+}
+
+/**
+ * Выгружает ВСЕ загруженные гифки и видео на текущей странице
+ */
+function freeAllMediaMemory() {
+    const loadedContainers = document.querySelectorAll('.gifpreview[data-loaded-url]');
+    loadedContainers.forEach(container => {
+        freeMediaMemory(container);
+    });
+}
+
 function startPlayback(gifCont, url, isVideo, img, video) {
     gifCont.classList.add('playing');
     
@@ -2995,8 +3047,6 @@ document.addEventListener('click', (event) => {
                         scrBtn.querySelector('.utContent').textContent = "SCRIPT";
                     }
                 }
-
-                
             });
         }
 
