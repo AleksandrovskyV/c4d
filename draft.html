@@ -947,6 +947,54 @@ user-select: none;
 .gifpreview:hover .overlay {
 background-size: 72px 72px; 
 }
+
+.gifpreview.loading .overlay {
+  background-image: none; 
+}
+
+.gifpreview .loader-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.gifpreview.loading .loader-container {
+  display: flex;
+}
+
+.gifpreview .loader-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  transform: rotate(-90deg);
+}
+
+.gifpreview .loader-circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 4;
+}
+
+.gifpreview .loader-circle {
+  fill: none;
+  stroke: #ffaa00; 
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 226; /* 2 * PI * r (где r=36) */
+  stroke-dashoffset: 226;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.gifpreview .loader-text {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .gifpreview.playing .overlay {
 opacity: 0;
 }
@@ -2777,6 +2825,43 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
     }
 });
 
+function ensureLoader(overlay) {
+    if (overlay.querySelector('.loader-container')) return;
+    
+    overlay.innerHTML = `
+        <div class="loader-container">
+            <svg class="loader-svg" viewBox="0 0 80 80">
+                <circle class="loader-circle-bg" cx="40" cy="40" r="36"></circle>
+                <circle class="loader-circle" cx="40" cy="40" r="36"></circle>
+            </svg>
+            <span class="loader-text">0%</span>
+        </div>
+    `;
+}
+
+function startPlayback(gifCont, url, isVideo, img, video) {
+    gifCont.classList.add('playing');
+    
+    if (isVideo) {
+        if (!video) {
+            video = document.createElement('video');
+            video.loop = true;
+            video.muted = true;
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            if (img) img.remove();
+            gifCont.insertBefore(video, gifCont.firstChild);
+        }
+        video.src = url;
+        video.play().catch(err => console.log("Автоплей заблокирован:", err));
+    } else {
+        if (img) {
+            img.src = url;
+        }
+    }
+}
+
+
 document.addEventListener('click', (event) => {
 
     const swapped = event.target.closest('.prv_swp_btn');
@@ -2983,51 +3068,93 @@ document.addEventListener('click', (event) => {
         });
 
     }
-
-
-    const gifCont = event.target.closest('.gifpreview');
     
+    const gifCont = event.target.closest('.gifpreview');
     if (!gifCont) return;
 
     const img = gifCont.querySelector('img');
     let video = gifCont.querySelector('video');
-    
+    const overlay = gifCont.querySelector('.overlay');
+
     const mediaUrl = img ? img.getAttribute('data-src') : video.getAttribute('src');
     const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
-    
-    const isVideo = mediaUrl.endsWith('.mp4');
+    const isVideo = mediaUrl ? mediaUrl.endsWith('.mp4') : false;
+
+    if (gifCont.classList.contains('loading')) return;
 
     if (gifCont.classList.contains('playing')) {
         gifCont.classList.remove('playing');
-        
         if (isVideo && video) {
             video.pause();
         } else if (img) {
             img.src = posterUrl;
         }
-    } else {
-        gifCont.classList.add('playing');
-        
-        if (isVideo) {
-            if (!video) {
-                video = document.createElement('video');
-                video.src = mediaUrl;
-                video.poster = posterUrl;
-                video.loop = true;
-                video.muted = true;
-                video.setAttribute('playsinline', '');
-                video.setAttribute('webkit-playsinline', '');
-                video.preload = 'auto';
-                img.remove();
-                gifCont.insertBefore(video, gifCont.firstChild);
-            }
-            video.play().catch(err => console.log("Автоплей заблокирован:", err));
-        } else {
-            if (img && mediaUrl) {
-                img.src = mediaUrl;
-            }
-        }
+        return;
     }
+
+    if (gifCont.dataset.loadedUrl) {
+        startPlayback(gifCont, gifCont.dataset.loadedUrl, isVideo, img, video);
+        return;
+    }
+
+    gifCont.classList.add('loading');
+    ensureLoader(overlay);
+
+    const circle = overlay.querySelector('.loader-circle');
+    const text = overlay.querySelector('.loader-text');
+    const radius = 36;
+    const circumference = 2 * Math.PI * radius;
+
+    fetch(mediaUrl)
+        .then(response => {
+            if (!response.ok) throw new Error('Ошибка сети');
+            
+            const contentLength = response.headers.get('content-length');
+            if (!contentLength) {
+                text.textContent = '...';
+                return response.blob();
+            }
+
+            const total = parseInt(contentLength, 10);
+            let loaded = 0;
+            const reader = response.body.getReader();
+
+            return new Response(
+                new ReadableStream({
+                    start(controller) {
+                        function read() {
+                            reader.read().then(({ done, value }) => {
+                                if (done) {
+                                    controller.close();
+                                    return;
+                                }
+                                loaded += value.length;
+                                const percent = Math.round((loaded / total) * 100);
+                                
+                                text.textContent = `${percent}%`;
+                                const offset = circumference - (percent / 100) * circumference;
+                                circle.style.strokeDashoffset = offset;
+
+                                controller.enqueue(value);
+                                read();
+                            }).catch(err => controller.error(err));
+                        }
+                        read();
+                    }
+                })
+            ).blob();
+        })
+        .then(blob => {
+            const blobUrl = URL.createObjectURL(blob);
+            gifCont.dataset.loadedUrl = blobUrl;
+            
+            gifCont.classList.remove('loading');
+            startPlayback(gifCont, blobUrl, isVideo, img, video);
+        })
+        .catch(err => {
+            console.error("Ошибка загрузки:", err);
+            gifCont.classList.remove('loading');
+        });
 });
 
 
