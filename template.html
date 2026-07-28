@@ -202,6 +202,7 @@ margin-right: 62px;
 }
 .tested{
 padding-right: 62px;
+white-space: nowrap
 }
 
 .plink.yt:hover { color: #f74545;
@@ -248,6 +249,10 @@ padding-bottom: 1.4vh;
 }
 .tMidText{
 font-size: var(--font_midl)
+}
+
+html.mobile.swapPage .cmark {
+display: none !important;
 }
 
 .linePage {
@@ -717,6 +722,9 @@ color: #565656;
 .sidebtn:hover {
 color: var(--accolor);
 }
+.sid_tex.focus{
+color: var(--accolor);
+}
 .rem_und {
 display: inline-block;
 font-family: var(--sidefont);
@@ -966,6 +974,7 @@ padding-bottom: 2vh;
     padding-bottom: 4vh;
     }
 }
+
 /* DPI Scale */
 @media (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), 
        (min-resolution: 192dpi) and (orientation: landscape) {
@@ -2157,6 +2166,8 @@ function swapPageSide() {
     }
 
     if(swapFlag){
+        document.documentElement.classList.add('swapPage');
+
         container.insertBefore(shelfFake,contentViewer); 
         
         headerPage.prepend(scrbtn);  // в начало
@@ -2174,6 +2185,8 @@ function swapPageSide() {
         prjSlash.innerHTML = lSlash;
 
     }else{
+        document.documentElement.classList.remove('swapPage');
+
         container.insertBefore(contentViewer, shelfFake); 
 
         headerPage.prepend(namepage);
@@ -2336,6 +2349,7 @@ function headerTextShorter() {
 
     const updateDOM = () => {
         const nowWidth = window.innerWidth;
+        const isAlbum = window.innerHeight < nowWidth;
 
         const allRules = (namepageText && usertext && scrBtn && pearlLine);
         if (!allRules) return;
@@ -2349,11 +2363,19 @@ function headerTextShorter() {
             usertext.textContent = "&_DATA";
         } else if (nowWidth < 960) {
             namepageText.textContent = "C4D";
-            if(isMobile && swapFlag){
-            usertext.textContent = ".";
+
+            if(isMobile){
+                if (isAlbum) {
+                    usertext.textContent = "VSKY";
+                } else {
+                    usertext.textContent = swapFlag ? "." : "&"; 
+                }
             }else{
-            usertext.textContent = "&";
+                usertext.textContent = "&";
             }
+
+
+  
         } else {
             namepageText.textContent = nameCases.namepage[currentIndices.namepage];
             usertext.textContent = "\u00A0" + nameCases.usertext[currentIndices.usertext] + "\u00A0";
@@ -2646,15 +2668,16 @@ document.addEventListener('click', (event) => {
     const currentBtn = event.target.closest('.cfunc, .mfunc');
 
     const width = window.innerWidth;
-    let sizeIsMobile = false;
+    const isAlbum = window.innerHeight < width;
+    let widthIsMobile = false;
 
-    if (width < mobileWidth) sizeIsMobile = true;
+    if (width < mobileWidth) widthIsMobile = true;
 
     if (currentBtn) {
         
         const isMainTabClick = currentBtn.classList.contains('mfunc');
 
-        if (!sizeIsMobile || isMainTabClick) {
+        if (!widthIsMobile || isMainTabClick) {
             lastCheckedMainTabs.forEach(btn => {
                 if (btn) btn.classList.remove("active");
             });
@@ -2675,13 +2698,15 @@ document.addEventListener('click', (event) => {
         // 2. ЛОГИКА ОПРЕДЕЛЕНИЯ И КЭШИРОВАНИЯ АКТИВНЫХ ЭЛЕМЕНТОВ
         if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
             const scrbtn = document.getElementById('scrbtn')
-            scrbtn.classList.remove("active");
+
+            const rule = isMobile && isAlbum;
+            if(!rule) scrbtn.classList.remove("active");          
 
             const btnWeb = document.getElementById('prjbtn');
             const btnMob = document.getElementById('prjbtn_mob');
             
             // На мобилках сохраняем в отдельный неприкосновенный кэш вкладок
-            if (sizeIsMobile) {
+            if (widthIsMobile) {
                 lastCheckedMainTabs = [btnWeb, btnMob].filter(Boolean);
                 lastCheckedButtons = [];
             } else {
@@ -2697,13 +2722,12 @@ document.addEventListener('click', (event) => {
         } else if (currentBtn.id === "scrbtn") {
             const btnWeb = document.getElementById('scrbtn');
 
-
-
             const prjbtn = document.getElementById('prjbtn')
-            prjbtn.classList.remove("active");
-
+    
+            const rule = isMobile && isAlbum;
+            if(!rule) prjbtn.classList.remove("active");
             
-            if (sizeIsMobile) {
+            if (widthIsMobile) {
                 lastCheckedMainTabs = [btnWeb].filter(Boolean);
                 lastCheckedButtons = [];
             } else {
@@ -2716,7 +2740,7 @@ document.addEventListener('click', (event) => {
             changeMobileDownloadBtn(false);
 
         } else if (currentBtn.id === "usertext") {
-            if (sizeIsMobile) {
+            if (widthIsMobile) {
                 lastCheckedMainTabs.forEach(btn => btn && btn.classList.remove("active"));
                 lastCheckedMainTabs = [];
             }
@@ -2741,11 +2765,27 @@ document.addEventListener('click', (event) => {
             const target_func = currentBtn.dataset.func;
             document.querySelectorAll('.elementBlock').forEach(block => {
                 block.hidden = (block.id !== target_func);
+
+                if(isAlbum && isMobile && (block.id === target_func) ){
+                    const scrBtn = document.getElementById('scrbtn');
+                    const tag = block.dataset.tag;
+                    if(tag === "project" || tag === "project_pack"){
+                        scrBtn.querySelector('.utContent').textContent = "PRJECT";
+                    }
+                    
+                    if(tag === "script" || tag === "script_pack"){
+                        scrBtn.querySelector('.utContent').textContent = "SCRIPT";
+                    }
+                }
+
+                
             });
         }
 
+
+
         // 2. Сортировка SCRIPTS
-        if (!isMobile && !sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
+        if (!isMobile && !widthIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "script" || tag === "script_pack");
@@ -2754,7 +2794,7 @@ document.addEventListener('click', (event) => {
 
 
         // 3. Сортировка PRJECTS
-        if (!isMobile && !sizeIsMobile &&currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (!isMobile && !widthIsMobile &&currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             document.querySelectorAll('.elementBlock').forEach(block => {
                 const tag = block.dataset.tag;
                 block.hidden = !(tag === "project" || tag === "project_pack");
@@ -2769,7 +2809,7 @@ document.addEventListener('click', (event) => {
         }
 
 
-        if (sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
+        if (widthIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "scrbtn")){
             const container = document.getElementById('shelfScripts');
             const firstButton = container.firstElementChild;
             firstButton.classList.add("active");
@@ -2785,7 +2825,7 @@ document.addEventListener('click', (event) => {
             lastCheckedT = firstButton.querySelector('.sid_tex');
         }
 
-        if (sizeIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
+        if (widthIsMobile && currentBtn.classList.contains('mfunc') && (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob")){
             const container = document.getElementById('shelfProject');
             const firstButton = container.firstElementChild;
             firstButton.classList.add("active");
@@ -2799,6 +2839,8 @@ document.addEventListener('click', (event) => {
             lastCheckedU = firstButton.querySelector('.sel_pre');
             lastCheckedT = firstButton.querySelector('.sid_tex');
         }
+
+
 
         hideOverflowingButtons();
 
@@ -2878,9 +2920,86 @@ if (swapButton) swapButton.onclick = () => swapPageSide();
 if (swapMobile) swapMobile.onclick = () => swapPageSide();
 
 
+let refreshActiveButtonFlag = false;
+
+function refreshActiveButton(state) {
+    if(!refreshActiveButtonFlag) return
+
+    const container = document.getElementById('webSidebar');
+    const buttons = container.querySelectorAll('.sidebtn');
+    if(state=="scrollend"){
+
+    }
+    const blocks = document.querySelectorAll('.elementBlock');
+    const header = document.getElementById('header');
+    const hrect = header.getBoundingClientRect();
+    const topOffset = hrect.bottom + (hrect.bottom*2); //высота header+запас
+
+    let activeBlock = null;
+
+    for (let i = 0; i < blocks.length; i++) {
+        const block = blocks[i];
+        const rect = block.getBoundingClientRect();
+
+        if (rect.bottom > topOffset && rect.top < window.innerHeight) {
+            activeBlock = block;        
+            break; 
+        }
+    }
+
+    const targetBtnName = activeBlock ? activeBlock.id : null;
+    const targetClass = "active"//isMobile ? "focus" : "active";
+    const tag = activeBlock.dataset.tag;
+    //console.log(hrect.bottom, targetBtnName );
+    
+
+    buttons.forEach(btn => {
+        if (btn.dataset.func === targetBtnName) {
+            //btn.classList.add('active');
+            btn.querySelector('.sel_pre').classList.add(targetClass);
+            btn.querySelector('.sid_tex').classList.add(targetClass);
+
+        } else {
+            //btn.classList.remove('active');
+            btn.querySelector('.sel_pre').classList.remove(targetClass);
+            btn.querySelector('.sid_tex').classList.remove(targetClass);
+        }
+    });
+
+    const scrBtn = document.getElementById('scrbtn');
+    if(tag === "project" || tag === "project_pack"){
+        scrBtn.querySelector('.utContent').textContent = "PRJECT";
+    }
+    
+    if(tag === "script" || tag === "script_pack"){
+        scrBtn.querySelector('.utContent').textContent = "SCRIPT";
+    }
+
+
+
+}
+
+// Функция-прослойка для ограничения частоты вызовов
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+window.addEventListener('scroll', throttle(refreshActiveButton, 100));
+document.addEventListener('DOMContentLoaded', refreshActiveButton);
+
 function resizeGeneral() {
     
     nowWidth = window.innerWidth;
+    nowHeight = window.innerHeight;
 
     isMobileWidth = nowWidth <= mobileWidth ? true : false;
 
@@ -2934,7 +3053,6 @@ function resizeGeneral() {
         }
     }
 
-
     gifSizeChecker();
 
     headerTextShorter();
@@ -2952,6 +3070,13 @@ function resizeGeneral() {
     if(isMobileWidth){
       hideOverflowingButtons();  
     } 
+    if(nowWidth>nowHeight && isMobile){
+        refreshActiveButtonFlag = true;
+
+    }else{
+        refreshActiveButtonFlag = false;
+    }
+    refreshActiveButton();
 }
 
 
