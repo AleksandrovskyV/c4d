@@ -228,7 +228,19 @@ text-decoration: underline;
 cursor: pointer;
 user-select: none;
 }
-.plink.check:hover { color: var(--hp_color);
+#checkspec{
+font-size: calc(var(--font_foot));
+margin-left:0px !important;
+margin-top:12px !important;
+}
+html.mobile #checkspec{
+color: #5b6175;
+}
+html:not(.mobile) .plink.check:hover { color: var(--hp_color);
+}
+
+.plink.check:active {
+filter: brightness(0.7); 
 }
 
 .plink.yt.ext{
@@ -810,13 +822,10 @@ justify-content: space-between;
 .rowline.one{
 align-items: center;
 justify-content: center;
+margin-left: calc(var(--spaces)*4);
 }
 
-.action{
-font-size: 24px;
-margin-left:0px !important;
-margin-top:12px !important;
-}
+
 
 .aboutElement{
 width: 100%;
@@ -989,6 +998,7 @@ padding-top: 2vh;
 html.mobile #gitline{
 padding-bottom: 2vh;
 }
+
 
 
 @media (max-width: 779.98px) {
@@ -1569,8 +1579,8 @@ html.mobile {
                                      <p class="downlink" ><a class="plink dn lngsup" data-ru="скачать" data-us="download" 
                                         href="https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py"
                                         >download</a></p>
-                                     <p class="downlink hideMobile prv_swp_btn plink check lngsup " data-ru="проверить!" data-us="test it!" 
-                                        >test it!</p>
+                                     <p class="downlink hideMobile prv_swp_btn plink check lngsup " data-ru="проверить" data-us="test it!" 
+                                        >test it ..</p>
                                 </div>
                             </div>
                         </div>
@@ -1602,7 +1612,7 @@ html.mobile {
                     </div>
                 </div>
                 <div class="rowline one downline hideWeb">
-                     <p class="action prv_swp_btn plink check lngsup" data-ru="проверить!" data-us="test it!" 
+                     <p id="checkspec" class="prv_swp_btn plink check lngsup" data-ru="* проверить *" data-us="* check *" 
                         >test it!</p>
                 </div>
 
