@@ -1965,16 +1965,21 @@ function lerp(start, end, amt) {
 
 const mobileWidth = 780+1;
 
+/// Значение из медизапроса
+const rootStyles = getComputedStyle(document.documentElement);
+const dpiScaleStr = rootStyles.getPropertyValue('--dpiScale').trim();
+const isDpiScale = dpiScaleStr === 'true'; 
+
 let nowWidth = window.innerWidth;
 let isMobileWidth = nowWidth <= mobileWidth ? true : false;
 
 let translated = false; 
 let swapFlag = false; 
 
-const rootStyles = getComputedStyle(document.documentElement);
-const dpiScaleStr = rootStyles.getPropertyValue('--dpiScale').trim();
-const isDpiScale = dpiScaleStr === 'true'; 
-
+const rSlash = "/ ";
+const lSlash = " /"
+const bSpace = "&nbsp;"+"  "+"&nbsp;"
+const mSpace = "&nbsp;"
 
 /// USER INTERFACE - GLOBAL SWAPS
 
@@ -1988,11 +1993,12 @@ let shifting = false;
 
 let lastCheckedMainTabs = []; 
 let lastCheckedButtons = []; 
-let lastCheckedU = null;
-let lastCheckedT = null;
+let lastCheckedU = null; // хранит .sel_pre элемент (это такая палочка рядом пунктами) 
+let lastCheckedT = null; // хранит .sid_tex
 
 function soloCheck(state) {
-     // Выбор активного элемента на странице
+// Выбор одного активного элемента на странице, при уменьшении 
+// её ширины. 
 
     if(shortShelfActive) return;
 
@@ -2150,7 +2156,6 @@ function swapPageSide() {
         webSidebar.classList.toggle('swap');
     }
 
-
     if(swapFlag){
         container.insertBefore(shelfFake,contentViewer); 
         
@@ -2158,15 +2163,15 @@ function swapPageSide() {
         headerPage.append(namepage); // в конец
         
         kpr.hidden = false;
-        namepage.prepend(nameSlash);
 
+        namepage.prepend(nameSlash);
         prjbtn.append(prjSlash);
         scrbtn.append(scrSlash);
         
-        nameSlash.innerHTML = "/ "; 
+        nameSlash.innerHTML = rSlash; 
                 
-        scrSlash.innerHTML = " /"+"&nbsp;"+"  "+"&nbsp;";
-        prjSlash.innerHTML = " /";
+        scrSlash.innerHTML = lSlash+bSpace;
+        prjSlash.innerHTML = lSlash;
 
     }else{
         container.insertBefore(contentViewer, shelfFake); 
@@ -2177,14 +2182,13 @@ function swapPageSide() {
         kpr.hidden = true;
 
         namepage.append(nameSlash);
-
         prjbtn.prepend(prjSlash);
         scrbtn.prepend(scrSlash);
 
-        nameSlash.innerHTML = " /"; 
+        nameSlash.innerHTML = lSlash; 
 
-        scrSlash.innerHTML = "/ ";
-        prjSlash.innerHTML = "/ ";
+        scrSlash.innerHTML = rSlash;
+        prjSlash.innerHTML = rSlash;
     }
 
     const downPackage = document.getElementById('down_package');
@@ -2339,8 +2343,6 @@ function headerTextShorter() {
 
         const scrbtn = document.getElementById('scrbtn');
         const scrSlash = scrbtn.querySelector('.headDivider');
-        const extra = "&nbsp;"+"  "+"&nbsp;"
-
 
         if (nowWidth >= 960 && nowWidth < 1300) {
             namepageText.textContent = "C4D";
@@ -2360,13 +2362,13 @@ function headerTextShorter() {
         if (namepageText.textContent === "C4D") {
             pearlLine.textContent = "* pearl";
 
-            if(swapFlag)scrSlash.innerHTML  = " /";
-            if(!swapFlag)scrSlash.innerHTML = "/  ";
+            if(swapFlag) scrSlash.innerHTML = lSlash;
+            if(!swapFlag)scrSlash.innerHTML = rSlash+mSpace;
 
         } else {
 
-            if(swapFlag)scrSlash.innerHTML  = " /"+extra;
-            if(!swapFlag)scrSlash.innerHTML ="/ ";
+            if(swapFlag) scrSlash.innerHTML = lSlash+bSpace;
+            if(!swapFlag)scrSlash.innerHTML = rSlash;
 
             pearlLine.textContent = "* pearl edition";
         }
@@ -2552,8 +2554,6 @@ function switchLang() {
 
 // BTN LOGIC
 
-
-
 function nextElement() {
     const toolbarPrj = document.getElementById('shelfProject');
     const toolbarScr = document.getElementById('shelfScripts');
@@ -2671,7 +2671,6 @@ document.addEventListener('click', (event) => {
 
         lastCheckedU = null;
         lastCheckedT = null;
-
 
         // 2. ЛОГИКА ОПРЕДЕЛЕНИЯ И КЭШИРОВАНИЯ АКТИВНЫХ ЭЛЕМЕНТОВ
         if (currentBtn.id === "prjbtn" || currentBtn.id === "prjbtn_mob") {
