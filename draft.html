@@ -849,6 +849,22 @@ color: var(--bgcolor);
 }
 
 /* gifplayer */
+
+.previewSwap{
+display: none !important; 
+}
+.previewDeSwap{
+display: block !important;
+}
+html.swapPage .previewDeSwap{
+display: none !important;
+}
+html.swapPage .previewSwap{
+display: block !important;
+}
+
+
+
 .gifdis{
 pointer-events: none;
 cursor: default;
@@ -1542,8 +1558,14 @@ html.mobile {
                 <div class="gif_placeholder_mobile">
                     <div class="gifpreview gifdis">
 
-                        <img src="./assets/prvgif/swap_maps_poster.png" 
+                        <img class="previewDeSwap"
+                             src="./assets/prvgif/swap_maps_poster.png" 
                              data-poster="./assets/prvgif/swap_maps_poster.png" 
+                             alt="poster" />
+
+                        <img class="previewSwap" hidden 
+                             src="./assets/prvgif/swap_maps_poster_alt.png" 
+                             data-poster="./assets/prvgif/swap_maps_poster_alt.png" 
                              alt="poster" />
 
                         <div class=" gifdis"></div>
