@@ -104,7 +104,7 @@ src: url('./assets/fonts/GeistMono-Medium.ttf') format('truetype'); }
 --font_btn: 28px !important;
 
 --font_title: 20px;
---font_midl: 17px;
+--font_midl: 16px;
 --font_base: 14px;
 --font_file: 14px;
     }
@@ -794,9 +794,8 @@ flex-direction: row;
 .aboutIconBlock { 
 width: 100%;
 }
-.aboutIconRow { 
-min-width: 370px;
-}
+
+
 
 .about_extend { 
 margin-top: 2vh;
@@ -941,6 +940,9 @@ padding-bottom: 2vh;
 }
 
 @media (min-width: 1790px){
+    .aboutIconRow { 
+        min-width: 370px;
+    }
     .gifpreview{
         width: clamp(500px, 30vw, 890px);  
         max-width: 660px;
@@ -1009,6 +1011,11 @@ html.mobile {
     #footer{
     bottom: calc( var(--footer_h)*-1 - var(--footer_h)/2 );
     transform: translateY( 3vh );
+    }
+    .aboutIconRow {
+        max-width: auto;
+        width: auto;
+        min-width: auto;
     }
 }
 }
@@ -1847,7 +1854,7 @@ html.mobile {
                                 <p class="fileLine">
                                     01. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
                                 <span class="fileText">
-                                - Low-poly mouth setup with small trick * Pose Morph Tag<br></span></p>
+                                -<span class="hideMobile"> Low-poly mouth</span><span class="hideWeb"> Low-poly</span> setup with small trick * Pose Morph Tag<br></span></p>
                                 <p class="fileLine" >
                                     02. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
                                 <span class="fileText">
@@ -1859,7 +1866,8 @@ html.mobile {
                                  <p class="fileLine">
                                     01. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z">smile_std_rigged.c4d</a><br>
                                 <span class="fileText">
-                                - Простая установка рта с хитростью * Pose Morph Tag<br></span></p>
+
+                                -<span class="hideMobile"> Простая установка</span><span class="hideWeb"> Установка</span> рта с хитростью * Pose Morph Tag<br></span></p>
                                 <p class="fileLine" >
                                     02. <a class="plink dn" href="https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z">smile_octane_w_aep</a><br>
                                 <span class="fileText">
