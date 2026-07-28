@@ -1,0 +1,669 @@
+<!doctype html><html lang=ru><head><meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>c4d</title>
+<link rel=canonical href=https://vsky.space/ >
+<link rel=icon type=image/png sizes=16x16 href=https://vsky.space/content/fav/c4d.png>
+<link rel=icon type=image/png sizes=32x32 href=https://vsky.space/content/fav/c4d.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://vsky.space/content/fav/c4d.png>
+<meta property=og:title content="stuff for c4d">
+<meta property=og:type content=website>
+<meta property=og:url content=https://vsky.space/c4d>
+<meta property=og:description content="Scripts & Projects for Cinema 4D">
+<meta property=og:image content=https://vsky.space/content/cover/c4d.jpg>
+<meta property=og:image:secure_url content=https://vsky.space/content/cover/c4d.jpg>
+<meta name=twitter:card content=summary_large_image>
+<meta name=twitter:title content="stuff for c4d">
+<meta name=twitter:description content="Scripts & Projects for Cinema 4D">
+<meta name=twitter:image content=https://vsky.space/content/cover/c4d.jpg>
+<meta name=twitter:site content=@AleksandrovskyV>
+<meta name=theme-color content=#2c2f34>
+<link rel=canonical href=http://vsky.space/c4d/ >
+<link rel=preload href=./assets/prvgif/fillet_plane_poster.png as=image type=image/png>
+<script>const ua=navigator.userAgent.toLowerCase();window.isMobile=/iphone|ipad|android/.test(ua),window.isMobile&&document.documentElement.classList.add("mobile");const isTelegram=void 0!==window.TelegramWebviewProxy||void 0!==window.TelegramWebviewProxyProto||void 0!==window.TelegramWebview||void 0!==window.Telegram||ua.includes("telegram");isTelegram&&document.documentElement.classList.add("telegram")</script>
+<style>@font-face{font-family:title;src:url('./assets/fonts/GeistMono-SemiBold.ttf') format('truetype')}@font-face{font-family:sidebar;src:url('./assets/fonts/GeistMono-Medium.ttf') format('truetype')}*{margin:0;padding:0;box-sizing:border-box}[hidden]{display:none!important}:root{--scrollbar-width:calc(100vw - 100%);--titlefont:'title',sans-serif;--sidefont:'sidebar',sans-serif;--monofont:Consolas,"Liberation Mono",Menlo,Courier,monospace;--main_w:75%;--sidebar_w:200px;--sidemob_w:12vw;--header_h:162px;--footer_h:118px;--spaces:5px;--expand_val:3.0;--font_perl:18px;--font_head:72px;--font_foot:24px;--font_side:28px;--font_btn:32px;--font_title:38px;--font_midl:22px;--font_base:19px;--font_file:18px;--font_gifp:18px;--bgcolor:#2c2f34;--accolor:#dd9f17;--accolor_grey:#858997;--accolor_alt:#858997;--ftcolor:#ababab;--gitcolor:#698aa8;--name_pr:#767676;--name_pg:#c8c8ca;--name_sl:#828282;--name_us:#424447;--sbt_color:#a4a4a4;--fp_color:#1cf975;--mp_color:#dd9f17;--hp_color:#45a2de;--lc_color:#92a3bc;--ar_color:#acbfbe;--dpiScale:false;--mobileAlbum:false}@media (max-width:779.98px){:root{--main_w:97.5%;--sidebar_w:82px}}@media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi){:root{--header_h:100px;--footer_h:100px;--spaces:3px;--sidebar_w:64px!important;--font_perl:13px;--font_head:60px;--font_foot:16px;--font_side:22px;--font_btn:28px!important;--font_title:20px;--font_midl:16px;--font_base:14px;--font_file:14px;--font_gifp:24px}}@media (-webkit-min-device-pixel-ratio:2) and (orientation:landscape),(min-resolution:192dpi) and (orientation:landscape){:root{--sidebar_w:200px!important;--main_w:91%}}body,html{width:100%;background-color:var(--bgcolor);font-family:sans-serif;overflow-x:hidden;overflow-y:auto;touch-action:manipulation}html{scrollbar-gutter:stable}.mbtn,[class*=btn],a,button{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}a,h2,p{pointer-events:auto;user-select:auto;-webkit-touch-callout:default}h2{color:#dfdfe0;font-family:var(--titlefont)}h2.special{color:#698aa8;font-size:var(--font_base);font-kerning:normal;letter-spacing:-.03em;margin-bottom:10px}h2.rtext{text-align:right}p{color:#a3a3a3;display:block;font-size:var(--font_base);padding-top:2px;padding-bottom:4px;line-height:1.3;letter-spacing:+.01em}.based,.based p{font-size:var(--font_base);line-height:1.3}.tinpack,.tinpack p{font-size:var(--font_base);line-height:1.3}p.italy{font-style:italic}.marked{color:#e0dfdf}p .link{color:#dd9f17}p .link:hover{color:#a3a3a3}.plink{letter-spacing:+.02em;color:#ababab}.plink.check{margin-left:62px;white-space:nowrap;text-decoration:underline;cursor:pointer;user-select:none}#checkspec{font-size:calc(var(--font_foot));margin-left:0!important;margin-top:12px!important}html.mobile #checkspec{color:#5b6175}html:not(.mobile) .plink.check:hover{color:var(--hp_color)}.plink.check:active{filter:brightness(.7)}.plink.yt.ext{margin-right:62px}.tested{padding-right:62px;white-space:nowrap}.plink.yt:hover{color:#f74545}.plink.dn{margin-left:auto}.plink.dn:hover{color:var(--accolor)}a.link{color:#ababab}a.link.b{color:#279ae3}a.link.drs{text-decoration:none}a.link:hover{color:#a3a3a3}a.gitlink{color:var(--ftcolor)}a.gitlink:hover{color:var(--accolor)}a.gitlink_mob{color:var(--gitcolor)}a.gitlink_mob:hover{color:var(--accolor_grey)}.fileLine{width:540px;line-height:1.5;padding-bottom:14px}.fileText{font-size:var(--font_file);color:#757575;font-weight:200}.titleLabel{color:#dfdfe0;font-size:var(--font_title);font-kerning:normal;letter-spacing:-.03em;padding-bottom:1.4vh}.tMidText{font-size:var(--font_midl)}.marksafe{color:transparent}html.swapPage .cmark{display:none!important}html.swapPage .marksafe{display:none!important}.linePage{position:fixed;left:0;right:0;margin-left:auto;margin-right:auto;width:var(--main_w);display:flex;flex-direction:column;align-items:flex-end;flex-grow:0;background-color:var(--bgcolor);z-index:6000}.overlay_fill{position:fixed;top:0;left:0;width:100%;height:100%;background-color:var(--bgcolor);z-index:9990;transition:opacity .4s;user-select:none;pointer-events:none}.overlay_fill.close{opacity:0}#header{top:calc((var(--header_h) * var(--expand_val) - var(--header_h))*-1);height:calc(var(--header_h) * var(--expand_val));z-index:9000}#footer{bottom:calc(var(--footer_h) * -1);height:calc(var(--footer_h) * 2);align-items:center;pointer-events:auto}#footer h2{font-size:var(--font_foot)}.footerElements{display:flex;flex-direction:row;width:100%;justify-content:space-between;align-items:flex-start;pointer-events:auto;user-select:none}.footText{color:var(--ftcolor);text-decoration:underline;cursor:pointer}html:not(.mobile) .footText:hover{color:#dd9f17}#viewcode a.link:hover,html:not(.mobile) #down_package a.link:hover{color:#ababab}#viewcode a.link:hover .selector,html:not(.mobile) #down_package a.link:hover .selector{color:var(--accolor)}#bottomShadowRow{position:fixed;left:0;width:100vw;height:128px;bottom:calc(var(--footer_h));background-image:url('./assets/shadow_sample.png');background-repeat:repeat-x;background-position:bottom left;z-index:2000;pointer-events:none;user-select:none}#mainPage{width:var(--main_w);margin-left:auto;margin-right:auto;transform:translateY(calc(var(--header_h) + var(--spaces)));display:flex;flex-direction:row;align-items:flex-start;margin-bottom:calc(var(--footer_h) * 3)}#pearlLine{font-size:var(--font_perl);margin-top:auto;transform:translateY(8px);align-self:flex-start;color:var(--name_pr);user-select:none}#headerPage{display:flex;flex-direction:row;width:100%;justify-content:space-between;align-items:flex-end;pointer-events:auto}#contentViewer{display:flex;flex-direction:column;flex-grow:1;margin-top:var(--spaces);margin-right:calc(var(--spaces));min-width:0}#contentViewer.swap{margin-right:0}.elementBlock{width:100%;margin-bottom:25px;min-width:0}.elementBlock img{width:100%;height:auto;display:block}#shelfFake{width:var(--sidebar_w);min-height:12px;height:100%;background-color:transparent;flex-shrink:0;margin-right:var(--spaces)}#shelfFake.swap{margin-right:0;margin-left:calc(var(--spaces)*2)}.shelfMobile{position:fixed;top:calc(var(--header_h) + var(--spaces));right:calc(((100% - var(--main_w))/ 2));width:var(--sidebar_w);height:calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 7);display:flex;flex-direction:column;justify-content:flex-start;flex-grow:0;z-index:5000}.shelfMobile.overlap{height:calc(100% - var(--header_h) - var(--footer_h) - var(--spaces) * 7);min-height:calc(var(--sidebar_w)*2);display:flex;flex-direction:column;justify-content:flex-end;z-index:8000;background-color:transparent;pointer-events:none}.shelfMobile.swap{left:calc(((100% - var(--main_w))/ 2));right:auto}.mbtn{aspect-ratio:1/1;margin-top:var(--spaces);background-color:var(--bgcolor);background-size:80%;background-repeat:no-repeat;background-position:center;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;background-color:#373c43}.mbtn.text{background-color:var(--bgcolor);font-family:var(--titlefont);font-size:var(--font_btn);border:2px solid #3f4b5b;color:var(--ftcolor);line-height:0;padding-top:4px}html.mobile .mbtn:active{background-color:#3f4b5b;background-size:75%;color:#fff;font-size:calc(var(--font_btn)*.9)}.mbtn.top{padding-top:0;margin-top:auto;margin-bottom:12px}.mbtn.bot{margin-top:12px}.mbtn.bot.tr{pointer-events:none;background-color:transparent;border:0 solid transparent}.mbtn.bot.up{margin-top:auto!important}.mbtn.active{background-color:var(--accolor_grey)}html:not(.mobile) .mbtn:hover{background-color:var(--accolor);color:#fff}.mbtn.disable{user-select:none;pointer-events:none;width:100%;height:100%;background-color:transparent}.fpl{background-image:url('./assets/svg/FilledPlane.svg')}.mpv{background-image:url('./assets/svg/MP4Vidoc.svg')}.swm{background-image:url('./assets/svg/SwapMats_Base.svg')}.map{background-image:url('./assets/svg/MatrixPreserve.svg')}.ctv{background-image:url('./assets/svg/ObjectColorToVertexColor.svg')}.cam{background-image:url('./assets/svg/LinkedCamera.svg')}.aws{background-image:url('./assets/svg/ArnoldWorkflow.svg')}.tsm{background-image:url('./assets/svg/TestSmile_Alt.svg')}html.swapPage .swm{background-image:url('./assets/svg/SwapMats_Alt.svg')}.swm.swmToggle{background-image:url('./assets/svg/SwapMats_Alt.svg')}html.swapPage .swm.swmToggle{background-image:url('./assets/svg/SwapMats_Base.svg')}button{background:0 0;border:0 solid transparent;margin:0;pointer-events:auto}button.active{color:var(--accolor)}#header button{font-family:var(--titlefont);letter-spacing:-.04em;font-size:var(--font_head)}.namepageDecor{font-family:var(--titlefont);font-size:var(--font_head);color:var(--name_pg);text-align:left;white-space:nowrap;font-kerning:normal;letter-spacing:-.03em;pointer-events:none;user-select:none}.headDivider{color:var(--name_sl)}#namepage_mob{color:var(--name_pg)}#usertext{color:var(--name_us)}.base_btn{font-family:var(--titlefont);font-size:var(--font_head);color:#828282;text-decoration:none;pointer-events:auto;text-align:right;cursor:pointer;white-space:nowrap;font-kerning:normal;letter-spacing:-.03em}.headerBtn{color:#828282;text-decoration:underline;cursor:pointer}.headerBtn:not(.active):hover{filter:brightness(.85)}.base_btn:not(.active):hover{filter:brightness(.85)}.base_btn.active:active,.base_btn:active{color:#6d6a65!important}.base_btn.active{color:var(--accolor)}.undlink{text-decoration:underline}#tgHeaderFix{position:fixed;left:0;top:-38vh;height:40vh;width:100vw;background:var(--bgcolor);z-index:500;pointer-events:none}h2.sidelink{margin-left:140px;font-size:var(--font_side);padding:3vh 0}#webSidebar{position:fixed;top:calc(var(--header_h) + var(--spaces));right:calc(((100% - var(--main_w))/ 2) + var(--spaces));display:flex;flex-direction:column;margin-bottom:auto;z-index:1000}#webSidebar.swap{left:calc(((100% - var(--main_w))/ 2));right:auto}#webSidebar button{font-family:var(--sidefont);font-size:var(--font_side);color:var(--sbt_color);background-color:var(--bgcolor);text-decoration:underline;text-align:left;margin-left:140px;line-height:1.6;cursor:pointer;pointer-events:auto}#webSidebar button:hover{color:var(--accolor)}#webSidebar button:active{color:#6d6a65}#kpr{color:transparent;user-select:none;pointer-events:none}.sidebtn{font-family:var(--sidefont);font-size:var(--font_side);color:var(--sbt_color);pointer-events:auto;text-align:left;margin-left:140px;cursor:pointer;white-space:nowrap;font-kerning:normal;letter-spacing:-.03em;line-height:1.6;background-color:rgba(44,47,52,.5)}#webSidebar.swap .sidebtn{margin-left:0!important}#webSidebar.swap .sidelink{margin-left:0!important}.sid_tex{text-decoration:underline}.sel_pre{color:var(--sbt_color)}.sel_pre.a.active{color:var(--fp_color)}.sel_pre.b.active{color:var(--mp_color)}.sel_pre.c.active{color:var(--hp_color)}.sel_pre.d.active{color:var(--lc_color)}.sel_pre.e.active{color:var(--ar_color)}.sid_tex.active{color:#565656}.sidebtn:hover{color:var(--accolor)}.sid_tex.focus{color:var(--accolor)}.rem_und{display:inline-block;font-family:var(--sidefont);font-size:var(--font_side);color:var(--bgcolor);pointer-events:none;user-select:none;text-align:left;letter-spacing:-.03em;line-height:1.6}.leftSideText{text-align:left!important}.menusp{height:2.5vh}.spawn,.spawn *{color:var(--bgcolor)!important}.rowline{display:flex;flex-direction:row}.rowline.pad{margin-top:.8vh}.rowline.jsb{justify-content:space-between}.rowline.one{align-items:center;justify-content:center;margin-left:calc(var(--spaces)*4)}.aboutElement{width:100%}.srtc{font-family:var(--monofont);color:var(--accolor);font-size:21px}.srtc .txt{color:#e0e0e0}.srtc .dsh{color:#e0e0e0}.srtc .plus{color:#a3a3a3}.srtc.d{font-size:var(--font_perl)}.offset{margin-left:4px}.imageIcon{display:flex;flex-direction:column;align-items:center;justify-content:center;width:117px;height:117px;aspect-ratio:1/1;background-color:#26282c;margin-right:20px}.iconBlock{display:flex;flex-direction:row}.aboutIconBlock{width:100%}.about_extend{margin-top:2vh}.tg_safe_scroll{width:100%;min-height:16vh;flex-shrink:0;background-color:var(--bgcolor);color:var(--bgcolor)}.previewSwap{display:none!important}.previewDeSwap{display:block!important}html.swapPage .previewDeSwap{display:none!important}html.swapPage .previewSwap{display:block!important}.gifdis{pointer-events:none;cursor:default}.gif_placeholder_web{padding-right:28px}.gifpreview{position:relative;min-width:260px;width:100%;display:inline-block;cursor:pointer;overflow:hidden}.gifpreview img,.gifpreview video{width:100%;height:auto;display:block;user-select:none}.gifpreview .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(67,77,91,.7);display:flex;justify-content:center;align-items:center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23f4f4f4' d='M8 5v14l11-7z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:60px 60px;transition:background-color 2.4s ease,background-size .1s ease,opacity .1s ease;pointer-events:auto;user-select:none}.gifpreview .overlay.vpnwarn .loader-hint{opacity:1;visibility:visible}.gifpreview .overlay.vpnwarn{background-color:rgba(67,77,91,.9)}.gifpreview:hover .overlay{background-size:72px 72px}.gifpreview.loading .overlay{background-image:none}.gifpreview .loader-container{position:relative;width:80px;height:80px;display:none;justify-content:center;align-items:center}.gifpreview.loading .loader-container{display:flex}.gifpreview .loader-svg{position:absolute;top:0;left:0;width:100%;height:100%;transform:rotate(-90deg)}.gifpreview .loader-circle-bg{fill:none;stroke:rgba(255,255,255,0.2);stroke-width:4}.gifpreview .loader-circle{fill:none;stroke:#ffaa00;stroke-width:4;stroke-linecap:round;stroke-dasharray:226;stroke-dashoffset:226;transition:stroke-dashoffset .1s linear}.gifpreview .loader-text{color:#fff;font-family:sans-serif;font-size:16px;font-weight:700}.gifpreview .loader-wrapper{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}html.mobile .gifpreview .loader-wrapper{gap:15px}.gifpreview .loader-hint{color:#f4f4f4;font-family:sans-serif;font-size:var(--font_gifp);font-weight:500;opacity:0;visibility:hidden;transition:opacity 2s ease,visibility 2s ease}html.mobile .gifpreview .loader-hint{font-weight:600}.gifpreview .loader-hint.visible{opacity:1;visibility:visible}.gifpreview.playing .overlay{opacity:0}.elementBlock{padding-bottom:1vh}.about_placeholder_mob{padding-bottom:10px}#shortshelf{width:420px;height:420px;flex-shrink:0;box-sizing:border-box;display:grid!important;grid-template-columns:repeat(var(--cols,3),1fr);grid-auto-rows:1fr;gap:6px}@media (max-width:510px) and (max-height:510px){#shelfWrapper,#shelfWrapper[hidden]{display:flex!important;position:fixed;top:0;left:0;width:100vw;height:100vh;align-items:center;justify-content:center;background-color:var(--bgcolor,#1a1a1a);z-index:9999;overflow:hidden}}html.mobile #shelfWrapper{display:none!important}html.mobile #bottomPageMobile{padding-top:2vh}html.mobile #gitline{padding-bottom:2vh}@media (max-width:779.98px){.fileLine{width:auto}#usertext:hover{text-decoration:none;cursor:default;pointer-events:none}.hideMobile{display:none!important}}@media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi){.controlSpawn,.controlSpawn *{font-size:13px!important}}@media (min-width:780px){#usertext:hover{text-decoration:underline;cursor:pointer;filter:brightness(1.2)}.hideWeb{display:none!important}}@media (min-width:1790px){#filletplane .aboutIconBlock{margin-top:clamp(0px,(100vw - 1790px) * .3,8vh)}}@media (min-width:1790px){.aboutIconRow{min-width:370px}.gifpreview{width:clamp(500px,30vw,890px);max-width:660px;flex-shrink:0}.aboutIconBlock{width:auto;margin-top:clamp(0px,(100vw - 1790px) * .1,4vh)}.aboutIconRow{max-width:auto;margin-top:clamp(0px,(100vw - 1790px) * .1,4vh)}}@media (max-width:1790px){.gif_placeholder_web{padding-right:0}.elementBlock{padding-bottom:4vh}}@media (-webkit-min-device-pixel-ratio:2) and (orientation:landscape),(min-resolution:192dpi) and (orientation:landscape){#namepage,#scrbtn,#usertext{user-select:none!important;pointer-events:none!important;touch-action:none!important}.undlink{text-decoration:none}}@media (orientation:landscape){#prjbtn{display:none!important}.menusp{display:none!important}.telegram #header{transform:translateY(-12vh)}#bottomShadowRow{bottom:calc(var(--footer_h) - var(--footer_h)/ 2);transform:translateY(3vh)}#footer{bottom:calc(var(--footer_h)*-1 - var(--footer_h)/ 2);transform:translateY(3vh)}.aboutIconRow{max-width:auto;width:auto;min-width:auto}}</style>
+</head>
+<body>
+<div id=tgHeaderFix></div>
+<div id=bottomShadowRow></div>
+<div id=zagl class=overlay_fill></div>
+<div id=header class="linePage spawn">
+<h2 id=pearlLine>* pearl version</h2>
+<div id=headerPage>
+<div id=namepage class=namepageDecor tabindex=0>
+<span class=utContent>C4D</span>
+<span class="headDivider hideMobile"> /</span>
+</div>
+<div class="namepageDecor headDivider hideWeb">/</div>
+<button id=prjbtn_mob class="headerBtn hideWeb mfunc" data-func=prj_mob>PRJ</button>
+<button id=usertext class=mfunc data-func=home>&amp;</button>
+<div id=scrbtn class="base_btn mfunc" tabindex=0 data-func=scr>
+<span class="headDivider hideMobile">/ </span>
+<span class="utContent undlink">SCRIPTS</span>
+</div>
+</div>
+</div>
+<div id=webSidebar class=hideMobile>
+<div class=menusp></div>
+<div data-func=filletplane class="sidebtn cfunc" tabindex=0><span class="sel_pre a">- </span><span class=sid_tex>Fillet Plane</span></div>
+<div data-func=mp4vidoc class="sidebtn cfunc" tabindex=0><span class="sel_pre b">- </span><span class=sid_tex>MP4 Vidoc</span></div>
+<div data-func=helpers class="sidebtn cfunc" tabindex=0><span class="sel_pre c">- </span><span class=sid_tex>Helpers</span></div>
+<div data-func=linked_camera class="sidebtn cfunc" tabindex=0><span class="sel_pre d">- </span><span class=sid_tex>Link Camera</span></div>
+<h2 id=menulink class=sidelink><span id=kpr hidden>- </span><a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href=https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z>download shelf</a> </h2>
+<div data-func=prjbtn class="base_btn mfunc" tabindex=0 id=prjbtn>
+<span class=headDivider>/ </span>
+<span class=undlink>PRJECTS</span>
+</div>
+<div class=menusp> </div>
+<div data-func=ar_wf_string class="sidebtn cfunc" tabindex=0>
+<span class="sel_pre e">- </span><span class=sid_tex>Arnold String<br>
+<span class=rem_und>&nbsp;&nbsp;</span>Workflow</span>
+</div>
+<div data-func=test_smile class="sidebtn cfunc" tabindex=0><span class="sel_pre b">- </span><span class=sid_tex>Test Smile</span></div>
+</div>
+<div id=shelfWrapper hidden>
+<div id=shortshelf>
+<div data-func=filletplane class="mbtn fpl"></div>
+<div data-func=mp4vidoc class="mbtn mpv"></div>
+<div data-func=swap_mats class="mbtn swm"></div>
+<div data-func=matrix_preserve class="mbtn map"></div>
+<div data-func=test_head class="mbtn tsm"></div>
+<div data-func=objcolor_to_vercolor class="mbtn ctv"></div>
+<div data-func=arnold_rand_texture class="mbtn aws"></div>
+<div data-func=linked_camera class="mbtn cam"></div>
+<div data-func=rand_btn class="mbtn text" id=rnd>?</div>
+</div>
+</div>
+<div id=sideShelfMobile class=shelfMobile hidden>
+<div class="mbtn text top" id=langButtonMobile>RU</div>
+<div id=shelfScripts>
+<div class="mbtn fpl cfunc" data-func=filletplane></div>
+<div class="mbtn mpv cfunc" data-func=mp4vidoc></div>
+<div class="mbtn swm cfunc" data-func=swap_mats></div>
+<div class="mbtn map cfunc" data-func=matrix_preserve></div>
+<div class="mbtn ctv cfunc" data-func=objcolor_to_vercolor></div>
+<div class="mbtn cam cfunc" data-func=linked_camera></div>
+</div>
+<div id=shelfProject hidden>
+<div class="mbtn aws cfunc" data-func=ar_wf_string></div>
+<div class="mbtn tsm cfunc" data-func=test_smile></div>
+</div>
+<div class="mbtn text bot tr" id=ghostOverlap></div>
+<div id=ghostShelfMobile class="shelfMobile overlap">
+<div class="mbtn text bot up" id=nextElemBtn>▼</div>
+</div>
+</div>
+<div id=mainPage>
+<div id=contentViewer>
+<div class=elementBlock id=filletplane data-tag=script>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel> <span class=cmark style=color:var(--fp_color)>* </span>
+<span>Fillet Plane</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn fpl disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow style=margin-top:1.2vh>
+<p class="about_us tMidText italy">It`s a plane.. And it has fillets "</p>
+<p class="about_ru tMidText italy" hidden>Плоскость c глубиной и мягкими углами "</p>
+<div class="rowline pad downline">
+<div class=tested>
+<p>
+<span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span>
+<span class=marked>R23</span>
+</p>
+</div>
+<p class=downlink>
+<a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Filled%20Plane.py>download</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web></div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+<div class=about_extend style=margin-top:0;height:0!important>
+<div id=aboutControlsLabel> <h2 class=special></h2> </div>
+<div id=aboutControlsText> <p></p> </div>
+</div>
+</div>
+<div class=gif_placeholder_mobile>
+<div class=gifpreview>
+<img preload=auto src=./assets/prvgif/fillet_plane_poster.png data-src=./assets/fillet_plane_preview.gif data-poster=./assets/prvgif/fillet_plane_poster.png alt=poster>
+<div class=overlay></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=mp4vidoc data-tag=script>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel> <span class=cmark style=color:var(--accolor)>* </span>
+<span>MP4 Vidoc</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn mpv disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<p class="about_us based">
+Button for fast writing an <span class=marked>MP4</span> file with <span class=marked>_#</span><br>
+- version token. Uses active "Render Settings"<br>
+</p>
+<p class="about_ru based" hidden>
+Кнопка быстрого рендера <span class=marked>MP4</span> файла с <span class=marked>_#</span><br>
+- номером итерации. Использует текущие<br>"Render Settings"...<br>
+</p>
+<div class="rowline pad downline">
+<div class=tested>
+<p><span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span><span class=marked>R23</span></p>
+</div>
+<p><a class="plink yt ext" href="https://www.youtube.com/watch?v=ETzJl574FIY">youtube</a></p>
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/MP4%20Vidoc.py>download</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class=about_extend>
+<div id=aboutControlsLabel><h2 class="special lngsup" data-ru=Контроль: data-us=Controls:>Controls:</h2></div>
+<div id=aboutControlsText class="about_с_us controlSpawn"> <p>
+<span class=srtc>[ <span class=txt>LMB</span> ]&nbsp;&nbsp;&nbsp;<span class=dsh>-</span>&nbsp;&nbsp;</span><span class=offset>Active settings via Picture Viewer</span><br>
+<span class=srtc>[ <span class=txt>LMB <span class=plus>+</span> ALT</span> ]&nbsp;&nbsp;&nbsp;<span class=dsh>-</span>&nbsp;</span>Viewport via Picture Viewer<br>
+<span class=srtc>[ <span class=txt>LMB <span class=plus>+</span> SHIFT</span> ]&nbsp;<span class=dsh>-</span>&nbsp;</span>Viewport via BG Process<br><br>
+</p>
+</div>
+<div id=aboutControlsText class="about_с_ru controlSpawn mobextendG" hidden> <p>
+<span class=srtc>[ <span class=txt>ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class=dsh>-</span>&nbsp;&nbsp;</span><span class=offset>Активные настройки в Picture Viewer</span><br>
+<span class=srtc>[ <span class=txt>ЛКМ <span class=plus>+</span> АЛЬТ</span> ]&nbsp;<span class=dsh>-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
+<span class=srtc>[ <span class=txt>ЛКМ <span class=plus>+</span> ШИФТ</span> ]&nbsp;<span class=dsh>-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
+</p>
+</div>
+<div id=aboutControlsText class="about_с_ru_mb controlSpawn" hidden> <p>
+<span class=srtc>[ <span class=txt>ЛКМ</span> ]&nbsp;&nbsp;</span><span class=offset>Активные настройки в Picture Viewer</span><br>
+<span class=srtc>[ <span class=txt>ЛКМ<span class=plus>+</span>АЛЬТ</span> ]&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
+<span class=srtc>[ <span class=txt>ЛКМ<span class=plus>+</span>ШИФТ</span> ]&nbsp;</span>Драфт вьюпорта сквозь PViewer<br><br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class=gifpreview>
+<img src=./assets/prvgif/mp4_preview_poster.png data-src=./assets/mp4_vidoc_pillow.gif data-poster=./assets/prvgif/mp4_preview_poster.png alt=poster>
+<div class=overlay></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=helpers data-tag=script_pack>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel style=padding-bottom:1vh><span class=cmark style=color:var(--hp_color)>* </span>
+<span>Helpers</span>
+</h2>
+</div>
+<div class=rowline style=padding-bottom:var(--font_base)>
+<div class=imageIcon><div class="mbtn map disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow style=margin-top:0>
+<h2 class="titleLabel tMidText" style=display:inline-block;padding-bottom:0><span style=padding-left:0;color:#999>+ </span>
+Matrix Preserve
+</h2>
+<p class="about_us tinpack">
+Matrix Object to single mesh ~ color transfer to VertexColor Tag. Alt mode preserve as cubes with save color to object
+</p>
+<p class="about_ru tinpack" hidden>
+Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет
+</p>
+<div class="rowline downline" style=justify-content:left>
+<div class=tested>
+<p>
+<span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span>
+<span class=marked>R23</span>
+</p>
+</div>
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py>download</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class=rowline style=padding-bottom:var(--font_base)>
+<div class=imageIcon><div class="mbtn ctv disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<h2 class="titleLabel tMidText" style=display:inline-block;padding-bottom:0><span style=padding-left:0;color:#999>+ </span>ObjectColor<span style=color:#888> to </span>VertexColor 
+</h2>
+<p class="about_us_s tinpack">
+Convert object color from polygon object<br>to Vertex Color Tag<br>
+</p>
+<p class="about_ru_s tinpack" hidden>
+Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag<br>
+</p>
+<div class="rowline downline">
+<div class=tested>
+<p>
+<span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span>
+<span class=marked>R23</span>
+</p>
+</div>
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py>download</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn swm disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<h2 class="titleLabel tMidText" style=display:inline-block;padding-bottom:0><span style=padding-left:0;color:#999>+ </span>Swap Maps 
+</h2>
+<p class="about_us_g tinpack">
+Swap 2 selected texture tags in Object Manager<br>
+* If select 2 objects - swap last texture tags<br>
+* If object has no tag - scan children and find first<br>object with tag for swap<br>
+</p>
+<p class="about_ru_g tinpack" hidden>
+Смена 2 выбранных tex тегов в ObjectManager<br>
+* Выбирая 2 объекта, меняет их крайние теги<br>
+* Если объект без тега, ищет первый дочерний с его наличием
+</p>
+<div class="rowline downline">
+<div class=tested>
+<p>
+<span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span>
+<span class=marked>R23</span>
+</p>
+</div>
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py>download</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class=about_extend>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class=gifpreview>
+<img src=./assets/prvgif/helpers_poster.png data-src=./assets/matrix_preserve.mp4 data-poster=./assets/prvgif/helpers_poster.png alt=preview>
+<div class=overlay></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=swap_mats data-tag=script_inpack hidden>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel style=padding-bottom:1vh><span class=cmark style=color:var(--hp_color)>* </span>
+<span>Swap Mats</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn swm disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<p class="about_us_g pack tinpack">
+Swap 2 selected texture tags in Object Manager<br>
+* If select 2 objects - swap last texture tags<br>
+* If object has no tag - scan children and find first<br>object with tag for swap. Tested on <span class=marked>R23</span><br>
+</p>
+<p class="about_ru_g tinpack" hidden>
+Смена 2 выбранных tex тегов в ObjectManager<br>
+* Выбирая 2 объекта, меняет их крайние теги<br>
+* Если объект без тега, ищет первый дочерний с его наличием. Проверен в <span class=marked>R23</span>
+</p>
+<div class="rowline downline">
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Swap%20Mats.py>download</a></p>
+<p class="downlink hideMobile prv_swp_btn plink check lngsup" data-ru=проверить data-us="test it!">test it ..</p>
+</div>
+<div class="swm swmToggle" hidden> </div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class=about_extend>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class="gifpreview gifdis">
+<img class=previewDeSwap id=prv_swp_a src=./assets/prvgif/swap_maps_poster.png data-poster=./assets/prvgif/swap_maps_poster.png alt=poster>
+<img class=previewSwap id=prv_swp_b src=./assets/prvgif/swap_maps_poster_alt.png data-poster=./assets/prvgif/swap_maps_poster_alt.png alt=poster>
+<div class=gifdis></div>
+</div>
+</div>
+<div class="rowline one downline hideWeb">
+<p id=checkspec class="prv_swp_btn plink check lngsup" data-ru=проверка data-us=check>test it!</p>
+</div>
+</div>
+</div>
+<div class=elementBlock id=matrix_preserve data-tag=script_inpack hidden>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel style=padding-bottom:1vh><span class=cmark style=color:var(--hp_color)>* </span>
+<span>Matrix Preserve</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn map disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow style=margin-top:0>
+<p class="about_us tinpack">
+Matrix Object to single mesh ~ color transfer to<br>VertexColor Tag. Alt mode preserve as cubes with save color to object. Tested on <span class=marked>R23</span>
+</p>
+<p class="about_ru tinpack" hidden>
+Запекание MatrixObject в меш ~ цвет попадёт<br>в VertexColor Tag. Есть режим печки в кубы, сохраняя цвет. Проверен в <span class=marked>R23</span>
+</p>
+<div class="rowline downline left">
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Matrix%20Preserve.py>download</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class=about_extend>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class="gifpreview gifdis">
+<img src=./assets/prvgif/matrix_preserve_poster.png data-poster=./assets/prvgif/matrix_preserve_poster.png alt=poster>
+<div class=gifdis></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=objcolor_to_vercolor data-tag=script_inpack hidden>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel style=padding-bottom:1vh><span class=cmark style=color:var(--hp_color)>* </span>
+<span>ObjectColor to<span class=hideWeb><br></span><span class=marksafe>__</span>VertexColor</span>
+</h2>
+</div>
+<div class=rowline style=padding-bottom:var(--font_base)>
+<div class=imageIcon><div class="mbtn ctv disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<p class="about_us_s tinpack">
+Convert object color from polygon object<br>to Vertex Color Tag. Tested on <span class=marked>R23</span><br>
+</p>
+<p class="about_ru_s tinpack" hidden>
+Перенос атрибута цвета с меш-объекта<br>на Vertex Color Tag. Проверен в <span class=marked>R23</span><br>
+</p>
+<div class="rowline downline">
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py>download</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class=about_extend>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class="gifpreview gifdis">
+<img src=./assets/prvgif/color_to_vertex_poster.png data-poster=./assets/prvgif/color_to_vertex_poster.png alt=poster>
+<div class=gifdis></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=linked_camera data-tag=script style=padding-bottom:40px>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel> <span class=cmark style=color:var(--lc_color)>* </span>
+<span>Linked Camera</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn cam disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<p class="about_us based">
+Сamera linked to the active one via CameraMorph tag. Includes optional Xpresso to expand your render area while strictly maintaining the original focal length
+</p>
+<p class="about_ru based" hidden>
+Камера привязанная к активной, через CameraMorph тег. Включает возможность расширить зону рендера без искажения фокусного расстояния
+</p>
+<div class="rowline pad downline">
+<div class=tested>
+<p><span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span><span class=marked>R20</span></p>
+</div>
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/vsky.scripts/Linked%20Camera.py>download</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class="about_extend mobextend">
+<div id=aboutControlsLabel><h2 class="special lngsup" data-ru=Особенности: data-us=Features:>Features:</h2></div>
+<div id=aboutControlsText class="about_с_us based"> <p class="mobextend b">
+- Camera is created on the top level, ready for baking the original PSR animation data<br>
+- Ready-to-use Render Settings tailored for the expanded region via Xpresso tag<br>
+- The entire сamera setup can be completely removed along with Render Settings in one click<br>
+</p>
+</div>
+<div id=aboutControlsText class="about_с_ru based" hidden>
+<p class="mobextend c">
+- Камера создаётся на верхнем уровне, что удобно для запекания исходной PSR-анимации<br>
+- Для расширенной области рендера через Xpresso тег создаётся готовый профиль Render Settings<br>
+- Опция для удаления добавленной камеры, включая профиль "Render Settings", в один клик<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class=gifpreview>
+<img src=./assets/prvgif/LinkedCamera_poster.png data-src=./assets/Camera_Morph_Link_with_Extend-Region_Value.gif data-poster=./assets/prvgif/LinkedCamera_poster.png alt=poster>
+<div class=overlay></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=ar_wf_string data-tag=project style=padding-bottom:40px>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel> <span class=cmark style=color:var(--ar_color)>* </span>
+<span>Arnold Workflow<br><span class=marksafe>__</span>"user_data_string"</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn aws disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<p class="about_us based">
+Extended this
+<a class="plink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">workflow</a> for
+<br>Arnold String Attribute<br>Automating it...?
+</p>
+<p class="about_ru based" hidden>
+<a class="plink yt" href="https://www.youtube.com/watch?v=EAzoIx2vrm0">Расширенный</a> процесс
+<br>работы с Arnold String Attribute<br>Cильно его ускоряя...?
+</p>
+<div class="rowline pad downline">
+<div class=tested>
+<p><span class=lngsup data-ru="На базе: " data-us="Tested: ">Tested: </span><span class=marked>??</span></p>
+</div>
+<p class=downlink><a class="plink dn lngsup" data-ru=скачать data-us=download href=https://vsky.space/c4d/ARND_STRING_ATR_EXT/ARND_STRING_ATR_EXT_V2.zip>download</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class=about_extend class=mobextend>
+<div id=aboutControlsLabel><h2 class="special lngsup" data-ru=Особенности: data-us=Features:>Features:</h2></div>
+<div id=aboutControlsText class="about_с_us based">
+<p class="mobextend b">
+- Manual path setup for a selected object<br>
+- PBR texture slots & randomization<br>
+- Workflow tutorial on <a class="plink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+</p>
+</div>
+<div id=aboutControlsText class="about_с_ru based" hidden>
+<p class="mobextend c">
+- Можно точечно задать путь у выбранного объекта<br>
+- Наличие слотов для PBR-текстур и рандомизация<br>
+- Разбор процесса на <a class="plink yt" href="https://www.youtube.com/watch?v=nXuQmZuPT0I">youtube</a>...<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class=gifpreview>
+<img src=./assets/prvgif/ArnoldRandomizer_poster.png data-src=./assets/Arnold_String-Path_Randomizer_Selector.gif data-poster=./assets/prvgif/ArnoldRandomizer_poster.png alt=poster>
+<div class=overlay></div>
+</div>
+</div>
+</div>
+</div>
+<div class=elementBlock id=test_smile data-tag=project>
+<div class=iconBlock>
+<div class=gif_placeholder_web></div>
+<div class=aboutIconBlock>
+<div id=nameIcon>
+<h2 class=titleLabel> <span class=cmark style=color:var(--accolor)>* </span>
+<span>Test Smile</span>
+</h2>
+</div>
+<div class=rowline>
+<div class=imageIcon><div class="mbtn tsm disable"></div></div>
+<div class=aboutElement>
+<div class=aboutIconRow>
+<p class="about_us based">
+Created to <br>be tested...
+</p>
+<p class="about_ru based" hidden>
+Созданный быть,<br>протестированн...<br>
+</p>
+</div>
+</div>
+</div>
+<div class=about_placeholder_web>
+<div class="about_extend mobextend">
+<div id=aboutControlsLabel><h2 class="special lngsup" data-ru=Файлы: data-us=Files:>Files:</h2></div>
+<div id=aboutControlsText class=about_с_us>
+<p class=fileLine>
+01. <a class="plink dn" href=https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z>smile_std_rigged.c4d</a><br>
+<span class=fileText>
+-<span class=hideMobile> Low-poly mouth</span><span class=hideWeb> Low-poly</span> setup with small trick * Pose Morph Tag<br></span></p>
+<p class=fileLine>
+02. <a class="plink dn" href=https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z>smile_octane_w_aep</a><br>
+<span class=fileText>
+- Prepared Octane AOVs * with .aep files include...<br></span>
+</p>
+</div>
+<div id=aboutControlsText class=about_с_ru hidden>
+<p class=fileLine>
+01. <a class="plink dn" href=https://vsky.space/c4d/vsky.projects/smile_std_rigged.7z>smile_std_rigged.c4d</a><br>
+<span class=fileText>
+-<span class=hideMobile> Простая установка</span><span class=hideWeb> Установка</span> рта с хитростью * Pose Morph Tag<br></span></p>
+<p class=fileLine>
+02. <a class="plink dn" href=https://vsky.space/c4d/vsky.projects/smile_octane_w_aep.7z>smile_octane_w_aep</a><br>
+<span class=fileText>
+- Подготовленные OctaneAOVs * содержит .aep<br></span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=infoElementS>
+<div class=about_placeholder_mob>
+</div>
+<div class=gif_placeholder_mobile>
+<div class="gifpreview gifdis">
+<img src=./assets/prvgif/no_poster_v2.png data-poster=./assets/prvgif/no_poster_v2.png alt=poster>
+<div class=gifdis></div>
+</div>
+</div>
+</div>
+</div>
+<div class=tg_safe_scroll></div>
+</div>
+<div id=shelfFake></div>
+</div>
+<div id=footer class=linePage>
+<div id=bottomPage class="footerElements hideMobile">
+<h2>
+<a id=glp class="gitlink lngsup" href=https://github.com/AleksandrovskyV/c4d/ data-us="* alright, go to github" data-us-mid="* alright, github" data-us-short="*  github" data-ru="* круто, но дай гитхаб" data-ru-mid="* круто, гитхаб" data-ru-short="* гитхаб">
+* alright, go to github
+</a>
+</h2>
+<h2 class="footText lngsup" id=swapside data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">
+* left-handed *</h2>
+<h2 class="footText lngsup" id=switch_lang data-us="и не знаю английский *" data-us-mid="знать английский? *" data-us-short="английский!? *" data-ru="i don't know russian *" data-ru-mid="u know russian? *" data-ru-short="russian!? *">
+и не знаю английский *
+</h2>
+</div>
+<div id=bottomPageMobile class="footerElements hideWeb">
+<h2 id=down_package><a class="link drs" href=https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z>
+<u style=text-decoration:underline class="selector lngsup" data-ru=скачать data-us=download>download</u>
+<div class=lngsup data-ru=архив data-us=shelf>shelf</div> </a>
+</h2>
+<h2 class="footText lngsup" id=swapside_mobile data-ru="* я левша *" data-ru-swap="* я правша *" data-us="* left-handed *" data-us-swap="* right-handed *">* left-handed *</h2>
+<h2 id=viewcode class=rtext> <a class="link drs" href="">
+<u id=mob_str_a style=text-decoration:underline class="selector lngsup" data-ru=глянуть data-us=viewcode data-ru-p=скачать data-us-p=download>viewcode</u>
+<div id=mob_str_b class=lngsup data-ru=скрипт data-us=script data-ru-p=проект data-us-p=project>script</div> </a>
+</h2>
+</div>
+<h2 id=gitline><a class="gitlink_mob hideWeb lngsup" data-ru=гитхаб data-us=github href=https://github.com/AleksandrovskyV/c4d/ >github</a> </h2>
+</div>
+
+<script>function lerp(e,t,n){return(1-n)*e+n*t}const mobileWidth=781,rootStyles=getComputedStyle(document.documentElement),dpiScaleStr=rootStyles.getPropertyValue("--dpiScale").trim(),isDpiScale="true"===dpiScaleStr;let nowWidth=window.innerWidth,isMobileWidth=nowWidth<=781,translated=!1,swapFlag=!1;const rSlash="/ ",lSlash=" /",bSpace="&nbsp;  &nbsp;",mSpace="&nbsp;";let backupSoloCheck=null,soloCheckActive=!1,shortShelfActive=!1,gifmobileflag=!1,isTransitBlocked=!1,shifting=!1,lastCheckedMainTabs=[],lastCheckedButtons=[],lastCheckedU=null,lastCheckedT=null;function soloCheck(e){if(shortShelfActive)return;const t=document.querySelectorAll(".elementBlock");if(0!==t.length)if(e){backupSoloCheck||(backupSoloCheck=new Map,t.forEach((e=>{backupSoloCheck.set(e,e.hidden)})));let e=null;const n=180;for(let o=0;o<t.length;o++){const l=t[o],s=l.getBoundingClientRect();if(s.bottom>n&&s.top<window.innerHeight){e=l;break}}t.forEach((t=>{t.hidden=t!==e}));const o=e?e.id:null;if(o){document.getElementById("sideShelfMobile").querySelectorAll(".mbtn").forEach((e=>{e.dataset.func===o?(e.classList.add("active"),lastCheckedButtons=[e].filter(Boolean)):e.classList.remove("active")}))}soloCheckActive=!0}else backupSoloCheck&&(t.forEach((e=>{backupSoloCheck.has(e)&&(e.hidden=backupSoloCheck.get(e))})),backupSoloCheck=null),soloCheckActive=!1}function transitElements(e,t){document.querySelectorAll(".elementBlock").forEach((n=>{const o=n.querySelector(e),l=n.querySelector(t);o&&l&&(o.contains(l)||o.appendChild(l))}))}function transitAllGifs(e,t){t&&(isTransitBlocked=!1),isTransitBlocked||(shifting=!0,document.querySelectorAll(".elementBlock").forEach((t=>{const n=t.querySelector(".gif_placeholder_web"),o=t.querySelector(".gif_placeholder_mobile"),l=t.querySelector(".gifpreview");l&&n&&o&&(e?(o.appendChild(l),gifmobileflag||(gifmobileflag=!0)):(n.appendChild(l),gifmobileflag&&(gifmobileflag=!1)))})),shifting=!1,isTransitBlocked=!0,setTimeout((()=>{isTransitBlocked=!1}),500))}function gifSizeChecker(){transitAllGifs(window.innerWidth<1790,!0)}function swapPageSide(){swapFlag=!swapFlag;const e=document.getElementById("sideShelfMobile"),t=document.getElementById("ghostShelfMobile"),n=document.getElementById("mainPage"),o=document.getElementById("contentViewer"),l=document.getElementById("shelfFake"),s=document.getElementById("headerPage"),c=document.getElementById("namepage"),i=c.querySelector(".headDivider"),r=document.getElementById("scrbtn"),a=r.querySelector(".headDivider"),d=document.getElementById("prjbtn"),u=d.querySelector(".headDivider"),m=document.getElementById("webSidebar"),h=document.getElementById("kpr");e&&t&&o&&l&&(e.classList.toggle("swap"),t.classList.toggle("swap"),o.classList.toggle("swap"),l.classList.toggle("swap"),d.classList.toggle("leftSideText")),m&&m.classList.toggle("swap"),swapFlag?(document.documentElement.classList.add("swapPage"),n.insertBefore(l,o),s.prepend(r),s.append(c),h.hidden=!1,c.prepend(i),d.append(u),r.append(a),i.innerHTML="/ ",a.innerHTML=" /"+bSpace,u.innerHTML=" /"):(document.documentElement.classList.remove("swapPage"),n.insertBefore(o,l),s.prepend(c),s.append(r),h.hidden=!0,c.append(i),d.prepend(u),r.prepend(a),i.innerHTML=" /",a.innerHTML="/ ",u.innerHTML="/ ");const g=document.getElementById("down_package"),p=document.getElementById("viewcode");if(g&&p){const e=g.cloneNode(!1);g.replaceWith(e),p.replaceWith(g),e.replaceWith(p),swapFlag?(p.classList.remove("rtext"),g.classList.add("rtext")):(p.classList.add("rtext"),g.classList.remove("rtext"))}renderSwapButtons(),headerTextShorter()}function switchToMobile(e){mobile=e;mobile;const t=!!mobile;mobile?document.querySelectorAll(".cmark").forEach((e=>e.textContent=" └ ")):document.querySelectorAll(".cmark").forEach((e=>e.textContent="* ")),document.querySelectorAll(".imageIcon").forEach((e=>e.hidden=t)),isMobile&&document.querySelectorAll(".downlink").forEach((e=>e.hidden=t))}function hideOverflowingButtons(){const e=document.getElementById("sideShelfMobile"),t=document.getElementById("ghostOverlap"),n=document.getElementById("langButtonMobile");n.style.removeProperty("margin-top"),n.style.removeProperty("margin-bottom"),t.style.removeProperty("margin-top");const o=e.querySelector("#shelfScripts:not([hidden]), #shelfProject:not([hidden])");if(!o)return;let l=o.querySelectorAll(".mbtn");const s=e.getBoundingClientRect().bottom,c=t.offsetHeight,i=s-.8*c,r=o.querySelector(".cfunc.active, .mbtn.active");if(r&&(r.hidden=!1,r.getBoundingClientRect().bottom>i)){const e=l[0];e&&e!==r&&(o.appendChild(e),l=o.querySelectorAll(".mbtn"))}let a=!1;if(l.forEach((e=>{e.hidden=!1;e.getBoundingClientRect().bottom>i&&(e.hidden=!0,a=!0)})),a){n.style.setProperty("margin-top","0px","important"),t.style.setProperty("margin-top","auto","important");const o=Array.from(l).filter((e=>!e.hidden)),i=o[o.length-1];if(i){const t=i.offsetTop+i.offsetHeight;let o=s-e.getBoundingClientRect().top-c-t;const l=Math.max(0,2*Math.round(o/4));n.style.setProperty("margin-bottom",`${l}px`,"important")}else n.style.setProperty("margin-bottom","0px","important")}}function headerTextShorter(){const e=document.getElementById("headerPage"),t=document.getElementById("pearlLine"),n=document.getElementById("namepage"),o=document.getElementById("usertext"),l=document.getElementById("scrbtn"),s=n?n.querySelector(".utContent"):null,c=l?l.querySelector(".utContent"):null,i={namepage:["C4D","CINEMA 4D"],usertext:["&","&_DATA","&_USERDATA","VSKY_USERDATA"]},r={namepage:i.namepage.length-1,usertext:i.usertext.length-1},a=[{key:"namepage"},{key:"usertext"}],d=()=>{const n=window.innerWidth,l=window.innerHeight<n;if(!(s&&o&&c&&t))return;const a=document.getElementById("scrbtn").querySelector(".headDivider");n>=960&&n<1300?(s.textContent="C4D",o.textContent="&_DATA"):n<960?(s.textContent="C4D",isMobile?o.textContent=l?"VSKY":swapFlag?".":"&":o.textContent=n<702.9&&swapFlag?".":"&"):(s.textContent=i.namepage[r.namepage],o.textContent=" "+i.usertext[r.usertext]+" "),"C4D"===s.textContent?(t.textContent="* pearl",swapFlag&&(a.innerHTML=" /"),swapFlag||(a.innerHTML="/ ")):(swapFlag&&(a.innerHTML=" /"+bSpace),swapFlag||(a.innerHTML="/ "),t.textContent="* pearl edition"),c.textContent=n<781*.7?"SCR":"SCRIPTS";const d=e.lastElementChild.querySelector(".utContent"),u=d.textContent;n<781*.7&&("C4D"===d.textContent?d.textContent=u+"_":d.textContent=u+" ")};if(d(),!e)return;let u=0;for(;e.scrollWidth>e.clientWidth&&u<a.length;){const e=a[u];r[e.key]>0?(r[e.key]--,d()):u++}}function updateResponsiveText(){const e=window.innerWidth,t=translated?"ru":"us";document.querySelectorAll(".lngsup").forEach((n=>{if("swapside"===n.id||"swapside_mobile"===n.id)return;let o="";e<=1e3?o=n.dataset[`${t}Short`]||n.dataset[`${t}Mid`]:(e>1e3&&e<=1400||e>1400&&e<=1700)&&(o=n.dataset[`${t}Mid`]),o||(o=n.dataset[t]),o&&("glp"==n.id?(n.textContent=o,e<=1e3?n.style.setProperty("margin-right","76px","important"):n.style.removeProperty("margin-right")):n.textContent=o)}))}function changeMobileDownloadBtn(e){const t=document.getElementById("mob_str_a"),n=document.getElementById("mob_str_b");if(!t||!n)return void console.log("changeMobileDownloadBtn - Disable");const o=`data-${translated?"ru":"us"}${e?"-p":""}`;t.textContent=t.getAttribute(o),n.textContent=n.getAttribute(o)}function renderSwapButtons(){const e=translated?"ru":"us",t=swapFlag?`${e}Swap`:e,n=document.getElementById("swapside"),o=document.getElementById("swapside_mobile");n&&n.dataset[t]&&(n.textContent=n.dataset[t]),o&&o.dataset[t]&&(o.textContent=o.dataset[t])}function switchLang(){translated=!translated,langButtonMobile&&(langButtonMobile.textContent=translated?"US":"RU"),document.querySelectorAll(".elementBlock").forEach((e=>{const t=e.querySelector(".about_us"),n=e.querySelector(".about_ru");n&&t&&(t.hidden=!!translated,n.hidden=!translated)})),document.querySelectorAll(".elementBlock").forEach((e=>{const t=e.querySelector(".about_us_s"),n=e.querySelector(".about_ru_s");n&&t&&(t.hidden=!!translated,n.hidden=!translated)})),document.querySelectorAll(".elementBlock").forEach((e=>{const t=e.querySelector(".about_us_g"),n=e.querySelector(".about_ru_g");n&&t&&(t.hidden=!!translated,n.hidden=!translated)})),document.querySelectorAll(".elementBlock").forEach((e=>{const t=e.querySelector(".about_с_us"),n=e.querySelector(".about_с_ru"),o=e.querySelector(".about_с_ru_mb");n&&t&&(t.hidden=!!translated,o&&isMobile?o.hidden=!translated:n.hidden=!translated)})),document.querySelectorAll(".lngsup").forEach((e=>{"swapside"!==e.id&&"swapside_mobile"!==e.id&&(e.textContent=translated?e.dataset.ru:e.dataset.us)})),updateResponsiveText(),renderSwapButtons()}function nextElement(){const e=document.getElementById("shelfProject"),t=document.getElementById("shelfScripts");function n(e){if(!e||e.hidden)return;const t=e.querySelectorAll(".cfunc");if(0===t.length)return;let n=-1,o=null;t.forEach(((e,t)=>{e.classList.contains("active")&&(n=t,o=e)}));let l=t[(n+1)%t.length];if(l&&l.hidden){const o=t[0];e.appendChild(o),hideOverflowingButtons();l=e.querySelectorAll(".cfunc")[n]}l&&(o&&o.classList.remove("active"),l.click())}n(e),n(t)}function viewCurrentCode(){const e=Array.from(document.querySelectorAll(".elementBlock")).find((e=>!e.hidden));if(e){const t=e.querySelector(".plink.dn");t&&t.href&&window.open(t.href,"_blank")}else console.warn("На экране нет активных или видимых блоков elementBlock.")}function ensureLoader(e){if(e.querySelector(".loader-wrapper"))return;const t="Может...",n="без VPn...",o="Maybe...",l="off VPn...",s=translated?t:o,c=translated?n:l;e.innerHTML=`\n        <div class="loader-wrapper">\n            <div class="loader-hint hint-top lngsup" data-ru="Может..." data-us="Maybe...">${s}</div>\n            <div class="loader-container">\n                <svg class="loader-svg" viewBox="0 0 80 80">\n                    <circle class="loader-circle-bg" cx="40" cy="40" r="36"></circle>\n                    <circle class="loader-circle" cx="40" cy="40" r="36"></circle>\n                </svg>\n                <span class="loader-text">0%</span>\n            </div>\n            <div class="loader-hint hint-bottom lngsup" data-ru="${n}" data-us="${l}">${c}</div>\n        </div>\n    `}function freeMediaMemory(e){if(!e)return;const t=e.dataset.loadedUrl;t&&(URL.revokeObjectURL(t),delete e.dataset.loadedUrl),e.classList.remove("playing","loading");const n=e.querySelector("img"),o=e.querySelector("video"),l=n?n.getAttribute("data-poster"):o?o.getAttribute("poster"):null;if(o){if(o.pause(),o.src="",o.load(),l){const t=document.createElement("img");t.src=l,t.setAttribute("data-poster",l);const n=o.getAttribute("data-src")||e.dataset.originalSrc;n&&t.setAttribute("data-src",n),o.remove(),e.insertBefore(t,e.firstChild)}}else n&&l&&(n.src=l)}function freeAllMediaMemory(){document.querySelectorAll(".gifpreview[data-loaded-url]").forEach((e=>{freeMediaMemory(e)}))}function startPlayback(e,t,n,o,l){e.classList.add("playing"),n?(l||((l=document.createElement("video")).loop=!0,l.muted=!0,l.setAttribute("playsinline",""),l.setAttribute("webkit-playsinline",""),o&&o.remove(),e.insertBefore(l,e.firstChild)),l.src=t,l.play().catch((e=>console.log("Автоплей заблокирован:",e)))):o&&(o.src=t)}document.getElementById("shortshelf")?.addEventListener("click",(function(e){const t=e.target.closest(".mbtn");if(!t)return;const n=t.dataset.func,o=document.getElementById(n);if("randomize"!==n)if(o){console.log(`Скачивание скрипта для: ${n}`);const e=o.querySelector(".plink.dn");e&&e.href&&window.open(e.href,"_blank")}else console.log("Элемент не найден")})),document.addEventListener("click",(e=>{if(e.target.closest(".prv_swp_btn")){const e=document.getElementById("prv_swp_a"),t=document.getElementById("prv_swp_b");e&&t&&(e.classList.toggle("previewDeSwap"),t.classList.toggle("previewSwap"),e.classList.toggle("previewSwap"),t.classList.toggle("previewDeSwap"));return void document.querySelectorAll(".swm").forEach((e=>{e.classList.toggle("swmToggle")}))}const t=e.target.closest(".cfunc, .mfunc"),n=window.innerWidth,o=window.innerHeight<n;let l=!1;if(n<781&&(l=!0),t){const e=t.classList.contains("mfunc");if(l&&!e||(lastCheckedMainTabs.forEach((e=>{e&&e.classList.remove("active")})),e&&(lastCheckedMainTabs=[])),lastCheckedButtons.forEach((e=>{e&&e.classList.remove("active")})),lastCheckedU&&lastCheckedU.classList.remove("active"),lastCheckedT&&lastCheckedT.classList.remove("active"),lastCheckedU=null,lastCheckedT=null,"prjbtn"===t.id||"prjbtn_mob"===t.id){const e=document.getElementById("scrbtn");isMobile&&o||e.classList.remove("active");const t=document.getElementById("prjbtn"),n=document.getElementById("prjbtn_mob");l?(lastCheckedMainTabs=[t,n].filter(Boolean),lastCheckedButtons=[]):lastCheckedButtons=[t,n].filter(Boolean),shelfProject.hidden=!1,shelfScripts.hidden=!0,changeMobileDownloadBtn(!0)}else if("scrbtn"===t.id){const e=document.getElementById("scrbtn"),t=document.getElementById("prjbtn");isMobile&&o||t.classList.remove("active"),l?(lastCheckedMainTabs=[e].filter(Boolean),lastCheckedButtons=[]):lastCheckedButtons=[e].filter(Boolean),shelfProject.hidden=!0,shelfScripts.hidden=!1,changeMobileDownloadBtn(!1)}else"usertext"===t.id?(l&&(lastCheckedMainTabs.forEach((e=>e&&e.classList.remove("active"))),lastCheckedMainTabs=[]),lastCheckedButtons=[]):(lastCheckedButtons=[t],lastCheckedU=t.querySelector(".sel_pre"),lastCheckedT=t.querySelector(".sid_tex"));if(lastCheckedMainTabs.forEach((e=>e.classList.add("active"))),lastCheckedButtons.forEach((e=>e.classList.add("active"))),lastCheckedU&&lastCheckedU.classList.add("active"),lastCheckedT&&lastCheckedT.classList.add("active"),t.classList.contains("cfunc")){const e=t.dataset.func;document.querySelectorAll(".elementBlock").forEach((t=>{if(t.hidden=t.id!==e,o&&isMobile&&t.id===e){const e=document.getElementById("scrbtn"),n=t.dataset.tag;"project"!==n&&"project_pack"!==n||(e.querySelector(".utContent").textContent="PRJECT"),"script"!==n&&"script_pack"!==n||(e.querySelector(".utContent").textContent="SCRIPT")}}))}if(isMobile||l||!t.classList.contains("mfunc")||"scrbtn"!==t.id||document.querySelectorAll(".elementBlock").forEach((e=>{const t=e.dataset.tag;e.hidden=!("script"===t||"script_pack"===t)})),isMobile||l||!t.classList.contains("mfunc")||"prjbtn"!==t.id&&"prjbtn_mob"!==t.id||document.querySelectorAll(".elementBlock").forEach((e=>{const t=e.dataset.tag;e.hidden=!("project"===t||"project_pack"===t)})),!isMobile&&t.classList.contains("mfunc")&&"usertext"===t.id&&document.querySelectorAll(".elementBlock").forEach((e=>{e.hidden="script_inpack"===e.dataset.tag})),l&&t.classList.contains("mfunc")&&"scrbtn"===t.id){const e=document.getElementById("shelfScripts").firstElementChild;e.classList.add("active");const t=e.dataset.func;document.querySelectorAll(".elementBlock").forEach((e=>{e.hidden=e.id!==t})),lastCheckedButtons=[e],lastCheckedU=e.querySelector(".sel_pre"),lastCheckedT=e.querySelector(".sid_tex")}if(l&&t.classList.contains("mfunc")&&("prjbtn"===t.id||"prjbtn_mob"===t.id)){const e=document.getElementById("shelfProject").firstElementChild;e.classList.add("active");const t=e.dataset.func;document.querySelectorAll(".elementBlock").forEach((e=>{e.hidden=e.id!==t})),lastCheckedButtons=[e],lastCheckedU=e.querySelector(".sel_pre"),lastCheckedT=e.querySelector(".sid_tex")}hideOverflowingButtons(),window.scrollTo({top:0,behavior:"smooth"})}const s=e.target.closest(".gifpreview");if(!s)return;const c=s.querySelector("img");let i=s.querySelector("video");const r=s.querySelector(".overlay"),a=c?c.getAttribute("data-src"):i.getAttribute("src");a&&!s.dataset.originalSrc&&(s.dataset.originalSrc=a);const d=c?c.getAttribute("data-poster"):i.getAttribute("poster"),u=!!a&&a.endsWith(".mp4");if(s.classList.contains("loading"))return;if(s.classList.contains("playing"))return s.classList.remove("playing"),void(u&&i?i.pause():c&&(c.src=d));if(s.dataset.loadedUrl)return void startPlayback(s,s.dataset.loadedUrl,u,c,i);let m=!0,h=null,g=null,p=Promise.resolve();h=setTimeout((()=>{m=!1,s.classList.add("loading"),ensureLoader(r),p=new Promise((e=>setTimeout(e,400))),g=setTimeout((()=>{r.querySelectorAll(".loader-hint").forEach((e=>{e.classList.add("visible")})),r.classList.add("vpnwarn")}),6750)}),250);const f=2*Math.PI*36;fetch(a).then((e=>{if(!e.ok)throw new Error("Ошибка сети");const t=e.headers.get("content-length");if(!t)return e.blob();const n=parseInt(t,10);let o=0;const l=e.body.getReader();return new Response(new ReadableStream({start(e){!function t(){l.read().then((({done:l,value:s})=>{if(l)return void e.close();o+=s.length;const c=Math.round(o/n*100),i=r.querySelector(".loader-text"),a=r.querySelector(".loader-circle");if(i&&(i.textContent=`${c}%`),a){const e=f-c/100*f;a.style.strokeDashoffset=e}e.enqueue(s),t()})).catch((t=>e.error(t)))}()}})).blob()})).then((e=>{clearTimeout(h),clearTimeout(g);const t=URL.createObjectURL(e);s.dataset.loadedUrl=t,m?(s.classList.remove("loading"),startPlayback(s,t,u,c,i)):p.then((()=>{s.classList.remove("loading"),startPlayback(s,t,u,c,i)}))})).catch((e=>{clearTimeout(h),clearTimeout(g),console.error("Ошибка загрузки:",e),s.classList.remove("loading")}))}));const nextElemBtn=document.getElementById("nextElemBtn"),viewCodeBtn=document.getElementById("viewcode"),langButton=document.getElementById("switch_lang"),langButtonMobile=document.getElementById("langButtonMobile"),swapButton=document.getElementById("swapside"),swapMobile=document.getElementById("swapside_mobile");nextElemBtn&&(nextElemBtn.onclick=()=>nextElement()),viewCodeBtn&&(viewCodeBtn.onclick=()=>viewCurrentCode()),langButton&&(langButton.onclick=()=>switchLang()),langButtonMobile&&(langButtonMobile.onclick=()=>switchLang()),swapButton&&(swapButton.onclick=()=>swapPageSide()),swapMobile&&(swapMobile.onclick=()=>swapPageSide());let refreshActiveButtonFlag=!1;function refreshActiveButton(e){if(!refreshActiveButtonFlag)return;const t=document.getElementById("webSidebar").querySelectorAll(".sidebtn"),n=document.querySelectorAll(".elementBlock"),o=document.getElementById("header").getBoundingClientRect(),l=o.bottom+2*o.bottom;let s=null;for(let e=0;e<n.length;e++){const t=n[e],o=t.getBoundingClientRect();if(o.bottom>l&&o.top<window.innerHeight){s=t;break}}const c=s?s.id:null,i="active",r=s.dataset.tag;t.forEach((e=>{e.dataset.func===c?(e.querySelector(".sel_pre").classList.add(i),e.querySelector(".sid_tex").classList.add(i)):(e.querySelector(".sel_pre").classList.remove(i),e.querySelector(".sid_tex").classList.remove(i))}));const a=document.getElementById("scrbtn");"project"!==r&&"project_pack"!==r||(a.querySelector(".utContent").textContent="PRJECT"),"script"!==r&&"script_pack"!==r||(a.querySelector(".utContent").textContent="SCRIPT")}function throttle(e,t){let n;return function(){const o=arguments,l=this;n||(e.apply(l,o),n=!0,setTimeout((()=>n=!1),t))}}function resizeGeneral(){nowWidth=window.innerWidth,nowHeight=window.innerHeight,isMobileWidth=nowWidth<=781;const e=document.getElementById("sideShelfMobile");e&&(e.hidden=!isMobileWidth);window.matchMedia("(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)").matches;if(nowWidth<781?(switchToMobile(!0),transitElements(".about_placeholder_mob",".about_extend",!1)):nowWidth>1400?(switchToMobile(!1),transitElements(".about_placeholder_web",".about_extend",!1)):switchToMobile(!1),nowWidth<781?soloCheckActive||soloCheck(!0):soloCheckActive&&soloCheck(!1),!isMobile)if(nowWidth<=781)document.documentElement.style.setProperty("--main_w","97.5%"),document.documentElement.style.setProperty("--sidebar_w","82px");else if(nowWidth>=1400)document.documentElement.style.setProperty("--main_w","75%"),document.documentElement.style.setProperty("--sidebar_w","400px");else{const e=(nowWidth-781)/619,t=lerp(97.5,75,e);lerp(12,24,e);document.documentElement.style.setProperty("--main_w",`${t}%`),document.documentElement.style.setProperty("--sidebar_w","400px")}if(gifSizeChecker(),headerTextShorter(),updateResponsiveText(),!isMobile){const e=window.innerHeight;shortShelfActive=nowWidth<540&&e<540}isMobileWidth&&hideOverflowingButtons(),refreshActiveButtonFlag=!!(nowWidth>nowHeight&&isMobile),refreshActiveButton()}function setActiveHeaderBtn(){const e=document.getElementById("scrbtn");e&&(e.classList.add("active"),lastCheckedMainTabs=[e])}function firstStart(){resizeGeneral();document.getElementById("contentViewer").hidden=!1;if(document.getElementById("header").classList.remove("spawn"),isMobile){setActiveHeaderBtn();let e=0;document.addEventListener("touchend",(function(t){const n=Date.now();n-e<=300&&(t.preventDefault(),t.target&&"function"==typeof t.target.click&&t.target.click()),e=n}),{passive:!1})}document.getElementById("zagl").classList.add("close")}window.addEventListener("scroll",throttle(refreshActiveButton,100)),document.addEventListener("DOMContentLoaded",refreshActiveButton),window.onload=firstStart,window.addEventListener("resize",resizeGeneral)</script>
+</body>
+</html>
