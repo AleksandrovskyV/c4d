@@ -275,13 +275,13 @@ padding-bottom: 1.4vh;
 font-size: var(--font_midl)
 }
 
-html.mobile.swapPage .cmark {
-display: none !important;
-}
 .marksafe{
 color: transparent;    
 }
-html.mobile.swapPage .marksafe{
+html.swapPage .cmark {
+display: none !important;
+}
+html.swapPage .marksafe{
 display: none !important; 
 }
 
@@ -2394,7 +2394,7 @@ function headerTextShorter() {
         const allRules = (namepageText && usertext && scrBtn && pearlLine);
         if (!allRules) return;
 
-
+        const currentMobileWidth = typeof mobileWidth !== 'undefined' ? mobileWidth : 768;
         const scrbtn = document.getElementById('scrbtn');
         const scrSlash = scrbtn.querySelector('.headDivider');
 
@@ -2411,7 +2411,12 @@ function headerTextShorter() {
                     usertext.textContent = swapFlag ? "." : "&"; 
                 }
             }else{
-                usertext.textContent = "&";
+                if(nowWidth < currentMobileWidth * 0.9){
+                   usertext.textContent = swapFlag ? "." : "&"; 
+                }else{
+                   usertext.textContent = "&";  
+                }
+                
             }
 
 
@@ -2435,7 +2440,7 @@ function headerTextShorter() {
             pearlLine.textContent = "* pearl edition";
         }
 
-        const currentMobileWidth = typeof mobileWidth !== 'undefined' ? mobileWidth : 768;
+        
 
         if (nowWidth < currentMobileWidth * 0.7) {
             scrBtn.textContent = "SCR";
