@@ -997,6 +997,7 @@ width: 100%;
 height: auto;
 display: block;
 user-select: none;
+pointer-events: none !important;
 }
 
 #fpl_poster{
@@ -3049,22 +3050,29 @@ function startPlayback(gifCont, url, isVideo, img, video) {
     if (isVideo) {
         if (!video) {
             video = document.createElement('video');
+            video.src = url; 
             video.loop = true;
             video.muted = true;
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
+            video.preload = 'auto';
             if (img) img.remove();
             gifCont.insertBefore(video, gifCont.firstChild);
         }
-        video.src = url;
-        //video.play().catch(err => console.log("AutoplayBlock:", err));
-        video.play().catch(() => {});
+        
+        if (video.src === url || video.src.endsWith(url)) {
+            video.play().catch(() => {});
+        } else {
+            video.src = url;
+            video.play().catch(() => {});
+        }
     } else {
-        if (img) {
+        if (img && url) {
             img.src = url;
         }
     }
 }
+
 
 let gifCont = null;
 
@@ -3077,6 +3085,7 @@ function gifStop(gifSelectr) {
     
     const img = targetGif.querySelector('img');
     const video = targetGif.querySelector('video');
+    const overlay = targetGif.querySelector('.overlay');
 
    // ОЧИСТКА ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
     if (overlay) {
@@ -3089,6 +3098,8 @@ function gifStop(gifSelectr) {
 
     if (video) {
         video.pause();
+        console.log("pausevideo")
+
 
     } else if (img && posterUrl) {
         img.src = posterUrl;
@@ -3310,14 +3321,30 @@ document.addEventListener('click', (event) => {
     const img = gifCont.querySelector('img');
     let video = gifCont.querySelector('video');
     const overlay = gifCont.querySelector('.overlay');
+    const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
 
+    // Было:
+    /*
     const mediaUrl = img ? img.getAttribute('data-src') : video.getAttribute('src');
+    
     if (mediaUrl && !gifCont.dataset.originalSrc) {
         gifCont.dataset.originalSrc = mediaUrl; // Запоминаем оригинальный путь
     }
 
-    const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
     const isVideo = mediaUrl ? mediaUrl.endsWith('.mp4') : false;
+    */
+
+    // Стало:
+    const originalUrl = gifCont.dataset.originalSrc || (img ? img.getAttribute('data-src') : (video ? video.getAttribute('src') : null));
+
+    if (originalUrl && !gifCont.dataset.originalSrc) {
+        gifCont.dataset.originalSrc = originalUrl;
+    }
+
+    const isVideo = originalUrl ? originalUrl.endsWith('.mp4') : false;
+    const mediaUrl = gifCont.dataset.loadedUrl || originalUrl;
+
+
 
     if (gifCont.classList.contains('loading')) return;
 
@@ -3408,7 +3435,7 @@ document.addEventListener('click', (event) => {
             const hints = overlay.querySelectorAll('.loader-hint');
             hints.forEach(hint => hint.classList.remove('visible'));
         }
-        
+
         const blobUrl = URL.createObjectURL(blob);
         gifCont.dataset.loadedUrl = blobUrl;
 
