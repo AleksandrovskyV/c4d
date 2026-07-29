@@ -879,9 +879,11 @@ margin-top: 0.8vh;
 justify-content: space-between;
 }
 .rowline.one{
+flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
 margin-left: calc(var(--spaces)*4);
+height: 14vh;
 }
 
 .aboutElement{
@@ -1187,6 +1189,10 @@ html.mobile #gitline{
 padding-bottom: 2vh;
 }
 
+.clickzone{
+pointer-events: auto !important;
+cursor: default;
+}
 
 
 @media (max-width: 779.98px) {
@@ -1783,7 +1789,7 @@ padding-bottom: 2vh;
                 <div class="about_placeholder_mob">
                 </div>
                 <div class="gif_placeholder_mobile">
-                    <div class="gifpreview gifdis" id="swm_poster">
+                    <div class="gifpreview gifdis clickzone prv_swp_btn" id="swm_poster">
 
                         <img class="previewDeSwap" id="prv_swp_a"
                              src="./assets/prvgif/swap_maps_poster.png" 
@@ -1795,10 +1801,9 @@ padding-bottom: 2vh;
                              data-poster="./assets/prvgif/swap_maps_poster_alt.png" 
                              alt="poster" />
 
-                        <div class=" gifdis"></div>
                     </div>
                 </div>
-                <div class="rowline one downline hideWeb">
+                <div class="prv_swp_btn rowline one downline hideWeb">
                      <p id="checkspec" class="prv_swp_btn plink check lngsup" data-ru="проверка" data-us="check" 
                         >test it!</p>
                 </div>
@@ -2914,7 +2919,7 @@ function nextElement() {
             nextButton.click();
         }
     }
-    gifStop();
+    
     activateNextInContainer(toolbarPrj);
     activateNextInContainer(toolbarScr);
 }
@@ -3062,7 +3067,7 @@ let gifCont = null;
 
 function gifStop(gifSelectr) {
     const targetGif = gifSelectr || gifCont;
-    
+
     if (!targetGif || !targetGif.classList.contains('playing')) return;
     
     targetGif.classList.remove('playing');
@@ -3110,7 +3115,11 @@ document.addEventListener('click', (event) => {
     if (width < mobileWidth) widthIsMobile = true;
 
     if (currentBtn) {
-        
+
+        if(isMobileWidth){
+            gifStop();
+        }
+
         const isMainTabClick = currentBtn.classList.contains('mfunc');
 
         if (!widthIsMobile || isMainTabClick) {
