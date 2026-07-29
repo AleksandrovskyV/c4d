@@ -905,8 +905,6 @@ color:#a3a3a3;
 .srtc.d{
 font-size: var(--font_perl);
 }
-.offset {margin-left: 4px; 
-}
 
 .imageIcon {
 display: flex;
@@ -1213,11 +1211,24 @@ pointer-events: none;
     .hideMobile{ display: none !important;
     }
 }
+
+.mpofsa {margin-left: 0px; 
+}
+.mpofsb {margin-left: 1.5px; 
+}
+.mpofsc {margin-left: 2px; 
+}
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 
     .controlSpawn, .controlSpawn * {
         font-size: 13px !important;
-    }   
+    }  
+
+    .mpofsa {margin-left: -2.0px; 
+    } 
+    .mpofsc {margin-left: -1.5px; 
+    }
 }
 
 
@@ -1264,6 +1275,7 @@ pointer-events: none;
     padding-bottom: 4vh;
     }
 }
+
 
 /* DPI Scale */
 @media (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), 
@@ -1532,21 +1544,21 @@ pointer-events: none;
                             <div id="aboutControlsLabel"><h2 class="special lngsup" data-ru="Контроль:" data-us="Controls:">Controls:</h2></div>
 
                             <div id="aboutControlsText" class="about_с_us controlSpawn"> <p>
-                                  <span class="srtc">[ <span class="txt">LMB</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Active settings via Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">LMB</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="mpofsa">&nbsp;&nbsp;Active settings via Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> ALT</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">LMB <span class="plus">+</span> SHIFT</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Viewport via BG Process<br><br>
                                 </p>
                             </div>
                             
                             <div id="aboutControlsText" class="about_с_ru controlSpawn mobextendG"  hidden> <p>
-                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;&nbsp;&nbsp;<span class="dsh">-</span>&nbsp;&nbsp;</span><span class="mpofsb">Активные настройки в Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> АЛЬТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">ЛКМ <span class="plus">+</span> ШИФТ</span> ]&nbsp;<span class="dsh">-</span>&nbsp;</span>Драфт вьюпорта через буфер процесс<br><br>
                                 </p>
                             </div>
                             
                             <div id="aboutControlsText" class="about_с_ru_mb controlSpawn" hidden> <p>
-                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;</span><span class="offset">Активные настройки в Picture Viewer</span><br>
+                                  <span class="srtc">[ <span class="txt">ЛКМ</span> ]&nbsp;&nbsp;</span><span class="mpofsc">&nbsp;&nbsp;Активные настройки в Picture Viewer</span><br>
                                   <span class="srtc">[ <span class="txt">ЛКМ<span class="plus">+</span>АЛЬТ</span> ]&nbsp;</span>Драфт вьюпорта в Picture Viewer<br>
                                   <span class="srtc">[ <span class="txt">ЛКМ<span class="plus">+</span>ШИФТ</span> ]&nbsp;</span>Драфт вьюпорта сквозь PViewer<br><br>
                                 </p>
@@ -2858,8 +2870,7 @@ function switchLang() {
         if (ru_text && us_text) {
             us_text.hidden = translated ? true : false;
 
-            if(ru_text_mob && isMobile){
-
+            if(ru_text_mob && isMobileWidth ){ //isMobile 
                 ru_text_mob.hidden = translated ? false : true;
             }else{
                 ru_text.hidden = translated ? false : true;                
