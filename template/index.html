@@ -3146,11 +3146,8 @@ document.addEventListener('click', (event) => {
 
     if (currentBtn) {
 
-        if(isMobileWidth){
-            if (gifCont) {
-                gifStop(gifCont);
-            }
-
+        if (widthIsMobile && gifCont) {
+            gifStop(gifCont);
         }
 
         const isMainTabClick = currentBtn.classList.contains('mfunc');
@@ -3326,9 +3323,10 @@ document.addEventListener('click', (event) => {
       const clickedCont = event.target.closest('.gifpreview');
     if (!clickedCont) return;
 
-    if (gifCont && gifCont !== clickedCont) {
+    if (widthIsMobile && gifCont && gifCont !== clickedCont) {
         gifStop(gifCont);
     }
+    
     gifCont = clickedCont;
 
     const img = gifCont.querySelector('img');
