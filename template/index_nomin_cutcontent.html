@@ -3016,34 +3016,30 @@ function startPlayback(gifCont, url, isVideo, img, video) {
 
 
 let gifCont = null;
-
 function gifStop(gifSelectr) {
     const targetGif = gifSelectr || gifCont;
 
-    if (!targetGif || !targetGif.classList.contains('playing')) return;
-    
+    //if (!targetGif || !targetGif.classList.contains('playing')) return;
+    if (!targetGif) return;
+     
+    const i = targetGif.querySelector('img');
+    const v = targetGif.querySelector('video');
+    const o = targetGif.querySelector('.overlay');
+
     targetGif.classList.remove('playing');
-    
-    const img = targetGif.querySelector('img');
-    const video = targetGif.querySelector('video');
-    const overlay = targetGif.querySelector('.overlay');
-
-   // ОЧИСТКА ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
-    if (overlay) {
-        overlay.classList.remove('vpnwarn');
-        const hints = overlay.querySelectorAll('.loader-hint');
-        hints.forEach(hint => hint.classList.remove('visible')); // Плавно гасим текст подсказок
+    /*
+    if (o) {
+        o.classList.remove('vpnwarn');
+        const hints = o.querySelectorAll('.loader-hint');
+        hints.forEach(hint => hint.classList.remove('visible'));
     }
+    */
+    const pUrl = i ? i.getAttribute('data-poster') : (v ? v.getAttribute('poster') : null);
 
-    const posterUrl = img ? img.getAttribute('data-poster') : (video ? video.getAttribute('poster') : null);
-
-    if (video) {
-        video.pause();
-        console.log("pausevideo")
-
-
-    } else if (img && posterUrl) {
-        img.src = posterUrl;
+    if (v) {
+        v.pause();
+    } else if (i && pUrl) {
+        i.src = pUrl;
     }
 }
 
@@ -3078,8 +3074,8 @@ document.addEventListener('click', (event) => {
 
     if (currentBtn) {
 
-        if(isMobileWidth){
-            gifStop();
+        if (widthIsMobile && gifCont) {
+            gifStop(gifCont);
         }
 
         const isMainTabClick = currentBtn.classList.contains('mfunc');
@@ -3256,67 +3252,74 @@ document.addEventListener('click', (event) => {
 
     }
     
-    gifCont = event.target.closest('.gifpreview');
-    if (!gifCont) return;
+    // Логика клика по гифкам/видео
+    const clickedCont = event.target.closest('.gifpreview');
+    if (!clickedCont) return;
 
-    const img = gifCont.querySelector('img');
-    let video = gifCont.querySelector('video');
-    const overlay = gifCont.querySelector('.overlay');
-    const posterUrl = img ? img.getAttribute('data-poster') : video.getAttribute('poster');
+    const img = clickedCont.querySelector('img');
+    let video = clickedCont.querySelector('video');
+    const overlay = clickedCont.querySelector('.overlay');
 
-    const originalUrl = gifCont.dataset.originalSrc || (img ? img.getAttribute('data-src') : (video ? video.getAttribute('src') : null));
-
-    if (originalUrl && !gifCont.dataset.originalSrc) {
-        gifCont.dataset.originalSrc = originalUrl;
+    const originalUrl = clickedCont.dataset.originalSrc || (img ? img.getAttribute('data-src') : (video ? video.getAttribute('src') : null));
+    if (originalUrl && !clickedCont.dataset.originalSrc) {
+        clickedCont.dataset.originalSrc = originalUrl;
     }
 
     const isVideo = originalUrl ? originalUrl.endsWith('.mp4') : false;
-    const mediaUrl = gifCont.dataset.loadedUrl || originalUrl;
+    const mediaUrl = clickedCont.dataset.loadedUrl || originalUrl;
 
+    // ЕСЛИ ЭЛЕМЕНТ СЕЙЧАС ЗАГРУЖАЕТСЯ:
+    // Повторный клик по нему во время загрузки просто игнорируем, давая ему докачаться
+    if (clickedCont.classList.contains('loading')) return;
 
-
-    if (gifCont.classList.contains('loading')) return;
-
-    if (gifCont.classList.contains('playing')) {
-        gifStop(gifCont);
+    // ЕСЛИ МЕДИА УЖЕ ИГРАЕТ:
+    // Повторный клик ставит его на паузу
+    if (clickedCont.classList.contains('playing')) {
+        gifStop(clickedCont);
         return;
     }
 
-    if (gifCont.dataset.loadedUrl) {
-        startPlayback(gifCont, gifCont.dataset.loadedUrl, isVideo, img, video);
+    // ЕСЛИ ЭЛЕМЕНТ УЖЕ СКАЧАН:
+    // Запускаем мгновенно. Перед этим гасим предыдущее ИГРАЮЩЕЕ видео (если оно было)
+    if (clickedCont.dataset.loadedUrl) {
+        if (widthIsMobile && gifCont && gifCont !== clickedCont) {
+            gifStop(gifCont); // Гасим старое играющее видео на мобильном
+        }
+        gifCont = clickedCont; // Запоминаем текущее играющее
+        startPlayback(clickedCont, clickedCont.dataset.loadedUrl, isVideo, img, video);
         return;
+    }
+
+    // --- НАЧАЛО НОВОЙ СЕТЕВОЙ ЗАГРУЗКИ ---
+    // На мобильном гасим предыдущее играющее видео, чтобы освободить сеть для новой загрузки
+    if (widthIsMobile && gifCont) {
+        gifStop(gifCont);
     }
 
     let isFastDownload = true; 
-    let showLoaderTimeout = null;
-    let vpnHintTimeout = null; // Таймер для долгой загрузки (VPN)
     let minDisplayPromise = Promise.resolve();
 
-    // ТРИГГЕР МЕДЛЕННОГО ИНТЕРНЕТА (250мс)
-    showLoaderTimeout = setTimeout(() => {
+    clickedCont.dataset.loaderTimeout = setTimeout(() => {
         isFastDownload = false;
-        gifCont.classList.add('loading');
+        clickedCont.classList.add('loading');
         ensureLoader(overlay);
         minDisplayPromise = new Promise(resolve => setTimeout(resolve, 400));
 
-        // ТРИГГЕР ПОДСКАЗКИ О VPN (7 секунд после старта загрузки)
-        vpnHintTimeout = setTimeout(() => {
-            const hints = overlay.querySelectorAll('.loader-hint');
-            hints.forEach(hint => {
-                hint.classList.add('visible'); 
-            });
-            overlay.classList.add('vpnwarn');
-        }, 6750); //7 секунд
+        // Таймер VPN подсказки персонально для этого оверлея
+        clickedCont.dataset.vpnTimeout = setTimeout(() => {
+            if (overlay) {
+                overlay.querySelectorAll('.loader-hint').forEach(hint => hint.classList.add('visible')); 
+                overlay.classList.add('vpnwarn');
+            }
+        }, 6750);
     }, 250);
 
     const radius = 36;
     const circumference = 2 * Math.PI * radius;
 
-    // Скачивание файла
-    const fetchPromise = fetch(mediaUrl)
+    fetch(mediaUrl)
         .then(response => {
             if (!response.ok) throw new Error('Ошибка сети');
-            
             const contentLength = response.headers.get('content-length');
             if (!contentLength) return response.blob();
 
@@ -3329,10 +3332,7 @@ document.addEventListener('click', (event) => {
                     start(controller) {
                         function read() {
                             reader.read().then(({ done, value }) => {
-                                if (done) {
-                                    controller.close();
-                                    return;
-                                }
+                                if (done) { controller.close(); return; }
                                 loaded += value.length;
                                 const percent = Math.round((loaded / total) * 100);
                                 
@@ -3340,8 +3340,7 @@ document.addEventListener('click', (event) => {
                                 const activeCircle = overlay.querySelector('.loader-circle');
                                 if (activeText) activeText.textContent = `${percent}%`;
                                 if (activeCircle) {
-                                    const offset = circumference - (percent / 100) * circumference;
-                                    activeCircle.style.strokeDashoffset = offset;
+                                    activeCircle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
                                 }
 
                                 controller.enqueue(value);
@@ -3352,36 +3351,41 @@ document.addEventListener('click', (event) => {
                     }
                 })
             ).blob();
+        })
+        .then(blob => {
+            clearTimeout(parseInt(clickedCont.dataset.loaderTimeout, 10));
+            clearTimeout(parseInt(clickedCont.dataset.vpnTimeout, 10));
+            clickedCont.removeAttribute('data-loader-timeout');
+            clickedCont.removeAttribute('data-vpn-timeout');
+
+            if (overlay) {
+                overlay.classList.remove('vpnwarn');
+                overlay.querySelectorAll('.loader-hint').forEach(hint => hint.classList.remove('visible'));
+            }
+
+            const blobUrl = URL.createObjectURL(blob);
+            clickedCont.dataset.loadedUrl = blobUrl;
+
+            gifCont = clickedCont;
+
+            if (isFastDownload) {
+                clickedCont.classList.remove('loading');
+                startPlayback(clickedCont, blobUrl, isVideo, img, video);
+            } else {
+                minDisplayPromise.then(() => {
+                    clickedCont.classList.remove('loading');
+                    startPlayback(clickedCont, blobUrl, isVideo, img, video);
+                });
+            }
+        })
+        .catch(err => {
+            clearTimeout(parseInt(clickedCont.dataset.loaderTimeout, 10));
+            clearTimeout(parseInt(clickedCont.dataset.vpnTimeout, 10));
+            clickedCont.removeAttribute('data-loader-timeout');
+            clickedCont.removeAttribute('data-vpn-timeout');
+            clickedCont.classList.remove('loading');
         });
 
-    fetchPromise.then(blob => {
-        clearTimeout(showLoaderTimeout);
-        clearTimeout(vpnHintTimeout); // Сброс 7-секундный таймер
-
-        if (overlay) {
-            overlay.classList.remove('vpnwarn');
-            const hints = overlay.querySelectorAll('.loader-hint');
-            hints.forEach(hint => hint.classList.remove('visible'));
-        }
-
-        const blobUrl = URL.createObjectURL(blob);
-        gifCont.dataset.loadedUrl = blobUrl;
-
-        if (isFastDownload) {
-            gifCont.classList.remove('loading');
-            startPlayback(gifCont, blobUrl, isVideo, img, video);
-        } else {
-            minDisplayPromise.then(() => {
-                gifCont.classList.remove('loading');
-                startPlayback(gifCont, blobUrl, isVideo, img, video);
-            });
-        }
-    }).catch(err => {
-        clearTimeout(showLoaderTimeout);
-        clearTimeout(vpnHintTimeout);
-        //console.error("Error:", err);
-        gifCont.classList.remove('loading');
-    });
 });
 
 // BTN CONNECT
