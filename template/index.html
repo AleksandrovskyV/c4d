@@ -1191,9 +1191,12 @@ padding-bottom: 2vh;
 
 .clickzone{
 pointer-events: auto !important;
-cursor: default;
+cursor: pointer;
 }
 
+html:not(.mobile) .prv_swp_btn.pc{
+pointer-events: none;
+}
 
 @media (max-width: 779.98px) {
     .fileLine{
@@ -1803,7 +1806,7 @@ cursor: default;
 
                     </div>
                 </div>
-                <div class="prv_swp_btn rowline one downline hideWeb">
+                <div class="prv_swp_btn pc rowline one downline hideWeb">
                      <p id="checkspec" class="prv_swp_btn plink check lngsup" data-ru="проверка" data-us="check" 
                         >test it!</p>
                 </div>
