@@ -3078,6 +3078,13 @@ function gifStop(gifSelectr) {
     const img = targetGif.querySelector('img');
     const video = targetGif.querySelector('video');
 
+   // ОЧИСТКА ВСПЛЫВАЮЩЕЙ ПОДСКАЗКИ
+    if (overlay) {
+        overlay.classList.remove('vpnwarn');
+        const hints = overlay.querySelectorAll('.loader-hint');
+        hints.forEach(hint => hint.classList.remove('visible')); // Плавно гасим текст подсказок
+    }
+
     const posterUrl = img ? img.getAttribute('data-poster') : (video ? video.getAttribute('poster') : null);
 
     if (video) {
@@ -3396,6 +3403,12 @@ document.addEventListener('click', (event) => {
         clearTimeout(showLoaderTimeout);
         clearTimeout(vpnHintTimeout); // Сброс 7-секундный таймер
 
+        if (overlay) {
+            overlay.classList.remove('vpnwarn');
+            const hints = overlay.querySelectorAll('.loader-hint');
+            hints.forEach(hint => hint.classList.remove('visible'));
+        }
+        
         const blobUrl = URL.createObjectURL(blob);
         gifCont.dataset.loadedUrl = blobUrl;
 
