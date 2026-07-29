@@ -474,7 +474,6 @@ display: block;
 }
 
 
-
 #shelfFake {
 width: var(--sidebar_w);
 min-height: 12px;
@@ -1273,42 +1272,39 @@ padding-bottom: 2vh;
 }
 
 @media (orientation: landscape) {
-html.mobile {
-    .sidelink{
+  /* Каждому селектору явно прописываем родителя html.mobile перед ним */
+  html.mobile .sidelink {
     display: none !important;
-    }
-    #prjbtn{
+  }
+  html.mobile #prjbtn {
     display: none !important;
-    }
-    .menusp{
+  }
+  html.mobile .menusp {
     display: none !important;
-    }
+  }
 
-    .telegram {
-     /*--bgcolor: red;*/
-    }
+  html.mobile .telegram #header { 
+    transform: translateY(-12vh);
+  }
 
-    .telegram #header { 
-    transform: translateY( -12vh );
-    }
-
-    /* Это везде хорошо */
-    #bottomShadowRow{
+  html.mobile #bottomShadowRow {
     bottom: calc(var(--footer_h) - var(--footer_h)/2);
-    transform: translateY( 3vh ); 
-    }
+    transform: translateY(3vh); 
+  }
 
-    #footer{
-    bottom: calc( var(--footer_h)*-1 - var(--footer_h)/2 );
-    transform: translateY( 3vh );
-    }
-    .aboutIconRow {
-        max-width: auto;
-        width: auto;
-        min-width: auto;
-    }
+  html.mobile #footer {
+    bottom: calc(var(--footer_h)*-1 - var(--footer_h)/2);
+    transform: translateY(3vh);
+  }
+  
+  html.mobile .aboutIconRow {
+    max-width: auto;
+    width: auto;
+    min-width: auto;
+  }
 }
-}
+
+
 
 </style>
 </head>
@@ -2784,7 +2780,7 @@ function changeMobileDownloadBtn(check) {
 
     if(!(mob_str_a && mob_str_b)){
 
-        console.log("changeMobileDownloadBtn - Disable")
+        //console.log("changeMobileDownloadBtn - Disable")
         return
     }
     const langPrefix = translated ? 'ru' : 'us';
@@ -2918,7 +2914,7 @@ function nextElement() {
             nextButton.click();
         }
     }
-
+    gifStop();
     activateNextInContainer(toolbarPrj);
     activateNextInContainer(toolbarScr);
 }
@@ -2934,7 +2930,7 @@ function viewCurrentCode(){
             window.open(downloadLink.href, '_blank');
         } 
     } else {
-        console.warn("На экране нет активных или видимых блоков elementBlock.");
+        //console.warn("На экране нет активных или видимых блоков elementBlock.");
     }
 }
 
@@ -2950,14 +2946,14 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
         return;
     }else{
         if (element) {
-            console.log(`Скачивание скрипта для: ${funcName}`);
+            //console.log(`DownlaodScript: ${funcName}`);
             const downloadLink = element.querySelector('.plink.dn');
             if (downloadLink && downloadLink.href) {
                 window.open(downloadLink.href, '_blank');
             } 
 
         } else {
-            console.log("Элемент не найден");
+            //console.log("NotFoundElem");
         }
     }
 });
@@ -3053,7 +3049,8 @@ function startPlayback(gifCont, url, isVideo, img, video) {
             gifCont.insertBefore(video, gifCont.firstChild);
         }
         video.src = url;
-        video.play().catch(err => console.log("Автоплей заблокирован:", err));
+        //video.play().catch(err => console.log("AutoplayBlock:", err));
+        video.play().catch(() => {});
     } else {
         if (img) {
             img.src = url;
@@ -3061,6 +3058,25 @@ function startPlayback(gifCont, url, isVideo, img, video) {
     }
 }
 
+let gifCont = null;
+
+function gifStop(gifCont) {
+    if (!gifCont || !gifCont.classList.contains('playing')) return;
+    
+    gifCont.classList.remove('playing');
+    
+    const img = gifCont.querySelector('img');
+    const video = gifCont.querySelector('video');
+
+    const posterUrl = img ? img.getAttribute('data-poster') : (video ? video.getAttribute('poster') : null);
+
+    if (video) {
+        video.pause();
+
+    } else if (img && posterUrl) {
+        img.src = posterUrl;
+    }
+}
 
 document.addEventListener('click', (event) => {
 
@@ -3267,7 +3283,7 @@ document.addEventListener('click', (event) => {
 
     }
     
-    const gifCont = event.target.closest('.gifpreview');
+    gifCont = event.target.closest('.gifpreview');
     if (!gifCont) return;
 
     const img = gifCont.querySelector('img');
@@ -3285,12 +3301,7 @@ document.addEventListener('click', (event) => {
     if (gifCont.classList.contains('loading')) return;
 
     if (gifCont.classList.contains('playing')) {
-        gifCont.classList.remove('playing');
-        if (isVideo && video) {
-            video.pause();
-        } else if (img) {
-            img.src = posterUrl;
-        }
+        gifStop();
         return;
     }
 
@@ -3369,7 +3380,7 @@ document.addEventListener('click', (event) => {
 
     fetchPromise.then(blob => {
         clearTimeout(showLoaderTimeout);
-        clearTimeout(vpnHintTimeout); // Обязательно сбрасываем 7-секундный таймер
+        clearTimeout(vpnHintTimeout); // Сброс 7-секундный таймер
 
         const blobUrl = URL.createObjectURL(blob);
         gifCont.dataset.loadedUrl = blobUrl;
@@ -3385,8 +3396,8 @@ document.addEventListener('click', (event) => {
         }
     }).catch(err => {
         clearTimeout(showLoaderTimeout);
-        clearTimeout(vpnHintTimeout); // Сбрасываем при ошибке
-        console.error("Ошибка загрузки:", err);
+        clearTimeout(vpnHintTimeout);
+        //console.error("Error:", err);
         gifCont.classList.remove('loading');
     });
 });

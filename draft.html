@@ -474,7 +474,6 @@ display: block;
 }
 
 
-
 #shelfFake {
 width: var(--sidebar_w);
 min-height: 12px;
@@ -1273,42 +1272,39 @@ padding-bottom: 2vh;
 }
 
 @media (orientation: landscape) {
-html.mobile {
-    .sidelink{
+  /* Каждому селектору явно прописываем родителя html.mobile перед ним */
+  html.mobile .sidelink {
     display: none !important;
-    }
-    #prjbtn{
+  }
+  html.mobile #prjbtn {
     display: none !important;
-    }
-    .menusp{
+  }
+  html.mobile .menusp {
     display: none !important;
-    }
+  }
 
-    .telegram {
-     /*--bgcolor: red;*/
-    }
+  html.mobile .telegram #header { 
+    transform: translateY(-12vh);
+  }
 
-    .telegram #header { 
-    transform: translateY( -12vh );
-    }
-
-    /* Это везде хорошо */
-    #bottomShadowRow{
+  html.mobile #bottomShadowRow {
     bottom: calc(var(--footer_h) - var(--footer_h)/2);
-    transform: translateY( 3vh ); 
-    }
+    transform: translateY(3vh); 
+  }
 
-    #footer{
-    bottom: calc( var(--footer_h)*-1 - var(--footer_h)/2 );
-    transform: translateY( 3vh );
-    }
-    .aboutIconRow {
-        max-width: auto;
-        width: auto;
-        min-width: auto;
-    }
+  html.mobile #footer {
+    bottom: calc(var(--footer_h)*-1 - var(--footer_h)/2);
+    transform: translateY(3vh);
+  }
+  
+  html.mobile .aboutIconRow {
+    max-width: auto;
+    width: auto;
+    min-width: auto;
+  }
 }
-}
+
+
 
 </style>
 </head>
