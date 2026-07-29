@@ -1198,51 +1198,33 @@ html:not(.mobile) .prv_swp_btn.pc{
 pointer-events: none;
 }
 
-@media (max-width: 779.98px) {
+
+/* Mobile - off weeb  */
+@media (max-width: 780.9px) {
     .fileLine{
         width: auto; 
     }
-
     #usertext:hover{
         text-decoration: none;
         cursor: default;
         pointer-events: none;
     }
-
     .hideMobile{ display: none !important;
     }
 }
 
-.mpofsa {margin-left: 0px; 
-}
-.mpofsb {margin-left: 1.5px; 
-}
-.mpofsc {margin-left: 2px; 
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-
-    .controlSpawn, .controlSpawn * {
-        font-size: 13px !important;
-    }  
-
-    .mpofsa {margin-left: -2.0px; 
-    } 
-    .mpofsc {margin-left: -1.5px; 
-    }
-}
-
-
-/* Web */
-@media (min-width: 780px) {
+/* Web - hide mobile */
+@media (min-width: 781px) {
     #usertext:hover{
     text-decoration: underline;
     cursor: pointer;
     filter: brightness(1.20); 
     }
+
     .hideWeb{ display: none !important;
     }
 }
+
 @media (min-width: 1790px){
     #filletplane .aboutIconBlock {
         margin-top: clamp(0px, (100vw - 1790px) * 0.3, 8vh);
@@ -1278,7 +1260,23 @@ pointer-events: none;
 }
 
 
-/* DPI Scale */
+.mpofsa {margin-left: 0px; 
+}
+.mpofsb {margin-left: 1.5px;
+}
+.mpofsc {margin-left: 2px; 
+}
+/* DPI Scale ~Iphone */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .mpofsa {margin-left: -2.0px; 
+    } 
+    .mpofsc {margin-left: -1.5px; 
+    }
+    .controlSpawn, .controlSpawn * {
+        font-size: 13px !important;
+    }  
+}
+/* DPI Scale ~Iphone Album */
 @media (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape), 
        (min-resolution: 192dpi) and (orientation: landscape) {
 
@@ -1290,10 +1288,9 @@ pointer-events: none;
     .undlink {
     text-decoration: none;
     }
-
-
 }
 
+/*  Album Mobile */
 @media (orientation: landscape) {
 
   html.mobile .sidelink {
@@ -1309,7 +1306,6 @@ pointer-events: none;
   html.mobile .telegram #header { 
     transform: translateY(-12vh);
   }
-
   html.mobile #bottomShadowRow {
     bottom: calc(var(--footer_h) - var(--footer_h)/2);
     transform: translateY(3vh); 
@@ -1362,28 +1358,7 @@ pointer-events: none;
     </div>
 </div>
 
-<div id="webSidebar" class=" hideMobile">
-    <div    class="menusp" ></div>
-    <div    data-func="filletplane"  class="sidebtn cfunc" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
-    <div    data-func="mp4vidoc"     class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
-    <div    data-func="helpers"      class="sidebtn cfunc" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
-    <div    data-func="linked_camera"class="sidebtn cfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
-    
-    <h2   id="menulink"  class="sidelink"><span id="kpr" hidden>- </span><a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
-    
-    <div    data-func="prjbtn"       class="base_btn mfunc" tabindex="0" id="prjbtn" >
-        <span class="headDivider">/ </span>
-        <span class="undlink">PRJECTS</span>
-    </div>
 
-    <div    class="menusp"> </div>
-
-    <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0">
-        <span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> 
-        <span class="rem_und">&nbsp;&nbsp;</span>Workflow</span> 
-    </div>
-    <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
-</div>
 
 <div id="shelfWrapper" hidden> 
     <div id="shortshelf">
@@ -1396,13 +1371,12 @@ pointer-events: none;
         <div data-func="arnold_rand_texture" class="mbtn aws" ></div>
         <div data-func="linked_camera"       class="mbtn cam" ></div>
 
-
         <div data-func="rand_btn"            class="mbtn text" id ="rnd" >?</div>
     </div>
 </div>
 
 
-<div id="sideShelfMobile" class="shelfMobile" hidden> 
+<div id="sideShelfMobile" class="shelfMobile hideWeb" > 
     <div class="mbtn text top" id="langButtonMobile" >RU</div>
 
     <div id="shelfScripts">
@@ -1424,7 +1398,29 @@ pointer-events: none;
     <div id="ghostShelfMobile" class="shelfMobile overlap" >
         <div class="mbtn text bot up" id="nextElemBtn">▼</div>
     </div>
+</div>
 
+<div id="webSidebar" class="hideMobile">
+    <div    class="menusp" ></div>
+    <div    data-func="filletplane"  class="sidebtn cfunc" tabindex="0"><span class="sel_pre a">- </span><span class="sid_tex">Fillet Plane</span></div>
+    <div    data-func="mp4vidoc"     class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">MP4 Vidoc</span></div>
+    <div    data-func="helpers"      class="sidebtn cfunc" tabindex="0"><span class="sel_pre c">- </span><span class="sid_tex">Helpers</span></div>
+    <div    data-func="linked_camera"class="sidebtn cfunc" tabindex="0"><span class="sel_pre d">- </span><span class="sid_tex">Link Camera</span></div>
+    
+    <h2   id="menulink"  class="sidelink"><span id="kpr" hidden>- </span><a class="link b lngsup" data-ru="скачать разом" data-us="download shelf" href="https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z">download shelf</a> </h2> 
+    
+    <div    data-func="prjbtn"       class="base_btn mfunc" tabindex="0" id="prjbtn" >
+        <span class="headDivider">/ </span>
+        <span class="undlink">PRJECTS</span>
+    </div>
+
+    <div    class="menusp"> </div>
+
+    <div    data-func="ar_wf_string" class="sidebtn cfunc" tabindex="0">
+        <span class="sel_pre e">- </span><span class="sid_tex">Arnold String<br> 
+        <span class="rem_und">&nbsp;&nbsp;</span>Workflow</span> 
+    </div>
+    <div    data-func="test_smile"   class="sidebtn cfunc" tabindex="0"><span class="sel_pre b">- </span><span class="sid_tex">Test Smile</span></div>
 </div>
 
 <div id="mainPage" hidden>
@@ -2283,7 +2279,7 @@ function lerp(start, end, amt) {
     return (1 - amt) * start + amt * end;
 }
 
-const mobileWidth = 780+1;
+const mobileWidth = 780.5;
 
 /// Значение из медизапроса
 const rootStyles = getComputedStyle(document.documentElement);
@@ -2689,8 +2685,6 @@ function headerTextShorter() {
                 }
                 
             }
-
-
   
         } else {
             namepageText.textContent = nameCases.namepage[currentIndices.namepage];
@@ -3311,8 +3305,7 @@ document.addEventListener('click', (event) => {
 
         hideOverflowingButtons();
 
-        window.scrollTo({
-        top: 0,
+        window.scrollTo({top: 0,
         behavior: 'smooth' // Делает прокрутку плавной
         });
 
@@ -3552,20 +3545,17 @@ function resizeGeneral() {
 
     isMobileWidth = nowWidth <= mobileWidth ? true : false;
 
-    const sideShelfMobile = document.getElementById('sideShelfMobile');
-    
-    if(sideShelfMobile){
-       sideShelfMobile.hidden = !isMobileWidth; 
-    }
-
     const isHighDPI = window.matchMedia(
         '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
     ).matches;
 
-    if (nowWidth < mobileWidth) { 
         const mp = document.getElementById('mainPage');
         if(mp.hidden) mp.hidden = false;
-
+    if (nowWidth < mobileWidth) { 
+        /* // может вызвать ошибки при инициализации
+        const mp = document.getElementById('mainPage');
+        if(mp.hidden) mp.hidden = false;
+        */
         switchToMobile(true);
         transitElements('.about_placeholder_mob', '.about_extend', false);
         
@@ -3579,7 +3569,12 @@ function resizeGeneral() {
 
 
     if(nowWidth<mobileWidth){
-        if(!soloCheckActive)soloCheck(true);
+        if(!soloCheckActive){
+            soloCheck(true);
+            window.scrollTo({top: 0,
+                behavior: 'smooth' // Делает прокрутку плавной
+            });
+        }
     }else{
         if(soloCheckActive)soloCheck(false);
     }
