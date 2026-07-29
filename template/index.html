@@ -1272,7 +1272,7 @@ padding-bottom: 2vh;
 }
 
 @media (orientation: landscape) {
-  /* Каждому селектору явно прописываем родителя html.mobile перед ним */
+
   html.mobile .sidelink {
     display: none !important;
   }
@@ -3060,13 +3060,15 @@ function startPlayback(gifCont, url, isVideo, img, video) {
 
 let gifCont = null;
 
-function gifStop(gifCont) {
-    if (!gifCont || !gifCont.classList.contains('playing')) return;
+function gifStop(gifSelectr) {
+    const targetGif = gifSelectr || gifCont;
     
-    gifCont.classList.remove('playing');
+    if (!targetGif || !targetGif.classList.contains('playing')) return;
     
-    const img = gifCont.querySelector('img');
-    const video = gifCont.querySelector('video');
+    targetGif.classList.remove('playing');
+    
+    const img = targetGif.querySelector('img');
+    const video = targetGif.querySelector('video');
 
     const posterUrl = img ? img.getAttribute('data-poster') : (video ? video.getAttribute('poster') : null);
 
@@ -3301,7 +3303,7 @@ document.addEventListener('click', (event) => {
     if (gifCont.classList.contains('loading')) return;
 
     if (gifCont.classList.contains('playing')) {
-        gifStop();
+        gifStop(gifCont);
         return;
     }
 
