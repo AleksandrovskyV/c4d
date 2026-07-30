@@ -19,8 +19,8 @@ Optionally adds a custom Xpresso setup with an Extend parameter to expand the re
 <br>
 
 > *Additional note: by creating your own alpha-channel mask you can effectively “patch” the render in post. With the standard renderer, you achieve this by projecting a material that carries an alpha channel from the camera onto your scene. It’s a clever workaround—though I’m really hoping the Maxon team will one day build in a true “Negative Render Region” feature! :)*
-<br><br>
 
+<br><br><br><br>
 
 ---
 <br>
