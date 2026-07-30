@@ -12,7 +12,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 12px 0;">
+<p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 <em>It`s a plane.. And it has fillets "</em>
 <br></p></div>
@@ -23,7 +23,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/gh_MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 4px ">
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
 <br></p></div>
@@ -33,7 +33,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Convert object color from polygon object to Vertex Color Tag<br>
 <br></p></div>
@@ -43,7 +43,7 @@ Convert object color from polygon object to Vertex Color Tag<br>
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/gh_MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 4px ">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"
