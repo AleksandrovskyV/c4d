@@ -83,7 +83,6 @@ Create a camera at the top level of your scene<br>and linked to active one via C
 <br>
   </p>
 </div>
-<br>
 
 > Xpresso Tag to expand "Render Area" with safe focal length, [read here](./readme/linked-camera/) 
 
