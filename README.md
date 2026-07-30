@@ -53,7 +53,6 @@ using your current "Render Settings"
   </p>
 </div>
 <br>
-
 <div>  <strong> Controls:</strong><br></div>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
@@ -111,8 +110,8 @@ Hey dudes. W*lcome [1]
 
 ### 🏷 Tags
 
-`cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `expand-render-area` `camera-morph`  
-`one-click-tools` `cg-tools` `extend-render-area`  `gpt-assisted`  `negative-render-region`  
+`cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `ai-assisted`
+`one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
 
-<!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky -->
+<!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
 
