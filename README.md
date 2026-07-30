@@ -10,31 +10,47 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
-<div style="overflow: hidden;">
-  <img src="./vsky.scripts/cust_icons/Fillet%20Plane.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <p style="margin: 0 0 -3px 0;">
-<strong> Tested:</strong> R23<br>
-"It`s a plane.. And it has fillets"<br>
-<br></p></div>
-
-![preview](./assets/fillet_plane_preview.gif)
+<table style="border: none; background: none; margin-bottom: 16px;">
+  <tr style="border: none; background: none;">
+    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
+      <img src="./vsky.scripts/cust_icons/Fillet%20Plane.png" width="84" style="max-width: none;">
+    </td>
+    <td style="border: none; padding: 0; vertical-align: top;">
+      <strong>Tested:</strong> R23<br>
+      "It`s a plane.. And it has fillets"
+    </td>
+  </tr>
+</table>
 
 
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
-<div style="min-height: 84px; margin-bottom: 24px;">
-  <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <strong>Tested:</strong> R23<br>
-  Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
-</div>
+<table style="border: none; background: none; margin-bottom: 16px;">
+  <tr style="border: none; background: none;">
+    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
+      <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" style="max-width: none;">
+    </td>
+    <td style="border: none; padding: 0; vertical-align: top;">
+      <strong>Tested:</strong> R23<br>
+      Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
+    </td>
+  </tr>
+</table>
+
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
-<div style="min-height: 84px; margin-bottom: 24px;">
-  <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <strong>Tested:</strong> R23<br>
-  Convert object color from polygon object to Vertex Color Tag
-</div>
+<table style="border: none; background: none; margin-bottom: 16px;">
+  <tr style="border: none; background: none;">
+    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
+      <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" style="max-width: none;">
+    </td>
+    <td style="border: none; padding: 0; vertical-align: top;">
+      <strong>Tested:</strong> R23<br>
+      Convert object color from polygon object to Vertex Color Tag
+    </td>
+  </tr>
+</table>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
