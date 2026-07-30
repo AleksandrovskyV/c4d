@@ -93,7 +93,7 @@ Hey dudes. W*lcome [1]
 ## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 Extended workflow with Arnold String Attribute, <a href="./vsky.read/arnold_user-data-string.md">read here</a><br>
