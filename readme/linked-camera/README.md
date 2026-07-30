@@ -9,7 +9,7 @@
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene and linked to active one via CameraMorph Tag <br>
-Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length<br>
+Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while<br>maintaining the original focal length...<br>
   </p>
 </div>
 <br>
