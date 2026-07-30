@@ -47,6 +47,5 @@ Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 
 > Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV),<br>with assistance from ChatGPT<br>
 > Feel free to fork, break, or improve this setup 🔧<br><br>
->`cinema-4d` `c4dtoa` `arnold` `xpresso` `user-data` `string-attribute` `texture-randomizer` `user_data_string`  
-`multi-shader-arnold` `user_data_string-random` `random-textures-from-folder-in-arnold-shader`   
-`substance-painter` `workflow-tools` `shader-automation` `cg-tools`<br>`aleksandrovsky` & `gpt-assisted`
+>`c4dtoa` `c4d arnold render` `multi-shader-arnold` `user_data_string-random`
+`random-textures-from-folder-in-arnold-shader` `shader-automation`<br>`aleksandrovsky` & `gpt-assisted`
