@@ -45,6 +45,7 @@ Convert object color from polygon object to Vertex Color Tag
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"<br>
 
+<br style="clear: both;"><br>
 <strong> Controls:</strong>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
