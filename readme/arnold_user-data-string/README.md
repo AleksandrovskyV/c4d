@@ -42,7 +42,7 @@ Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 <br>
 
 > Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT 
-> Feel free to fork, break, or improve this setup 🔧<br>
+> Feel free to fork, break, or improve this setup 🔧<br><br>
 >`cinema-4d` `c4dtoa` `arnold` `xpresso` `user-data` `string-attribute` `texture-randomizer` `user_data_string`  
 `multi-shader-arnold` `user_data_string-random` `random-textures-from-folder-in-arnold-shader`   
-`substance-painter` `workflow-tools` `shader-automation` `cg-tools` `aleksandrovsky` `gpt-assisted`
+`substance-painter` `workflow-tools` `shader-automation` `cg-tools`<br>`aleksandrovsky` & `gpt-assisted`
