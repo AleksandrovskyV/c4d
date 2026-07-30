@@ -35,7 +35,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
   <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
-Convert object color from polygon object to Vertex Color Tag
+Convert object color from polygon object to Vertex Color Tag<br>
 <br></p></div>
 <br>
 
