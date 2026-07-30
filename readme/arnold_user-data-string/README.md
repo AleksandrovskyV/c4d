@@ -1,4 +1,4 @@
-<br><br><br>
+<br><br>
 
 # Arnold Extend Workflow "user_data_string"
 
