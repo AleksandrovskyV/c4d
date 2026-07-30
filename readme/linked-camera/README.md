@@ -28,5 +28,5 @@ Optionally adds a custom Xpresso setup with an Extend parameter to expand the re
 
 ---
 
-> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from Google Seach AI
+> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT
 
