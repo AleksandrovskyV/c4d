@@ -96,8 +96,8 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
-- Randomizes textures from a selected folder <br>
-- Allows manual texture selection from object 
+- Randomizes textures from a folder <br>
+- Manual texture replacement from a object 
   </p>
 </div>
 <br>
@@ -112,8 +112,8 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
-- <a href="юю">a</a> <br>
-- <a href="юю">a</a> <br>
+- <a href="./vsky.projects/smile_std_rigged.7z"  >get</a> Low-poly mouth with small trick * PoseMorphTag<br>
+- <a href="./vsky.projects/smile_octane_w_aep.7z">get</a> Prepared Octane AOVs * with .aep files include<br>
   </p>
 </div>
 <br>
