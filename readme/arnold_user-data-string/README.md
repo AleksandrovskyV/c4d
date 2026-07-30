@@ -30,6 +30,7 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 4. Make sure your textures are named numerically (e.g. `BaseColor_01.jpg`, `BaseColor_02.jpg`)
 
 <br>
+
 Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 
 <br><br><br><br>
