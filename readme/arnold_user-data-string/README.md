@@ -15,7 +15,7 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 ---
 
 ### Key Features
--  Random textures from a selected folder (Arnold Renderer)   
+-  Random textures from a selected folder  
 -  Allows manual selection of a specific texture via index
 -  Uses String-type User Data for dynamic path control  
 
@@ -38,12 +38,12 @@ Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 
 ---
 
-### Tags
+### tags...
 `cinema-4d` `c4dtoa` `arnold` `xpresso` `user-data` `string-attribute` `texture-randomizer` `user_data_string`  
 `multi-shader-arnold` `user_data_string-random` `random-textures-from-folder-in-arnold-shader`   
 `substance-painter` `workflow-tools` `shader-automation` `cg-tools` `aleksandrovsky` `gpt-assisted`
 
 ---
 
-> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from GPT.  
+> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT 
 > Feel free to fork, break, or improve this setup 🔧
