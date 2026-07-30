@@ -10,7 +10,7 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 
 
 
-_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)_<br>
+_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)_<br><br>
 
 ---
 <br>
@@ -33,7 +33,7 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 
 Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 
-<br><br><br><br>
+<br><br><br>
 
 ---
 <br>
