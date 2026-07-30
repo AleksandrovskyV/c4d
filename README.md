@@ -90,7 +90,7 @@ Instantly duplicates the active camera to the top level of your scene <br>
 Hey dudes. W*lcome [1]
 
 
-## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
+## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
