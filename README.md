@@ -22,7 +22,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
+  <img src="./assets/svg/gh_MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
@@ -42,14 +42,14 @@ Convert object color from polygon object to Vertex Color Tag<br>
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
+  <img src="./assets/svg/gh_MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"
 <br></p></div>
-
-<br><strong>Controls:</strong><br>
+<br clear="left">
+<strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
@@ -63,9 +63,10 @@ using your current "Render Settings"
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager<br>
-If select 2 objects, script swap last texture tags on objects<br>
-If object has no tag, script scan children and find first object with tag for swap<br>
 <br></p></div>
+
+> * If select 2 objects, script swap last texture tags on objects<br>
+> * If object has no tag, script scan children and find first object with tag for swap<br>
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
@@ -88,7 +89,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 ## 🔹 [Arnold Workflow "user_data_string"](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.7z), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden; margin-bottom: 12px !important;">
-  <img src="./assets/svg/ArnoldWorkflow.svg" width="84" align="left" style="padding-right: 12px; ">
+  <img src="./assets/svg/gh_ArnoldWorkflow.svg" width="84" align="left" style="padding-right: 12px; ">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder<br>
