@@ -92,9 +92,9 @@ Extend Parameter / [read_here](https://github.com/AleksandrovskyV/c4d/vsky.read/
 Hey dudes. W*lcome [1]
 
 
-## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
+## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
 
-> Extend workflow with Arnold String Attribute  > [read](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
+> Extend workflow with Arnold String Attribute  > [read]((https://github.com/AleksandrovskyV/c4d/vsky.read/arnold_user-data-string.md)
 
 - 🎲 Randomizes Arnold textures from a selected folder  
 - 🎯 Allows manual texture selection  
