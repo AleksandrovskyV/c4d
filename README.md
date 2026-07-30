@@ -101,9 +101,6 @@ Hey dudes. W\*lcome [1]
   </p>
 </div>
 <br>
-## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/)
-
-
 
 ## 🔹 [Test Smile](https://github.com/AleksandrovskyV/c4d/vsky.projects/)
 
