@@ -75,7 +75,7 @@ If object has no tag, script scan children and find first object with tag for sw
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
-<div style="overflow: hidden;">
+<div style="overflow: hidden; clear: both;">
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
