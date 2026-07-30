@@ -1,6 +1,8 @@
-# scripts
+*i say really gitgub...
 
-Hey dudes. W*lcome [0]  > [GIT SCRIPT FOLDER](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/vsky.scripts) or [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
+# /scripts
+
+Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
 
 ---
 
@@ -94,7 +96,7 @@ If object has no tag, script scan children and find first object with tag for sw
 > *Additional note: by creating your own alpha-channel mask you can effectively “patch” the render in post. With the standard renderer, you achieve this by projecting a material that carries an alpha channel from the camera onto your scene. It’s a clever workaround—though I’m really hoping the Maxon team will one day build in a true “Negative Render Region” feature! :)*
 
 
-# projects
+# /projects
 
 Hey dudes. W*lcome [1]
 
@@ -112,4 +114,4 @@ Hey dudes. W*lcome [1]
 `cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `expand-render-area` `camera-morph`  
 `one-click-tools` `cg-tools` `extend-render-area`  `gpt-assisted`  `negative-render-region`  
 
-<!-- SEO: cinema4d script camera morph xpresso python render region sensor size after effects aleksandrovsky -->
+<!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky -->
