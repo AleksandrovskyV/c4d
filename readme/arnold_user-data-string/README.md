@@ -16,9 +16,10 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 <br>
 
 ### Key Features
+-  Random texture assignment for multiple clones or assets / meshes 
 -  Random textures from a selected folder  
 -  Allows manual selection of a specific texture via index
--  Uses String-type User Data for dynamic path control  
+-  Quick material variations without duplicating shaders    
 <br>
 
 ### How to Set Up
@@ -29,14 +30,6 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 4. Make sure your textures are named numerically (e.g. `BaseColor_01.jpg`, `BaseColor_02.jpg`)
 
 Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
-<br>
-
----
-<br>
-
-### Example Use Cases
-- Random texture assignment for multiple clones or assets / meshes 
-- Quick material variations without duplicating shaders  
 
 <br><br><br><br>
 
