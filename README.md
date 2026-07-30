@@ -5,7 +5,7 @@ _* i say really, [github](https://github.com/AleksandrovskyV/c4d)...&nbsp;&nbsp;
 # /scripts
 
 Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
----
+
 
 ## 🔹 [Fillet Plane](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Filled%20Plane.py)  
 
@@ -100,7 +100,7 @@ If object has no tag, script scan children and find first object with tag for sw
 # /projects
 
 Hey dudes. W*lcome [1]
----
+
 
 ## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
 
