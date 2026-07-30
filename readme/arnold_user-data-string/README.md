@@ -13,14 +13,17 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)_<br>
 
 ---
-<br><br>
+<br>
+
 ### Key Features
 -  Random textures from a selected folder  
 -  Allows manual selection of a specific texture via index
 -  Uses String-type User Data for dynamic path control  
+<br>
 
 ---
-<br><br>
+<br>
+
 ### How to Set Up
 1. Create a new object  
 2. Go to:  
@@ -29,6 +32,7 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 4. Make sure your textures are named numerically (e.g. `BaseColor_01.jpg`, `BaseColor_02.jpg`)
 
 Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
+<br>
 
 ---
 
@@ -41,7 +45,7 @@ Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 ---
 <br>
 
-> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT 
+> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV),<br>with assistance from ChatGPT 
 > Feel free to fork, break, or improve this setup 🔧<br><br>
 >`cinema-4d` `c4dtoa` `arnold` `xpresso` `user-data` `string-attribute` `texture-randomizer` `user_data_string`  
 `multi-shader-arnold` `user_data_string-random` `random-textures-from-folder-in-arnold-shader`   
