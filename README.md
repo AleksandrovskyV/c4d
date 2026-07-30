@@ -2,18 +2,9 @@
 layout: default
 ---
 
-<!--
-<style>
-  body { background-color: #0d1117 !important; color: #c9d1d9 !important; }
-  a { color: #58a6ff !important; }
-  h1, h2, h3 { color: #f0f6fc !important; border-bottom-color: #21262d !important; }
-</style>
--->
-
-_* i say really, get [github](https://github.com/AleksandrovskyV/c4d)..._<br>
-_* oh no, go [back](https://vsky.space/c4d/draft)_<br>
-<br>
-_* scroll to [projects](#projects)_<br>
+_* i say really, get [github](https://github.com/AleksandrovskyV/c4d)..._<br><br>
+_* oh no, go [back](https://vsky.space/c4d/draft)_<br><br>
+_* scroll to [projects](#projects)_<br><br>
 <br>
 
 # /scripts
@@ -129,5 +120,13 @@ Hey dudes. W*lcome [1]
 
 `cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `expand-render-area` `camera-morph`  
 `one-click-tools` `cg-tools` `extend-render-area`  `gpt-assisted`  `negative-render-region`  
+
+<div style="display: none;">
+<style>
+  body { background-color: #0d1117 !important; color: #c9d1d9 !important; }
+  a { color: #58a6ff !important; }
+  h1, h2, h3 { color: #f0f6fc !important; border-bottom-color: #21262d !important; }
+</style>
+</div>
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky -->
