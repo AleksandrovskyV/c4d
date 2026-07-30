@@ -34,7 +34,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
   <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
-Convert object color from polygon object to Vertex Color Tag <br>
+Convert object color from polygon object to Vertex Color Tag<br>
 <br></p></div>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
@@ -44,7 +44,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
-using your current "Render Settings"
+using your current "Render Settings"<br>
 <br></p></div>
 <div>  <strong> Controls:</strong><br></div>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
@@ -70,7 +70,7 @@ If object has no tag, script scan children and find first object with tag for sw
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
-Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag
+Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag<br>
 <br></p></div>
 
 > Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera/) 
@@ -88,8 +88,8 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
-- Randomizes textures from a folder <br>
-- Manual replacement from an object
+- Randomizes textures from a folder<br>
+- Manual replacement from an object<br>
 <br></p></div>
 
 
