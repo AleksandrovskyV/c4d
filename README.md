@@ -114,7 +114,7 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 
 ### tags...
 
-`cinema-4d` `c4d` `4D` `cinema-4d-script` `xpresso` `python` `ai-assisted`<br>
-`one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
+`c4d` `cinema-4d` `xpresso` `python` `ai-assisted`<br>
+`one-click-tools` `negative-render-region`
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
