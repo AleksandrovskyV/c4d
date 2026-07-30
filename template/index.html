@@ -3146,9 +3146,12 @@ document.addEventListener('click', (event) => {
 
     const currentBtn = event.target.closest('.cfunc, .mfunc');
 
-    const smileico = currentBtn.classList.contains('tsmSleep', 'tsm');    
-    if(smileico)currentBtn.classList.toggle('tsm');
-
+    const hasSleep = currentBtn.classList.contains('tsmSleep');
+    const hasTsm = currentBtn.classList.contains('tsm');
+    
+    if (hasSleep || hasTsm) { 
+        currentBtn.classList.toggle('tsm'); 
+    }
 
     const width = window.innerWidth;
     const isAlbum = window.innerHeight < width;
