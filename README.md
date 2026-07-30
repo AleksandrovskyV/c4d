@@ -73,7 +73,7 @@ If object has no tag, script scan children and find first object with tag for sw
   <img src="./assets/svg/LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
-Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag<br>
+Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
 <br></p></div>
 
 > Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera/) 
