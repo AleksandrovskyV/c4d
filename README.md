@@ -85,14 +85,6 @@ If object has no tag, script scan children and find first object with tag for sw
 </div>
 <br>
 
-
-
-![preview](./assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
-
-- 🎯  Perfect for working with nested or heavy rigs — especially useful for baking or using scripts that require a standalone camera.
-- 🧩 Automatically creates an extended render setting with sensor-based scaling, allowing for a wider frame — ideal for post-production workflows (e.g., After Effects)
-- 🗑 One-click remove the generated camera, Xpresso tag, and render settings.
-
 > *Additional note: by creating your own alpha-channel mask you can effectively “patch” the render in post. With the standard renderer, you achieve this by projecting a material that carries an alpha channel from the camera onto your scene. It’s a clever workaround—though I’m really hoping the Maxon team will one day build in a true “Negative Render Region” feature! :)*
 
 
