@@ -30,7 +30,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
   <tr style="border: none; background: none;">
     <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" style="max-width: none;">
+      <img src="./assets/svg/MatrixPreserve.svg" width="84" style="max-width: none;">
     </td>
     <td style="border: none; padding: 0; vertical-align: top;">
       <strong>Tested:</strong> R23<br>
@@ -45,7 +45,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
   <tr style="border: none; background: none;">
     <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" style="max-width: none;">
+      <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" style="max-width: none;">
     </td>
     <td style="border: none; padding: 0; vertical-align: top;">
       <strong>Tested:</strong> R23<br>
@@ -82,7 +82,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
 <div style="overflow: hidden;">
-  <img src="./vsky.scripts/cust_icons/Swap%20Mats.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/svg/SwapMats.svg" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager<br>
@@ -93,7 +93,7 @@ If object has no tag, script scan children and find first object with tag for sw
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden;">
-  <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/svg/LinkedCamera.svg" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag<br>
@@ -111,7 +111,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 ## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden; margin-bottom: 12px !important;">
-  <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/svg/ArnoldWorkflow.svg" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder<br>
@@ -124,7 +124,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 ## 🔹 [Test Smile](./vsky.projects)
 
 <div style="overflow: hidden;">
-  <img src="./assets/png/Smile Test.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/svg/TestSmile_YeUpd.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
