@@ -19,23 +19,24 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ![preview](./assets/fillet_plane_preview.gif)
 
+
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
-<div style="overflow: hidden;">
-  <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <p style="margin: 0 0 -3px 0;">
-<strong> Tested:</strong> R23<br>
-Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color<br>
-<br></p></div>
+<img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+<strong>Tested:</strong> R23<br>
+Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
+
+<br style="clear: both;"><br>
+
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
-<div style="overflow: hidden;">
-  <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <p style="margin: 0 0 -3px 0;">
-<strong> Tested:</strong> R23<br>
-Convert object color from polygon object to Vertex Color Tag<br>
-<br></p></div>
+<img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+<strong>Tested:</strong> R23<br>
+Convert object color from polygon object to Vertex Color Tag
+
+<br style="clear: both;"><br>
+
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
