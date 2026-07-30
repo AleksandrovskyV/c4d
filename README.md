@@ -1,14 +1,6 @@
 
 _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV/c4d)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[reback](https://vsky.space/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#projects)_<br><br>
 
-<!--
-{% capture custom_text %}
--->
-* i say really,&nbsp;&nbsp;[github](https://github.com)&nbsp;&nbsp;&nbsp;
-<!--
-{% endcapture %}
-{{ custom_text }}
--->
 
 # /scripts
 
