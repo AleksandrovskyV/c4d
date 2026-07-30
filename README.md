@@ -3,11 +3,8 @@ layout: default
 ---
 
 <style>
-  body {
-    background-color: #0d1117 !important; /* Классический темный фон GitHub */
-    color: #c9d1d9 !important;            /* Цвет текста */
-  }
-  a { color: #58a6ff !important; }        /* Цвет ссылок */
+  body { background-color: #0d1117 !important; color: #c9d1d9 !important; }
+  a { color: #58a6ff !important; }
   h1, h2, h3 { color: #f0f6fc !important; border-bottom-color: #21262d !important; }
 </style>
 
