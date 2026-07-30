@@ -80,7 +80,7 @@ If object has no tag, script scan children and find first object with tag for sw
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 Instantly duplicates the active camera to the top level of your scene <br>
-> Xpresso Tag to expand "Render Area" with safe focal length, <a href="./vsky.read/linked-camera.md">read here</a> <br>
+> Xpresso Tag to expand "Render Area" with safe focal length, <a href="./readme/linked-camera.md">read here</a> <br>
   </p>
 </div>
 <br>
@@ -96,7 +96,7 @@ Hey dudes. W*lcome [1]
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
-Extended workflow with Arnold String Attribute, <a href="./vsky.read/arnold_user-data-string.md">read here</a><br>
+Extended workflow with Arnold String Attribute, <a href="./readme/arnold_user-data-string.md">read here</a><br>
 - Randomizes Arnold textures from a selected folder <br>
 - Allows manual texture selection  
   </p>
