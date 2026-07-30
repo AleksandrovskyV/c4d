@@ -15,7 +15,7 @@
 
 <br clear="left">
 
-Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length...<br>
+* Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length...<br><br>
 
 - Perfect for working with nested or heavy rigs — especially useful for baking or using scripts that require a standalone camera<br>
 - Automatically creates an extended render setting with sensor-based scaling, allowing for a wider frame — ideal for post-production workflows (e.g., After Effects)<br>
