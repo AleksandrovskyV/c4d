@@ -1,11 +1,11 @@
 # Arnold Extend Workflow "user_data_string"
 
-🔧 **Extended Workflow for Arnold String Attribute in Cinema 4D**  
+Extended Workflow for Arnold String Attribute in Cinema 4D <br>
 _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_
 
 ![preview](../../assets/Arnold_String-Path_Randomizer_Selector.gif)
 
-This setup automates texture path assignment for **Arnold** in **Cinema 4D**, designed to streamline workflows with **Substance Painter** and batch texture assets.
+This setup automates texture path assignment for **Arnold Render** in **Cinema 4D**, designed to streamline workflows with **Substance Painter** and batch texture assets.
 
 📦 [Download Workflow](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)   
 Ready-to-use `.c4d` project in zip with texture setup
