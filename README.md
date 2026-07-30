@@ -113,7 +113,7 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 <br><br><br><br>
 
 # /footer...
-> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with ai assistance
+> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with ai assistance<br>
 > Feel free to fork, break, or improve this 🔧<br><br>
 > `c4d` `cinema-4d` `xpresso` `python` `ai-assisted`<br>
 > `one-click-tools` `negative-render-region`
