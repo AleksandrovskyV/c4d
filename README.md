@@ -1,7 +1,21 @@
+---
+layout: default
+---
+
+<style>
+  body {
+    background-color: #0d1117 !important; /* Классический темный фон GitHub */
+    color: #c9d1d9 !important;            /* Цвет текста */
+  }
+  a { color: #58a6ff !important; }        /* Цвет ссылок */
+  h1, h2, h3 { color: #f0f6fc !important; border-bottom-color: #21262d !important; }
+</style>
+
 _* i say really, get [github](https://github.com/AleksandrovskyV/c4d)..._<br>
-_* oh no, go [back](https://vsky.space/c4d/draft)_
-<br><br>
-<br>_* scroll to [projects](#projects)_<br>
+_* oh no, go [back](https://vsky.space/c4d/draft)_<br>
+<br>
+_* scroll to [projects](#projects)_<br>
+<br>
 
 # /scripts
 
