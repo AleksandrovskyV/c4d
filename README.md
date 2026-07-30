@@ -13,7 +13,8 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
   <tr style="border: none; background: none;">
     <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./vsky.scripts/cust_icons/Fillet%20Plane.png" width="84" style="max-width: none;">
+      <!-- Вставка SVG напрямую в тег img -->
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cdefs%3E%3Cstyle%3E.cls-3%7Bfill:none;stroke:%231e1e1e;stroke-miterlimit:10;stroke-width:7.5px%7D%3C/style%3E%3C/defs%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cg id='render_result'%3E%3Cpath id='safe_area' fill='none' d='M0 0h256v256H0z'/%3E%3C/g%3E%3Cg id='plane_result'%3E%3Cg id='icon'%3E%3Cpath fill='%231cf975' stroke='%231e1e1e' stroke-miterlimit='10' stroke-width='7.5' d='M163 195 49 166a20 20 0 0 1-13-29l33-61a20 20 0 0 1 23-10l114 29a20 20 0 0 1 13 29l-33 61a20 20 0 0 1-23 10Z'/%3E%3Cpath d='M203 149 49 109M121 75l-54 97M180 88l-54 97' class='cls-3'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E" width="84" style="max-width: none;">
     </td>
     <td style="border: none; padding: 0; vertical-align: top;">
       <strong>Tested:</strong> R23<br>
