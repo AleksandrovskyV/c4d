@@ -1,6 +1,10 @@
-<script>document.title = "c4d";</script>
 
 _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV/c4d)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[reback](https://vsky.space/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#projects)_<br><br>
+
+<details style="display:none; height:0; opacity:0;">
+  <summary></summary>
+  <script>document.title = "c4d";</script>
+</details>
 
 
 # /scripts
@@ -116,3 +120,4 @@ Hey dudes. W*lcome [1]
 `one-click-tools` `cg-tools` `extend-render-area`  `gpt-assisted`  `negative-render-region`  
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky -->
+
