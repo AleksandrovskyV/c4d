@@ -97,7 +97,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder <br>
-- Manual texture replacement from a object 
+- Manual replacement from a object 
   </p>
 </div>
 <br>
