@@ -81,7 +81,7 @@ If object has no tag, script scan children and find first object with tag for sw
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag
-<br></div>
+<br></p></div>
 
 > Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera/) 
 
@@ -114,7 +114,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
-<br></div>
+<br></p></div>
 
 Low-poly mouth with small trick * PoseMorphTag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)<br>
 Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=)<br>
