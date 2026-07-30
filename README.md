@@ -13,7 +13,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
   <tr style="border: none; background: none;">
     <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./vsky.scripts/cust_icons/Fillet%20Plane.png" width="84" style="max-width: none;">
+      <img src="./assets/svg/FilletPlane.svg" width="84" style="max-width: none;">
     </td>
     <td style="border: none; padding: 0; vertical-align: top;">
       <strong>Tested:</strong> R23<br>
