@@ -1,3 +1,5 @@
+<br><br><br>
+
 # Arnold Extend Workflow "user_data_string"
 
 ![preview](../../assets/Arnold_String-Path_Randomizer_Selector.gif)<br>
@@ -36,7 +38,7 @@ Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 
 ---
 
-### 🏷 Tags
+### Tags
 `cinema-4d` `c4dtoa` `arnold` `xpresso` `user-data` `string-attribute` `texture-randomizer` `user_data_string`  
 `multi-shader-arnold` `user_data_string-random` `random-textures-from-folder-in-arnold-shader`   
 `substance-painter` `workflow-tools` `shader-automation` `cg-tools` `aleksandrovsky` `gpt-assisted`

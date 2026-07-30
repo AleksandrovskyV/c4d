@@ -1,4 +1,5 @@
-# 🎛️ Linked Camera.py
+<br><br><br>
+# Linked Camera.py
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -10,7 +11,7 @@
 </div>
 <br>
 
-![preview](./assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
+![preview](../../assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
 
 - 🎯  Perfect for working with nested or heavy rigs — especially useful for baking or using scripts that require a standalone camera.
 - 🧩 Automatically creates an extended render setting with sensor-based scaling, allowing for a wider frame — ideal for post-production workflows (e.g., After Effects)
@@ -20,7 +21,7 @@
 
 ---
 
-### 🏷 Tags
+### Tags
 `cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `ai-assisted`<br>
 `one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
 
