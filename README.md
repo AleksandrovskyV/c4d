@@ -40,14 +40,12 @@ Convert object color from polygon object to Vertex Color Tag
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
-<div style="overflow: hidden;">
-  <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <p style="margin: 0 0 -3px 0;">
+<img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"<br>
-<br></p></div>
-<div>  <strong> Controls:</strong><br></div>
+
+<strong> Controls:</strong>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
