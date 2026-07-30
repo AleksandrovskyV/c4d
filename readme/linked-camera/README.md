@@ -5,15 +5,15 @@
 <br>
 
 <div>
-  <!-- Картинка слева -->
   <img src="../../assets/svg/LinkedCamera.svg" width="84" height="84" align="left" style="padding-right: 24px;">
   
-  <div style="overflow: hidden;">
+  <blockquote style="border: none; margin: 0; padding: 0;">
     <p style="margin: 0;">
       <strong>Tested:</strong> R20+&nbsp;&nbsp;/&nbsp;&nbsp;<strong><a href="../../vsky.scripts/Linked%20Camera.py">download</a></strong><br><br>
       Create a camera at the top level of your scene and linked to active one via CameraMorph Tag
     </p>
-  </div>
+  </blockquote>
+
   <br clear="left">
   <br>
 </div>
