@@ -22,36 +22,36 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
-<img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-<strong>Tested:</strong> R23<br>
-Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
-
-<br style="clear: both;"><br>
-
+<div style="min-height: 84px; margin-bottom: 24px;">
+  <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <strong>Tested:</strong> R23<br>
+  Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
+</div>
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
-<img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-<strong>Tested:</strong> R23<br>
-Convert object color from polygon object to Vertex Color Tag
-
-<br style="clear: both;"><br>
-
+<div style="min-height: 84px; margin-bottom: 24px;">
+  <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <strong>Tested:</strong> R23<br>
+  Convert object color from polygon object to Vertex Color Tag
+</div>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
-<img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-<strong> Tested:</strong> R23<br>
-A button to quickly export MP4 files with "_#" numbering<br>
-using your current "Render Settings"<br>
+<div style="min-height: 84px; margin-bottom: 16px;">
+  <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <strong>Tested:</strong> R23<br>
+  A button to quickly export MP4 files with "_#" numbering<br>
+  using your current "Render Settings"<br>
+</div>
 
-<br style="clear: both;"><br>
-<strong> Controls:</strong><br>
+<strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
 
 ![preview](./assets/mp4_vidoc_pillow.gif)<br><br>
+
 
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
