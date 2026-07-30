@@ -85,8 +85,7 @@ If object has no tag, script scan children and find first object with tag for sw
 </div>
 <br>
 
-> *Additional note: by creating your own alpha-channel mask you can effectively “patch” the render in post. With the standard renderer, you achieve this by projecting a material that carries an alpha channel from the camera onto your scene. It’s a clever workaround—though I’m really hoping the Maxon team will one day build in a true “Negative Render Region” feature! :)*
-
+[read about Extend Parameter](https://github.com/AleksandrovskyV/vsky-c4d/linked-camera.md/) 
 
 # /projects
 
