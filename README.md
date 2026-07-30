@@ -90,12 +90,22 @@ If object has no tag, script scan children and find first object with tag for sw
 Hey dudes. W*lcome [1]
 
 
-## 🔹 [ARND_STRING_ATR_EXT](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
+## 🔹 [Extend Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
 
-> Extend workflow with Arnold String Attribute  > [read](./vsky.read/arnold_user-data-string.md)
-
+<div style="overflow: hidden; margin-bottom: 12px;">
+  <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong>Tested:</strong> R20+<br>
+> Extend workflow with Arnold String Attribute, read here <a href="./vsky.read/arnold_user-data-string.md"> <br>
 - 🎲 Randomizes Arnold textures from a selected folder  
 - 🎯 Allows manual texture selection  
+  </p>
+</div>
+<br>
+
+
+
+
 
 ### 🏷 Tags
 
