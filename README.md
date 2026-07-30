@@ -80,12 +80,12 @@ If object has no tag, script scan children and find first object with tag for sw
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 > Instantly duplicates the active camera to the top level of your scene <br>
-> Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length <br>
+> Xpresso Tag with an Extend value to expand the render area while maintaining the original focal length <br>
   </p>
 </div>
 <br>
 
-[read about Extend Parameter](https://github.com/AleksandrovskyV/vsky-c4d/linked-camera.md/) 
+Extend Parameter / [read_here](https://github.com/AleksandrovskyV/vsky-c4d/vsky.read/linked-camera.md/) 
 
 # /projects
 
