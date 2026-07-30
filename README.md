@@ -38,14 +38,14 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
-<div style="min-height: 84px; margin-bottom: 16px;">
+<div style="overflow: hidden; min-height: 84px; margin-bottom: 16px;">
   <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <strong>Tested:</strong> R23<br>
   A button to quickly export MP4 files with "_#" numbering<br>
   using your current "Render Settings"<br>
 </div>
 
-<div><strong>Controls:</strong><br></div>
+<strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
