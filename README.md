@@ -109,7 +109,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 
 ## 🔹 [Test Smile](./vsky.projects)
 
-<div style="overflow: hidden; clear: both; margin-bottom: 4px;">
+<div style="overflow: hidden; margin-bottom: 12px !important;">
   <img src="./assets/png/Smile Test.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
