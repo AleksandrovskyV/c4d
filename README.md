@@ -7,7 +7,7 @@ _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&n
 
 Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
 
-## 🔹 [Fillet Plane](./vsky.scripts/Filled%20Plane.py)  
+## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -87,7 +87,7 @@ Create a camera at the top level of your scene and linked to active one via Came
 
 # /projects
 
-Hey dudes. W\*lcome [1]
+Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4d/vsky.projects/)
 
 
 ## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
@@ -112,8 +112,8 @@ Hey dudes. W\*lcome [1]
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
-- <a>a</a> <br>
-- 
+- <a href="юю">a</a> <br>
+- <a href="юю">a</a> <br>
   </p>
 </div>
 <br>
@@ -125,4 +125,3 @@ Created to be tested...<br>
 `one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
-
