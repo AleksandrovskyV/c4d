@@ -7,7 +7,7 @@ _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV/)&nbsp;&
 Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
 
 
-## 🔹 [Fillet Plane](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Filled%20Plane.py)  
+## 🔹 [Fillet Plane](https://github.com/AleksandrovskyV/c4d/blob/main/vsky.scripts/Filled%20Plane.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -19,7 +19,7 @@ Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/Aleksandrovs
 
 ![preview](./assets/fillet_plane_preview.gif)
 
-## 🔹 [Matrix Preserve](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Matrix%20Preserve.py)
+## 🔹 [Matrix Preserve](https://github.com/AleksandrovskyV/c4d/blob/main/vsky.scripts/Matrix%20Preserve.py)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Matrix%20Preserve.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -30,7 +30,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
 </div>
 <br>
 
-## 🔹 [Object Color to Vertex Color Tag](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
+## 🔹 [Object Color to Vertex Color Tag](https://github.com/AleksandrovskyV/c4d/blob/main/vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Object%20Color%20to%20Vertex%20Color.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -42,7 +42,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
 <br>
 <br>
 
-## 🔹 [MP4 Vidoc](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/MP4%20Vidoc.py)  
+## 🔹 [MP4 Vidoc](https://github.com/AleksandrovskyV/c4d/blob/main/vsky.scripts/MP4%20Vidoc.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -60,7 +60,7 @@ using your current "Render Settings"
 
 ![preview](./assets/mp4_vidoc_pillow.gif)<br>
 
-## 🔹 [Swap Mats](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Swap%20Mats.py)  
+## 🔹 [Swap Mats](https://github.com/AleksandrovskyV/c4d/blob/main/vsky.scripts/Swap%20Mats.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Swap%20Mats.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -73,7 +73,7 @@ If object has no tag, script scan children and find first object with tag for sw
 </div>
 <br>
 
-## 🔹 [Linked Camera](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Linked%20Camera.py)  
+## 🔹 [Linked Camera](https://github.com/AleksandrovskyV/c4d/vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -103,7 +103,7 @@ Extended workflow with Arnold String Attribute, <a href="./readme/arnold_user-da
 </div>
 <br>
 
-## 🔹 [Test Smile](./vsky.projects/)
+## 🔹 [Test Smile](https://github.com/AleksandrovskyV/vsky.projects/)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./assets/png/Smile Test.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
