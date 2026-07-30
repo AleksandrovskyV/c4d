@@ -1,5 +1,6 @@
-*i say really gitgub...
-
+_* i say really, get [gitgub](https://github.com/AleksandrovskyV/c4d)..._
+_* oh no, go [back](https://vsky.space/c4d/draft)_
+<br><br>
 # /scripts
 
 Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
