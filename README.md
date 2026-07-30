@@ -13,12 +13,11 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
   <tr style="border: none; background: none;">
     <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <!-- SVG вставлен напрямую в ячейку таблицы -->
+      <!-- Очищенный SVG без тегов style -->
       <svg xmlns="http://w3.org" viewBox="0 0 256 256" width="84" height="84">
-        <style>.cls-3{fill:none;stroke:#1e1e1e;stroke-miterlimit:10;stroke-width:7.5px}</style>
         <path fill="none" d="M0 0h256v256H0z"/>
         <path fill="#1cf975" stroke="#1e1e1e" stroke-miterlimit="10" stroke-width="7.5" d="M163 195 49 166a20 20 0 0 1-13-29l33-61a20 20 0 0 1 23-10l114 29a20 20 0 0 1 13 29l-33 61a20 20 0 0 1-23 10Z"/>
-        <path d="M203 149 49 109M121 75l-54 97M180 88l-54 97" class="cls-3"/>
+        <path d="M203 149 49 109M121 75l-54 97M180 88l-54 97" fill="none" stroke="#1e1e1e" stroke-miterlimit="10" stroke-width="7.5"/>
       </svg>
     </td>
     <td style="border: none; padding: 0; vertical-align: top;">
