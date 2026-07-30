@@ -60,7 +60,7 @@ using your current "Render Settings"
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/gh_SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager
 </p><br clear="left"></div>
@@ -73,7 +73,7 @@ Swap 2 selected texture tags in Object Manager
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 12px ">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
 <br></p></div>
@@ -91,7 +91,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 
 <div style="overflow: hidden;">
 <img src="./assets/svg/gh_ArnoldWorkflow2.svg" width="84" align="left" style="padding-right: 12px;">
-<p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder<br>
 - Manual replacement from an object<br>
@@ -103,7 +103,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/TestSmile_YeUpd.svg" width="84" align="left" style="padding-right: 12px; ">
-  <p style="margin: 0 0 -3px 0;">
+<p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
 <br></p></div><br>
