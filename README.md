@@ -10,7 +10,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 ## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
 <div style="overflow: hidden; margin-bottom: 12px;">
-  <img src="./vsky.scripts/cust_icons/Filled%20Plane.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./vsky.scripts/cust_icons/Fillet%20Plane.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 "It`s a plane.. And it has fillets"<br>
