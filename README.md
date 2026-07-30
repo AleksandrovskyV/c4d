@@ -112,8 +112,8 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
-- <a href="https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download="  >get</a> Low-poly mouth with small trick * PoseMorphTag<br>
-- <a href="https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=">get</a> Prepared Octane AOVs * with .aep files include<br>
+- [<a href="https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download="  >get</a> ] Low-poly mouth with small trick * PoseMorphTag<br>
+- [<a href="https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=">get</a> ] Prepared Octane AOVs * with .aep files include<br>
   </p>
 </div>
 <br>
