@@ -4,17 +4,19 @@
 ![preview](../../assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
 <br>
 
-<div style="position: relative; min-height: 84px;">
-  <img src="../../assets/svg/LinkedCamera.svg" width="84" height="84" style="position: absolute; left: 0; top: 0; max-width: none;">
+<div>
+  <!-- Картинка слева -->
+  <img src="../../assets/svg/LinkedCamera.svg" width="84" height="84" align="left" style="padding-right: 24px;">
   
-  <div style="margin-left: 108px; padding-bottom: 32px;">
+  <div style="overflow: hidden;">
     <p style="margin: 0;">
       <strong>Tested:</strong> R20+&nbsp;&nbsp;/&nbsp;&nbsp;<strong><a href="../../vsky.scripts/Linked%20Camera.py">download</a></strong><br><br>
       Create a camera at the top level of your scene and linked to active one via CameraMorph Tag
     </p>
   </div>
+  <br clear="left">
+  <br>
 </div>
-
 
 Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length...<br>
 
