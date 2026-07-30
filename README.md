@@ -82,7 +82,7 @@ If object has no tag, script scan children and find first object with tag for sw
 Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag <br>
 <br>
   </p>
-</div>
+</div><br style="clear: both;">
 
 > Xpresso Tag to expand "Render Area" with safe focal length, [read here](./readme/linked-camera/) 
 
