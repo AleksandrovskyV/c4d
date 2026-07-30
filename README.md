@@ -1,3 +1,4 @@
+<script>document.title = "c4d";</script>
 
 _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV/c4d)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[reback](https://vsky.space/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to, [projects](#projects)_<br><br>
 
