@@ -5,11 +5,15 @@
 <br>
 
 <div style="overflow: hidden;">
-  <img src="../../assets/svg/Git_LinkedCamera.svg" width="84" align="left" style="padding-right: 24px; ">
+  <img src="../../assets/svg/Git_LinkedCamera.svg" width="84" align="left" style="padding-right: 24px;">
   <p style="margin: 0 0 -3px 0;">
-<strong>Tested:</strong> R20+&nbsp;&nbsp;/&nbsp;&nbsp;<strong><a href="../../vsky.scripts/Linked%20Camera.py">download</a></strong><br><br>
-Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
-<br></p></div>
+    <strong>Tested:</strong> R20+&nbsp;&nbsp;/&nbsp;&nbsp;<strong><a href="../../vsky.scripts/Linked%20Camera.py">download</a></strong><br><br>
+    Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
+    <br>
+  </p>
+</div>
+
+<br clear="left">
 
 Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length...<br>
 
