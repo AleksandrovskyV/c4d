@@ -13,14 +13,14 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)_<br>
 
 ---
-
+<br><br>
 ### Key Features
 -  Random textures from a selected folder  
 -  Allows manual selection of a specific texture via index
 -  Uses String-type User Data for dynamic path control  
 
 ---
-
+<br><br>
 ### How to Set Up
 1. Create a new object  
 2. Go to:  
