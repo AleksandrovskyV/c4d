@@ -80,7 +80,7 @@ If object has no tag, script scan children and find first object with tag for sw
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 > Instantly duplicates the active camera to the top level of your scene <br>
-> Xpresso Tag with value to expand the "Render Area" with safe focal length, <a href="./vsky.read/linked-camera.md">read here</a> <br>
+> Xpresso Tag to expand "Render Area" with safe focal length, <a href="./vsky.read/linked-camera.md">read here</a> <br>
   </p>
 </div>
 <br>
