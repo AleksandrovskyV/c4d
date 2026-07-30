@@ -1,7 +1,7 @@
 _* i say really, get [github](https://github.com/AleksandrovskyV/c4d)..._<br>
 _* oh no, go [back](https://vsky.space/c4d/draft)_
 <br><br>
-<br>[scroll to projects](#projects) <br>
+<br>_* scroll to [projects](#projects)_<br>
 
 # /scripts
 
