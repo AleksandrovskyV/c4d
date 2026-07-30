@@ -10,79 +10,54 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
-<table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
-  <tr style="border: none; background: none;">
-    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./assets/svg/FilletPlane.svg" width="84" style="max-width: none;">
-    </td>
-    <td style="border: none; padding: 0; vertical-align: top;">
-      <strong>Tested:</strong> R23<br>
-      "It`s a plane.. And it has fillets"
-    </td>
-  </tr>
-</table>
+<div style="overflow: hidden;">
+  <img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong> Tested:</strong> R23<br>
+<em>"It`s a plane.. And it has fillets"</em>
+<br></p></div>
 
-![preview](./assets/fillet_plane_preview.gif)
-
+![preview](./assets/fillet_plane_preview.gif)<br><br>
 
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
-<table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
-  <tr style="border: none; background: none;">
-    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./assets/svg/MatrixPreserve.svg" width="84" style="max-width: none;">
-    </td>
-    <td style="border: none; padding: 0; vertical-align: top;">
-      <strong>Tested:</strong> R23<br>
-      Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
-    </td>
-  </tr>
-</table>
+<div style="overflow: hidden;">
+  <img src="./assets/svg/MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong> Tested:</strong> R23<br>
+Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
+<br></p></div>
 
+## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)
 
-## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
-
-<table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
-  <tr style="border: none; background: none;">
-    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" style="max-width: none;">
-    </td>
-    <td style="border: none; padding: 0; vertical-align: top;">
-      <strong>Tested:</strong> R23<br>
-      Convert object color from polygon object to Vertex Color Tag
-    </td>
-  </tr>
-</table>
-
+<div style="overflow: hidden;">
+  <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" align="left" style="padding-right: 12px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong> Tested:</strong> R23<br>
+Convert object color from polygon object to Vertex Color Tag
+<br></p></div>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
-<table border="0" cellpadding="0" cellspacing="0" style="border: none; background: none; margin-bottom: 16px;">
-  <tr style="border: none; background: none;">
-    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
-      <img src="./assets/svg/MP4Vidoc.svg" width="84" style="max-width: none;">
-    </td>
-    <td style="border: none; padding: 0; vertical-align: top;">
-      <strong>Tested:</strong> R23<br>
-      A button to quickly export MP4 files with "_#" numbering<br>
-      using your current "Render Settings"
-    </td>
-  </tr>
-</table>
+<div style="overflow: hidden;">
+  <img src="./assets/svg/MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
+  <p style="margin: 0 0 -3px 0;">
+<strong> Tested:</strong> R23<br>
+A button to quickly export MP4 files with "_#" numbering<br>
+using your current "Render Settings"
+<br></p></div>
 
-<strong>Controls:</strong><br>
+<br><strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
 
 ![preview](./assets/mp4_vidoc_pillow.gif)<br><br>
 
-
-
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/SwapMats.svg" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/svg/SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager<br>
@@ -93,7 +68,7 @@ If object has no tag, script scan children and find first object with tag for sw
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/LinkedCamera.svg" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+  <img src="./assets/svg/LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene<br>and linked to active one via CameraMorph Tag<br>
