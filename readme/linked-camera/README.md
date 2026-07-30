@@ -1,17 +1,21 @@
 <br><br><br>
 # Linked Camera.py
 
+![preview](../../assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
+<br>
+
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="../../vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
-> Instantly duplicates the active camera to the top level of your scene <br>
-> Optionally adds a custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length <br>
+Create a camera at the top level of your scene and linked to active one via CameraMorph Tag <br>
+> Xpresso Tag to expand "Render Area" with safe focal length<br>
   </p>
 </div>
 <br>
 
-![preview](../../assets/Camera_Morph_Link_with_Extend-Region_Value.gif)
+
+> Custom Xpresso setup with an Extend parameter to expand the render area while maintaining the original focal length <br>
 
 - 🎯  Perfect for working with nested or heavy rigs — especially useful for baking or using scripts that require a standalone camera.
 - 🧩 Automatically creates an extended render setting with sensor-based scaling, allowing for a wider frame — ideal for post-production workflows (e.g., After Effects)
