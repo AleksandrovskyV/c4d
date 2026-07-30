@@ -6,6 +6,7 @@ _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&n
 # /scripts
 
 Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
+<br><br>
 
 ## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
@@ -90,7 +91,7 @@ Create a camera at the top level of your scene<br>and linked to active one via C
 # /projects
 
 Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
-
+<br><br>
 
 ## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
 
