@@ -67,7 +67,8 @@ Swap 2 selected texture tags in Object Manager<br>
 <br clear="left">
 
 > * If select 2 objects, script swap last texture tags on objects<br>
-> * If object has no tag, script scan children and find first object with tag for swap<br><br>
+> * If object has no tag, script scan children and find first object with tag for swap<br>
+<br>
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
