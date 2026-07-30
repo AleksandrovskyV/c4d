@@ -38,12 +38,18 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
-<div style="overflow: hidden; min-height: 84px; margin-bottom: 16px;">
-  <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
-  <strong>Tested:</strong> R23<br>
-  A button to quickly export MP4 files with "_#" numbering<br>
-  using your current "Render Settings"<br>
-</div>
+<table style="border: none; background: none; margin-bottom: 16px;">
+  <tr style="border: none; background: none;">
+    <td style="border: none; padding: 0 12px 0 0; vertical-align: top; width: 84px;">
+      <img src="./vsky.scripts/cust_icons/MP4%20Vidoc.png" width="84" style="max-width: none;">
+    </td>
+    <td style="border: none; padding: 0; vertical-align: top;">
+      <strong>Tested:</strong> R23<br>
+      A button to quickly export MP4 files with "_#" numbering<br>
+      using your current "Render Settings"
+    </td>
+  </tr>
+</table>
 
 <strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
