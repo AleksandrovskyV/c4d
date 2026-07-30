@@ -113,7 +113,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 <strong>Tested:</strong> ?? <br>
 Created to be tested...<br>
   </p>
-</div><br>
+</div>
 
 \[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[get](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\]&nbsp;&nbsp;Low-poly mouth with small trick * PoseMorphTag<br>
 \[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[get](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\]&nbsp;&nbsp;Prepared Octane AOVs * with .aep files include<br>
