@@ -90,7 +90,7 @@ Create a camera at the top level of your scene and linked to active one via Came
 Hey dudes. W\*lcome [1]
 
 
-## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/),&nbsp;&nbsp;[! read](./readme/arnold_user-data-string/)
+## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
@@ -101,6 +101,9 @@ Hey dudes. W\*lcome [1]
   </p>
 </div>
 <br>
+
+
+
 
 ## 🔹 [Test Smile](https://github.com/AleksandrovskyV/c4d/vsky.projects/)
 
