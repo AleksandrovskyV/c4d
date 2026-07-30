@@ -103,7 +103,7 @@ Extended workflow with Arnold String Attribute, <a href="./readme/arnold_user-da
 </div>
 <br>
 
-## 🔹 [Test Smile](https://github.com/AleksandrovskyV/vsky.projects/)
+## 🔹 [Test Smile](https://github.com/AleksandrovskyV/c4d/vsky.projects/)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./assets/png/Smile Test.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
