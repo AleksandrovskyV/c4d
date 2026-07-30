@@ -85,7 +85,7 @@ If object has no tag, script scan children and find first object with tag for sw
 </div>
 <br>
 
-Extend Parameter / [read_here](https://github.com/AleksandrovskyV/vsky-c4d/vsky.read/linked-camera.md/) 
+Extend Parameter / [read_here](https://github.com/AleksandrovskyV/vsky-c4d/vsky.read/linked-camera.md) 
 
 # /projects
 
