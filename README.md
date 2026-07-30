@@ -51,7 +51,7 @@ using your current "Render Settings"<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
 
-![preview](./assets/mp4_vidoc_pillow.gif)<br>
+![preview](./assets/mp4_vidoc_pillow.gif)<br><br>
 
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
