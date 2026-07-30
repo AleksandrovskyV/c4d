@@ -46,7 +46,7 @@ A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"<br>
 
 <br style="clear: both;"><br>
-<strong> Controls:</strong>
+<strong> Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
