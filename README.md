@@ -1,16 +1,10 @@
----
-layout: default
----
 
-_* i say really, get [github](https://github.com/AleksandrovskyV/c4d)..._<br><br>
-_* oh no, go [back](https://vsky.space/c4d/draft)_<br><br>
-_* scroll to [projects](#projects)_<br><br>
-<br>
+_* i say really, get [github](https://github.com/AleksandrovskyV/c4d)...&nbsp;&nbsp;&nbsp; / oh no, go [back](https://vsky.space/c4d/draft)&nbsp;&nbsp;&nbsp; / scroll to [projects](#projects)_<br><br>
+
 
 # /scripts
 
 Hey dudes. W*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
-
 ---
 
 ## 🔹 [Fillet Plane](https://github.com/AleksandrovskyV/Cinema4D-Projects/blob/main/vsky.scripts/Filled%20Plane.py)  
@@ -106,7 +100,6 @@ If object has no tag, script scan children and find first object with tag for sw
 # /projects
 
 Hey dudes. W*lcome [1]
-
 ---
 
 ## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/Cinema4D-Projects/tree/main/ARND_STRING_ATR_EXT)
@@ -120,13 +113,5 @@ Hey dudes. W*lcome [1]
 
 `cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `expand-render-area` `camera-morph`  
 `one-click-tools` `cg-tools` `extend-render-area`  `gpt-assisted`  `negative-render-region`  
-
-<div style="display: none;">
-<style>
-  body { background-color: #0d1117 !important; color: #c9d1d9 !important; }
-  a { color: #58a6ff !important; }
-  h1, h2, h3 { color: #f0f6fc !important; border-bottom-color: #21262d !important; }
-</style>
-</div>
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky -->
