@@ -90,18 +90,20 @@ Create a camera at the top level of your scene and linked to active one via Came
 Hey dudes. W\*lcome [1]
 
 
-## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/)
+## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/),&nbsp;&nbsp;[! read](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
-Extended workflow with Arnold String Attribute, <a href="./readme/arnold_user-data-string/">read here</a><br>
 - Randomizes Arnold textures from a selected folder <br>
 - Allows manual texture selection  
   </p>
 </div>
 <br>
+## 🔹 [Arnold Workflow "user_data_string"](./readme/arnold_user-data-string/)
+
+
 
 ## 🔹 [Test Smile](https://github.com/AleksandrovskyV/c4d/vsky.projects/)
 
