@@ -63,8 +63,7 @@ using your current "Render Settings"
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager
-<br></p></div>
-<br clear="left">
+</p><br clear="left"></div>
 
 > * If select 2 objects, script swap last texture tags on objects<br>
 > * If object has no tag, script scan children and find first object with tag for swap<br>
