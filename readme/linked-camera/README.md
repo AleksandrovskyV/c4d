@@ -27,6 +27,7 @@
 ---
 <br>
 
-> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT<br>
+> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV),<br>with assistance from ChatGPT<br>
+> Feel free to fork, break, or improve this setup 🔧<br><br>
 > `cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `ai-assisted`<br>
 > `one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
