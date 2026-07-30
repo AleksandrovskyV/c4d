@@ -59,14 +59,14 @@ using your current "Render Settings"
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
+  <img src="./assets/svg/gh_SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager<br>
 <br></p></div>
 
 > * If select 2 objects, script swap last texture tags on objects<br>
-> * If object has no tag, script scan children and find first object with tag for swap<br>
+> * If object has no tag, script scan children and find first object with tag for swap<br><br>
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
