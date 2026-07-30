@@ -110,7 +110,7 @@ Hey dudes. W*lcome [1]
 
 ### 🏷 Tags
 
-`cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `ai-assisted`
+`cinema-4d` `c4d` `4D` `cinema-4d-script` `xpresso` `python` `ai-assisted`<br>
 `one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
