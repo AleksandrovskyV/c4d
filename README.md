@@ -45,7 +45,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
   using your current "Render Settings"<br>
 </div>
 
-<strong>Controls:</strong><br>
+<div><strong>Controls:</strong><br></div>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
