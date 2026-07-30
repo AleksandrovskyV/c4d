@@ -23,11 +23,12 @@ Optionally adds a custom Xpresso setup with an Extend parameter to expand the re
 
 
 ---
+<br>
 
-### tags...
+> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT
 
 `cinema-4d` `c4d` `cinema-4d-script` `xpresso` `python` `ai-assisted`<br>
 `one-click-tools` `cg-tools` `expand-render-area` `negative-render-region`
 
-> Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with assistance from ChatGPT
+
 
