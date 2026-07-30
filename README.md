@@ -96,7 +96,7 @@ Hey dudes. W*lcome [1]
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
-Extended workflow with Arnold String Attribute, <a href="./readme/arnold_user-data-string.md">read here</a><br>
+Extended workflow with Arnold String Attribute, <a href="./readme/arnold_user-data-string/">read here</a><br>
 - Randomizes Arnold textures from a selected folder <br>
 - Allows manual texture selection  
   </p>
