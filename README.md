@@ -15,8 +15,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 "It`s a plane.. And it has fillets"<br>
-  </p>
-</div>
+<br></p></div>
 
 ![preview](./assets/fillet_plane_preview.gif)
 
@@ -27,9 +26,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color<br>
-  </p>
-</div>
-<br>
+<br></p></div>
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)  
 
@@ -38,10 +35,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
 Convert object color from polygon object to Vertex Color Tag <br>
-  </p>
-</div>
-<br>
-<br>
+<br></p></div>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
@@ -51,9 +45,7 @@ Convert object color from polygon object to Vertex Color Tag <br>
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"
-  </p>
-</div>
-<br>
+<br></p></div>
 <div>  <strong> Controls:</strong><br></div>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
@@ -70,9 +62,7 @@ using your current "Render Settings"
 Swap 2 selected texture tags in Object Manager<br>
 If select 2 objects, script swap last texture tags on objects<br>
 If object has no tag, script scan children and find first object with tag for swap<br>
-  </p>
-</div>
-<br>
+<br></p></div>
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
@@ -100,9 +90,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder <br>
 - Manual replacement from an object
-  </p>
-</div>
-<br>
+<br></p></div>
 
 
 
