@@ -123,12 +123,14 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 
 ## 🔹 [Test Smile](./vsky.projects)
 
-<div style="overflow: hidden;">
-  <img src="./assets/svg/TestSmile_YeUpd.svg" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
+<div style="min-height: 84px; content-visibility: auto;">
+  <img src="./assets/svg/TestSmile_YeUpd.svg" width="84" height="84" align="left" style="padding-right: 12px; margin-top: -3px; object-fit: contain;">
   <p style="margin: 0 0 -3px 0;">
-<strong>Tested:</strong> ?? <br>
-Created to be tested...<br>
-<br></p></div>
+    <strong>Tested:</strong> ?? <br>
+    Created to be tested...<br>
+    <br>
+  </p>
+</div>
 
 Low-poly mouth with small trick * PoseMorphTag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)<br>
 Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=)<br>
