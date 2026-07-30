@@ -96,8 +96,8 @@ Hey dudes. W\*lcome [1]
   <img src="./assets/png/StringArnoldWorkflow.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> ?? <br>
-- Randomizes Arnold textures from a selected folder <br>
-- Allows manual texture selection  
+- Randomizes textures from a selected folder <br>
+- Allows manual texture selection from object 
   </p>
 </div>
 <br>
