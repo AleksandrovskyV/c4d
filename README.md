@@ -79,7 +79,7 @@ If object has no tag, script scan children and find first object with tag for sw
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
-> Instantly duplicates the active camera to the top level of your scene <br>
+Instantly duplicates the active camera to the top level of your scene <br>
 > Xpresso Tag to expand "Render Area" with safe focal length, <a href="./vsky.read/linked-camera.md">read here</a> <br>
   </p>
 </div>
@@ -90,15 +90,15 @@ If object has no tag, script scan children and find first object with tag for sw
 Hey dudes. W*lcome [1]
 
 
-## 🔹 [Extend Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
+## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
 
 <div style="overflow: hidden; margin-bottom: 12px;">
   <img src="./vsky.scripts/cust_icons/Linked%20Camera.png" width="84" align="left" style="padding-right: 12px; margin-top: -3px;">
   <p style="margin: 0 0 -3px 0;">
 <strong>Tested:</strong> R20+<br>
-> Extend workflow with Arnold String Attribute, <a href="./vsky.read/arnold_user-data-string.md">read here</a><br>
-- 🎲 Randomizes Arnold textures from a selected folder <br>
-- 🎯 Allows manual texture selection  
+Extended workflow with Arnold String Attribute, <a href="./vsky.read/arnold_user-data-string.md">read here</a><br>
+- Randomizes Arnold textures from a selected folder <br>
+- Allows manual texture selection  
   </p>
 </div>
 <br>
