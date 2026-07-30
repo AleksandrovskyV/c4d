@@ -3145,12 +3145,9 @@ document.addEventListener('click', (event) => {
     }
 
     const currentBtn = event.target.closest('.cfunc, .mfunc');
-
-    const hasSleep = currentBtn.classList.contains('tsmSleep');
-    const hasTsm = currentBtn.classList.contains('tsm');
     
-    if (hasSleep || hasTsm) { 
-        currentBtn.classList.toggle('tsm'); 
+    if (currentBtn && currentBtn.matches('.tsmSleep, .tsm')) {
+        currentBtn.classList.toggle('tsm');
     }
 
     const width = window.innerWidth;
