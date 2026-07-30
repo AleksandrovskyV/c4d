@@ -5,7 +5,7 @@ _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV/)&nbsp;&
 
 # /scripts
 
-Hey dudes. W\*lcome [0]  > [DOWNLOAD ALL SCRIPTS](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
+Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
 
 ## 🔹 [Fillet Plane](https://github.com/AleksandrovskyV/c4d/blob/main/vsky.scripts/Filled%20Plane.py)  
 
