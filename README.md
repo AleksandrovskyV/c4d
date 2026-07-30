@@ -85,16 +85,16 @@ If object has no tag, script scan children and find first object with tag for sw
 </div>
 <br>
 
-Extend Parameter / [read_here](https://github.com/AleksandrovskyV/c4d/vsky.read/linked-camera.md) 
+Extend Parameter / [read_here](./vsky.read/linked-camera.md) 
 
 # /projects
 
 Hey dudes. W*lcome [1]
 
 
-## 🔹 [ARND_STRING_ATR_EXT](https://github.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
+## 🔹 [ARND_STRING_ATR_EXT](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip)
 
-> Extend workflow with Arnold String Attribute  > [read]((https://github.com/AleksandrovskyV/c4d/vsky.read/arnold_user-data-string.md)
+> Extend workflow with Arnold String Attribute  > [read](./vsky.read/arnold_user-data-string.md)
 
 - 🎲 Randomizes Arnold textures from a selected folder  
 - 🎯 Allows manual texture selection  
