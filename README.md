@@ -12,7 +12,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
-  <p style="margin: 0 0 -3px 0;">
+  <p style="margin: 0 0 12px 0;">
 <strong> Tested:</strong> R23<br>
 <em>It`s a plane.. And it has fillets "</em>
 <br></p></div>
