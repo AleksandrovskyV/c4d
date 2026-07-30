@@ -21,9 +21,6 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 -  Uses String-type User Data for dynamic path control  
 <br>
 
----
-<br>
-
 ### How to Set Up
 1. Create a new object  
 2. Go to:  
