@@ -1,4 +1,4 @@
-_* i say really, get [gitgub](https://github.com/AleksandrovskyV/c4d)..._
+_* i say really, get [gitgub](https://github.com/AleksandrovskyV/c4d)..._<br>
 _* oh no, go [back](https://vsky.space/c4d/draft)_
 <br><br>
 # /scripts
