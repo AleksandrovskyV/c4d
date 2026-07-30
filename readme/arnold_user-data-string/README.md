@@ -4,10 +4,10 @@
 
 _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_<br>
 
-This setup automates texture path assignment for **Arnold Render** in **Cinema 4D**,
+This setup automates texture path assignment for **Arnold Render** in **Cinema 4D**,<br>
 designed to streamline workflows with **Substance Painter** and batch texture assets<br>
 
-📦 [Download Workflow](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)   
+📦 [Download File](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)   
 Ready-to-use `.c4d` project in zip with texture setup
 
 🎥 [YouTube Preview](https://www.youtube.com/watch?v=nXuQmZuPT0I) 
@@ -28,7 +28,7 @@ Ready-to-use `.c4d` project in zip with texture setup
 3. Copy the **yellow Xpresso tag** from the provided example object  
 4. Make sure your textures are named numerically (e.g. `BaseColor_01.jpg`, `BaseColor_02.jpg`)
 
-Tip: Use **Adobe Bridge** or similar tools for batch renaming
+Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
 
 ---
 
