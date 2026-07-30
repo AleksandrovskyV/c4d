@@ -62,8 +62,8 @@ using your current "Render Settings"
   <img src="./assets/svg/gh_SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
-Swap 2 selected texture tags in Object Manager<br>
-</p></div>
+Swap 2 selected texture tags in Object Manager
+<br></p></div>
 <br clear="left">
 
 > * If select 2 objects, script swap last texture tags on objects<br>
