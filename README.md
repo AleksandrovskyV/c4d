@@ -85,7 +85,7 @@ Create a camera at the top level of your scene and linked to active one via Came
 Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
 <br><br>
 
-## 🔹 [Arnold Workflow "user_data_string"](./vsky.projects/ARND_STRING_ATR_EXT_V2.zip), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
+## 🔹 [Arnold Workflow "user_data_string"](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.7z), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden; margin-bottom: 12px !important;">
   <img src="./assets/svg/ArnoldWorkflow.svg" width="84" align="left" style="padding-right: 12px; ">

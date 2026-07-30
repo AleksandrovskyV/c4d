@@ -10,11 +10,11 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 
 
 
-_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)_<br><br>
+_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ar_workflow_user-data-string.7z
+)_<br><br>
 
 ---
 <br>
-
 ### Key Features
 -  Random texture assignment for multiple clones or assets / meshes 
 -  Random textures from a selected folder  
