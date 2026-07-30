@@ -10,7 +10,7 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 _Download [workflow](https://raw.githubusercontent.com/AleksandrovskyV/c4d/vsky.projects/ARND_STRING_ATR_EXT_V2.zip)_<br>
 
 
-_How it?_ [youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) 
+_Example on_ [youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) 
 
 ---
 
