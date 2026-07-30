@@ -14,7 +14,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
   <img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
   <p style="margin: 0 0 -3px 0;">
 <strong> Tested:</strong> R23<br>
-<em>"It`s a plane.. And it has fillets"</em>
+<em>It`s a plane.. And it has fillets "</em>
 <br></p></div>
 
 ![preview](./assets/fillet_plane_preview.gif)<br><br>
@@ -36,6 +36,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
 <strong> Tested:</strong> R23<br>
 Convert object color from polygon object to Vertex Color Tag
 <br></p></div>
+<br>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
