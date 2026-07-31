@@ -11,45 +11,45 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 ## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 <em>It`s a plane.. And it has fillets "</em>
-<br></p></div>
+</p><br clear="left"></div>
 
 ![preview](./assets/fillet_plane_preview.gif)<br><br>
 
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/gh_MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/gh_MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 4px ">
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
-<br></p></div>
+</p><br clear="left"></div>
 <br>
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
-Convert object color from polygon object to Vertex Color Tag<br>
-<br></p></div>
+Convert object color from polygon object to Vertex Color Tag
+</p><br clear="left"></div>
 <br>
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/gh_MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/gh_MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 4px ">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"
-<br></p></div>
-<br clear="left">
-<strong>Controls:</strong><br>
+</p><br clear="left"></div>
+
+<br><strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
@@ -59,7 +59,7 @@ using your current "Render Settings"
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/gh_SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/gh_SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Swap 2 selected texture tags in Object Manager
@@ -73,7 +73,7 @@ Swap 2 selected texture tags in Object Manager
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene and linked to active one via Camera Morph Tag
@@ -95,9 +95,8 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder<br>
-- Manual replacement from an object<br>
-<br></p></div>
-<br clear="left">
+- Manual replacement from an object
+</p><br clear="left"></div>
 
 
 ## 🔹 [Test Smile](./vsky.projects)
@@ -106,10 +105,10 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
   <img src="./assets/svg/TestSmile_YeUpd.svg" width="84" align="left" style="padding-right: 12px; ">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
-Created to be tested...<br>
-<br></p></div><br>
+Created to be tested...
+</p><br clear="left"></div>
 
-Low-poly mouth with small trick * PoseMorphTag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)<br>
+Low-poly mouth with small trick * Pose Morph Tag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)<br>
 Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=)<br>
 
 <br><br><br><br>
