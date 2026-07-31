@@ -31,7 +31,51 @@ jobs:
 
       - name: Build Clean HTML
         run: |
+
+         # Вспомогательная функция для умной замены гифок на видео с проверкой файлов
+          process_html_videos() {
+            local input_file="$1"
+            local output_file="$2"
+            local temp_file="temp_processing.html"
+            
+            # Копируем исходный HTML во временный файл
+            cp "$input_file" "$temp_file"
+            
+            # Извлекаем все пути к гифкам из тегов <img>
+            # Ищет строки вида src=".../path/name.gif"
+            grep -oP 'src="\K[^"]+\.gif' "$input_file" | sort -u | while read -r gif_path; do
+              # Убираем возможный ведущий слэш или точки для корректного поиска на диске
+              # Например: ./assets/preview.gif превратится в assets/preview.gif
+              local clean_path=$(echo "$gif_path" | sed 's|^\./||' | sed 's|^/||')
+              
+              # Формируем предполагаемый путь к mp4 файлу на диске
+              local mp4_path="${clean_path%.gif}.mp4"
+              
+              # ПРОВЕРКА: Если одноименный mp4 файл физически существует в репозитории
+              if [ -f "$mp4_path" ]; then
+                echo "Найдено видео для автозамены: $mp4_path"
+                
+                # Создаем точный тег видео для замены
+                local video_tag="<video autoplay muted loop playsinline poster=\"$gif_path\" style=\"width:100%; max-width:890px; display:block; border-radius:6px;\"><source src=\"${gif_path%.gif}.mp4\" type=\"video/mp4\"></video>"
+                
+                # Экранируем спецсимволы для безопасного использования в sed
+                local safe_gif_path=$(echo "$gif_path" | sed 's|/|\\/|g' | sed 's|\.|\\.|g')
+                local safe_video_tag=$(echo "$video_tag" | sed 's|/|\\/|g')
+                
+                # Заменяем только этот конкретный тег img на тег video
+                sed -i -E "s|<img[^>]+src=\"$safe_gif_path\"[^>]*>|$safe_video_tag|g" "$temp_file"
+              else
+                echo "Видео не найдено, оставляем GIF: $mp4_path"
+              fi
+            done
+            
+            # Переносим обработанный результат в чистовой файл и удаляем временный
+            mv "$temp_file" "$output_file"
+          }
+
+          # -----------------------------------------------------------------
           # 1. Сборка главного index.html из корневого README.md
+          # -----------------------------------------------------------------
           echo '<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8">' > index.html
           echo '<meta name="viewport" content="width=device-width, initial-scale=1">' >> index.html
           echo '<title>/c4d</title>' >> index.html
@@ -46,11 +90,20 @@ jobs:
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
           # УЛУЧШЕНО: Находит имя svg файла и делает из него второй класс: <div class="mysvg имя_файла"></div>
-          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="mysvg \1"><\/div>|g' >> index.html
+
+          # Базовая конвертация в промежуточный файл
+          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="mysvg \1"><\/div>|g' > root_base.html
+          
+          # Запуск функции умной проверки видео для корня
+          process_html_videos "root_base.html" "root_final.html"
+          cat root_final.html >> index.html
+          rm root_base.html root_final.html
           
           echo '</div></body></html>' >> index.html
 
+          # -----------------------------------------------------------------
           # 2. Сборка всех .md файлов внутри папки readme
+          # -----------------------------------------------------------------
           if [ -d "readme" ]; then
             shopt -s nocaseglob
             
@@ -69,23 +122,24 @@ jobs:
               fi
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title>" > "$html_file"
-              
               echo '<style>' >> "$html_file"
               cat ./assets/css/style.css >> "$html_file"
               echo '</style>' >> "$html_file"
-              
               echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> "$html_file"
               
-              # УЛУЧШЕНО: Такая же автоматическая генерация вторых классов для внутренних страниц
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="mysvg \1"><\/div>|g' >> "$html_file"
+              # Базовая конвертация внутренней страницы в промежуточный файл
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="mysvg \1"><\/div>|g' > internal_base.html
+              
+              # Запуск функции умной проверки видео для внутренних страниц
+              process_html_videos "internal_base.html" "internal_final.html"
+              cat internal_final.html >> "$html_file"
+              rm internal_base.html internal_final.html
               
               echo '</div></body></html>' >> "$html_file"
             done
             
             shopt -u nocaseglob
           fi
-
-
 
 
 
