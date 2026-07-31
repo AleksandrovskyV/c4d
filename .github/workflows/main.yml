@@ -40,11 +40,12 @@ jobs:
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
-          tr -d '\r' < README.md | pandoc -f markdown -t html | sed 's/\.md"/\.html"/g' >> index.html
+          # Отключаем парсинг YAML для корня (добавили -yaml_metadata_block)
+          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' >> index.html
           
           echo '</div></body></html>' >> index.html
 
-          # 2. ДИАГНОСТИЧЕСКАЯ СБОРКА папки readme через чистый Pandoc
+          # 2. Сборка всех .md файлов внутри папки readme
           if [ -d "readme" ]; then
             shopt -s nocaseglob
             
@@ -57,14 +58,15 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>./c4d/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # Запускаем БЕЗ tr и БЕЗ sed. Чистый pandoc.
-              pandoc -f markdown -t html "$file" >> "$html_file"
+              # ИСПРАВЛЕНО: Отключаем парсинг YAML для внутренних страниц, чтобы убрать ошибку exit code 64
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
             
             shopt -u nocaseglob
           fi
+
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
