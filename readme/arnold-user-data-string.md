@@ -4,13 +4,13 @@
 
 ![preview](../assets/Arnold_String-Path_Randomizer_Selector.gif)<br>
 
-_Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_ - setup automates texture path assignment for **Arnold Render** in **Cinema 4D**,<br>
+Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0) - setup automates texture path assignment for **Arnold Render** in **Cinema 4D**,<br>
 designed to streamline workflows with **Substance Painter** and batch texture assets<br>
 
 
 
 
-_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip)_
+[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip)
 
 <br><br>
 
