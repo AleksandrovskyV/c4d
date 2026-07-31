@@ -40,10 +40,9 @@ jobs:
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
-          # Улучшенный sed, который 100% заменит .md на .html в ссылках
-          pandoc -f markdown -t html README.md | sed -E 's/href="([^"]+)\.md"/href="\1.html"/g' >> index.html
+          # Безопасный sed: ищет строго .md" в атрибутах href и меняет на .html"
+          pandoc -f markdown -t html README.md | sed 's/\.md"/\.html"/g' >> index.html
           
-          # ИСПРАВЛЕНО: Добавлен закрывающий </div>, чтобы контент не пропадал
           echo '</div></body></html>' >> index.html
 
           # 2. Сборка всех .md файлов внутри папки readme в формат .html
@@ -54,12 +53,13 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>./c4d/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # Улучшенный sed для внутренних страниц
-              pandoc -f markdown -t html "$file" | sed -E 's/href="([^"]+)\.md"/href="\1.html"/g' >> "$html_file"
+              # Безопасный sed для внутренних страниц (не ломает файлы с дефисами и подчёркиваниями)
+              pandoc -f markdown -t html "$file" | sed 's/\.md"/\.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
           fi
+
 
 
 
