@@ -16,6 +16,7 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 <br><br>
 
 ---
+
 <br>
 
 ### Key Features
@@ -23,6 +24,7 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 -  Random textures from a selected folder  
 -  Allows manual selection of a specific texture via index
 -  Quick material variations without duplicating shaders    
+
 <br>
 
 ### How to Set Up
@@ -39,6 +41,7 @@ Tip: Use **Adobe Bridge** or [similar](https://AleksandrovskyV.github.io/python)
 <br><br><br>
 
 ---
+
 <br>
 
 > Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV),<br>with assistance from ChatGPT<br>
