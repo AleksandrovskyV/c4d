@@ -44,29 +44,22 @@ jobs:
           
           echo '</div></body></html>' >> index.html
 
-          # 2. Сборка всех .md файлов внутри папки readme в формат .html
+            # 2. Сборка всех .md файлов внутри папки readme в формат .html
           if [ -d "readme" ]; then
-            # Находим все файлы без привязки к регистру расширения
             find readme -type f -iname "*.md" | while read -r file; do
               
-              # ИСПРАВЛЕНО: Безопасное извлечение имени без пути и расширения средствами Bash
               base_name=$(basename "$file")
               filename="${base_name%.*}"
-              
-              # Четко задаем путь для генерации html
               html_file="readme/${filename}.html"
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>./c4d/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              tr -d '\r' < "$file" | pandoc -f markdown -t html | sed 's/\.md"/\.html"/g' >> "$html_file"
+              # ИСПРАВЛЕНО: Безопасный пайп через cat, который не ломает цикл while read
+              cat "$file" | tr -d '\r' | pandoc -f markdown -t html | sed 's/\.md"/\.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
           fi
-
-
-
-
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
