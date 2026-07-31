@@ -77,7 +77,7 @@ Swap 2 selected texture tags in Object Manager
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
-<br></p></div>
+</p><br clear="left"></div>
 
 > Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera/) 
 
