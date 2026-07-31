@@ -44,7 +44,7 @@ jobs:
           tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' >> index.html
           
           echo '</div></body></html>' >> index.html
-          
+
           # 2. Сборка всех .md файлов внутри папки readme
           if [ -d "readme" ]; then
             shopt -s nocaseglob
@@ -65,18 +65,14 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # ИСПРАВЛЕНО: sed теперь не только меняет .md на .html, но и превращает ../README.md в идеальный возврат на главную сайта ../
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' | sed 's/\.\.\/README\.md/..\//g' >> "$html_file"
+              # ИСПРАВЛЕНО: sed находит конкретный URL гитхаба и меняет его на выход в корень сайта
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' | sed 's|https://github.com/AleksandrovskyV/c4d/tree/main/|../index.html|g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
             
             shopt -u nocaseglob
           fi
-
-
-
-
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
