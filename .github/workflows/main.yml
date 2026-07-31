@@ -41,8 +41,8 @@ jobs:
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
-          # Находим ромбик перед ссылкой и вешаем на нее класс .download-icon, убирая сам ромбик
-          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 <a /<a class="download-icon" /g' >> index.html
+          # Заменяем ромбик на изолированный некликабельный span с иконкой для главной
+          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' >> index.html
           
           echo '</div></body></html>' >> index.html
 
@@ -66,14 +66,15 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # Для внутренних страниц делаем точно такую же замену ромбика на класс
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 <a /<a class="download-icon" /g' >> "$html_file"
+              # Точно такая же чистая замена ромбика на span для внутренних страниц
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
             
             shopt -u nocaseglob
           fi
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
