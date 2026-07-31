@@ -1,5 +1,5 @@
 &nbsp;&nbsp;<br><br><br>
-_* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#projects)_
+_* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#c4d/projects)_
 <br><br><br>
 
 
@@ -23,7 +23,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 <div class="icoblock">
 <img src="./assets/svg/gh_MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
-<p style="margin-top: 4px ">
+<p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
 </p><br clear="left"></div>
@@ -42,7 +42,7 @@ Convert object color from polygon object to Vertex Color Tag
 
 <div class="icoblock">
 <img src="./assets/svg/gh_MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
-<p style="margin-top: 4px ">
+<p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"
