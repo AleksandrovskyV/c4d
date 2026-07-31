@@ -3,14 +3,14 @@ _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&n
 <br><br><br>
 
 
-# /scripts
+# c4d/scripts
 
 Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
 <br><br>
 
 ## 🔹 [Fillet Plane](./vsky.scripts/Fillet%20Plane.py)  
 
-<div style="overflow: hidden;">
+<div class="icoblock" >
 <img src="./assets/svg/FilletPlane.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
@@ -21,7 +21,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
-<div style="overflow: hidden;">
+<div class="icoblock">
 <img src="./assets/svg/gh_MatrixPreserve.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 4px ">
 <strong> Tested:</strong> R23<br>
@@ -30,7 +30,7 @@ Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: pre
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)
 
-<div style="overflow: hidden;">
+<div class="icoblock">
 <img src="./assets/svg/ObjectColorToVertexColor.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
@@ -40,7 +40,7 @@ Convert object color from polygon object to Vertex Color Tag
 
 ## 🔹 [MP4 Vidoc](./vsky.scripts/MP4%20Vidoc.py)  
 
-<div style="overflow: hidden;">
+<div class="icoblock">
 <img src="./assets/svg/gh_MP4Vidoc.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 4px ">
 <strong> Tested:</strong> R23<br>
@@ -57,7 +57,7 @@ using your current "Render Settings"
 
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
-<div style="overflow: hidden;">
+<div class="icoblock">
 <img src="./assets/svg/gh_SwapMats.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
@@ -71,7 +71,7 @@ Swap 2 selected texture tags in Object Manager
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
-<div style="overflow: hidden;">
+<div class="icoblock">
 <img src="./assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> R20+<br>
@@ -82,14 +82,14 @@ Create a camera at the top level of your scene and linked to active one via Came
 
 <br><br>
 
-# /projects
+# c4d/projects
 
 Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
 <br><br>
 
 ## 🔹 [Arnold Workflow "user_data_string"](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip)
 
-<div style="overflow: hidden;">
+<div class="icoblock">
 <img src="./assets/svg/gh_arnoldstring.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
@@ -103,7 +103,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 
 ## 🔹 [Test Smile](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
 
-<div style="overflow: hidden;">
+<div class="icoblock">
   <img src="./assets/svg/TestSmile_YeUpd.svg" width="84" align="left" style="padding-right: 12px; ">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
@@ -117,7 +117,7 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 
 <br><br><br><br>
 
-# /footer...
+# c4d/footer...
 > Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with ai assistance...<br>
 > Feel free to fork, break, or improve this 🔧<br><br>
 > `c4d` `cinema-4d` `xpresso` `python` `ai`<br>
