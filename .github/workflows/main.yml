@@ -44,9 +44,14 @@ jobs:
           
           echo '</div></body></html>' >> index.html
 
-            # 2. Сборка всех .md файлов внутри папки readme в формат .html
+          # 2. Сборка всех .md файлов внутри папки readme через безопасный цикл FOR
           if [ -d "readme" ]; then
-            find readme -type f -iname "*.md" | while read -r file; do
+            # Включаем поддержку регистронезависимого поиска файлов (чтобы ловить .md и .MD)
+            shopt -s nocaseglob
+            
+            for file in readme/*.md; do
+              # Проверяем, что файл действительно существует (на случай если папка пуста)
+              [ -e "$file" ] || continue
               
               base_name=$(basename "$file")
               filename="${base_name%.*}"
@@ -54,12 +59,16 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>./c4d/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # ИСПРАВЛЕНО: Безопасный пайп через cat, который не ломает цикл while read
-              cat "$file" | tr -d '\r' | pandoc -f markdown -t html | sed 's/\.md"/\.html"/g' >> "$html_file"
+              # Передаем файл в pandoc НАПРЯМУЮ аргументом, чтобы не использовать уязвимые пайпы
+              pandoc -f markdown -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
+            
+            # Выключаем обратно настройку глоббинга
+            shopt -u nocaseglob
           fi
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
