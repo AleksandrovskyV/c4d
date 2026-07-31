@@ -38,7 +38,7 @@ jobs:
           echo '<meta name="description" content="Scripts & Projects for Cinema 4D">' >> index.html
           echo '<meta property="og:title" content="/c4d">' >> index.html
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
-          
+
           # Вшиваем содержимое style.css прямо внутрь тега <style> в корень
           echo '<style>' >> index.html
           cat ./assets/css/style.css >> index.html
@@ -46,7 +46,8 @@ jobs:
           
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
-          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' >> index.html
+          # Обработка корня: меняем .md на .html, ромбик на иконку и вырезаем img с svg-путями
+          tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]+\.svg"[^>]*>|<div class="mysvg"><\/div>|g' >> index.html
           
           echo '</div></body></html>' >> index.html
 
@@ -70,20 +71,21 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title>" > "$html_file"
               
-              # Вшиваем тот же самый CSS-файл внутрь каждой внутренней страницы
               echo '<style>' >> "$html_file"
               cat ./assets/css/style.css >> "$html_file"
               echo '</style>' >> "$html_file"
               
               echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> "$html_file"
               
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' >> "$html_file"
+              # Обработка внутренних страниц: возврат, замена .md, ромбик и вырезание img с svg-путями
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="download-icon"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]+\.svg"[^>]*>|<div class="mysvg"><\/div>|g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
             
             shopt -u nocaseglob
           fi
+
 
 
 
