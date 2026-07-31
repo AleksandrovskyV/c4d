@@ -1,3 +1,8 @@
+---
+title: "./c4d"
+description: "Scripts & Projects for Cinema 4D"
+---
+
 &nbsp;&nbsp;<br><br><br>
 _* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#projects)_
 <br><br><br>
@@ -124,4 +129,3 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 > `one-click-tools` `negative-render-region`
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
-<style>.project-name, .project-tagline { display: none !important; }</style>
