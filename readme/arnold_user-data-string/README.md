@@ -32,7 +32,7 @@ _[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [downl
 
 <br>
 
-Tip: Use **Adobe Bridge** or [similar]() tools for batch renaming
+Tip: Use **Adobe Bridge** or [similar](https://AleksandrovskyV.github.io/python/) tools for batch renaming
 
 <br><br><br>
 
