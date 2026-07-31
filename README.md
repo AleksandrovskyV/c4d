@@ -97,7 +97,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 - Manual replacement from an object
 </p><br clear="left"></div>
 
-> How to use, please ! [read](./readme/arnold-user-data-string.md)
+> How to use, please ! [read](./readme/c4dtoa-user-data-string.md)
 
 <br><br>
 
