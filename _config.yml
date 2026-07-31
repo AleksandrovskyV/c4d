@@ -1,7 +1,9 @@
 theme: jekyll-theme-primer
-name: "./c4d"
-title: null
-description: null
 
+# Запрещаем плагину jekyll-seo-tag автоматически генерировать тег <title>
+seo_tag:
+  title: false
 
-
+# Теперь мы можем безопасно использовать title для Telegram/Twitter — плагин больше не будет трогать вкладку браузера
+title: "vsky.space/c4d"
+description: "Scripts & Projects for Cinema 4D"
