@@ -17,7 +17,7 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <em>It`s a plane.. And it has fillets "</em>
 </p><br clear="left"></div>
 
-![preview](./assets/fillet_plane_preview.gif)<br><br>
+![preview](./assets/fillet-plane.gif)<br><br>
 
 ## 🔹 [Matrix Preserve](./vsky.scripts/Matrix%20Preserve.py)
 
@@ -53,7 +53,7 @@ using your current "Render Settings"
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
 
-![preview](./assets/mp4_vidoc_pillow.gif)<br><br>
+![preview](./assets/mp4-vidoc.gif.gif)<br><br>
 
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 

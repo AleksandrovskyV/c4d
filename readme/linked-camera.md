@@ -2,7 +2,7 @@
 
 # Linked Camera.py
 
-![preview](../assets/Camera_Morph_Link_with_Extend-Region_Value.gif)<br>
+![preview](../assets/linked-camera.gif)<br>
 
 <div style="overflow: hidden;">
   <img src="../assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 24px;">

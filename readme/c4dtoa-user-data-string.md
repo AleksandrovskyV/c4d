@@ -2,7 +2,7 @@
 
 # Arnold Workflow "user_data_string"
 
-![preview](../assets/Arnold_String-Path_Randomizer_Selector.gif)
+![preview](../assets/c4dtoa-user-data-string-workflow.gif)
 <br>
 
 _Based on [this method](https://www.youtube.com/watch?v=EAzoIx2vrm0)_ - setup automates texture path assignment for **Arnold Render** in **Cinema 4D**,<br>
