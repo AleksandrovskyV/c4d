@@ -71,7 +71,7 @@ jobs:
                 fi
                 
                 # Создаем точный тег видео для замены
-                local video_tag="<video autoplay muted loop playsinline poster=\"$final_poster\" style=\"width:100%; max-width:890px; display:block; border-radius:6px;\"><source src=\"$html_mp4_path\" type=\"video/mp4\"></video>"
+                local video_tag="<video autoplay muted loop playsinline poster=\"$final_poster\" ><source src=\"$html_mp4_path\" type=\"video/mp4\"></video>"
                 
                 # Экранируем спецсимволы для безопасного использования в sed
                 local safe_gif_path=$(echo "$gif_path" | sed 's|/|\\/|g' | sed 's|\.|\\.|g')
