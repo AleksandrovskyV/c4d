@@ -5,7 +5,7 @@
 <br>
 
 <div style="overflow: hidden;">
-  <img src="../../assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 24px;">
+  <img src="../assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 24px;">
   <p style="margin: 0 0 -3px 0;">
     <strong>Tested:</strong> R20+&nbsp;&nbsp;/&nbsp;&nbsp;<strong><a href="../vsky.scripts/Linked%20Camera.py">download</a></strong><br><br>
     Create a camera at the top level of your scene and linked to active one via Camera Morph Tag<br>
