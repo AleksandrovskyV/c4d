@@ -90,7 +90,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 ## 🔹 [Arnold Workflow "user_data_string"](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip)
 
 <div style="overflow: hidden;">
-<img src="./assets/svg/gh_ArnoldWorkflow2.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/gh_arnoldstring.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> ?? <br>
 - Randomizes textures from a folder<br>
