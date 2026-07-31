@@ -7,3 +7,9 @@ vsky_script_package.7z
 vsky_script_package.rar
 
 assets/template/assets
+
+# Игнорируем всё содержимое папки (но не саму папку)
+assets/history/old_web/paper_correct/_c4d_files/*
+
+
+!assets/history/old_web/paper_correct/_c4d_files/style.css
