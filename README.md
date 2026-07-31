@@ -76,7 +76,7 @@ Swap 2 selected texture tags in Object Manager
   <img src="./assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> R20+<br>
-Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
+Create a camera at the top level of your scene and linked to active one via CameraMorph Tag
 </p><br clear="left"></div>
 
 > Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera/) 
