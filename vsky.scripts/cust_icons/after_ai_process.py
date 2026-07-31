@@ -1,4 +1,5 @@
-import os, re
+import os
+import re
 from PIL import Image
 
 OUTPUT_SIZE = 64
@@ -6,8 +7,6 @@ REMOVE_START_TEXT = True  # True — удалять всё до "_", False — �
 
 def process_images():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    
-    # Список файлов собираем заранее, так как имена файлов будут меняться в процессе
     files = os.listdir(current_dir)
     
     for filename in files:
@@ -24,22 +23,20 @@ def process_images():
             # 2. Очистка от дефиса и цифр в конце
             new_name = re.sub(r'-\d+$', '', new_name)
             
-            # Пути для новых файлов
-            #png_path = os.path.join(current_dir, f"{new_name}.png")
+            # Путь для нового TIFF файла
             tif_path = os.path.join(current_dir, f"{new_name}.tif")
             
             try:
-                # Открываем оригинал, меняем размер и сохраняем обратно в PNG
                 with Image.open(source_path) as img:
+                    # Преобразуем в RGBA/RGB, если это необходимо для TIFF
+                    if img.mode not in ('RGB', 'RGBA'):
+                        img = img.convert('RGBA')
+                        
                     resized_img = img.resize((OUTPUT_SIZE, OUTPUT_SIZE), Image.Resampling.LANCZOS)
-                    
-                    #resized_img.save(png_path, format='PNG')
                     resized_img.save(tif_path, format='TIFF')
                 
-                # Если имя файла изменилось, удаляем старый оригинальный PNG
-                if source_path != png_path:
-                    os.remove(source_path)
-                    
+                # Безопасное удаление оригинального PNG после закрытия файла
+                os.remove(source_path)
                 print(f"Готово: {filename} -> {new_name}.tif")
                 
             except Exception as e:
