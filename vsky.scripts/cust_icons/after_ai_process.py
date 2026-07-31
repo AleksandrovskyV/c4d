@@ -25,23 +25,22 @@ def process_images():
             new_name = re.sub(r'-\d+$', '', new_name)
             
             # Пути для новых файлов
-            new_png_path = os.path.join(current_dir, f"{new_name}.png")
-            new_tif_path = os.path.join(current_dir, f"{new_name}.tif")
+            #png_path = os.path.join(current_dir, f"{new_name}.png")
+            tif_path = os.path.join(current_dir, f"{new_name}.tif")
             
             try:
                 # Открываем оригинал, меняем размер и сохраняем обратно в PNG
                 with Image.open(source_path) as img:
                     resized_img = img.resize((OUTPUT_SIZE, OUTPUT_SIZE), Image.Resampling.LANCZOS)
-                    resized_img.save(new_png_path, format='PNG')
                     
-                    # Из этой же измененной картинки сразу делаем TIFF-копию
-                    resized_img.save(new_tif_path, format='TIFF')
+                    #resized_img.save(png_path, format='PNG')
+                    resized_img.save(tif_path, format='TIFF')
                 
                 # Если имя файла изменилось, удаляем старый оригинальный PNG
-                if source_path != new_png_path:
+                if source_path != png_path:
                     os.remove(source_path)
                     
-                print(f"Готово: {filename} -> {new_name}.png + {new_name}.tif")
+                print(f"Готово: {filename} -> {new_name}.tif")
                 
             except Exception as e:
                 print(f"Ошибка при обработке файла {filename}: {e}")
