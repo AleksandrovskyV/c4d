@@ -41,7 +41,6 @@ jobs:
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
-          # Конвертируем корень
           tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' >> index.html
           
           echo '</div></body></html>' >> index.html
@@ -55,10 +54,16 @@ jobs:
               
               base_name=$(basename "$file")
               filename="${base_name%.*}"
-              html_file="readme/${filename}.html"
               
-              # Для вложенных страниц title будет "/имя_файла" и правильный путь к CSS через "../"
-              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
+              if [ "$filename" = "readme" ] || [ "$filename" = "README" ]; then
+                html_file="readme/index.html"
+                title_name="/c4d/readme"
+              else
+                html_file="readme/${filename}.html"
+                title_name="/c4d/$filename"
+              fi
+              
+              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
               pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' >> "$html_file"
               
@@ -67,6 +72,7 @@ jobs:
             
             shopt -u nocaseglob
           fi
+
 
 
 
