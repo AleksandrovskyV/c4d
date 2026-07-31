@@ -65,9 +65,7 @@ jobs:
             
             shopt -u nocaseglob
           fi
-
-
-
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
