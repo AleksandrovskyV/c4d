@@ -33,6 +33,7 @@ jobs:
         run: |
 
          # Вспомогательная функция для умной замены гифок на видео с проверкой файлов
+          # Вспомогательная функция для умной замены гифок на видео с проверкой файлов
           process_html_videos() {
             local input_file="$1"
             local output_file="$2"
@@ -42,21 +43,35 @@ jobs:
             cp "$input_file" "$temp_file"
             
             # Извлекаем все пути к гифкам из тегов <img>
-            # Ищет строки вида src=".../path/name.gif"
             grep -oP 'src="\K[^"]+\.gif' "$input_file" | sort -u | while read -r gif_path; do
-              # Убираем возможный ведущий слэш или точки для корректного поиска на диске
-              # Например: ./assets/preview.gif превратится в assets/preview.gif
+              # Очищаем путь для проверки файлов на диске виртуальной машины
               local clean_path=$(echo "$gif_path" | sed 's|^\./||' | sed 's|^/||')
               
-              # Формируем предполагаемый путь к mp4 файлу на диске
+              # Формируем пути к mp4 и jpg на диске
               local mp4_path="${clean_path%.gif}.mp4"
+              local jpg_path="${clean_path%.gif}.jpg"
               
-              # ПРОВЕРКА: Если одноименный mp4 файл физически существует в репозитории
+              # Формируем пути для тегов в HTML (сохраняя оригинальные относительные точки/слэши)
+              local html_mp4_path="${gif_path%.gif}.mp4"
+              local html_jpg_path="${gif_path%.gif}.jpg"
+              
+              # Изначально ставим в постер саму гифку (на случай, если jpg забыли сделать)
+              local final_poster="$gif_path"
+              
+              # ПРОВЕРКА 1: Видеофайл .mp4 СТРОГО обязан существовать
               if [ -f "$mp4_path" ]; then
                 echo "Найдено видео для автозамены: $mp4_path"
                 
+                # ПРОВЕРКА 2: Если рядом лежит легкий .jpg, берем его как постер для экономии трафика
+                if [ -f "$jpg_path" ]; then
+                  echo "--> Найдена легкая JPG-заглушка для постера: $jpg_path"
+                  final_poster="$html_jpg_path"
+                else
+                  echo "--> [Предупреждение] JPG не найден, используем исходный GIF в качестве постера: $gif_path"
+                fi
+                
                 # Создаем точный тег видео для замены
-                local video_tag="<video autoplay muted loop playsinline poster=\"$gif_path\" style=\"width:100%; max-width:890px; display:block; border-radius:6px;\"><source src=\"${gif_path%.gif}.mp4\" type=\"video/mp4\"></video>"
+                local video_tag="<video autoplay muted loop playsinline poster=\"$final_poster\" style=\"width:100%; max-width:890px; display:block; border-radius:6px;\"><source src=\"$html_mp4_path\" type=\"video/mp4\"></video>"
                 
                 # Экранируем спецсимволы для безопасного использования в sed
                 local safe_gif_path=$(echo "$gif_path" | sed 's|/|\\/|g' | sed 's|\.|\\.|g')
@@ -72,6 +87,7 @@ jobs:
             # Переносим обработанный результат в чистовой файл и удаляем временный
             mv "$temp_file" "$output_file"
           }
+
 
           # -----------------------------------------------------------------
           # 1. Сборка главного index.html из корневого README.md
