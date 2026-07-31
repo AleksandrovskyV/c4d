@@ -98,7 +98,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 </p><br clear="left"></div>
 
 
-## 🔹 [Test Smile](./vsky.projects)
+## 🔹 [Test Smile](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
 
 <div style="overflow: hidden;">
   <img src="./assets/svg/TestSmile_YeUpd.svg" width="84" align="left" style="padding-right: 12px; ">
