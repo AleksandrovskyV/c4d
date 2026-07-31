@@ -73,7 +73,7 @@ Swap 2 selected texture tags in Object Manager
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
 <div style="overflow: hidden;">
-  <img src="./assets/svg/LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
+  <img src="./assets/svg/gh_LinkedCamera.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong>Tested:</strong> R20+<br>
 Create a camera at the top level of your scene and linked to active one via CameraMorph Tag<br>
