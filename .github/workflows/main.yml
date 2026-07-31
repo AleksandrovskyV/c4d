@@ -32,14 +32,14 @@ jobs:
       - name: Build Clean HTML
         run: |
           # 1. Сборка главного index.html из корневого README.md
-          echo '<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8">' > index.html
-          echo '<title>/c4d</title>' >> index.html
+          echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>/c4d/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
           echo '<meta name="description" content="Scripts & Projects for Cinema 4D">' >> index.html
           echo '<meta property="og:title" content=/c4d">' >> index.html
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
-          
+
+
           # Отключаем парсинг YAML для корня (добавили -yaml_metadata_block)
           tr -d '\r' < README.md | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' >> index.html
           
@@ -56,9 +56,8 @@ jobs:
               filename="${base_name%.*}"
               html_file="readme/${filename}.html"
               
-              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
+              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # ИСПРАВЛЕНО: Отключаем парсинг YAML для внутренних страниц, чтобы убрать ошибку exit code 64
               pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
