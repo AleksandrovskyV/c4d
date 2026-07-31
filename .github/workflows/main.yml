@@ -30,6 +30,7 @@ jobs:
         run: sudo apt-get install -y pandoc
 
       - name: Build Clean HTML
+      - name: Build Clean HTML
         run: |
           # 1. Сборка главного index.html из корневого README.md
           echo '<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8">' > index.html
@@ -37,30 +38,30 @@ jobs:
           echo '<meta name="description" content="Scripts & Projects for Cinema 4D">' >> index.html
           echo '<meta property="og:title" content="./c4d">' >> index.html
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
-          
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
-          pandoc -f markdown -t html --metadata title="./c4d" README.md | sed 's/\.md">/\.html">/g' >> index.html
-
-          echo '</body></html>' >> index.html
+          # Улучшенный sed, который 100% заменит .md на .html в ссылках
+          pandoc -f markdown -t html README.md | sed -E 's/href="([^"]+)\.md"/href="\1.html"/g' >> index.html
+          
+          # ИСПРАВЛЕНО: Добавлен закрывающий </div>, чтобы контент не пропадал
+          echo '</div></body></html>' >> index.html
 
           # 2. Сборка всех .md файлов внутри папки readme в формат .html
           if [ -d "readme" ]; then
             find readme -name "*.md" | while read -r file; do
-              # Получаем путь к будущему .html файлу
               html_file="${file%.md}.html"
-              
               filename=$(basename "$file" .md)
               
-              # Генерируем страницу (используем двойные кавычки для работы переменных, экранируя внутренние)
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>./c4d/$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              pandoc -f markdown -t html "$file" | sed 's/\.md">/\.html">/g' >> "$html_file"
+              # Улучшенный sed для внутренних страниц
+              pandoc -f markdown -t html "$file" | sed -E 's/href="([^"]+)\.md"/href="\1.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
           fi
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
