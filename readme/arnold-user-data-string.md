@@ -10,8 +10,9 @@ designed to streamline workflows with **Substance Painter** and batch texture as
 
 
 
-_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip
-)_<br><br>
+_[youtube](https://www.youtube.com/watch?v=nXuQmZuPT0I) preview, workflow [download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip)_
+
+<br><br>
 
 ---
 <br>
