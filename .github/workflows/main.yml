@@ -30,7 +30,6 @@ jobs:
         run: sudo apt-get install -y pandoc
 
       - name: Build Clean HTML
-      - name: Build Clean HTML
         run: |
           # 1. Сборка главного index.html из корневого README.md
           echo '<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8">' > index.html
@@ -61,6 +60,7 @@ jobs:
               echo '</div></body></html>' >> "$html_file"
             done
           fi
+
 
 
       - name: Upload artifact
