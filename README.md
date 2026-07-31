@@ -78,7 +78,7 @@ Swap 2 selected texture tags in Object Manager
 Create a camera at the top level of your scene and linked to active one via Camera Morph Tag
 </p><br clear="left"></div>
 
-> Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera/) 
+> Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera.md) 
 
 <br><br>
 
@@ -97,7 +97,7 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 - Manual replacement from an object
 </p><br clear="left"></div>
 
-> How to use, please ! [read](./readme/arnold_user-data-string/)
+> How to use, please ! [read](./readme/arnold_user-data-string.md)
 
 <br><br>
 
