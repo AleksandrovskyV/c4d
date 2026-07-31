@@ -27,7 +27,6 @@ Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c
 <strong> Tested:</strong> R23<br>
 Matrix Object to single mesh, color transfer to Vertex Color Tag<br>AltMode: preserve as cubes, color transfer to object color
 </p><br clear="left"></div>
-<br>
 
 ## 🔹 [Object Color to Vertex Color Tag](./vsky.scripts/Object%20Color%20to%20Vertex%20Color.py)
 
@@ -49,7 +48,7 @@ A button to quickly export MP4 files with "_#" numbering<br>
 using your current "Render Settings"
 </p><br clear="left"></div>
 
-<br><strong>Controls:</strong><br>
+<strong>Controls:</strong><br>
  [ LMB ] &nbsp;&nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Active settings via Picture Viewer<br>
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
@@ -107,6 +106,8 @@ Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4
 <strong>Tested:</strong> ?? <br>
 Created to be tested...
 </p><br clear="left"></div>
+
+<br>
 
 Low-poly mouth with small trick * Pose Morph Tag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)<br>
 Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=)<br>
