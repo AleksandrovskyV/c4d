@@ -1,9 +1,9 @@
 &nbsp;&nbsp;<br><br><br>
-_* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#c4d/projects)_
+_* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/draft)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;scroll to,&nbsp;&nbsp;[projects](#projects)_
 <br><br><br>
 
 
-# c4d/scripts
+# scripts
 
 Hey dudes. W\*lcome [0]  > [DOWNLOAD SHELF](https://github.com/AleksandrovskyV/c4d/releases/download/v1/vsky_script_package.7z)
 <br><br>
@@ -82,7 +82,7 @@ Create a camera at the top level of your scene and linked to active one via Came
 
 <br><br>
 
-# c4d/projects
+# projects
 
 Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
 <br><br>
@@ -117,7 +117,7 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 
 <br><br><br><br>
 
-# c4d/footer...
+# footer...
 > Assembled by [AleksandrovskyV](https://github.com/AleksandrovskyV), with ai assistance...<br>
 > Feel free to fork, break, or improve this 🔧<br><br>
 > `c4d` `cinema-4d` `xpresso` `python` `ai`<br>
