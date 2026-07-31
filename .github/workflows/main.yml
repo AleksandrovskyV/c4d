@@ -56,7 +56,7 @@ jobs:
               filename="${base_name%.*}"
               html_file="readme/${filename}.html"
               
-              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
+              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><title>./$filename</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
               # ИСПРАВЛЕНО: Отключаем парсинг YAML для внутренних страниц, чтобы убрать ошибку exit code 64
               pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's/\.md"/\.html"/g' >> "$html_file"
@@ -67,7 +67,7 @@ jobs:
             shopt -u nocaseglob
           fi
 
-          
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
