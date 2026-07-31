@@ -33,9 +33,9 @@ jobs:
         run: |
           # 1. Сборка главного index.html из корневого README.md
           echo '<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8">' > index.html
-          echo '<title>./c4d</title>' >> index.html
+          echo '<title>/c4d</title>' >> index.html
           echo '<meta name="description" content="Scripts & Projects for Cinema 4D">' >> index.html
-          echo '<meta property="og:title" content="/c4d">' >> index.html
+          echo '<meta property="og:title" content=/c4d">' >> index.html
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
           echo '<link rel="stylesheet" href="./assets/css/style.css">' >> index.html
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
@@ -67,7 +67,7 @@ jobs:
             shopt -u nocaseglob
           fi
 
-          
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
