@@ -87,7 +87,7 @@ Create a camera at the top level of your scene and linked to active one via Came
 Hey dudes. W\*lcome [1] > [PROJECT FOLDER](https://github.com/AleksandrovskyV/c4d/tree/main/vsky.projects)
 <br><br>
 
-## 🔹 [Arnold Workflow "user_data_string"](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.7z), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
+## 🔹 [Arnold Workflow "user_data_string"](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/ar_workflow_user-data-string.zip), &nbsp;&nbsp;!&nbsp;&nbsp;[read](./readme/arnold_user-data-string/)
 
 <div style="overflow: hidden;">
 <img src="./assets/svg/gh_ArnoldWorkflow2.svg" width="84" align="left" style="padding-right: 12px;">
@@ -109,8 +109,8 @@ Created to be tested...
 
 <br>
 
-Low-poly mouth with small trick * Pose Morph Tag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.7z?download=)<br>
-Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.7z?download=)<br>
+Low-poly mouth with small trick * Pose Morph Tag&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_std_rigged.zip?download=)<br>
+Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/smile_octane_w_aep.zip?download=)<br>
 
 <br><br><br><br>
 
