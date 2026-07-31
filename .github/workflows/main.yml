@@ -65,14 +65,15 @@ jobs:
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title><link rel=\"stylesheet\" href=\"../assets/css/style.css\"></head><body><div class=\"container-lg px-3 my-5 markdown-body\">" > "$html_file"
               
-              # ИСПРАВЛЕНО: Сначала меняем точный URL гитхаба, а уже ПОТОМ делаем общую замену расширений .md на .html
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed 's|https://github.com|../index.html|g' | sed 's/\.md"/\.html"/g' >> "$html_file"
+              # ИСПРАВЛЕНО: Регулярка ищет тег ссылки, где написано слово return, и принудительно ставит корень сайта
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' >> "$html_file"
               
               echo '</div></body></html>' >> "$html_file"
             done
             
             shopt -u nocaseglob
           fi
+
 
 
       - name: Upload artifact
