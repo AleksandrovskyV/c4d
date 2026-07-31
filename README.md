@@ -124,3 +124,4 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 > `one-click-tools` `negative-render-region`
 
 <!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
+<style>.project-name, .project-tagline { display: none !important; }</style>
