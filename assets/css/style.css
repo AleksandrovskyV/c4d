@@ -30,7 +30,9 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 .btn-about{display:flex;align-items:flex-start;}
 
-
+.youtube{
+text-align: right;
+}
 .youtube a{text-alight:right; color:#ff0000;text-decoration: none;}.markdown-body a:hover{text-decoration:underline}
 
 .downico{display:block}
