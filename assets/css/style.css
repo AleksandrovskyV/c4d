@@ -45,7 +45,7 @@ padding-top: 12px;
 
 /* Mobile fix*/
 .markdown-body video,
-.ytlink {width: clamp(95%,calc(100% - (100vw - 780px) * 0.022727%),100%);
+.ytlink { width: clamp(95%, calc(117.727% - 2.2727vw), 100%);
 }
 
 @media (max-width: 780px) {
