@@ -100,7 +100,7 @@ jobs:
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
           
           # ЭТОТ СКРИПТ КРАСИВО УБИРАЕТ СЛЭШ ИЗ АДРЕСНОЙ СТРОКИ ПРИ ЗАГРУЗКЕ
-          echo '<script>if(location.pathname.endsWith("/")){history.replaceState(null,"",location.pathname.slice(0,-1)+location.search+location.hash);}</script>' >> index.html
+          echo '<script> </script>' >> index.html
 
 
           echo '<style>' >> index.html
@@ -161,6 +161,12 @@ jobs:
             shopt -u nocaseglob
           fi
 
+          # Создаем точную копию главной страницы, но с именем "c4d" без расширения.
+          # GitHub Pages на кастомных доменах отлично отдает файлы без расширений по их имени!
+          cp index.html c4d
+
+          # Явно говорим GitHub Pages отдавать этот файл как HTML, чтобы он не скачивался как бинарник
+          echo -e "filtered_content:\n  - c4d" > _config.yml
 
 
       - name: Upload artifact
