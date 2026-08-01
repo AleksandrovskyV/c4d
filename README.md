@@ -58,7 +58,7 @@ using your current "Render Settings"
 
 <div align="right" class="ytlink">
 
-[extended](https://www.youtube.com/watch?v=ETzJl574FIY)
+[extended](https://www.youtube.com/watch?v=ETzJl574FIY) *
 
 </div>
 <br>
