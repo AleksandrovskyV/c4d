@@ -104,8 +104,8 @@ jobs:
           # Замораживаем базовый путь для картинок и ссылок, чтобы они не ломались
           echo '<base href="/c4d/">' >> index.html
           
-          # Мгновенно убираем из адреса /index.html или финальный слэш без перезагрузки страницы
-          echo '<script>if(/(index\.html|\/)$/i.test(location.pathname)){history.replaceState(null,"",location.pathname.replace(/(index\.html|\/)$/i,"")+location.search+location.hash);}</script>' >> index.html
+          # Мгновенно очищаем URL: убираем .html, затем слово index, затем финальный слэш
+          echo '<script>let p=location.pathname; if(p.endsWith(".html"))p=p.slice(0,-5); if(p.endsWith("index"))p=p.slice(0,-5); if(p.endsWith("/"))p=p.slice(0,-1); if(p!==location.pathname){history.replaceState(null,"",p+location.search+location.hash);}</script>' >> index.html
 
           echo '<style>' >> index.html
           cat ./assets/css/style.css >> index.html
@@ -146,6 +146,12 @@ jobs:
               fi
               
               echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title>" > "$html_file"
+
+
+              # Мгновенно очищаем URL: убираем .html, затем слово index, затем финальный слэш
+              echo '<script>let p=location.pathname; if(p.endsWith(".html"))p=p.slice(0,-5); if(p.endsWith("index"))p=p.slice(0,-5); if(p.endsWith("/"))p=p.slice(0,-1); if(p!==location.pathname){history.replaceState(null,"",p+location.search+location.hash);}</script>' >> index.html
+
+    
               echo '<style>' >> "$html_file"
               cat ./assets/css/style.css >> "$html_file"
               echo '</style>' >> "$html_file"
