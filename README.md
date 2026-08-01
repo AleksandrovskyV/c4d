@@ -1,5 +1,5 @@
 &nbsp;&nbsp;<br><br><br>
-_* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)_&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;_oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/draft)_&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;_scroll to,&nbsp;&nbsp;[projects](#projects)_
+_* i say really,&nbsp;&nbsp;[github](https://github.com/AleksandrovskyV)_&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;_oh no,&nbsp;&nbsp;[pearl](https://AleksandrovskyV.github.io/c4d/pearl)_&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;_scroll to,&nbsp;&nbsp;[projects](#projects)_
 <br><br><br>
 
 
