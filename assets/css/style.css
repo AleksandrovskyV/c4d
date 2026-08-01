@@ -1,10 +1,6 @@
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}*{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.5;color:#24292e;background:#fdfdfd}
 
-html{
-scrollbar-gutter: stable; /* резерв места для скролла */
-}
-
 .container-lg{max-width:1024px;margin:0 auto}
 .px-3{padding-left:16px;padding-right:16px}
 .my-5{margin-top:32px;margin-bottom:32px}
@@ -35,15 +31,10 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 .btn-about{display:flex;align-items:flex-start;}
 
-.ytlink{
-text-align: right;
-margin-right: 4px;
-padding-top: 12px;
-}
+.ytlink{ text-align: right; margin-right: 4px;}
+.ytlink a{color:#ff9500;text-decoration: underline;}.ytlink a:hover{text-decoration:none}
 
-.ytlink a{color:#ff9500;text-decoration: underline;}.markdown-body a:hover{text-decoration:none}
-
-/* Web fix*/
+/* width fix Web = 95% Mobile = 100% */
 .markdown-body video,
 .ytlink { width: clamp(95%, 100% + (100vw - 780px) * (95 - 100) / (1000 - 780), 100%);
 }
