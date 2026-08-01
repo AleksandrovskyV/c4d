@@ -99,8 +99,13 @@ jobs:
           echo '<meta property="og:title" content="/c4d">' >> index.html
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
           
-          # ЭТОТ СКРИПТ КРАСИВО УБИРАЕТ СЛЭШ ИЗ АДРЕСНОЙ СТРОКИ ПРИ ЗАГРУЗКЕ
-          echo '<script> </script>' >> index.html
+
+
+          # Замораживаем базовый путь для картинок и ссылок, чтобы они не ломались
+          echo '<base href="/c4d/">' >> index.html
+
+          # Мгновенно убираем слэш из адреса без перезагрузки страницы
+          echo '<script>if(location.pathname.endsWith("/")){history.replaceState(null,"",location.pathname.slice(0,-1)+location.search+location.hash);}</script>' >> index.html
 
 
           echo '<style>' >> index.html
