@@ -99,10 +99,14 @@ jobs:
           echo '<meta property="og:title" content="/c4d">' >> index.html
           echo '<meta property="og:description" content="Scripts & Projects for Cinema 4D">' >> index.html
           
+          # ЭТОТ СКРИПТ КРАСИВО УБИРАЕТ СЛЭШ ИЗ АДРЕСНОЙ СТРОКИ ПРИ ЗАГРУЗКЕ
+          echo '<script>if(location.pathname.endsWith("/")){history.replaceState(null,"",location.pathname.slice(0,-1)+location.search+location.hash);}</script>' >> index.html
+
+
           echo '<style>' >> index.html
           cat ./assets/css/style.css >> index.html
-          echo '</style>' >> index.html
-          
+          echo '</style>' >> index.html          
+
           echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> index.html
           
           # УЛУЧШЕНО: Находит имя svg файла и делает из него второй класс: <div class="btnico имя_файла"></div>
