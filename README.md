@@ -56,7 +56,7 @@ using your current "Render Settings"
 ![preview](./assets/mp4-vidoc.gif)
 <br>
 
-<div align="right" class="youtube">
+<div align="right" class="ytlink">
 
 [extended](https://www.youtube.com/watch?v=ETzJl574FIY)
 
