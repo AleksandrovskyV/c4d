@@ -25,7 +25,7 @@ display:grid;grid-template-columns:auto 1fr;align-items:start;}
 .markdown-body blockquote{margin:0;padding-left:16px;border-left:4px solid #dfe2e5;color:#586069}
 .markdown-body code{font:12px SFMono-Regular,Consolas,monospace;background:#f6f8fa;padding:.2em .4em;border-radius:3px}
 .markdown-body ul{margin:0 0 10px 24px;padding:0}
-.markdown-body video{width:100%; display:block; border-radius:6px; margin-bottom: -16.5px;}
+.markdown-body video{width: clamp(95%, 0.02283 * 100vw + 77.16895%, 100%); display:block; border-radius:6px; margin-bottom: -16.5px;}
 
 h2#fillet-plane{color:#40cf07}
 h2#matrix-preserve,#object-color-to-vertex-color-tag,#swap-mats{color:#00aaff}
@@ -39,15 +39,16 @@ h2#arnold-workflow-user_data_string{color:#828282}
 text-align: right;
 margin-right: 4px;
 padding-top: 12px;
+width: clamp(95%, 0.02283 * 100vw + 77.16895%, 100%)
 }
 
 .ytlink a{color:#ff9500;text-decoration: underline;}.markdown-body a:hover{text-decoration:none}
 
 @media (min-width: 781px) {
-.ytlink{width: 95%;
- }
-.markdown-body video{ width:95%;
-}
+    .ytlink{width: 95%;
+     }
+    .markdown-body video{ width:95%;
+    }
 }
 
 .downico{display:block}
