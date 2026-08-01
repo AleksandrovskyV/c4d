@@ -144,7 +144,7 @@ jobs:
               echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> "$html_file"
               
               # Базовая конвертация внутренней страницы в промежуточный файл
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > internal_base.html
+              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="../c4d.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > internal_base.htm
               
               # Запуск функции умной проверки видео для внутренних страниц
               process_html_videos "internal_base.html" "internal_final.html"
@@ -157,7 +157,9 @@ jobs:
             shopt -u nocaseglob
           fi
 
-
+          # -----------------------------------------------------------------
+          # Переименовываем корень, чтобы сервер отдавал его как файл vsky.space/c4d, а не папку со слэшем
+          mv index.html c4d.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
