@@ -56,9 +56,9 @@ using your current "Render Settings"
 ![preview](./assets/mp4-vidoc.gif)
 <br>
 
-<div align="right" style="color: #ff0000;">
+<div align="right" class="youtube">
 
-$$\color{#ff0000}{\text{extended}}$$
+[extended](https://www.youtube.com/watch?v=ETzJl574FIY)
 
 </div>
 <br>

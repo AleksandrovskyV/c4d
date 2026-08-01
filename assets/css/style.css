@@ -30,6 +30,8 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 .btn-about{display:flex;align-items:flex-start;}
 
+.youtube{color: #ff0000; text-decoration: underline;}
+
 .downico{display:block}
 .downico::before{content:"";display:inline-block;width:1em;height:0.8em;margin-right:0.1em;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v10h4l-5 5-5-5h4V2zm-7 16h16v2H4v-2z'/%3E%3C/svg%3E") no-repeat center / contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 2h2v10h4l-5 5-5-5h4V2zm-7 16h16v2H4v-2z'/%3E%3C/svg%3E") no-repeat center / contain;background-color:currentColor;transform:translateY(-0.1em);
 }
