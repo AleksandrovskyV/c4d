@@ -56,10 +56,10 @@ using your current "Render Settings"
 ![preview](./assets/mp4-vidoc.gif)
 <br>
 
-<div align="right">
-  <a href="https://www.youtube.com/watch?v=ETzJl574FIY">
-    <img src="https://shields.io" alt="Extended Video">
-  </a>
+<div align="right" style="color: #ff0000;">
+
+$$\color{#ff0000}{\text{extended}}$$
+
 </div>
 <br>
 
