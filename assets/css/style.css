@@ -44,9 +44,9 @@ padding-top: 12px;
 .ytlink a{color:#ff9500;text-decoration: underline;}.markdown-body a:hover{text-decoration:none}
 
 @media (min-width: 781px) {
-.ytlink{width: 90%;
+.ytlink{width: 95%;
  }
-.markdown-body video{ width:90%;
+.markdown-body video{ width:95%;
 }
 }
 
