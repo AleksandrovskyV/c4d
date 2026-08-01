@@ -103,10 +103,9 @@ jobs:
 
           # Замораживаем базовый путь для картинок и ссылок, чтобы они не ломались
           echo '<base href="/c4d/">' >> index.html
-
-          # Мгновенно убираем слэш из адреса без перезагрузки страницы
-          echo '<script>if(location.pathname.endsWith("/")){history.replaceState(null,"",location.pathname.slice(0,-1)+location.search+location.hash);}</script>' >> index.html
-
+          
+          # Мгновенно убираем из адреса /index.html или финальный слэш без перезагрузки страницы
+          echo '<script>if(/(index\.html|\/)$/i.test(location.pathname)){history.replaceState(null,"",location.pathname.replace(/(index\.html|\/)$/i,"")+location.search+location.hash);}</script>' >> index.html
 
           echo '<style>' >> index.html
           cat ./assets/css/style.css >> index.html
