@@ -78,7 +78,7 @@ Swap 2 selected texture tags in Object Manager
 Create a camera at the top level of your scene and linked to active one via Camera Morph Tag
 </p><br clear="left"></div>
 
-> Xpresso Tag to expand "Render Area" with safe focal length ! [read](./readme/linked-camera.md) 
+> Xpresso Tag to expand "Render Area" with keep focal length ! [read](./readme/linked-camera.md) 
 
 <br><br>
 
@@ -123,4 +123,4 @@ Prepared Octane AOVs * with .aep files include&nbsp;&nbsp;>&nbsp;[download](http
 > `c4d` `cinema-4d` `xpresso` `python` `ai`<br>
 > `one-click-tools` `negative-render-region`
 
-<!-- SEO: c4d cinema4d script scripts xpresso python vsky aleksandrovsky extend-render-area-->
+<!-- SEO: c4d cinema4d cinema-4d extend-render-area save-focal-length keep-focal-length c4dtoa c4dtoa-user-data-string c4dtoa-multishader c4dtoa-random-texture c4dtoa-randomize  cinema-4d-button  cinema-4d-scripts xpresso python vsky space aleksandrovsky v-aleksandrovsky v_aleksandrovsky  fillet-plane c4d-token-mp4 c4d-path-token c4d-token matrix-preserve matrix-bake -->
