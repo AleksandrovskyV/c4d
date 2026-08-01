@@ -53,7 +53,15 @@ using your current "Render Settings"
  [ LMB + ALT ] &nbsp;&nbsp;&nbsp;- &nbsp;&nbsp;Viewport via Picture Viewer<br>
  [ LMB + SHIFT ] &nbsp;-&nbsp; Viewport via BG Process<br><br>
 
-![preview](./assets/mp4-vidoc.gif)<br><br>
+![preview](./assets/mp4-vidoc.gif)
+
+<div align="right">
+
+[extend](https://www.youtube.com/watch?v=ETzJl574FIY)
+
+</div>
+
+<br><br>
 
 ## 🔹 [Swap Mats](./vsky.scripts/Swap%20Mats.py)  
 
