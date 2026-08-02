@@ -1384,7 +1384,7 @@ pointer-events: none;
         <div data-func="arnold_rand_texture" class="mbtn aws" ></div>
         <div data-func="linked_camera"       class="mbtn cam" ></div>
 
-        <div data-func="rand_btn"            class="mbtn text" id ="rnd" >?</div>
+        <div data-func="addbtn"            class="mbtn text" >+</div>
     </div>
 </div>
 
@@ -3105,8 +3105,8 @@ document.getElementById('shortshelf')?.addEventListener('click', function(event)
     const funcName = btn.dataset.func;    
     const element = document.getElementById(funcName);
 
-    if (funcName === 'randomize') {
-
+    if (funcName === 'addbtn') {
+        window.open("https://github.com/new");
         return;
     }else{
         if (element) {
