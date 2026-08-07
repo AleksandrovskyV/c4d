@@ -12,6 +12,8 @@ Description-US:Mirrors mesh points...|just like Symmetrize from new C4D |       
 import c4d
 
 SCRIPT_NAME = "Mirror along Edge Loop"
+PANEL_WIDTH = 420
+PANEL_HEIGHT = 320
 
 class MessageDialogCustom(c4d.gui.GeDialog):
     """Unified modal dialog with custom title for strict errors (OK button only)."""
@@ -22,18 +24,18 @@ class MessageDialogCustom(c4d.gui.GeDialog):
 
     def CreateLayout(self):
         self.SetTitle(self.title)
-        panel_width = 500
+        
         self.AddStaticText(-1, c4d.BFH_SCALEFIT, name="")
 
         lines = self.text.split('\n')
         for i, line in enumerate(lines):
             if not line.strip():
-                self.AddStaticText(1000+i, c4d.BFH_SCALEFIT, panel_width, 2, name="")
+                self.AddStaticText(1000+i, c4d.BFH_SCALEFIT, PANEL_WIDTH, 2, name="")
                 continue
 
-            self.AddStaticText(3000+i, c4d.BFH_LEFT, panel_width, 10, name="       " + line)
+            self.AddStaticText(3000+i, c4d.BFH_LEFT, PANEL_WIDTH, 10, name="       " + line)
 
-        self.AddStaticText(200, c4d.BFH_SCALEFIT, panel_width, 8, name="")
+        self.AddStaticText(200, c4d.BFH_SCALEFIT, PANEL_WIDTH, 8, name="")
 
         self.GroupBegin(2000, c4d.BFH_CENTER, 2, 1)
         self.AddButton(c4d.IDC_OK, c4d.BFH_CENTER, 180, 18, name="OK")
@@ -69,10 +71,9 @@ class DirectionDialog(c4d.gui.GeDialog):
         # Inject the alignment warning and the checkbox dynamically if loop points are skewed
         if self.show_warning:
             self.AddStaticText(id=2001, flags=c4d.BFH_LEFT, initw=0, inith=0,
-                               name="Warning: Points on selected seam-loop not aligned with the section plane.")
+                               name=" Points on selected seam-loop not aligned with the section plane")
             self.GroupSpace(0, 4)
-            self.AddCheckbox(id=self.CHECKBOX_ALIGN, flags=c4d.BFH_LEFT, initw=0, inith=0,
-                             name="Force-align?")
+            self.AddCheckbox(id=self.CHECKBOX_ALIGN, flags=c4d.BFH_LEFT, initw=0, inith=0,name=" force align")
             self.SetBool(self.CHECKBOX_ALIGN, True) # Checked by default
             self.GroupSpace(0, 12)
 
@@ -136,11 +137,29 @@ def calculate_seam_matrix(seam_points, points):
     mat.v3 = v_z
     return mat
 
-def count_side_polygons(start_poly, seam_edges_set, polys, nbr):
-    """Performs a pure topological flood fill to count polygons on one side."""
+def count_side_polygons(start_poly, seam_edges, polys, nbr):
+    """
+    Bulletproof topological flood fill. 
+    Uses unique point-pairs as barriers to prevent leaks on zig-zag loops.
+    """
+    # Step 1: Create a bulletproof set of unique physical point-pairs for the barrier
+    seam_point_pairs = set()
+    for edge_idx in seam_edges:
+        poly_idx = edge_idx // 4
+        edge_num = edge_idx % 4
+        p = polys[poly_idx]
+        if edge_num == 0:   p1, p2 = p.a, p.b
+        elif edge_num == 1: p1, p2 = p.b, p.c
+        elif edge_num == 2: p1, p2 = p.c, p.d if p.c != p.d else p.a
+        else:               p1, p2 = p.d if p.c != p.d else p.c, p.a
+        
+        # Store as sorted tuple so direction doesn't matter
+        seam_point_pairs.add((min(p1, p2), max(p1, p2)))
+
     visited = {start_poly}
     queue = [start_poly]
     
+    # Step 2: Flood fill loop
     while queue:
         curr_poly = queue.pop(0)
         p = polys[curr_poly]
@@ -148,27 +167,71 @@ def count_side_polygons(start_poly, seam_edges_set, polys, nbr):
         sides = 4 if p.c != p.d else 3
         
         for i in range(sides):
-            if (curr_poly * 4 + i) in seam_edges_set:
+            p1 = pts[i]
+            p2 = pts[(i + 1) % sides]
+            edge_key = (min(p1, p2), max(p1, p2))
+            
+            # CRITICAL FIX: Check the barrier using unique point geometry, not C4D edge IDs
+            if edge_key in seam_point_pairs:
                 continue
                 
-            neighbor = nbr.GetNeighbor(pts[i], pts[(i + 1) % sides], curr_poly)
+            neighbor = nbr.GetNeighbor(p1, p2, curr_poly)
             if neighbor != -1 and neighbor not in visited:
                 visited.add(neighbor)
                 queue.append(neighbor)
                 
     return len(visited)
+
+
+def is_edge_loop_closed(obj, seam_edges):
+    """
+    Strictly verifies if the selected edge loop forms a perfectly closed continuous ring.
+    Filters out C4D's polygon-edge duplicates to get unique physical edges.
+    """
+    unique_edges = set()
+    point_edge_count = {}
     
+    for edge_idx in seam_edges:
+        poly_idx = edge_idx // 4
+        edge_num = edge_idx % 4
+        poly = obj.GetPolygon(poly_idx)
+        
+        if edge_num == 0:   p1, p2 = poly.a, poly.b
+        elif edge_num == 1: p1, p2 = poly.b, poly.c
+        elif edge_num == 2: p1, p2 = poly.c, poly.d if poly.c != poly.d else poly.a
+        else:               p1, p2 = (poly.d if poly.c != poly.d else poly.c), poly.a
+            
+        # Create a unique identifier for the physical edge regardless of direction
+        edge_key = (min(p1, p2), max(p1, p2))
+        unique_edges.add(edge_key)
+
+    # Count connections using only unique physical edges
+    for p1, p2 in unique_edges:
+        point_edge_count[p1] = point_edge_count.get(p1, 0) + 1
+        point_edge_count[p2] = point_edge_count.get(p2, 0) + 1
+
+    if not point_edge_count:
+        return False
+
+    # Every vertex in a strictly closed loop must connect to exactly 2 unique edges
+    for pt, count in point_edge_count.items():
+        if count != 2:
+            return False
+            
+    return True
+
+
 def main():
     obj = doc.GetActiveObject()
     if not obj or not obj.CheckType(c4d.Opolygon):
-        err_dlg = (SCRIPT_NAME, "Selection Error: Please select a valid polygon mesh object!")
-        err_dlg.Open(c4d.DLG_TYPE_MessageDialogCustomMODAL_RESIZEABLE, defaultw=380, defaulth=120)
+        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Select a valid polygon mesh object!")
+        err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=140)
         return
 
     edge_selection = obj.GetEdgeS()
     if edge_selection.GetCount() == 0:
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Error: Please select the base symmetrical edge-loop!", is_question=False)
-        err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaultw=380, defaulth=120)
+        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Please select the base symmetrical edge-loop!")
+        err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=140)
         return
 
     doc.StartUndo()
@@ -191,6 +254,14 @@ def main():
             seam_points.add(p1)
             seam_points.add(p2)
 
+
+    # After collecting seam_edges array inside the selection loop:
+    if not is_edge_loop_closed(obj, seam_edges):
+        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Selected edges do not form a closed loop!\nPlease ensure the centerline seam forms\na perfectly continuous ring...")
+        err_dlg.Open(c4d.DLG_TYPE_MODAL, defaulth=140)
+        return
+
+
     seam_matrix = calculate_seam_matrix(seam_points, points)
     inv_seam_matrix = ~seam_matrix 
 
@@ -210,8 +281,8 @@ def main():
     poly_b_idx = nbr.GetNeighbor(root_a, root_b, poly_a_idx)
 
     if poly_b_idx == -1:
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Error: The base seam lacks a valid topological neighbor layout. Aborting.")
-        err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaultw=380, defaulth=120)
+        err_dlg = MessageDialogCustom(SCRIPT_NAME, "The base seam lacks a valid topological neighbor layout.\nAborting...")
+        err_dlg.Open(c4d.DLG_TYPE_MODAL,defaulth=140)
         return
 
     center_a = (points[polys[poly_a_idx].a] + points[polys[poly_a_idx].b] + points[polys[poly_a_idx].c]) / 3.0
@@ -237,12 +308,12 @@ def main():
 
 
         warn_dlg = MessageDialogCustom(SCRIPT_NAME, warn_text)
-        warn_dlg.Open(c4d.DLG_TYPE_MODAL, defaultw=380, defaulth=140)
+        warn_dlg.Open(c4d.DLG_TYPE_MODAL, defaulth=140)
         return
 
     # Trigger unified UI window holding selection buttons
     dlg = DirectionDialog(show_alignment_warning)
-    dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaultw=340, defaulth=100)
+    dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=60)
     if dlg.result is None:
         return
 
@@ -260,7 +331,7 @@ def main():
 
     if poly_b_idx == -1:
         err_dlg = MessageDialogCustom(SCRIPT_NAME, "Error: The base seam lacks a valid topological neighbor layout. Aborting.")
-        err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaultw=380, defaulth=120)
+        err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=160)
         return
 
     center_a = (points[polys[poly_a_idx].a] + points[polys[poly_a_idx].b] + points[polys[poly_a_idx].c]) / 3.0
@@ -277,7 +348,6 @@ def main():
 
     for p in seam_points:
         topology_map[p] = p
-
 
     while poly_queue:
         l_poly_idx, r_poly_idx = poly_queue.pop(0)
@@ -347,10 +417,11 @@ def main():
             target_local_pos = c4d.Vector(-src_pos.x, src_pos.y, src_pos.z)
             points[left_id] = seam_matrix * target_local_pos
 
-    for p in seam_points:
-        local_pos = inv_seam_matrix * points[p]
-        local_pos.x = 0.0
-        points[p] = seam_matrix * local_pos
+    if dlg.force_align:
+        for p in seam_points:
+            local_pos = inv_seam_matrix * points[p]
+            local_pos.x = 0.0
+            points[p] = seam_matrix * local_pos
 
     obj.SetAllPoints(points)
     obj.Message(c4d.MSG_UPDATE)
