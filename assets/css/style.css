@@ -24,7 +24,7 @@ display:grid;grid-template-columns:auto 1fr;align-items:start;}
 .markdown-body video{width:100%; display:block; border-radius:6px; margin-bottom: -16.5px;}
 
 h2#fillet-plane{color:#40cf07}
-h2#matrix-preserve,#object-color-to-vertex-color-tag,#swap-mats{color:#00aaff}
+h2#matrix-preserve,#object-color-to-vertex-color-tag,#swap-mats,#mirror-along-edge-loop{color:#00aaff}
 h2#linked-camera{color:#a2baf5}
 h2#arnold-workflow-user_data_string{color:#828282}
 

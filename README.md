@@ -77,7 +77,7 @@ Swap 2 selected texture tags in Object Manager
 
 <br><br>
 
-## 🔹 [Mirror along Edge Loop.py](./vsky.scripts/Mirror%20along%20Edge%20Loop.py)  
+## 🔹 [Mirror along Edge Loop](./vsky.scripts/Mirror%20along%20Edge%20Loop.py)  
 
 <div class="btn-about">
 <img src="./assets/svg/gh_MirrorAlongSeamLoop.svg" width="84" align="left" style="padding-right: 12px;">
