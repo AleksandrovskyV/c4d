@@ -83,7 +83,7 @@ Swap 2 selected texture tags in Object Manager
 <img src="./assets/svg/gh_MirrorAlongSeamLoop.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
-Copies mesh point coordinates from one side to another<br>The edge/seam loop serves as the section plane. UV-Safe...
+Copies mesh point coordinates from one side to another.<br>The edge/seam loop serves as the section plane. UV-Safe...
 </p><br clear="left"></div>
 
 > A clone of the "Symmetrize" tool from Cinema 4D 2023+, which—for some mysterious reason—refused to work with my geometry.
