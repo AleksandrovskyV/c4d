@@ -33,7 +33,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
     document.getElementById("breakdown-content").innerText = clearText;
 });
 ```
-</details>
+</details><br>
 
 </details>
 
@@ -61,7 +61,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
   </a>
 </svg>
 ```
-</details>
+</details><br>
 
 Если вы будете верстать этот блок, дать вам совет, как лучше интегрировать?
 
