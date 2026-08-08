@@ -8,8 +8,7 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 [github.com](https://www.github.com)
 
 ### AI:
-
-<details><summary>Нажмите, чтобы развернуть заголовок</summary>
+<details><summary></summary>
 
 
 Нет, ваш репозиторий не забанят только за использование слова "shit"
@@ -34,8 +33,6 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 ```
 
 </details>
-
-
 
 ---
 
