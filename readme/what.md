@@ -43,25 +43,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 ####
 <details><summary>AI ANSWER</summary><br>
 
-Гениально. Это закрывает вообще все вопросы!
-
-
-
-<details><summary>xml file</summary>
-
-```xml
-<svg viewBox="0 0 400 50" xmlns="http://w3.org">
-  <a href="https://githubusercontent.com" target="_blank">
-    <path d="...координаты букв..." fill="#555555" />
-  </a>
-
-  <a href="#clean-breakdown-section">
-    <path d="...координаты букв..." fill="#007bff" />
-  </a>
-</svg>
-```
-</details><br>
-
+Гениально. Это закрывает все вопросы!
 Если вы будете верстать, дать вам совет, как лучше?
 
 </details>
