@@ -7,9 +7,7 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 Могут ли забанить мой github репозиторию за использование слова "shit"
 [github.com](https://www.github.com)
 
-### AI:
-<details><summary></summary>
-
+### AI:<details><summary></summary>
 
 Нет, ваш репозиторий не забанят только за использование слова "shit"
 
