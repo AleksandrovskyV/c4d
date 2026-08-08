@@ -7,8 +7,8 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 Могут ли забанить мою github репозиторию за использование слова "shit"
 [github.com](https://www.github.com)
 
-#### AI ANSWER
-<details><summary>expand</summary>
+####
+<details><summary>AI ANSWER</summary>
 
 Нет, ваш репозиторий не забанят только за использование слова "shit"
 
@@ -37,8 +37,8 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 
 да мы просто их в svg запихаем
 
-#### AI ANSWER
-<details><summary>expand</summary>
+####
+<details><summary>AI ANSWER</summary>
 
 Гениально. Это закрывает вообще все вопросы
 
