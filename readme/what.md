@@ -24,7 +24,7 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 * Каков контекст использования слова (название проекта, комментарий или коммит)?
 * Будет ли репозиторий публичным или приватным?
 
-<details><summary>javascript code</summary><br>
+<details><summary>javascript code</summary>
 
 ```javascript
 const encryptedBreakdown = "0Y3RgtC+INC/0L7Qu9C90L7QtSDQs9C+0LLQvdC+..."; 
@@ -48,7 +48,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 
 
 
-<details><summary>xml file</summary><br>
+<details><summary>xml file</summary>
 
 ```xml
 <svg viewBox="0 0 400 50" xmlns="http://w3.org">
