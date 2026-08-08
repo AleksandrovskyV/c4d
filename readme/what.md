@@ -43,8 +43,8 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 ####
 <details><summary>AI ANSWER</summary><br>
 
-Гениально. Это закрывает все вопросы!
-Если вы будете верстать, дать вам совет, как лучше?
+Гениально. Это закрывает все вопросы!<br>
+Если будете верстать — дать вам совет, как лучше?
 
 </details>
 
