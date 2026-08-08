@@ -46,7 +46,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 ####
 <details><summary>AI ANSWER</summary><br>
 
-Гениально. Это закрывает вообще все вопросы
+Гениально. Это закрывает вообще все вопросы!
 
 
 
@@ -65,7 +65,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 ```
 </details><br>
 
-Если вы будете верстать этот блок, дать вам совет, как лучше интегрировать?
+Если вы будете верстать этот блок, дать вам совет, как лучше?
 
 </details>
 
