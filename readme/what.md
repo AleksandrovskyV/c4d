@@ -3,11 +3,11 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 
 ---
 
-Могут ли забанить мой github репозиторию за использование слова "shit"
+Могут ли забанить мою github репозиторию за использование слова "shit"
 [github.com](https://www.github.com)
 
-### ANSWER:
-<details><summary>learn</summary>
+#### AI ANSWER
+<details><summary>expand</summary>
 
 Нет, ваш репозиторий не забанят только за использование слова "shit"
 
@@ -32,14 +32,12 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 
 </details>
 
----
-
 #
 
 да мы просто их в svg запихаем
 
-### ANSWER:
-<details><summary>learn</summary>
+#### AI ANSWER
+<details><summary>expand</summary>
 
 Гениально. Это закрывает вообще все вопросы
 
@@ -56,7 +54,5 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 ```
 
 Если вы будете верстать этот блок, дать вам совет, как лучше интегрировать?
-
----
 
 #
