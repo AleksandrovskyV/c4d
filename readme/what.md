@@ -3,11 +3,11 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 
 ---
 
-### ME:
 Могут ли забанить мой github репозиторию за использование слова "shit"
 [github.com](https://www.github.com)
 
-### <details><summary>ANSWER</summary>
+### ANSWER:
+<details><summary>learn</summary>
 
 Нет, ваш репозиторий не забанят только за использование слова "shit"
 
@@ -34,11 +34,13 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 
 ---
 
+#
 
-### ME:
 да мы просто их в svg запихаем
 
-### AI:
+### ANSWER:
+<details><summary>learn</summary>
+
 Гениально. Это закрывает вообще все вопросы
 
 ```xml
@@ -56,3 +58,5 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 Если вы будете верстать этот блок, дать вам совет, как лучше интегрировать?
 
 ---
+
+#
