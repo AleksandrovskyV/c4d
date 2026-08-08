@@ -4,7 +4,8 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 <br><br><br>
 
 
-
+#
+<br>
 Могут ли забанить мою github репозиторию за использование слова "shit"
 [github.com](https://www.github.com)
 
@@ -38,7 +39,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 </details>
 
 #
-
+<br>
 да мы просто их в svg запихаем
 
 ####
