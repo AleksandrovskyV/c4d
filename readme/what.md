@@ -24,6 +24,8 @@ _Дата экспорта: 8/8/2026, 9:48:30 PM_
 * Каков контекст использования слова (название проекта, комментарий или коммит)?
 * Будет ли репозиторий публичным или приватным?
 
+<details><summary>javascript code</summary><br>
+
 ```javascript
 const encryptedBreakdown = "0Y3RgtC+INC/0L7Qu9C90L7QtSDQs9C+0LLQvdC+..."; 
 document.getElementById("show-emotion-btn").addEventListener("click", () => {
@@ -31,6 +33,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
     document.getElementById("breakdown-content").innerText = clearText;
 });
 ```
+</details>
 
 </details>
 
@@ -43,6 +46,10 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 
 Гениально. Это закрывает вообще все вопросы
 
+
+
+<details><summary>xml file</summary><br>
+
 ```xml
 <svg viewBox="0 0 400 50" xmlns="http://w3.org">
   <a href="https://githubusercontent.com" target="_blank">
@@ -54,6 +61,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
   </a>
 </svg>
 ```
+</details>
 
 Если вы будете верстать этот блок, дать вам совет, как лучше интегрировать?
 
