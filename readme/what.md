@@ -58,3 +58,7 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 Если вы будете верстать этот блок, дать вам совет, как лучше интегрировать?
 
 #
+
+<br><br><br>
+
+---
