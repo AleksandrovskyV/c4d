@@ -1,4 +1,4 @@
-<br><br><br><br><br>
+<br><br><br>
 
 # Монолог
 _8/8/2026, 9:48:30 PM_
@@ -51,4 +51,3 @@ document.getElementById("show-emotion-btn").addEventListener("click", () => {
 #
 
 <br><br><br>
-
