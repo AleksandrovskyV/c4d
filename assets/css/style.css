@@ -36,6 +36,7 @@ border-bottom:0;
 summary{
 text-decoration: underline;
 }
+summary:hover{text-decoration:none;cursor:pointer;}
 
 h2#fillet-plane{color:#40cf07}
 h2#mp4-vidoc,#test-smile{color:#f1a600}
