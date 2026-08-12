@@ -1735,6 +1735,7 @@ if not_on_plane:
 ```
 <br>
 А так?
+
 <img src="./source/image_2.jpg" alt="image" />
 
 
