@@ -11,7 +11,7 @@ padding-bottom: 0.3em;margin-top: 24px;margin-bottom: 16px;
 border-bottom: 1px solid #eaecef;}
 
 .markdown-body h2{
-font-size:1.6em; font-weight:500;
+font-size:1.7em; font-weight:400;
 display:grid;grid-template-columns:auto 1fr;align-items:start;
 color:black;
 border-bottom: 1px solid #eaecef;
@@ -33,7 +33,9 @@ border-bottom:0;
 .markdown-body ul{margin:0 0 10px 24px;padding:0}
 .markdown-body video{width:100%; display:block; border-radius:6px; margin-bottom: -16.5px;}
 
-
+summary{
+text-decoration: underline;
+}
 
 h2#fillet-plane{color:#40cf07}
 h2#mp4-vidoc,#test-smile{color:#f1a600}
