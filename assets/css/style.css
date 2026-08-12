@@ -56,7 +56,7 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 @media (max-width: 780px) {
 .markdown-body img{width:100%; height: auto;}
-.breaker{display: block;}
+.brkr{display: block;}
 }
 
 .downico{display:block}
