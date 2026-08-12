@@ -56,7 +56,7 @@ using your current "Render Settings"
 ![preview](./assets/mp4-vidoc.gif)
 <br>
 
-<div align="right" class="ytlink">
+<div align="right" class="cslink yt">
 
 [extended](https://www.youtube.com/watch?v=ETzJl574FIY) *
 
@@ -88,6 +88,12 @@ Copies mesh point coordinates from one side to another.<br>The edge/seam loop se
 
 > A clone of the "Symmetrize" tool from Cinema 4D 2023+, which—for some mysterious reason—refused to work with my geometry.
 > Unfortunately, Google also failed to find any similar script when I tried to search for one
+
+<div align="right" class="cslink mn">
+
+[monolog](./readme/monolog-mirror-along-edge-loop.md) *
+
+</div>
 
 <br><br>
 

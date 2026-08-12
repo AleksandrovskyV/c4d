@@ -46,12 +46,15 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 .btn-about{display:flex;align-items:flex-start;}
 
-.ytlink{ text-align: right; margin-right: 4px;}
-.ytlink a{color:#ff9500;text-decoration: underline;}.ytlink a:hover{text-decoration:none}
+.cslink{ text-align: right; margin-right: 4px;}
+.cslink a{text-decoration: underline;}.cslink a:hover{text-decoration:none}
+
+.cslink.yt a{color:#ff9500;}
+.cslink.mn a{color:#0366d6;}
 
 /* width fix Web = 95% Mobile = 100% */
 .markdown-body video,
-.ytlink { width: clamp(95%, 100% + (100vw - 780px) * (95 - 100) / (1000 - 780), 100%);
+.cslink { width: clamp(95%, 100% + (100vw - 780px) * (95 - 100) / (1000 - 780), 100%);
 }
 
 @media (max-width: 780px) {
