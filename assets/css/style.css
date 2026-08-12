@@ -43,6 +43,7 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 
 
+
 .btn-about{display:flex;align-items:flex-start;}
 
 .ytlink{ text-align: right; margin-right: 4px;}
@@ -55,6 +56,7 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 @media (max-width: 780px) {
 .markdown-body img{width:100%; height: auto;}
+.breaker{display: block;}
 }
 
 .downico{display:block}
