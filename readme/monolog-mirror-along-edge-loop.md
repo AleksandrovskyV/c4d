@@ -470,7 +470,7 @@ if __name__ == '__main__':
 1. Ложь. "Mirror" у него я не смог найти, а "Flip" судя из описания просто копирует объекты относительно плоскости, никак не работая на уровне топологии
 2. Ложь. Судя по всему он просто удаляет половину и кладёт в Symmetry Object, ниже прилагаю скриншот
 
-<img src="./source/image_1.jpg" alt="image" />
+<img src="./source/image_1.jpg" alt="image" style="width: auto; height: auto; max-width: none;" />
 
 
 ####
@@ -1736,7 +1736,7 @@ if not_on_plane:
 <br>
 
 А так?\
-<img src="./source/image_2.jpg" alt="image" />
+<img src="./source/image_2.jpg" alt="image" style="width: auto; height: auto; max-width: none;" />
 
 
 ####
@@ -2581,7 +2581,7 @@ A clone of the "Symmetrize" tool from Cinema 4D 2023+, which—for some mysterio
 #
 
 <br><br>
-<img src="./source/image_4.jpg" alt="image" />
+<img src="./source/image_4.jpg" alt="image" style="width: auto; height: auto; max-width: none;" />
 
 _* released and... *_
 
@@ -2887,7 +2887,7 @@ def is_edge_loop_closed(obj, seam_edges):
 
 Почему flood fill в этом примере не отработал? &#42;&#42;&#42;&#42;&#42; &#42;&#42;&#42;&#42; &#42;&#42; &#42;&#42;&#42;&#42;&#42;, я уже архивы запечатал!\
 
-<img src="./source/image_3.jpg" alt="image" />
+<img src="./source/image_3.jpg" alt="image" style="width: auto; height: auto; max-width: none;" />
 
 
 ####
