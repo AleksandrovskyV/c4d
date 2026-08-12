@@ -9,7 +9,7 @@ _8/7/2026_
 
 <br><br>
 
-## завязка
+## &#42; завязка
 _12:20_
 
 <br>
@@ -1101,7 +1101,7 @@ if __name__ == '__main__':
 
 <br><br>
 
-## производство
+## &#42; производство
 _14:56_
 
 <details><summary>раскрыть</summary><br>
@@ -2486,7 +2486,7 @@ SCRIPT_NAME = "Mirror along Edge Loop"
 
 <br><br>
 
-## кульминация
+## &#42; кульминация
 _19:07_
 
 <details><summary>раскрыть</summary><br>
@@ -3102,7 +3102,7 @@ edge_selection = obj.GetEdgeS()
 
 <br><br>
 
-## послесловие
+## &#42; послесловие
 _21:08_
 <details><summary>раскрыть</summary><br>
 <details hidden></details>
