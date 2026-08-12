@@ -1734,8 +1734,8 @@ if not_on_plane:
 какой-то обширный бред...
 ```
 <br>
-А так?
 
+А так?\
 <img src="./source/image_2.jpg" alt="image" />
 
 
