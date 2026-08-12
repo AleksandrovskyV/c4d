@@ -3,8 +3,8 @@
 # Монолог
 _8/7/2026_
 
-Текстовой процесс появления "Mirror along Edge Loop"
-Слепок google-ai-mode собран [этим](https://github.com/AleksandrovskyV/notes/blob/main/assets/google_to_md_file_v2.js) скриптом 
+Текстовой процесс появления "Mirror along Edge Loop"\
+Слепок google-ai-mode собран [этим](https://github.com/AleksandrovskyV/notes/blob/main/assets/google_to_md_file_v2.js) скриптом\
 и отцензурен лично в Sublime Text 2
 
 <br><br>
