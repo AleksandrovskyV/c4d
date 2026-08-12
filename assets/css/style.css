@@ -45,7 +45,7 @@ h2#arnold-workflow-user_data_string{color:#828282}
 
 .btn-about{display:flex;align-items:flex-start;}
 
-.cslink{ text-align: right; margin-right: 4px;}
+.cslink{ text-align: right; margin-right: 4px; max-width: none !important}
 .cslink a{text-decoration: underline;}.cslink a:hover{text-decoration:none}
 
 .cslink.yt a{color:#ff9500;}
