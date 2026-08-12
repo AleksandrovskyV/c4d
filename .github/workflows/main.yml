@@ -32,7 +32,7 @@ jobs:
       - name: Build Clean HTML
         run: |
 
-          # метод замены ".gif" на "mp4" 
+          # метод замены ".gif" на "mp4", исправление <p> на <div class="mreplace">
           process_html_videos() {
             local input_file="$1"
             local output_file="$2"
@@ -50,18 +50,18 @@ jobs:
               local mp4_path="${clean_path%.gif}.mp4"
               local jpg_path="${clean_path%.gif}.jpg"
               
-              # Формируем пути для тегов в HTML (сохраняя оригинальные относительные точки/слэши)
+              # Формируем пути для тегов в HTML
               local html_mp4_path="${gif_path%.gif}.mp4"
               local html_jpg_path="${gif_path%.gif}.jpg"
               
-              # Изначально ставим в постер саму гифку (на случай, если jpg забыли сделать)
+              # Изначально ставим в постер саму гифку
               local final_poster="$gif_path"
               
               # ПРОВЕРКА 1: Видеофайл .mp4 СТРОГО обязан существовать
               if [ -f "$mp4_path" ]; then
                 echo "Найдено видео для автозамены: $mp4_path"
                 
-                # ПРОВЕРКА 2: Если рядом лежит .jpg, берем его как постер для экономии трафика
+                # ПРОВЕРКА 2: Если рядом лежит .jpg, берем его как постер
                 if [ -f "$jpg_path" ]; then
                   echo "--> Найдена легкая JPG-заглушка для постера: $jpg_path"
                   final_poster="$html_jpg_path"
@@ -76,8 +76,15 @@ jobs:
                 local safe_gif_path=$(echo "$gif_path" | sed 's|/|\\/|g' | sed 's|\.|\\.|g')
                 local safe_video_tag=$(echo "$video_tag" | sed 's|/|\\/|g')
                 
-                # Заменяем только этот конкретный тег img на тег video
+                # 1. Заменяем только этот конкретный тег img на тег video
                 sed -i -E "s|<img[^>]+src=\"$safe_gif_path\"[^>]*>|$safe_video_tag|g" "$temp_file"
+
+                # 2. ИСПРАВЛЕНИЕ: Меняем окружающий <p>...</p> на <div class="mreplace">...</div>
+                # Заменяем открывающий <p>, если внутри идет наше видео (с возможным <span>)
+                sed -i -E "s|<p>([^<]*(<span>)?$safe_video_tag)|<div class=\"mreplace\">\1|g" "$temp_file"
+                # Заменяем закрывающий </p> сразу после этого видео (с возможным </span>)
+                sed -i -E "s|($safe_video_tag(</span>)?[^<]*)</p>|\1</div>|g" "$temp_file"
+                
               else
                 echo "Видео не найдено, оставляем GIF: $mp4_path"
               fi
@@ -86,6 +93,7 @@ jobs:
             # Переносим обработанный результат в чистовой файл и удаляем временный
             mv "$temp_file" "$output_file"
           }
+
 
 
           # -----------------------------------------------------------------
