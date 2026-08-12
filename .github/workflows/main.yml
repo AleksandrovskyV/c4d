@@ -149,6 +149,9 @@ jobs:
               if [ "$filename" = "readme" ] || [ "$filename" = "README" ]; then
                 html_file="readme/index.html"
                 title_name="/c4d/readme"
+              elif [ "$filename" = "monolog-mirror-along-edge-loop" ]; then
+                html_file="readme/monolog-mirror-along-edge-loop.html"
+                title_name="monolog"
               else
                 html_file="readme/${filename}.html"
                 title_name="/c4d/$filename"
