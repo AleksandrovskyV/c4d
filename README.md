@@ -86,8 +86,9 @@ Swap 2 selected texture tags in Object Manager
 Copies mesh point coordinates from one side to another.<br>The edge/seam loop serves as the section plane. UV-Safe...
 </p><br clear="left"></div>
 
-> A clone of the "Symmetrize" tool from Cinema 4D 2023+, which for some *mysterious reason* \
-> refused to work with my geometry. Unfortunately, Google also failed to find any similar script when I tried to search for one
+>A clone of the "Symmetrize" tool from Cinema 4D 2023+, which for some *mysterious reason* \
+>refused to work with my geometry. Unfortunately, Google also failed to find any similar script\
+>when I tried to search for one
 
 <div align="right" class="cslink mn">
 
