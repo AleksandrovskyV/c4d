@@ -151,7 +151,7 @@ jobs:
                 title_name="/c4d/readme"
               elif [ "$filename" = "monolog-mirror-along-edge-loop" ]; then
                 html_file="readme/monolog-mirror-along-edge-loop.html"
-                title_name="monolog"
+                title_name="/c4d/monolog"
               else
                 html_file="readme/${filename}.html"
                 title_name="/c4d/$filename"
