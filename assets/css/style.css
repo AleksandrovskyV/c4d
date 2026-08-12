@@ -10,9 +10,14 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,
 padding-bottom: 0.3em;margin-top: 24px;margin-bottom: 16px;
 border-bottom: 1px solid #eaecef;}
 
-.markdown-body h2{line-height: 1.25;font-size:2.5em;font-weight:600;color:#f1a600;
+.markdown-body h2{line-height: 1.25;
 margin-top:24px;margin-bottom: 16px;border-bottom:0;
-display:grid;grid-template-columns:auto 1fr;align-items:start;}
+display:grid;grid-template-columns:auto 1fr;align-items:start;
+color:black;}
+
+h2#fillet-plane,#mp4-vidoc,#test-smile,#matrix-preserve,#object-color-to-vertex-color-tag,#swap-mats,#mirror-along-edge-loop,#linked-camera,#arnold-workflow-user_data_string{
+font-size:2.5em;font-weight:600;
+}
 .markdown-body h2 a{text-decoration:underline;color:black;display:block;font-size:0.54em;line-height:1.2;padding-top:.75em}
 
 .markdown-body a{color:#0366d6;text-decoration:none}.markdown-body a:hover{text-decoration:underline}
@@ -23,7 +28,10 @@ display:grid;grid-template-columns:auto 1fr;align-items:start;}
 .markdown-body ul{margin:0 0 10px 24px;padding:0}
 .markdown-body video{width:100%; display:block; border-radius:6px; margin-bottom: -16.5px;}
 
+
+
 h2#fillet-plane{color:#40cf07}
+h2#mp4-vidoc,#test-smile{color:#f1a600}
 h2#matrix-preserve,#object-color-to-vertex-color-tag,#swap-mats,#mirror-along-edge-loop{color:#00aaff}
 h2#linked-camera{color:#a2baf5}
 h2#arnold-workflow-user_data_string{color:#828282}
