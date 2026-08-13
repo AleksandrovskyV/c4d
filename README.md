@@ -92,7 +92,7 @@ Copies mesh point coordinates from one side to another.<br>The edge/seam loop se
 
 <div align="right" class="cslink mn">
 
-[monolog](./readme/monolog-mirror-along-edge-loop.md) *
+[monolog](./monolog.md) *
 
 </div>
 
