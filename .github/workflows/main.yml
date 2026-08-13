@@ -134,85 +134,121 @@ jobs:
           
           echo '</div></body></html>' >> index.html
 
-          # -----------------------------------------------------------------
-          # 2. Сборка всех .md файлов внутри папки readme
-          # -----------------------------------------------------------------
 
-          files_to_process=()
+
+          # -----------------------------------------------------------------
+          # [ИСПРАВЛЕНО] Сборка монолога из корня ("monolog.html")
+          # -----------------------------------------------------------------
+          # Ищем файл в корне без учета регистра
+          root_monolog=$(find . -maxdepth 1 -iname "monolog.md" -type f | head -n 1)
           
-          for file in ./[m]onolog.md; do
-            [ -e "$file" ] && files_to_process+=("$file")
-          done
-
-          # 2. Проверяем файлы в папке readme
-          if [ -d "readme" ]; then
-            for file in readme/*.md; do
-              [ -e "$file" ] || continue
-              files_to_process+=("$file")
-            done
-          fi
-
-          # Запуск единого цикла обработки файлов
-          for file in "${files_to_process[@]}"; do
-            base_name=$(basename "$file")
-            filename="${base_name%.*}"
-
-            # Определяем, находится ли файл в корне или в папке readme
-            if [[ "$file" == "./"* ]]; then
-              is_root=true
-              dir_prefix=""
-            else
-              is_root=false
-              dir_prefix="readme/"
-            fi
-
-            # Динамическое определение путей генерации HTML
-            if [ "$filename" = "readme" ] || [ "$filename" = "README" ]; then
-              html_file="readme/index.html"
-              title_name="/c4d/readme"
-            elif [ "$filename" = "monolog" ] || [ "$filename" = "monolog-mirror-along-edge-loop" ]; then
-              # Меняем имя файла на monolog-mirror-along-edge-loop.html, даже если исходник в корне назывался просто monolog.md
-              html_file="${dir_prefix}monolog-mirror-along-edge-loop.html"
-              title_name="/c4d/monolog"
-            else
-              html_file="${dir_prefix}${filename}.html"
-              title_name="/c4d/$filename"
-            fi
+          if [ -n "$root_monolog" ]; then
+            # Файл создается строго в корне, имя совпадает с url в og:tags
+            html_file="monolog.html"
+            title_name="/c4d/monolog"
             
-            # Проверяем, монолог это или нет (учитываем оба возможных имени)
-            if [ "$filename" = "monolog-mirror-along-edge-loop" ] || [ "$filename" = "monolog" ]; then
-              # Оставляем ваш расширенный head для монолога
-              echo "<!DOCTYPE html><html lang=\"ru\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title><link rel=\"canonical\" href=\"https://vsky.space/c4d/readme/monolog-mirror-along-edge-loop\"><meta property=\"og:title\" content=\"/c4d/monolog\"><meta property=\"og:type\" content=\"website\"><meta property=\"og:url\" content=\"https://vsky.space/c4d/readme/monolog-mirror-along-edge-loop\"><meta property=\"og:description\" content=\"Текстовый процесс появления «Mirror along Edge Loop»\"><meta property=\"og:image\" content=\"https://vsky.space/content/cover/monolog_mael.jpg\"><meta property=\"og:image:secure_url\" content=\"https://vsky.space/content/cover/monolog_mael.jpg\"><meta name=\"twitter:card\" content=\"summary_large_image\"><meta name=\"twitter:title\" content=\"/c4d/monolog\"><meta name=\"twitter:description\" content=\"Текстовый процесс появления «Mirror along Edge Loop»\"><meta name=\"twitter:image\" content=\"https://vsky.space/content/cover/monolog_mael.jpg\"><meta name=\"twitter:site\" content=\"@AleksandrovskyV\">" > "$html_file"
-            else
-              # Для всех остальных файлов оставляем дефолтный заголовок на английском
-              echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title>" > "$html_file"
-            fi
+            # Генерируем шапку для КОРНЕВОЙ страницы (добавлен правильный <base href="/c4d/">)
 
-            # Мгновенно очищаем URL
+            # Инициализируем файл и собираем head по кусочкам
+            echo '<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8">' > "$html_file"
+            echo '<meta name="viewport" content="width=device-width, initial-scale=1">' >> "$html_file"
+            echo "<title>$title_name</title>" >> "$html_file"
+            echo '<base href="/c4d/">' >> "$html_file"
+            echo '<link rel="canonical" href="https://vsky.space/c4d/monolog">' >> "$html_file"
+            
+            # Open Graph мета-теги
+            echo '<meta property="og:title" content="/c4d/monolog">' >> "$html_file"
+            echo '<meta property="og:type" content="website">' >> "$html_file"
+            echo '<meta property="og:url" content="https://vsky.space/c4d/monolog">' >> "$html_file"
+            echo '<meta property="og:description" content="Текстовый процесс появления «Mirror along Edge Loop»">' >> "$html_file"
+            echo '<meta property="og:image" content="https://vsky.space/content/cover/monolog_mael.jpg">' >> "$html_file"
+            echo '<meta property="og:image:secure_url" content="https://vsky.space/content/cover/monolog_mael.jpg">' >> "$html_file"
+            
+            # Twitter мета-теги
+            echo '<meta name="twitter:card" content="summary_large_image">' >> "$html_file"
+            echo '<meta name="twitter:title" content="/c4d/monolog">' >> "$html_file"
+            echo '<meta name="twitter:description" content="Текстовый процесс появления «Mirror along Edge Loop»">' >> "$html_file"
+            echo '<meta name="twitter:image" content="https://vsky.space/content/cover/monolog_mael.jpg">' >> "$html_file"
+            echo '<meta name="twitter:site" content="@AleksandrovskyV">' >> "$html_file"
+ 
+            # Скрипт очистки URL (в обертке {}) и стили
             echo '<script>{let p=location.pathname; if(p.endsWith(".html"))p=p.slice(0,-5); if(p.endsWith("index"))p=p.slice(0,-5); if(p.endsWith("/"))p=p.slice(0,-1); if(p!==location.pathname){history.replaceState(null,"",p+location.search+location.hash);}}</script>' >> "$html_file"
-
             echo '<style>' >> "$html_file"
             cat ./assets/css/style.css >> "$html_file"
             echo '</style>' >> "$html_file"
             echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> "$html_file"
             
-            # Базовая конвертация внутренней страницы в промежуточный файл
-            if [ "$filename" = "readme" ] || [ "$filename" = "README" ]; then
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="index.html">return</a>|g' | sed 's/href="\.\//href="readme\//g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > internal_base.html
-            else
-              # Для всех остальных файлов (включая монолог из корня)
-              pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > internal_base.html
-            fi
-
-            # Запуск функции умной проверки видео для внутренних страниц
-            process_html_videos "internal_base.html" "internal_final.html"
-            cat internal_final.html >> "$html_file"
-            rm internal_base.html internal_final.html
+            # Конвертируем корневой файл (логика sed аналогична вашему главному README.md)
+            tr -d '\r' < "$root_monolog" | pandoc -f markdown-yaml_metadata_block -t html | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > root_monolog_base.html
+            
+            # Запуск метода проверки видео для корневого монолога
+            process_html_videos "root_monolog_base.html" "root_monolog_final.html"
+            cat root_monolog_final.html >> "$html_file"
+            rm root_monolog_base.html root_monolog_final.html
             
             echo '</div></body></html>' >> "$html_file"
-          done
-          
-          shopt -u nocaseglob
+          fi
+
+          # -----------------------------------------------------------------
+          # 2. Сборка всех .md файлов внутри папки readme
+          # -----------------------------------------------------------------
+          if [ -d "readme" ]; then
+            shopt -s nocaseglob
+            
+            for file in readme/*.md; do
+              [ -e "$file" ] || continue
+              
+              base_name=$(basename "$file")
+              filename="${base_name%.*}"
+
+              if [ "$filename" = "readme" ] || [ "$filename" = "README" ]; then
+                html_file="readme/index.html"
+                title_name="/c4d/readme"
+              elif [ "$filename" = "monolog-mirror-along-edge-loop" ]; then
+                html_file="readme/monolog-mirror-along-edge-loop.html"
+                title_name="/c4d/monolog"
+              else
+                html_file="readme/${filename}.html"
+                title_name="/c4d/$filename"
+              fi
+              
+              # Проверяем, монолог это или нет
+              if [ "$filename" = "monolog-mirror-along-edge-loop" ]; then
+                # Вставляем расширенный head для монолога (на русском, с Open Graph и Twitter мета-тегами)
+                    echo "<!DOCTYPE html><html lang=\"ru\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title><link rel=\"canonical\" href=\"https://vsky.space/c4d/readme/monolog-mirror-along-edge-loop\"><meta property=\"og:title\" content=\"/c4d/monolog\"><meta property=\"og:type\" content=\"website\"><meta property=\"og:url\" content=\"https://vsky.space/c4d/readme/monolog-mirror-along-edge-loop\"><meta property=\"og:description\" content=\"Текстовый процесс появления «Mirror along Edge Loop»\"><meta property=\"og:image\" content=\"https://vsky.space/content/cover/monolog_mael.jpg\"><meta property=\"og:image:secure_url\" content=\"https://vsky.space/content/cover/monolog_mael.jpg\"><meta name=\"twitter:card\" content=\"summary_large_image\"><meta name=\"twitter:title\" content=\"/c4d/monolog\"><meta name=\"twitter:description\" content=\"Текстовый процесс появления «Mirror along Edge Loop»\"><meta name=\"twitter:image\" content=\"https://vsky.space/content/cover/monolog_mael.jpg\"><meta name=\"twitter:site\" content=\"@AleksandrovskyV\">" > "$html_file"
+              else
+                # Для всех остальных файлов оставляем дефолтный заголовок на английском
+                echo "<!DOCTYPE html><html lang=\"en-US\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>$title_name</title>" > "$html_file"
+              fi
+
+              # Мгновенно очищаем URL: убираем .html, затем слово index, затем финальный слэш
+              echo '<script>{let p=location.pathname; if(p.endsWith(".html"))p=p.slice(0,-5); if(p.endsWith("index"))p=p.slice(0,-5); if(p.endsWith("/"))p=p.slice(0,-1); if(p!==location.pathname){history.replaceState(null,"",p+location.search+location.hash);}}</script>' >> "$html_file"
+
+
+              echo '<style>' >> "$html_file"
+              cat ./assets/css/style.css >> "$html_file"
+              echo '</style>' >> "$html_file"
+              echo '</head><body><div class="container-lg px-3 my-5 markdown-body">' >> "$html_file"
+              
+              # Базовая конвертация внутренней страницы в промежуточный файл
+              if [ "$filename" = "readme" ] || [ "$filename" = "README" ]; then
+                pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="index.html">return</a>|g' | sed 's/href="\.\//href="readme\//g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > internal_base.html
+              else
+                # Для всех остальных файлов в папке readme оставляем как было
+                pandoc -f markdown-yaml_metadata_block -t html "$file" | tr -d '\r' | sed -E 's|href="[^"]*">return</a>|href="index.html">return</a>|g' | sed 's/\.md"/\.html"/g' | sed 's/\xF0\x9F\x94\xB9 /<span class="downico"><\/span>/g' | sed -E 's|<img[^>]+src="[^"]*/([^/"]+)\.svg"[^>]*>|<div class="btnico \1"><\/div>|g' > internal_base.html
+              fi
+
+
+              # Запуск функции умной проверки видео для внутренних страниц
+              process_html_videos "internal_base.html" "internal_final.html"
+              cat internal_final.html >> "$html_file"
+              rm internal_base.html internal_final.html
+              
+              echo '</div></body></html>' >> "$html_file"
+            done
+            
+            shopt -u nocaseglob
+          fi
 
           # Создаем точную копию главной страницы, но с именем "c4d" без расширения.
           cp index.html c4d
