@@ -1,0 +1,38 @@
+CONTAINER GlobusDeformer
+{
+  NAME GlobusDeformer;
+  INCLUDE Obase;
+
+  GROUP ID_OBJECTPROPERTIES
+  {
+    DEFAULT 1;
+    
+    LONG ID_MAIN_MODE
+    {
+      CUSTOMGUI CYCLE;
+      CYCLE
+      {
+        ID_MODE_MERC_GLOBE;
+        ID_MODE_EQUID_GLOBE;
+        ID_MODE_MERC_TO_EQ;
+        ID_MODE_EQ_TO_MERC;
+      }
+    }
+
+    LONG ID_AXIS_MODE
+    {
+      CYCLE
+      {
+        ID_PLANE_XY;
+        ID_PLANE_XZ;
+        ID_PLANE_ZY;
+      }
+    }
+
+    REAL ID_MAP_WIDTH { UNIT METER; MIN 1.0; }
+    REAL ID_MAP_HEIGHT { UNIT METER; MIN 1.0; }
+    REAL ID_MULTIPLIER { MIN 0.01; STEP 0.01; }
+    REAL ID_LAT_SCALE { MIN 0.0; STEP 0.01; CUSTOMGUI REALSLIDER; }
+    REAL ID_STRENGTH { UNIT PERCENT; MIN 0.0; MAX 100.0; CUSTOMGUI REALSLIDER; }
+  }
+}
