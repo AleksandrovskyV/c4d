@@ -1,5 +1,5 @@
-#ifndef _GlobusDeformer_H_
-#define _GlobusDeformer_H_
+#ifndef _GlobeDeformer_H_
+#define _GlobeDeformer_H_
 
 #include "omodifier.h"
 
@@ -25,4 +25,4 @@ enum
   ID_MODE_EQ_TO_MERC   = 3
 };
 
-#endif // _GlobusDeformer_H_
+#endif

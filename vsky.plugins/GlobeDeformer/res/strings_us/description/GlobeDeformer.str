@@ -1,0 +1,22 @@
+STRINGTABLE GlobeDeformer
+{
+  GlobeDeformer "Globe Deformer";
+  
+  ID_MAIN_MODE        "Mode";
+  ID_MODE_MERC_GLOBE   "Globe from Mercator (1:1)";
+  ID_MODE_EQUID_GLOBE  "Globe from Equidistant (2:1)";
+  ID_MODE_MERC_TO_EQ   "2D Convert: Mercator > Equidistant";
+  ID_MODE_EQ_TO_MERC   "2D Convert: Equidistant > Mercator";
+
+  ID_AXIS_MODE        "Axis";
+  ID_PLANE_XY         "XY";
+  ID_PLANE_XZ         "XZ";
+  ID_PLANE_ZY         "ZY";
+  
+  ID_MAP_WIDTH        "Width";
+  ID_MAP_HEIGHT       "Height";
+  
+  ID_MULTIPLIER       "Globe Radius Multiplier";
+  ID_LAT_SCALE        "Globe Latitude Stretch";
+  ID_STRENGTH         "Deformer Strength";
+}

@@ -1,5 +1,5 @@
 """
-Globus Deformer
+Globe Deformer
 
 Author: Viktor Aleksandrovsky & Google
 Written & Tested for Maxon Cinema 4D R19
@@ -18,7 +18,7 @@ PLUGIN_ID = 1063489
 # Добавить иконку
 # ========================================================
 
-class GlobusDeformer(c4d.plugins.ObjectData):
+class GlobeDeformer(c4d.plugins.ObjectData):
     
     def Init(self, node):
         data = node.GetDataInstance()
@@ -132,7 +132,7 @@ class GlobusDeformer(c4d.plugins.ObjectData):
         to_mod_space = ~mod_mg * op_mg
         to_op_space = ~op_mg * mod_mg
 
-        # БЛОК 1: 3D GLOBUS (MODE 0 и 1)
+        # БЛОК 1: 3D GLOBe (MODE 0 и 1)
         if main_mode == 0 or main_mode == 1:
             axis_mode = data.GetLong(1000)
             radius_mult = data.GetFloat(1001)
@@ -236,9 +236,9 @@ class GlobusDeformer(c4d.plugins.ObjectData):
 if __name__ == "__main__":
     c4d.plugins.RegisterObjectPlugin(
         id=PLUGIN_ID,
-        str="Globus Deformer",
-        g=GlobusDeformer,
-        description="GlobusDeformer",
+        str="Globe Deformer",
+        g=GlobeDeformer,
+        description="GlobeDeformer",
         icon=None,
         info=c4d.OBJECT_MODIFIER
     )
