@@ -15,7 +15,8 @@ STRINGTABLE GlobeDeformer
   
   ID_MAP_WIDTH        "Width";
   ID_MAP_HEIGHT       "Height";
-  
+  ID_FIT_TO_OBJECT    "Fit to Object";
+
   ID_MULTIPLIER       "Globe Radius Multiplier";
   ID_LAT_SCALE        "Globe Latitude Stretch";
   ID_STRENGTH         "Deformer Strength";

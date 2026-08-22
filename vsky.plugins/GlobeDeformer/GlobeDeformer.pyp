@@ -1,20 +1,17 @@
 """
 Globe Deformer
 
-Author: Viktor Aleksandrovsky & Google
+Author: Viktor Aleksandrovsky & Google AI
 Written & Tested for Maxon Cinema 4D R19
 """
 
 import c4d
 import math
 PLUGIN_ID = 1063489 
+FIT_CENTER_ID = 1023
 
 # ========================================================
-# Добавить refresh кнопку (чтобы можно было обновить ирерахию при перемещении деформера)
-# Добавить Width\Height как режим альтернативный bbox + сделать в unlock по toggling
-# Убрать пропись значений width\height при добавлении деформера в иерархию
 # Добавить Draw Guide Map
-# Добавить матрицу трансформации (чтобы можно было перемещать)
 # Добавить иконку
 # ========================================================
 
@@ -33,38 +30,83 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
     def CalculateHierarchyBBox(self, root_obj, mod_mg):
         bounds = {
-            "min_x": 999999999.0, "min_y": 999999999.0, "min_z": 999999999.0,
-            "max_x": -999999999.0, "max_y": -999999999.0, "max_z": -999999999.0,
+            "min_x": 999999999.0,
+            "min_y": 999999999.0,
+            "min_z": 999999999.0,
+            "max_x": -999999999.0,
+            "max_y": -999999999.0,
+            "max_z": -999999999.0,
             "has_geometry": False
         }
 
+        def add_point(p):
+            bounds["min_x"] = min(bounds["min_x"], p.x)
+            bounds["min_y"] = min(bounds["min_y"], p.y)
+            bounds["min_z"] = min(bounds["min_z"], p.z)
+
+            bounds["max_x"] = max(bounds["max_x"], p.x)
+            bounds["max_y"] = max(bounds["max_y"], p.y)
+            bounds["max_z"] = max(bounds["max_z"], p.z)
+
+            bounds["has_geometry"] = True
+
+        def add_object_bbox(obj):
+            rad = obj.GetRad()
+            mp = obj.GetMp()
+
+            if rad.x <= 0.0 and rad.y <= 0.0 and rad.z <= 0.0:
+                return
+
+            obj_to_mod = ~mod_mg * obj.GetMg()
+
+            # Все 8 углов локального bounding box.
+            for sx in (-1.0, 1.0):
+                for sy in (-1.0, 1.0):
+                    for sz in (-1.0, 1.0):
+                        local_p = mp + c4d.Vector(
+                            rad.x * sx,
+                            rad.y * sy,
+                            rad.z * sz
+                        )
+
+                        add_point(obj_to_mod * local_p)
+
         def walk(obj):
-            if obj is None: return
+            if obj is None:
+                return
 
-            if obj.IsInstanceOf(c4d.Opolygon) or obj.IsInstanceOf(c4d.Ospline) or (obj.GetType() == 5138):
-                rad = obj.GetRad()
-                mp = obj.GetMp() 
-                
-                if rad.x > 0.0 or rad.y > 0.0 or rad.z > 0.0:
-                    bounds["has_geometry"] = True
-                    m_op = obj.GetMg()
-                    op_to_mod = ~mod_mg * m_op
-                    
-                    p1 = op_to_mod * (mp + c4d.Vector(-rad.x, -rad.y, -rad.z))
-                    p2 = op_to_mod * (mp + c4d.Vector(rad.x, rad.y, rad.z))
-                    
-                    # Расширяем общие границы составной карты
-                    bounds["min_x"] = min(bounds["min_x"], p1.x, p2.x)
-                    bounds["min_y"] = min(bounds["min_y"], p1.y, p2.y)
-                    bounds["min_z"] = min(bounds["min_z"], p1.z, p2.z)
-                    
-                    bounds["max_x"] = max(bounds["max_x"], p1.x, p2.x)
-                    bounds["max_y"] = max(bounds["max_y"], p1.y, p2.y)
-                    bounds["max_z"] = max(bounds["max_z"], p1.z, p2.z)
+            # Сначала пробуем сам объект.
+            add_object_bbox(obj)
 
+            # Затем его cache.
+            cache = obj.GetCache()
+
+            if cache:
+                walk_cache(cache, mod_mg)
+
+            # И deformation cache.
+            deform_cache = obj.GetDeformCache()
+
+            if deform_cache and deform_cache != cache:
+                walk_cache(deform_cache, mod_mg)
+
+            # Дети исходной иерархии.
             child = obj.GetDown()
+
             while child:
                 walk(child)
+                child = child.GetNext()
+
+        def walk_cache(obj, matrix):
+            if obj is None:
+                return
+
+            add_object_bbox(obj)
+
+            child = obj.GetDown()
+
+            while child:
+                walk_cache(child, matrix)
                 child = child.GetNext()
 
         walk(root_obj)
@@ -75,15 +117,150 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         w_size = bounds["max_x"] - bounds["min_x"]
         h_size = bounds["max_y"] - bounds["min_y"]
         d_size = bounds["max_z"] - bounds["min_z"]
-        
-        hierarchy_size = c4d.Vector(w_size, h_size, d_size)
+
+        hierarchy_size = c4d.Vector(
+            w_size,
+            h_size,
+            d_size
+        )
+
         center = c4d.Vector(
             (bounds["min_x"] + bounds["max_x"]) * 0.5,
             (bounds["min_y"] + bounds["max_y"]) * 0.5,
             (bounds["min_z"] + bounds["max_z"]) * 0.5
         )
-        
+
         return hierarchy_size, center
+
+    def Draw(self, op, drawpass, bd, bh):
+        # Рисуем guide только один раз — в Object pass.
+        if drawpass != c4d.DRAWPASS_OBJECT:
+            return c4d.DRAWRESULT_SKIP
+
+        if op is None or bd is None:
+            return c4d.DRAWRESULT_SKIP
+
+        data = op.GetDataInstance()
+
+        w_size = data.GetFloat(1020)
+        h_size = data.GetFloat(1021)
+        axis_mode = data.GetLong(1000)
+
+        if w_size <= 0.0 or h_size <= 0.0:
+            return c4d.DRAWRESULT_SKIP
+
+        hw = w_size * 0.5
+        hh = h_size * 0.5
+
+        # Прямоугольник в локальной системе координат деформера.
+        if axis_mode == 0:          # XY
+            points = [
+                c4d.Vector(-hw, -hh, 0.0),
+                c4d.Vector( hw, -hh, 0.0),
+                c4d.Vector( hw,  hh, 0.0),
+                c4d.Vector(-hw,  hh, 0.0)
+            ]
+
+        elif axis_mode == 1:        # XZ
+            points = [
+                c4d.Vector(-hw, 0.0, -hh),
+                c4d.Vector( hw, 0.0, -hh),
+                c4d.Vector( hw, 0.0,  hh),
+                c4d.Vector(-hw, 0.0,  hh)
+            ]
+
+        else:                       # ZY
+            points = [
+                c4d.Vector(0.0, -hh, -hw),
+                c4d.Vector(0.0, -hh,  hw),
+                c4d.Vector(0.0,  hh,  hw),
+                c4d.Vector(0.0,  hh, -hw)
+            ]
+
+        # Локальные координаты -> координаты деформера.
+        bd.SetMatrix_Matrix(op, op.GetMg())
+
+        # Для проверки задаём заведомо заметный цвет.
+        bd.SetPen(c4d.Vector(1.0, 1.0, 0.0), 0)
+
+        bd.DrawLine(points[0], points[1], c4d.NOCLIP_D)
+        bd.DrawLine(points[1], points[2], c4d.NOCLIP_D)
+        bd.DrawLine(points[2], points[3], c4d.NOCLIP_D)
+        bd.DrawLine(points[3], points[0], c4d.NOCLIP_D)
+
+        return c4d.DRAWRESULT_OK
+
+    def Message(self, node, type, data):
+        if type == c4d.MSG_DESCRIPTION_COMMAND:
+            if data is not None:
+                desc_id = data.get("id")
+
+                if desc_id is not None:
+                    print("BUTTON:", desc_id[0].id)
+
+                    if desc_id[0].id == 1022:
+                        print("FIT TO OBJECT")
+
+                        result = self.FitToObject(node)
+                        print("FIT RESULT:", result)
+
+                        node.SetDirty(c4d.DIRTYFLAGS_DATA)
+                        c4d.EventAdd()
+
+                        return True
+
+        return True
+
+    def FitToObject(self, op):
+        data = op.GetDataInstance()
+        target = op.GetUp()
+
+        #print("FIT TARGET:", target)
+        #print("FIT TARGET TYPE:", target.GetType() if target else None)
+
+        if target is None:
+            return False
+
+        mod_mg = op.GetMg()
+        bbox_data = self.CalculateHierarchyBBox(target, mod_mg)
+
+        if bbox_data is None:
+            return False
+
+        hierarchy_size, center = bbox_data
+        axis_mode = data.GetLong(1000)
+
+        if axis_mode == 0:          # XY
+            w_size = float(hierarchy_size.x)
+            h_size = float(hierarchy_size.y)
+
+        elif axis_mode == 1:        # XZ
+            w_size = float(hierarchy_size.x)
+            h_size = float(hierarchy_size.z)
+
+        else:                       # ZY
+            w_size = float(hierarchy_size.z)
+            h_size = float(hierarchy_size.y)
+
+        if w_size <= 0.0:
+            w_size = 1.0
+
+        if h_size <= 0.0:
+            h_size = 1.0
+
+        # Set Parameter
+        data.SetFloat(1020, w_size)
+        data.SetFloat(1021, h_size)
+
+        # Reset Position
+        new_ml = c4d.Matrix() 
+        new_ml.off = c4d.Vector(0)
+        op.SetMl(new_ml)
+
+        op.SetDirty(c4d.DIRTYFLAGS_DATA | c4d.DIRTYFLAGS_MATRIX)
+        c4d.EventAdd() 
+        return True
+
 
     def ModifyObject(self, mod, doc, op, op_mg, mod_mg, lod, flags, thread):
         if op is None or mod is None:
@@ -106,25 +283,9 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         if not points or len(points) == 0: 
             return True
 
-        parent = mod.GetUp()
-        bbox_data = None
-        if parent:
-            bbox_data = self.CalculateHierarchyBBox(parent, mod_mg)
-
-        if bbox_data:
-            hierarchy_size, center = bbox_data
-            axis_mode = data.GetLong(1000)
-            
-            if axis_mode == 0:   w_size, h_size = float(hierarchy_size.x), float(hierarchy_size.y)
-            elif axis_mode == 1: w_size, h_size = float(hierarchy_size.x), float(hierarchy_size.z)
-            else:                w_size, h_size = float(hierarchy_size.z), float(hierarchy_size.y)
-                
-            #data.SetFloat(1020, w_size)
-            #data.SetFloat(1021, h_size)
-        else:
-            w_size = data.GetFloat(1020)
-            h_size = data.GetFloat(1021)
-            center = c4d.Vector(0.0)
+        w_size = data.GetFloat(1020)
+        h_size = data.GetFloat(1021)
+        center = c4d.Vector(0.0)
 
         if w_size <= 0.0: w_size = 1.0
         if h_size <= 0.0: h_size = 1.0
@@ -167,20 +328,11 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
         # БЛОК 2: MAP CONVERT (MODE 2 и 3)
         else:
-            if parent and bbox_data:
-                hierarchy_size, center = bbox_data
-                axis_mode = data.GetLong(1000)
-                if axis_mode == 0:
-                    w_size = float(hierarchy_size.x)
-                elif axis_mode == 1:
-                    w_size = float(hierarchy_size.x)
-                else:
-                    w_size = float(hierarchy_size.z)
-            else:
-                w_size = data.GetFloat(1020)
-                center = c4d.Vector(0.0)
+            axis_mode = data.GetLong(1000)
+            w_size = data.GetFloat(1020)
 
-            if w_size <= 0.0: w_size = 1.0
+            if w_size <= 0.0:
+                w_size = 1.0
 
             for i in range(len(points)):
                 p = to_mod_space * points[i]
@@ -190,7 +342,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                     v_merc = (p.y - center.y) / w_size
                     v_clamped = max(-0.499, min(0.499, v_merc))
                     
-                    # Прямая функция Гудермана
+                    # функция Гудермана ?
                     latitude = 2.0 * math.atan(math.exp(v_clamped * (2.0 * math.pi))) - (math.pi / 2.0)
                     target_y = (latitude / (2.0 * math.pi)) * w_size + center.y
                     

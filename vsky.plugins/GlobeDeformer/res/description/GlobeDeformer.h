@@ -14,7 +14,8 @@ enum
   
   ID_MAP_WIDTH        = 1020,
   ID_MAP_HEIGHT       = 1021,
-
+  ID_FIT_TO_OBJECT    = 1022,
+  
   ID_PLANE_XY         = 0,
   ID_PLANE_XZ         = 1,
   ID_PLANE_ZY         = 2,
