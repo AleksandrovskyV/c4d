@@ -7,8 +7,9 @@ Written & Tested for Maxon Cinema 4D R19
 
 import c4d
 import math
+import json
+import os
 PLUGIN_ID = 1063489 
-FIT_CENTER_ID = 1023
 
 # ========================================================
 # Добавить Draw Guide Map
@@ -20,13 +21,138 @@ class GlobeDeformer(c4d.plugins.ObjectData):
     def Init(self, node):
         data = node.GetDataInstance()
         data.SetLong(999, 0)       # Mode
-        data.SetLong(1000, 0)      # Плоскость
-        data.SetFloat(1020, 400.0) # Заглушки ползунков
-        data.SetFloat(1021, 400.0) 
-        data.SetFloat(1001, 1.0)   # Множитель размера глобуса
-        data.SetFloat(1004, 1.0)   # Сжатие к экватору
-        data.SetFloat(1002, 1.0)   # Сила деформации
+        data.SetLong(1000, 0)      # Axis
+        data.SetFloat(1001, 1.0)   # Size Globus
+        data.SetFloat(1004, 1.0)   # Stretch to equator
+        data.SetFloat(1002, 1.0)   # Power Deform
+        data.SetFloat(1020, 400.0) # Width
+        data.SetFloat(1021, 200.0) # Height
+        data.SetBool(1023, False)  # Guide Earth
+        data.SetBool(1024, False)  # Unlock Height
+
+        # --- Габариты загружаемого json ---
+        #"_bbox": {
+        #    "points": [
+        #        [-1000.0, 500.0, 0.0], 
+        #        [1000.0, 500.0, 0.0], 
+        #        [-1000.0, -500.0, 0.0], 
+        #        [1000.0, -500.0, 0.0]
+        #    ], 
+        #    "closed": false
+        #}, 
+
+        plugin_dir = os.path.dirname(__file__)
+        json_path = os.path.join(plugin_dir, "equirectangular.json")
+
+        # данные карты 
+        self.cached_eq_lines = []   # cache equirectangular (2:1 )
+        self.cached_merc_lines = [] # cache mercator from eq(1:1)
+        self.cached_guide_lines = [] # link to current
+
+        if os.path.exists(json_path):
+            try:
+                with open(json_path, "r") as f:
+                    raw_data = json.load(f)
+                
+                for name, info in raw_data.items():
+                    if name == "_bbox": continue
+                        
+                    points_list = info.get("points", [])
+                    global_closed = info.get("closed", False)
+                    segments_list = info.get("segments", [])
+                    
+                    count = len(points_list)
+                    if count < 2: continue
+
+                    spline_eq = c4d.SplineObject(count, c4d.SPLINETYPE_LINEAR)
+                    spline_eq.SetName(name)
+                    
+                    vectors_eq = [c4d.Vector(float(p[0]), float(p[1]), float(p[2])) for p in points_list]
+                    spline_eq.SetAllPoints(vectors_eq)
+                    spline_eq[c4d.SPLINEOBJECT_CLOSED] = global_closed
+                    
+                    if segments_list:
+                        spline_eq.ResizeObject(count, len(segments_list))
+                        for s, seg_info in enumerate(segments_list):
+                            spline_eq.SetSegment(s, seg_info["cnt"], seg_info["closed"])
+                    
+                    spline_eq.Message(c4d.MSG_UPDATE)
+                    line_eq = self.BuildLineObject(spline_eq)
+                    if line_eq:
+                        self.cached_eq_lines.append(line_eq)
+                    
+                    # --- Б. СБОРКА И ЗАПЕКАНИЕ MERCATOR СПЛАЙНА СРАЗУ В INIT ---
+                    spline_merc = c4d.SplineObject(count, c4d.SPLINETYPE_LINEAR)
+                    spline_merc.SetName(name + "_merc")
+                    
+                    vectors_merc = []
+                    w_size_json = 2000.0
+                    center_json = c4d.Vector(0.0)
+
+                    for p in points_list:
+                        raw_x = float(p[0])
+                        raw_y = float(p[1]) 
+                        raw_z = float(p[2])
+                        
+                        canon = False
+                        
+                        v_equid = (raw_y - center_json.y) / w_size_json
+                        lat_rad = v_equid * (2.0 * math.pi)
+                        
+                        if canon:
+                            lat_clamped = max(-1.48442222947, min(1.48442222947, lat_rad))
+                            merc_y = 0.5 * math.log((1.0 + math.sin(lat_clamped)) / (1.0 - math.sin(lat_clamped)))
+                            target_y = (merc_y / (2.0 * math.pi)) * w_size_json + center_json.y
+                        else:
+                            lat_sin = max(-0.9999, min(0.9999, math.sin(lat_rad)))
+                            merc_y = 0.5 * math.log((1.0 + lat_sin) / (1.0 - lat_sin))
+                            target_y = (merc_y / (2.0 * math.pi)) * w_size_json + center_json.y
+                            
+                            half_width = w_size_json * 0.5
+                            max_allowed_y = center_json.y + half_width
+                            min_allowed_y = center_json.y - half_width
+                            
+                            if target_y > max_allowed_y:
+                                target_y = max_allowed_y
+                            elif target_y < min_allowed_y:
+                                target_y = min_allowed_y
+                        
+                        vectors_merc.append(c4d.Vector(raw_x, target_y, raw_z))
+
+                        
+                    spline_merc.SetAllPoints(vectors_merc)
+                    spline_merc[c4d.SPLINEOBJECT_CLOSED] = global_closed
+                    
+                    if segments_list:
+                        spline_merc.ResizeObject(count, len(segments_list))
+                        for s, seg_info in enumerate(segments_list):
+                            spline_merc.SetSegment(s, seg_info["cnt"], seg_info["closed"])
+                    
+                    spline_merc.Message(c4d.MSG_UPDATE)
+                    line_merc = self.BuildLineObject(spline_merc)
+                    if line_merc:
+                        self.cached_merc_lines.append(line_merc)
+                        
+                self.cached_guide_lines = self.cached_eq_lines
+
+
+            except Exception as e:
+                print("GlobeDeformer: Error loading JSON map:", e)
+
         return True
+
+
+    def BuildLineObject(self, spline):
+        """Вспомогательный метод. Запекает SplineObject в нативный LineObject."""
+        spline_help = c4d.utils.SplineHelp()
+        if spline_help.InitSplineWith(spline, c4d.SPLINEHELPFLAGS_RETAINLINEOBJECT):
+            line_res = spline_help.GetLineObject()
+            if line_res:
+                cloned_line = line_res.GetClone()
+                cloned_line[c4d.ID_BASEOBJECT_USECOLOR] = c4d.ID_BASEOBJECT_USECOLOR_ALWAYS
+                cloned_line[c4d.ID_BASEOBJECT_COLOR] = c4d.Vector(0.4, 0.6, 0.7)
+                return cloned_line
+        return None
 
     def CalculateHierarchyBBox(self, root_obj, mod_mg):
         bounds = {
@@ -75,22 +201,17 @@ class GlobeDeformer(c4d.plugins.ObjectData):
             if obj is None:
                 return
 
-            # Сначала пробуем сам объект.
             add_object_bbox(obj)
-
-            # Затем его cache.
             cache = obj.GetCache()
 
             if cache:
                 walk_cache(cache, mod_mg)
 
-            # И deformation cache.
             deform_cache = obj.GetDeformCache()
 
             if deform_cache and deform_cache != cache:
                 walk_cache(deform_cache, mod_mg)
 
-            # Дети исходной иерархии.
             child = obj.GetDown()
 
             while child:
@@ -102,7 +223,6 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                 return
 
             add_object_bbox(obj)
-
             child = obj.GetDown()
 
             while child:
@@ -132,86 +252,8 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
         return hierarchy_size, center
 
-    def Draw(self, op, drawpass, bd, bh):
-        # Рисуем guide только один раз — в Object pass.
-        if drawpass != c4d.DRAWPASS_OBJECT:
-            return c4d.DRAWRESULT_SKIP
 
-        if op is None or bd is None:
-            return c4d.DRAWRESULT_SKIP
-
-        data = op.GetDataInstance()
-
-        w_size = data.GetFloat(1020)
-        h_size = data.GetFloat(1021)
-        axis_mode = data.GetLong(1000)
-
-        if w_size <= 0.0 or h_size <= 0.0:
-            return c4d.DRAWRESULT_SKIP
-
-        hw = w_size * 0.5
-        hh = h_size * 0.5
-
-        # Прямоугольник в локальной системе координат деформера.
-        if axis_mode == 0:          # XY
-            points = [
-                c4d.Vector(-hw, -hh, 0.0),
-                c4d.Vector( hw, -hh, 0.0),
-                c4d.Vector( hw,  hh, 0.0),
-                c4d.Vector(-hw,  hh, 0.0)
-            ]
-
-        elif axis_mode == 1:        # XZ
-            points = [
-                c4d.Vector(-hw, 0.0, -hh),
-                c4d.Vector( hw, 0.0, -hh),
-                c4d.Vector( hw, 0.0,  hh),
-                c4d.Vector(-hw, 0.0,  hh)
-            ]
-
-        else:                       # ZY
-            points = [
-                c4d.Vector(0.0, -hh, -hw),
-                c4d.Vector(0.0, -hh,  hw),
-                c4d.Vector(0.0,  hh,  hw),
-                c4d.Vector(0.0,  hh, -hw)
-            ]
-
-        # Локальные координаты -> координаты деформера.
-        bd.SetMatrix_Matrix(op, op.GetMg())
-
-        # Для проверки задаём заведомо заметный цвет.
-        bd.SetPen(c4d.Vector(1.0, 1.0, 0.0), 0)
-
-        bd.DrawLine(points[0], points[1], c4d.NOCLIP_D)
-        bd.DrawLine(points[1], points[2], c4d.NOCLIP_D)
-        bd.DrawLine(points[2], points[3], c4d.NOCLIP_D)
-        bd.DrawLine(points[3], points[0], c4d.NOCLIP_D)
-
-        return c4d.DRAWRESULT_OK
-
-    def Message(self, node, type, data):
-        if type == c4d.MSG_DESCRIPTION_COMMAND:
-            if data is not None:
-                desc_id = data.get("id")
-
-                if desc_id is not None:
-                    print("BUTTON:", desc_id[0].id)
-
-                    if desc_id[0].id == 1022:
-                        print("FIT TO OBJECT")
-
-                        result = self.FitToObject(node)
-                        print("FIT RESULT:", result)
-
-                        node.SetDirty(c4d.DIRTYFLAGS_DATA)
-                        c4d.EventAdd()
-
-                        return True
-
-        return True
-
-    def FitToObject(self, op):
+    def FitToParent(self, op):
         data = op.GetDataInstance()
         target = op.GetUp()
 
@@ -248,6 +290,15 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         if h_size <= 0.0:
             h_size = 1.0
 
+        is_height_unlocked = data.GetBool(1024) 
+        
+        if not is_height_unlocked:
+            main_mode = data.GetLong(999)
+            if main_mode == 1 or main_mode == 3:
+                h_size = w_size
+            else:
+                h_size = w_size / 2.0
+
         # Set Parameter
         data.SetFloat(1020, w_size)
         data.SetFloat(1021, h_size)
@@ -260,6 +311,202 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         op.SetDirty(c4d.DIRTYFLAGS_DATA | c4d.DIRTYFLAGS_MATRIX)
         c4d.EventAdd() 
         return True
+
+
+    def GetDEnabling(self, node, descid, t_data, flags, itemdesc):
+        param_id = descid[0].id
+
+        # Height
+        if param_id == 1021:
+            data = node.GetDataInstance()
+
+            if data:
+                main_mode = data.GetLong(999)
+                if not data.GetBool(1024):
+                    return False
+
+                return True
+
+        return True
+
+
+    def Message(self, node, type, data):
+        if type == c4d.MSG_DESCRIPTION_COMMAND:
+            if data is not None:
+                desc_id = data.get("id")
+
+                if desc_id is not None:
+                    print("BUTTON:", desc_id[0].id)
+
+                    if desc_id[0].id == 1022:
+                        print("FIT TO PARENT")
+                        result = self.FitToParent(node)
+                        node.SetDirty(c4d.DIRTYFLAGS_DATA)
+                        c4d.EventAdd()
+                        return True
+
+        return True
+
+    def UpdateGuideCache(self, op, forced_mode=None):
+        data = op.GetDataInstance()
+        if data is None or not data.GetBool(1023): return
+
+        if not hasattr(self, "cached_eq_lines") or not self.cached_eq_lines: return
+        if not hasattr(self, "cached_merc_lines"): return
+
+        main_mode = forced_mode if forced_mode is not None else data.GetLong(999)
+        strength = data.GetFloat(1002) 
+
+        if main_mode == 0:   # Eqidistant
+            t = 0.0
+        elif main_mode == 1: # Mercator
+            t = 1.0
+        elif main_mode == 2: 
+            t = max(0.0, min(1.0, strength))
+        elif main_mode == 3:
+            t = 1.0 - max(0.0, min(1.0, strength))
+            
+
+        self.cached_guide_lines = []
+
+        for idx, eq_line in enumerate(self.cached_eq_lines):
+            merc_line = self.cached_merc_lines[idx]
+            
+            pts_eq = eq_line.GetAllPoints()
+            pts_merc = merc_line.GetAllPoints()
+            mixed_line = eq_line.GetClone()
+            new_pts = []
+            
+            for i in range(len(pts_eq)):
+                p_start = pts_eq[i]
+                p_end = pts_merc[i]
+                p_mix = p_start + (p_end - p_start) * t
+                new_pts.append(p_mix)
+                
+            mixed_line.SetAllPoints(new_pts)
+            mixed_line.Message(c4d.MSG_UPDATE)
+            
+            self.cached_guide_lines.append(mixed_line)
+
+    def SetDParameter(self, node, id, t_data, flags):
+        param_id = id[0].id
+        data = node.GetDataInstance()
+        main_mode = data.GetLong(999) 
+
+        if param_id == 999: 
+            print("Mode Changed to:", t_data)
+
+            width = data.GetLong(1020) 
+            if (t_data == 1 or t_data == 3) and not data.GetBool(1024):
+                data.SetFloat(1021, width)
+            else:
+                data.SetFloat(1021, width/2)
+
+            node.GetDataInstance().SetLong(999, t_data)
+            self.UpdateGuideCache(node, t_data)
+            
+            node.SetDirty(c4d.DIRTYFLAGS_DATA)
+            c4d.EventAdd()
+            return True
+
+        if param_id == 1020 and not data.GetBool(1024):
+            print("Width Changed:", t_data)
+            if main_mode == 1 or main_mode == 3:
+                data.SetFloat(1021, t_data)
+            else:
+                data.SetFloat(1021, t_data/2)
+
+        if param_id == 1002:
+            print("Power Changed:", t_data)
+            node.GetDataInstance().SetFloat(1002, float(t_data))
+        
+            self.UpdateGuideCache(node)
+            node.SetDirty(c4d.DIRTYFLAGS_DATA)
+            c4d.EventAdd()
+            return True
+
+        return True
+
+    def lerp(self, t, a, b):
+        return a + (b - a) * t
+
+    def Draw(self, op, drawpass, bd, bh):
+        if drawpass != c4d.DRAWPASS_OBJECT: return c4d.DRAWRESULT_SKIP
+        if op is None or bd is None: return c4d.DRAWRESULT_SKIP
+
+        data = op.GetDataInstance()
+        w_size = data.GetFloat(1020)
+        h_size = data.GetFloat(1021)
+        axis_mode = data.GetLong(1000)
+
+        if w_size <= 0.0 or h_size <= 0.0: return c4d.DRAWRESULT_SKIP
+        hw, hh = w_size * 0.5, h_size * 0.5
+
+        # --- 1. Отрисовка внешней желтой рамки деформатора ---
+        if axis_mode == 0:   bbox = [c4d.Vector(-hw, -hh, 0.0), c4d.Vector(hw, -hh, 0.0), c4d.Vector(hw, hh, 0.0), c4d.Vector(-hw, hh, 0.0)]
+        elif axis_mode == 1: bbox = [c4d.Vector(-hw, 0.0, -hh), c4d.Vector(hw, 0.0, -hh), c4d.Vector(hw, 0.0, hh), c4d.Vector(-hw, 0.0, hh)]
+        else:                bbox = [c4d.Vector(0.0, -hh, -hw), c4d.Vector(0.0, -hh, hw), c4d.Vector(0.0, hh, hw), c4d.Vector(0.0, hh, -hw)]
+        
+        # Устанавливаем матрицу деформатора
+        op_matrix = op.GetMg()
+        bd.SetMatrix_Matrix(op, op_matrix)
+        
+        # --- Yellow Plane ---
+        bd.SetPen(c4d.Vector(1.0, 1.0, 0.0), 0)
+        for i in range(4): 
+            bd.DrawLine(bbox[i], bbox[(i+1)%4], c4d.NOCLIP_D)
+
+        doc = bh.GetDocument()
+        help_object = c4d.plugins.BaseDrawHelp(bd, doc)
+
+        # --- MapLines ---
+        if not hasattr(self, "cached_guide_lines"): 
+            self.cached_guide_lines = []
+
+        if data.GetBool(1023) and self.cached_guide_lines:
+            main_mode = data.GetLong(999) 
+            strength = data.GetFloat(1002)
+
+            if main_mode == 0:     t = 0.0 # eq 
+            elif main_mode == 1:   t = 1.0 # merc
+            elif main_mode == 2:   t = strength # eq > merc
+            elif main_mode == 3:   t = strength # merc > eq
+
+            sx = w_size / 2000
+            sy = (h_size / self.lerp(t, 500.0, 1000.0)) * 0.5
+
+            if main_mode == 2:
+                sx = w_size * self.lerp(t, 1.0 / 2000.0, 1.0 / 4000.0)
+
+            if main_mode == 3:
+                sx = w_size / 2000
+                sy = h_size / 2000
+
+            m_scale = c4d.Matrix()
+
+            if axis_mode == 0:   # XY
+                m_scale.v1 = c4d.Vector(sx, 0.0, 0.0)
+                m_scale.v2 = c4d.Vector(0.0, sy, 0.0)
+                m_scale.v3 = c4d.Vector(0.0, 0.0, 1.0) 
+
+            elif axis_mode == 1: # XZ
+                m_scale.v1 = c4d.Vector(sx, 0.0, 0.0)
+                m_scale.v2 = c4d.Vector(0.0, 0.0, sy)
+                m_scale.v3 = c4d.Vector(0.0, 1.0, 0.0)
+
+            elif axis_mode == 2: # ZY
+                m_scale.v1 = c4d.Vector(0.0, 0.0, sx)
+                m_scale.v2 = c4d.Vector(0.0, sy, 0.0)
+                m_scale.v3 = c4d.Vector(1.0, 0.0, 0.0)
+
+            final_guide_mg = op_matrix * m_scale
+
+            for cached_line in self.cached_guide_lines:
+                cached_line.SetMg(final_guide_mg)
+                bd.DrawPolygonObject(help_object, cached_line, c4d.DRAWOBJECT_FORCELINES | c4d.DRAWOBJECT_USE_OBJECT_COLOR)
+
+        return c4d.DRAWRESULT_OK
+
 
 
     def ModifyObject(self, mod, doc, op, op_mg, mod_mg, lod, flags, thread):
@@ -311,10 +558,10 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                 longitude = u * (2.0 * math.pi)
                 
                 if main_mode == 0:
-                    v_clamped = max(-0.49, min(0.49, v))
-                    latitude = 2.0 * math.atan(math.exp(v_clamped * math.pi)) - (math.pi / 2.0)
-                else:
                     latitude = v * math.pi
+                else:
+                    v_clamped = max(-0.49, min(0.49, v))
+                    latitude = 2.0 * math.atan(math.exp(v_clamped * math.pi)) - (math.pi / 2.0) 
 
                 latitude = latitude * lat_scale
                 new_x = RADIUS * math.cos(latitude) * math.sin(longitude)
@@ -336,20 +583,11 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
             for i in range(len(points)):
                 p = to_mod_space * points[i]
+                start_y = p.y
 
                 if main_mode == 2:
-                    # MODE 2: МЕРКАТОР (1:1 КВАДРАТ) В EQUIDISTANT (2:1) ---
-                    v_merc = (p.y - center.y) / w_size
-                    v_clamped = max(-0.499, min(0.499, v_merc))
-                    
-                    # функция Гудермана ?
-                    latitude = 2.0 * math.atan(math.exp(v_clamped * (2.0 * math.pi))) - (math.pi / 2.0)
-                    target_y = (latitude / (2.0 * math.pi)) * w_size + center.y
-                    
-                else:
-                    # MODE 3: ИЗ EQUIDISTANT (2:1) В МЕРКАТОР (1:1) ---
+                    # ИЗ EQUIDISTANT (2:1) В МЕРКАТОР (1:1) ---
                     canon = False;
-
                     v_equid = (p.y - center.y) / w_size
                     lat_rad = v_equid * (2.0 * math.pi)
                     
@@ -376,9 +614,25 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                         elif target_y < min_allowed_y:
                             target_y = min_allowed_y
 
+                elif main_mode == 3:
+                    # МЕРКАТОР (1:1 КВАДРАТ) В EQUIDISTANT (2:1) ---
+                    v_merc = (p.y - center.y) / w_size
+                    v_clamped = max(-0.499, min(0.499, v_merc))
+                    
+                    # функция Гудермана ?
+                    latitude = 2.0 * math.atan(math.exp(v_clamped * (2.0 * math.pi))) - (math.pi / 2.0)
+                    target_y = (latitude / (2.0 * math.pi)) * w_size + center.y
+                    
 
                 # Morph from Strength
-                p.y = p.y + (target_y - p.y) * strength
+                if main_mode == 2:
+                    scale_x = self.lerp(strength, 1.0, 0.5)
+                    p.x = center.x + (p.x - center.x) * scale_x
+                    compressed_y = (target_y - center.y) * 0.5 + center.y
+                    p.y = self.lerp(strength, start_y, compressed_y)
+                else:
+                    p.y = p.y + (target_y - p.y) * strength
+
                 points[i] = to_op_space * p
 
         op.SetAllPoints(points)

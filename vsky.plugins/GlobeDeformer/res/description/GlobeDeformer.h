@@ -14,16 +14,19 @@ enum
   
   ID_MAP_WIDTH        = 1020,
   ID_MAP_HEIGHT       = 1021,
-  ID_FIT_TO_OBJECT    = 1022,
-  
+  ID_FIT_TO_PARENT    = 1022,
+  ID_GUIDE            = 1023,
+  ID_UNLOCK_HEIGHT    = 1024,
+
   ID_PLANE_XY         = 0,
   ID_PLANE_XZ         = 1,
   ID_PLANE_ZY         = 2,
 
-  ID_MODE_MERC_GLOBE   = 0,
-  ID_MODE_EQUID_GLOBE  = 1,
-  ID_MODE_MERC_TO_EQ   = 2,
-  ID_MODE_EQ_TO_MERC   = 3
+  ID_MODE_EQUID_GLOBE  = 0,
+  ID_MODE_MERC_GLOBE   = 1,
+  ID_MODE_EQ_TO_MERC   = 2,
+  ID_MODE_MERC_TO_EQ   = 3
+
 };
 
 #endif
