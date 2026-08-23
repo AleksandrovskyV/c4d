@@ -9,6 +9,7 @@ import c4d
 import math
 import json
 import os
+from c4d import bitmaps
 PLUGIN_ID = 1063489 
 
 # ========================================================
@@ -150,7 +151,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
             if line_res:
                 cloned_line = line_res.GetClone()
                 cloned_line[c4d.ID_BASEOBJECT_USECOLOR] = c4d.ID_BASEOBJECT_USECOLOR_ALWAYS
-                cloned_line[c4d.ID_BASEOBJECT_COLOR] = c4d.Vector(0.4, 0.6, 0.7)
+                cloned_line[c4d.ID_BASEOBJECT_COLOR] = c4d.Vector(0.745, 0.722, 0.949)
                 return cloned_line
         return None
 
@@ -317,11 +318,16 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         param_id = descid[0].id
 
         # Height
-        if param_id == 1021:
-            data = node.GetDataInstance()
+        data = node.GetDataInstance()
+        main_mode = data.GetLong(999) 
 
+        if main_mode == 2 or main_mode == 3:
+            if param_id == 1004 or param_id == 1001:
+                return False
+
+
+        if param_id == 1021:
             if data:
-                main_mode = data.GetLong(999)
                 if not data.GetBool(1024):
                     return False
 
@@ -450,9 +456,9 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         # Устанавливаем матрицу деформатора
         op_matrix = op.GetMg()
         bd.SetMatrix_Matrix(op, op_matrix)
-        
-        # --- Yellow Plane ---
-        bd.SetPen(c4d.Vector(1.0, 1.0, 0.0), 0)
+
+        # --- Guide Plane ---
+        bd.SetPen(c4d.Vector(0.667, 0.604, 1.0), 0)
         for i in range(4): 
             bd.DrawLine(bbox[i], bbox[(i+1)%4], c4d.NOCLIP_D)
 
@@ -640,11 +646,15 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         return True
 
 if __name__ == "__main__":
+    path, fn = os.path.split(__file__)
+    bmp = bitmaps.BaseBitmap() # thanks vonc!
+    bmp.InitWith(os.path.join(path, "res", "Globe Deformer.tif"))
+
     c4d.plugins.RegisterObjectPlugin(
         id=PLUGIN_ID,
         str="Globe Deformer",
         g=GlobeDeformer,
         description="GlobeDeformer",
-        icon=None,
+        icon=bmp,
         info=c4d.OBJECT_MODIFIER
     )
