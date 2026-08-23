@@ -108,8 +108,8 @@ Wraps geometry into a Globe based on Equidistant/Mercator projections<br>
 Includes a 2D mode for conversion between projections
 </p><br clear="left"></div>
 
->"Deformer Strength" slider between 1% - 99% in "2D Convert" mode has a slight precision error<br>
-> However, it works fine at exact values of 0 and 100 <br>
+>"Deformer Strength" slider from 1% to 99% in "2D Convert" mode has a slight precision error<br>
+> However, it works fine at exact values of 0% and 100% <br>
 > * The code is open, so feel free to fix it yourself)
 
 <br><br>
