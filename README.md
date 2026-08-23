@@ -104,7 +104,7 @@ Copies mesh point coordinates from one side to another.<br>The edge/seam loop se
 <img src="./assets/svg/gh_GlobeDeformer.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R19+<br>
-A deformer that wraps geometry into a Globe based on Equidistant/Mercator projections. 
+Wraps geometry into a Globe based on Equidistant/Mercator projections. 
 Includes a 2D mode for conversion between projections
 </p><br clear="left"></div>
 
