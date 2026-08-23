@@ -98,6 +98,22 @@ Copies mesh point coordinates from one side to another.<br>The edge/seam loop se
 
 <br><br>
 
+## 🔹 [Globe Deformer](https://github.com/AleksandrovskyV/c4d/releases/download/v1.01/GlobeDeformer.zip)  
+
+<div class="btn-about">
+<img src="./assets/svg/gh_GlobeDeformer.svg" width="84" align="left" style="padding-right: 12px;">
+<p style="margin-top: 12px ">
+<strong> Tested:</strong> R19+<br>
+A deformer that wraps geometry into a Globe based on Equidistant/Mercator projections. 
+Includes a 2D mode for conversion between projections
+</p><br clear="left"></div>
+
+> * "Deformer Strength" slider in 2D Convert mode between 0 and 100 has a slight precision error (currently working on a fix)
+> * However, it works fine at exact values of 0 and 100\
+> * The code is open, so feel free to fix it yourself)
+
+<br><br>
+
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
 
 <div class="btn-about">
