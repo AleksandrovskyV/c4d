@@ -3,19 +3,20 @@ Globe Deformer
 
 Author: Viktor Aleksandrovsky & Google AI
 Written & Tested for Maxon Cinema 4D R19
+
+Plugin for geometry deformation based on geographic projections (Equidistant/Mercator).
+In 2D Convert mode, it can transform coordinate points from Equidistant > Mercator and vice versa.
+
+The "Deformer Strength" slider in 2D Convert mode between 0 and 100 has a slight precision error (currently working on a fix). 
+However, it works fine at exact values of 0 and 100.
+
+The code is open, so feel free to fix it yourself)
 """
 
-import c4d
-import math
-import json
-import os
+
+import c4d, math, json, os
 from c4d import bitmaps
 PLUGIN_ID = 1063489 
-
-# ========================================================
-# Добавить Draw Guide Map
-# Добавить иконку
-# ========================================================
 
 class GlobeDeformer(c4d.plugins.ObjectData):
     
@@ -31,7 +32,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         data.SetBool(1023, False)  # Guide Earth
         data.SetBool(1024, False)  # Unlock Height
 
-        # --- Габариты загружаемого json ---
+        # --- boox eq json ---
         #"_bbox": {
         #    "points": [
         #        [-1000.0, 500.0, 0.0], 
@@ -43,11 +44,10 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         #}, 
 
         plugin_dir = os.path.dirname(__file__)
-        json_path = os.path.join(plugin_dir, "equirectangular.json")
+        json_path = os.path.join(plugin_dir,"res","guide_map", "equirectangular.json")
 
-        # данные карты 
-        self.cached_eq_lines = []   # cache equirectangular (2:1 )
-        self.cached_merc_lines = [] # cache mercator from eq(1:1)
+        self.cached_eq_lines = []    # cache equirectangular (2:1 )
+        self.cached_merc_lines = []  # cache mercator from eq(1:1)
         self.cached_guide_lines = [] # link to current
 
         if os.path.exists(json_path):
@@ -65,6 +65,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                     count = len(points_list)
                     if count < 2: continue
 
+                    # --- CREATE CACHE EQUIDISTANT ---
                     spline_eq = c4d.SplineObject(count, c4d.SPLINETYPE_LINEAR)
                     spline_eq.SetName(name)
                     
@@ -82,7 +83,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                     if line_eq:
                         self.cached_eq_lines.append(line_eq)
                     
-                    # --- Б. СБОРКА И ЗАПЕКАНИЕ MERCATOR СПЛАЙНА СРАЗУ В INIT ---
+                    # --- CREATE CACHE MERCATOR ---
                     spline_merc = c4d.SplineObject(count, c4d.SPLINETYPE_LINEAR)
                     spline_merc.SetName(name + "_merc")
                     
@@ -142,6 +143,8 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
         return True
 
+    def lerp(self, t, a, b):
+        return a + (b - a) * t
 
     def BuildLineObject(self, spline):
         """Вспомогательный метод. Запекает SplineObject в нативный LineObject."""
@@ -253,7 +256,6 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
         return hierarchy_size, center
 
-
     def FitToParent(self, op):
         data = op.GetDataInstance()
         target = op.GetUp()
@@ -272,6 +274,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
         hierarchy_size, center = bbox_data
         axis_mode = data.GetLong(1000)
+        is_height_unlocked = data.GetBool(1024)
 
         if axis_mode == 0:          # XY
             w_size = float(hierarchy_size.x)
@@ -291,8 +294,6 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         if h_size <= 0.0:
             h_size = 1.0
 
-        is_height_unlocked = data.GetBool(1024) 
-        
         if not is_height_unlocked:
             main_mode = data.GetLong(999)
             if main_mode == 1 or main_mode == 3:
@@ -314,44 +315,6 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         return True
 
 
-    def GetDEnabling(self, node, descid, t_data, flags, itemdesc):
-        param_id = descid[0].id
-
-        # Height
-        data = node.GetDataInstance()
-        main_mode = data.GetLong(999) 
-
-        if main_mode == 2 or main_mode == 3:
-            if param_id == 1004 or param_id == 1001:
-                return False
-
-
-        if param_id == 1021:
-            if data:
-                if not data.GetBool(1024):
-                    return False
-
-                return True
-
-        return True
-
-
-    def Message(self, node, type, data):
-        if type == c4d.MSG_DESCRIPTION_COMMAND:
-            if data is not None:
-                desc_id = data.get("id")
-
-                if desc_id is not None:
-                    print("BUTTON:", desc_id[0].id)
-
-                    if desc_id[0].id == 1022:
-                        print("FIT TO PARENT")
-                        result = self.FitToParent(node)
-                        node.SetDirty(c4d.DIRTYFLAGS_DATA)
-                        c4d.EventAdd()
-                        return True
-
-        return True
 
     def UpdateGuideCache(self, op, forced_mode=None):
         data = op.GetDataInstance()
@@ -394,6 +357,50 @@ class GlobeDeformer(c4d.plugins.ObjectData):
             
             self.cached_guide_lines.append(mixed_line)
 
+
+
+    def GetDEnabling(self, node, descid, t_data, flags, itemdesc):
+        param_id = descid[0].id
+        data = node.GetDataInstance()
+
+        main_mode = data.GetLong(999)  
+
+        if main_mode == 2 or main_mode == 3:
+            if param_id == 1004 or param_id == 1001:
+                return False
+
+
+        if param_id == 1021:
+            if data:
+                if not data.GetBool(1024):
+                    return False
+
+                return True
+
+        return True
+
+    def Message(self, node, type, data):
+        if type == c4d.MSG_MENUPREPARE:
+            print("MENUPREPARE")
+            self.UpdateGuideCache(node)
+            c4d.EventAdd()
+
+        if type == c4d.MSG_DESCRIPTION_COMMAND:
+            if data is not None:
+                desc_id = data.get("id")
+
+                if desc_id is not None:
+                    print("BUTTON:", desc_id[0].id)
+
+                    if desc_id[0].id == 1022:
+                        print("FIT TO PARENT")
+                        result = self.FitToParent(node)
+                        node.SetDirty(c4d.DIRTYFLAGS_DATA)
+                        c4d.EventAdd()
+                        return True
+
+        return True
+
     def SetDParameter(self, node, id, t_data, flags):
         param_id = id[0].id
         data = node.GetDataInstance()
@@ -432,9 +439,6 @@ class GlobeDeformer(c4d.plugins.ObjectData):
             return True
 
         return True
-
-    def lerp(self, t, a, b):
-        return a + (b - a) * t
 
     def Draw(self, op, drawpass, bd, bh):
         if drawpass != c4d.DRAWPASS_OBJECT: return c4d.DRAWRESULT_SKIP
@@ -513,8 +517,6 @@ class GlobeDeformer(c4d.plugins.ObjectData):
 
         return c4d.DRAWRESULT_OK
 
-
-
     def ModifyObject(self, mod, doc, op, op_mg, mod_mg, lod, flags, thread):
         if op is None or mod is None:
             return True
@@ -546,7 +548,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
         to_mod_space = ~mod_mg * op_mg
         to_op_space = ~op_mg * mod_mg
 
-        # БЛОК 1: 3D GLOBe (MODE 0 и 1)
+        # 3D GLOBE (MODE 0 and 1)
         if main_mode == 0 or main_mode == 1:
             axis_mode = data.GetLong(1000)
             radius_mult = data.GetFloat(1001)
@@ -579,7 +581,7 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                 p_deformed = p + (sphere_pos - p) * strength
                 points[i] = to_op_space * p_deformed
 
-        # БЛОК 2: MAP CONVERT (MODE 2 и 3)
+        # MAP CONVERT (MODE 2 and 3)
         else:
             axis_mode = data.GetLong(1000)
             w_size = data.GetFloat(1020)
@@ -592,25 +594,22 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                 start_y = p.y
 
                 if main_mode == 2:
-                    # ИЗ EQUIDISTANT (2:1) В МЕРКАТОР (1:1) ---
+                    # EQUIDISTANT (2:1) > MERCATOR (1:1) ---
                     canon = False;
                     v_equid = (p.y - center.y) / w_size
                     lat_rad = v_equid * (2.0 * math.pi)
                     
-                    if canon: # синусоидальая дисторсии Меркатора (Web Mercator)
-                        # клэмпинг на уровне 85.051129° (канонически~)
+                    if canon: # sin distortion Mercator (Web Mercator)
+                        # clamp on 85.051129° (canonical ~)
                         lat_clamped = max(-1.48442222947, min(1.48442222947, lat_rad))
                         merc_y = 0.5 * math.log((1.0 + math.sin(lat_clamped)) / (1.0 - math.sin(lat_clamped)))
                         target_y = (merc_y / (2.0 * math.pi)) * w_size + center.y
                     
-                    else: # Hard Width Fix
-                        # Защищаем знаменатель от деления на ноль на полюсах панорамы, 
-                        # слегка ограничивая синус оригинального lat_rad числом 0.9999
+                    else: # Hard Clamp Fix
                         lat_sin = max(-0.9999, min(0.9999, math.sin(lat_rad)))
                         merc_y = 0.5 * math.log((1.0 + lat_sin) / (1.0 - lat_sin))
                         target_y = (merc_y / (2.0 * math.pi)) * w_size + center.y
 
-                        # жесткие геометрические границы квадрата
                         half_width = w_size * 0.5
                         max_allowed_y = center.y + half_width
                         min_allowed_y = center.y - half_width
@@ -621,11 +620,11 @@ class GlobeDeformer(c4d.plugins.ObjectData):
                             target_y = min_allowed_y
 
                 elif main_mode == 3:
-                    # МЕРКАТОР (1:1 КВАДРАТ) В EQUIDISTANT (2:1) ---
+                    # MERCATOR (1:1) > EQUIDISTANT (2:1) ---
                     v_merc = (p.y - center.y) / w_size
                     v_clamped = max(-0.499, min(0.499, v_merc))
                     
-                    # функция Гудермана ?
+                    # function Гудермана ?
                     latitude = 2.0 * math.atan(math.exp(v_clamped * (2.0 * math.pi))) - (math.pi / 2.0)
                     target_y = (latitude / (2.0 * math.pi)) * w_size + center.y
                     

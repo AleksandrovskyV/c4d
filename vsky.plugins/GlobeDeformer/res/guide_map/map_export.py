@@ -1,6 +1,4 @@
-import c4d
-import json
-import os
+import c4d, json, os
 
 def collect_splines(obj, splines_list):
     while obj:
@@ -13,7 +11,7 @@ def collect_splines(obj, splines_list):
 def main():
     root = doc.GetActiveObject()
     if not root:
-        c4d.gui.MessageDialog("Выделите оригинальный Null-объект вашей карты!")
+        c4d.gui.MessageDialog("select root null")
         return
 
     all_splines = []
@@ -31,13 +29,11 @@ def main():
         seg_count = spline.GetSegmentCount()
         global_closed = bool(spline[c4d.SPLINEOBJECT_CLOSED])
         
-        # Переводим ВСЕ точки сплайна в мировые координаты
         world_points = []
         for p in local_points:
             wp = mg * p
             world_points.append([round(wp.x, 4), round(wp.y, 4), round(wp.z, 4)])
         
-        # Собираем данные о внутренних сегментах C4D
         segments_data = []
         if seg_count > 0:
             for s in range(seg_count):
@@ -53,16 +49,16 @@ def main():
         map_data[unique_name] = {
             "closed": global_closed,
             "points": world_points,
-            "segments": segments_data # Сохраняем родную структуру сегментов C4D
+            "segments": segments_data 
         }
 
-    desktop_path = os.path.expanduser("~/Desktop")
-    file_path = os.path.join(desktop_path, "equirectangular.json")
+    project_path = doc.GetDocumentPath()
+    file_path = os.path.join(project_path, "equirectangular.json")
 
     with open(file_path, "w") as f:
         json.dump(map_data, f, indent=4)
 
-    c4d.gui.MessageDialog("Успешно! Структурный JSON сохранен на Рабочий стол.")
+    c4d.gui.MessageDialog("JSON saved in the same folder as your .c4d file!")
 
 if __name__=='__main__':
     main()
