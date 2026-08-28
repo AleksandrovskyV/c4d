@@ -114,7 +114,7 @@ Includes a 2D mode for conversion between projections
 
 <br><br>
 
-## 🔹 [Print Alembic Paths](./vsky.scripts/Print%20Alembic%20Paths.py)  
+## 🔹 [Print Alembic Paths](./vsky.scripts/Print%20Alembic%20Path.py)  
 
 <div class="btn-about">
 <p style="margin-top: 12px ">
