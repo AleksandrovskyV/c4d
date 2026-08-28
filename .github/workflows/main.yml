@@ -1,11 +1,11 @@
-name: Deploy GitHub Pages without Jekyll Trash
+name: Deploy Pages & Update Release
 
 on:
   push:
     branches: ["main"]
 
 permissions:
-  contents: read
+  contents: write # read
   pages: write
   id-token: write
 
@@ -14,7 +14,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # === ЗАДАЧА СБОРКИ САЙТА ===
   deploy:
+    # Запускать деплой ТОЛЬКО если изменения НЕ касаются папок с плагинами и скриптами
+    # (Сюда можно дописать конкретные папки сайта, если они у вас есть)
+    if: |
+      !contains(github.event.commits[0].modified, 'vsky.plugins/') &&
+      !contains(github.event.commits[0].modified, 'vsky.scripts/')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -266,33 +272,22 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  update-release:
+  update-release: # Обновляет zip файл последний релиза
+    if: |
+      contains(github.event.commits[0].modified, 'vsky.plugins/') ||
+      contains(github.event.commits[0].modified, 'vsky.scripts/')
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check for changes in folders
-        id: change-check
-        uses: dorny/paths-filter@v3
-        with:
-          filters: |
-            src_changed:
-              - 'vsky.plugins/**'
-              - 'vsky.scripts/**'
-
-      # 2. Создаем ZIP архив релиза при обновлении папок с ними
       - name: Create ZIP archive
-        if: steps.change-check.outputs.src_changed == 'true'
         run: zip -r vsky_package.zip vsky.plugins vsky.scripts
 
       - name: Upload or Replace asset in Release
-        if: steps.change-check.outputs.src_changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: "v1.02" 
+          TAG_NAME: "v1.02"
         run: |
           gh release delete-asset "$TAG_NAME" vsky_package.zip --yes || true
           gh release upload "$TAG_NAME" vsky_package.zip --clobber
