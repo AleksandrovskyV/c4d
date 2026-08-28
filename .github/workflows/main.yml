@@ -1,11 +1,11 @@
-name: Deploy Pages & Update Release
+name: Deploy GitHub Pages without Jekyll Trash
 
 on:
   push:
     branches: ["main"]
 
 permissions:
-  contents: write
+  contents: write 
   pages: write
   id-token: write
 
@@ -14,31 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ПЕРВАЯ ЗАДАЧА: Анализирует, какие файлы реально изменились в коммите
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      code_changed: ${{ steps.filter.outputs.code_changed }}
-      site_changed: ${{ steps.filter.outputs.site_changed }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Check paths
-        id: filter
-        uses: dorny/paths-filter@v3
-        with:
-          filters: |
-            code_changed:
-              - 'vsky.plugins/**'
-              - 'vsky.scripts/**'
-            site_changed:
-              - '!' # Знак '!' означает "все остальные файлы, кроме указанных ниже"
-              - '!vsky.plugins/**'
-              - '!vsky.scripts/**'
-
+  # === 1. ДЕПЛОЙ САЙТА ===
   deploy:
-    needs: changes
-    if: needs.changes.outputs.site_changed == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -47,13 +24,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Проверяем изменения для сайта
+      - name: Check for site changes
+        id: site-check
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            site_changed:
+              - '.github/workflows/main.yml'
+              - 'assets/**'
+              - 'readme/**'
+              - 'monolog.md'
+              - 'README.md'
+
       - name: Setup Pages
+        if: steps.site-check.outputs.site_changed == 'true'
         uses: actions/configure-pages@v5
 
       - name: Install Pandoc
+        if: steps.site-check.outputs.site_changed == 'true'
         run: sudo apt-get install -y pandoc
 
       - name: Build Clean HTML
+        if: steps.site-check.outputs.site_changed == 'true'
         run: |
 
           # метод замены ".gif" на "mp4", исправление <p> на <div class="mreplace">
@@ -282,29 +275,44 @@ jobs:
 
 
       - name: Upload artifact
+        if: steps.site-check.outputs.site_changed == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
       - name: Deploy to GitHub Pages
+        if: steps.site-check.outputs.site_changed == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
 
   update-release:
-    needs: changes
-    if: needs.changes.outputs.code_changed == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+
+      - name: Check for changes in folders
+        id: change-check
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            src_changed:
+              - 'vsky.plugins/**'
+              - 'vsky.scripts/**'
+
+      # 2. Создаем ZIP архив (только если src_changed: true)
       - name: Create ZIP archive
+        if: steps.change-check.outputs.src_changed == 'true'
         run: zip -r vsky_package.zip vsky.plugins vsky.scripts
 
       - name: Upload or Replace asset in Release
+        if: steps.change-check.outputs.src_changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: "v1.02"
+          TAG_NAME: "v1.0.0" # Ваш тег
         run: |
           gh release delete-asset "$TAG_NAME" vsky_package.zip --yes || true
           gh release upload "$TAG_NAME" vsky_package.zip --clobber
