@@ -119,7 +119,7 @@ Includes a 2D mode for conversion between projections
 <div class="btn-about">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
-Console Print selected Hierarchy в виде alembic path<br>
+Console print selected Hierarchy <br>в виде alembic path
 </p><br clear="left"></div>
 
 
