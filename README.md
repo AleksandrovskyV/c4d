@@ -117,7 +117,6 @@ Includes a 2D mode for conversion between projections
 ## 🔹 [Print Alembic Paths](./vsky.scripts/Print%20Alembic%20Paths.py)  
 
 <div class="btn-about">
-<img src="." width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Console Print alembic path<br>
@@ -129,7 +128,6 @@ Console Print alembic path<br>
 ## 🔹 [Connect Objects + Delete + Bake Mats Colors](./vsky.scripts/Connect%20Objects%20%2B%20Delete%20%2B%20Bake%20Mats%20Colors.py)  
 
 <div class="btn-about">
-<img src="." width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Preserve Hierarchy to Single Mesh and<br>
