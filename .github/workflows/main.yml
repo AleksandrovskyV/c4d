@@ -265,3 +265,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  update-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP archive
+        run: zip -r vsky_package.zip vsky.plugins vsky.scripts
+
+      - name: Upload or Replace asset in Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: "v1.02"
+        run: |
+          gh release delete-asset "$TAG_NAME" vsky_package.zip --yes || true
+          gh release upload "$TAG_NAME" vsky_package.zip --clobber
