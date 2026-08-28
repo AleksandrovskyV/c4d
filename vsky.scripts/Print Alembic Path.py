@@ -1,3 +1,10 @@
+"""
+Print Alembic Paths
+
+Author: Viktor Aleksandrovsky & Google AI
+Written & Tested for Maxon Cinema 4D R23
+"""
+
 import c4d
 from c4d.modules import mograph
 
