@@ -274,13 +274,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check for changes in folders
+        id: change-check
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            src_changed:
+              - 'vsky.plugins/**'
+              - 'vsky.scripts/**'
+
+      # 2. Создаем ZIP архив релиза при обновлении папок с ними
       - name: Create ZIP archive
+        if: steps.change-check.outputs.src_changed == 'true'
         run: zip -r vsky_package.zip vsky.plugins vsky.scripts
 
       - name: Upload or Replace asset in Release
+        if: steps.change-check.outputs.src_changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: "v1.02"
+          TAG_NAME: "v1.02" 
         run: |
           gh release delete-asset "$TAG_NAME" vsky_package.zip --yes || true
           gh release upload "$TAG_NAME" vsky_package.zip --clobber
