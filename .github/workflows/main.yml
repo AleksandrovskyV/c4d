@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 permissions:
-  contents: write # read
+  contents: write
   pages: write
   id-token: write
 
@@ -14,13 +14,31 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # === ЗАДАЧА СБОРКИ САЙТА ===
+  # ПЕРВАЯ ЗАДАЧА: Анализирует, какие файлы реально изменились в коммите
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      code_changed: ${{ steps.filter.outputs.code_changed }}
+      site_changed: ${{ steps.filter.outputs.site_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            code_changed:
+              - 'vsky.plugins/**'
+              - 'vsky.scripts/**'
+            site_changed:
+              - '!' # Знак '!' означает "все остальные файлы, кроме указанных ниже"
+              - '!vsky.plugins/**'
+              - '!vsky.scripts/**'
+
   deploy:
-    # Запускать деплой ТОЛЬКО если изменения НЕ касаются папок с плагинами и скриптами
-    # (Сюда можно дописать конкретные папки сайта, если они у вас есть)
-    if: |
-      !contains(github.event.commits[0].modified, 'vsky.plugins/') &&
-      !contains(github.event.commits[0].modified, 'vsky.scripts/')
+    needs: changes
+    if: needs.changes.outputs.site_changed == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -272,10 +290,9 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  update-release: # Обновляет zip файл последний релиза
-    if: |
-      contains(github.event.commits[0].modified, 'vsky.plugins/') ||
-      contains(github.event.commits[0].modified, 'vsky.scripts/')
+  update-release:
+    needs: changes
+    if: needs.changes.outputs.code_changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
