@@ -312,7 +312,7 @@ jobs:
         if: steps.change-check.outputs.src_changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: "v1.0.0" # Ваш тег
+          TAG_NAME: "v1.02" 
         run: |
           gh release delete-asset "$TAG_NAME" vsky_package.zip --yes || true
           gh release upload "$TAG_NAME" vsky_package.zip --clobber
