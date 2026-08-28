@@ -1,11 +1,11 @@
 """
 Connect Objects + Delete + Bake Mats Colors
 
-Create Baked Hierarchy to Single Mesh and
-Bake Lumninance and Colors to Vertex Colors Tags
-
 Author: Viktor Aleksandrovsky & Google AI
 Written & Tested for Maxon Cinema 4D R23
+
+Create Baked Hierarchy to Single Mesh and
+Bake Lumninance and Colors to Vertex Colors Tags
 """
 
 import c4d
