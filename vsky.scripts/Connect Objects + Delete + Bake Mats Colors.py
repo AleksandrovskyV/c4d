@@ -17,7 +17,7 @@ def main():
 
     # "Connect Objects + Delete"
     doc.StartUndo()
-    c4d.CallCommand(12144) 
+    c4d.CallCommand(12144)
     doc.EndUndo()
 
     obj = doc.GetActiveObject()
@@ -38,7 +38,7 @@ def main():
             selection_dict[sel_name] = poly_ids
 
     # Vector4d (RGBA)
-    default_color = c4d.Vector4d(0.8, 0.8, 0.8, 1.0)
+    default_color = c4d.Vector4d(0.0, 0.0, 0.0, 1.0)
     default_lum = c4d.Vector4d(0.0, 0.0, 0.0, 1.0)
 
     target_colors = [default_color] * polyCount
@@ -47,10 +47,10 @@ def main():
     for tag in all_tags:
         if tag.CheckType(c4d.Ttexture):
             mat = tag[c4d.TEXTURETAG_MATERIAL]
-            if not mat: 
+            if not mat:
                 continue
 
-            col_v3 = mat[c4d.MATERIAL_COLOR_COLOR] if mat[c4d.MATERIAL_USE_COLOR] else c4d.Vector(0.8)
+            col_v3 = mat[c4d.MATERIAL_COLOR_COLOR] if mat[c4d.MATERIAL_USE_COLOR] else c4d.Vector(0.0)
             col_v4 = c4d.Vector4d(col_v3, 1.0)
 
             if mat[c4d.MATERIAL_USE_LUMINANCE]:
@@ -75,7 +75,7 @@ def main():
 
     if not vcolor_tag:
         return
-        
+
     vcolor_tag.SetName("mat_color")
     vcolor_tag.SetPerPointMode(False)
 
@@ -84,7 +84,7 @@ def main():
 
     data_color = vcolor_tag.GetDataAddressW()
     data_lum = vlum_tag.GetDataAddressW()
-    
+
     for idx in range(polyCount):
         col = target_colors[idx]
         lum = target_luminance[idx]
