@@ -1,0 +1,68 @@
+* Я считаю что тут проход туда-сюда
+1. > для создания конечных индексов 
+2. < формирование повторяющихся имён подгрупп
+3. > расстановка финальных индексов
+
+Альтернатива - записать alembic, восстановить индексы.
+
+Поиск принципа формирования нейминга при экспорте alembic в Cinema 4D. 
+
+Вот расширенная статистика о тестовой сцене:
+Экспорт из Cinema 4D производился путем - выбор null объекта > export selection. 
+Сцена содержала только параметрические кубы, часть который я переименовал.
+Судя по данным могу сделать вывод, что houdini при чтении никак не ориентируется по path атрибуту. 
+
+NameObject C4D | Current Script Log | c4d позиция в корневом null | порядок чтения объектов в houdini | атрибут path в houdini
+"Cube"         | /test/Cube/CubeShape               |  0  |  1  | "/test/Cube_1/Cube_1Shape"
+"Cube_23.1"    | /test/Cube_23_1/Cube_23_1Shape     |  1  |  0  | "/test/Cube/CubeShape"
+"Cube.1"       | /test/Cube_1/Cube_1Shape           |  2  |  4  | "/test/Cube_4/Cube_4Shape"
+"Cube_23.2"    | /test/Cube_23_2/Cube_23_2Shape     |  3  |  2  | "/test/Cube_2/Cube_2Shape"
+"Cube.2"       | /test/Cube_2/Cube_2Shape           |  4  |  3  | "/test/Cube_3/Cube_3Shape"
+"Cube.3"       | /test/Cube_3/Cube_3Shape           |  5  |  11 | "/test/Cube_11/Cube_11Shape"
+"Cube.4"       | /test/Cube_4/Cube_4Shape           |  6  |  5  | "/test/Cube_5/Cube_5Shape"
+"Cube.5"       | /test/Cube_5/Cube_5Shape           |  7  |  6  | "/test/Cube_6/Cube_6Shape"
+"Cube.6"       | /test/Cube_6/Cube_6Shape           |  8  |  7  | "/test/Cube_7/Cube_7Shape"
+"Cube.7"       | /test/Cube_7/Cube_7Shape           |  9  |  8  | "/test/Cube_8/Cube_8Shape"
+"Cube_23"      | /test/Cube_23/Cube_23Shape         |  10 |  9  | "/test/Cube_9/Cube_9Shape"
+"Cube_16..22"  | /test/Cube_16__22/Cube_16__22Shape |  11 |  10 | "/test/Cube_10/Cube_10Shape"
+
+Порядок создания был таким - создал первый куб, дублировал его 7 раз до "Cube.7", 
+дальше создал 8, переименовал его, сдублировал ещё, переместил выше, сдублировал ещё поместил в промежутке. 
+Потом сдубировал ещё один раз и закинул в конец, переименовав в "Cube_16..22"
+
+Можешь без предложений кода понять принцип, записи этого атрибута?
+
+Update:
+Я попробовал вгрузить .abc файл обратно в Cinema4D. Порядок объектов в root нуле - не изменился и соответствует изначальной иерархии при экспорте. 
+Но имена стали отобразились такими:
+
+/test
+- Cube_1
+- Cube
+- Cube_4
+- Cube_2
+- Cube_3
+- Cube_11
+- Cube_5
+- Cube_6
+- Cube_7
+- Cube_8
+- Cube_9
+- Cube_10 
+
+Этот апдейт говорит прямо, что Cinema формирует эти имена. 
+А также можем не обращать внимание на порядок их чтения в Houdini
+
+Текущий вывод скрипта
+"Cube"                    | 0                    | /test/Cube_1/Cube_1Shape
+"Cube_23.1"               | 1                    | /test/Cube/CubeShape
+"Cube.1"                  | 2                    | /test/Cube_4/Cube_4Shape
+"Cube_23.2"               | 3                    | /test/Cube_2/Cube_2Shape
+"Cube.2"                  | 4                    | /test/Cube_3/Cube_3Shape
+"Cube.3"                  | 5                    | /test/Cube_9/Cube_9Shape  * сбивается
+"Cube.4"                  | 6                    | /test/Cube_5/Cube_5Shape
+"Cube.5"                  | 7                    | /test/Cube_6/Cube_6Shape
+"Cube.6"                  | 8                    | /test/Cube_7/Cube_7Shape
+"Cube.7"                  | 9                    | /test/Cube_8/Cube_8Shape
+"Cube_23"                 | 10                   | /test/Cube_10/Cube_10Shape
+"Cube_16..22"             | 11                   | /test/Cube_11/Cube_11Shape
