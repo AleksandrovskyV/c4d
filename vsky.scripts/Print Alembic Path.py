@@ -7,6 +7,9 @@ Written & Tested for Maxon Cinema 4D R23
 
 import os, c4d, tempfile
 
+HOUDINI_PATH = True
+MESH_ONLY = False
+
 def main():
     active_obj = doc.GetActiveObject()
     if not active_obj:
@@ -43,10 +46,12 @@ def main():
         while obj:
             name = obj.GetName().replace(" ", "_").replace(".", "_").replace("-", "_")
             node_path = f"{current_path}/{name}"
+            is_mesh = not obj.GetDown()
 
-            if obj.CheckType(c4d.Opolygon) or obj.GetRealType() == c4d.Opolygon:
-                print(f"[Alembic Path] {node_path}")
-            else:
+            if is_mesh:
+                final_path = f"{node_path}/{name}Shape" if HOUDINI_PATH else node_path
+                print(f"{final_path}")
+            elif not MESH_ONLY:
                 print(f"{node_path}")
 
             if obj.GetDown():
@@ -67,6 +72,7 @@ def main():
             f" running sequentially one after another\n\n"
             f" Displays below hierarchy based !only! on the current tempfile\n"
             f" snapshot from this doc\n\n"
+            f" Houdini Path View: {HOUDINI_PATH}  | Mesh Only Mode: {MESH_ONLY}\n\n"
             f"=========================================\n"
         )
 
