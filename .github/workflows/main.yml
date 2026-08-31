@@ -4,6 +4,10 @@ on:
   push:
     branches: ["main"]
 
+env:
+  LANG: c.UTF-8
+  LC_ALL: c.UTF-8
+  
 permissions:
   contents: write 
   pages: write
