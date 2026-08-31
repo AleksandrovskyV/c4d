@@ -17,14 +17,16 @@ PANEL_HEIGHT = 320
 
 class MessageDialogCustom(c4d.gui.GeDialog):
     """Unified modal dialog with custom title for strict errors (OK button only)."""
-    def __init__(self, title, text):
+    def __init__(self, text, force=False):
         super(MessageDialogCustom, self).__init__()
-        self.title = title
         self.text = text
+        self.force = force
+        self.result = False
+
+        self.FORCE_BUTTON_ID = 10000
 
     def CreateLayout(self):
-        self.SetTitle(self.title)
-        
+        self.SetTitle(SCRIPT_NAME)
         self.AddStaticText(-1, c4d.BFH_SCALEFIT, name="")
 
         lines = self.text.split('\n')
@@ -38,15 +40,24 @@ class MessageDialogCustom(c4d.gui.GeDialog):
         self.AddStaticText(200, c4d.BFH_SCALEFIT, PANEL_WIDTH, 8, name="")
 
         self.GroupBegin(2000, c4d.BFH_CENTER, 2, 1)
+
+        if self.force:
+            self.AddButton(self.FORCE_BUTTON_ID, c4d.BFH_CENTER, 180, 18, name="FORCE")
+
         self.AddButton(c4d.IDC_OK, c4d.BFH_CENTER, 180, 18, name="OK")
         self.GroupEnd()
 
-        self.GroupEnd()
         return True
 
     def Command(self, id, msg):
         if id == c4d.IDC_OK:
+            self.result = False
             self.Close()
+
+        if id == self.FORCE_BUTTON_ID:
+            self.result = True
+            self.Close()
+
         return True
 
 class DirectionDialog(c4d.gui.GeDialog):
@@ -80,7 +91,7 @@ class DirectionDialog(c4d.gui.GeDialog):
         # Side selection execution buttons
         self.GroupBegin(id=1, flags=c4d.BFH_CENTER, cols=2, title="")
         self.AddButton(id=self.BUTTON_LEFT, flags=c4d.BFH_CENTER, initw=120, inith=16, name="Left >")
-        self.AddButton(id=self.BUTTON_RIGHT, flags=c4d.BFH_CENTER, initw=120, inith=16, name="Right <")
+        self.AddButton(id=self.BUTTON_RIGHT, flags=c4d.BFH_CENTER, initw=120, inith=16, name="< Right")
         self.GroupEnd()
 
         self.GroupEnd()
@@ -91,10 +102,10 @@ class DirectionDialog(c4d.gui.GeDialog):
             self.force_align = self.GetBool(self.CHECKBOX_ALIGN)
 
         if id == self.BUTTON_LEFT:
-            self.result = "left_to_right"
+            self.result = "right_to_left"
             self.Close()
         elif id == self.BUTTON_RIGHT:
-            self.result = "right_to_left"
+            self.result = "left_to_right"
             self.Close()
         return True
 
@@ -108,7 +119,7 @@ def get_edge_points(obj, edge_idx):
     elif edge_num == 1: return poly.b, poly.c
     elif edge_num == 2: return poly.c, poly.d if poly.c != poly.d else poly.a
     else:               return poly.d if poly.c != poly.d else poly.c, poly.a
-    
+
 def calculate_seam_matrix(seam_points, points):
     """Constructs a localized transformation matrix using the seam loop layout."""
     seam_list = list(seam_points)
@@ -139,7 +150,7 @@ def calculate_seam_matrix(seam_points, points):
 
 def count_side_polygons(start_poly, seam_edges, polys, nbr):
     """
-    Bulletproof topological flood fill. 
+    Bulletproof topological flood fill.
     Uses unique point-pairs as barriers to prevent leaks on zig-zag loops.
     """
     # Step 1: Create a bulletproof set of unique physical point-pairs for the barrier
@@ -152,34 +163,34 @@ def count_side_polygons(start_poly, seam_edges, polys, nbr):
         elif edge_num == 1: p1, p2 = p.b, p.c
         elif edge_num == 2: p1, p2 = p.c, p.d if p.c != p.d else p.a
         else:               p1, p2 = p.d if p.c != p.d else p.c, p.a
-        
+
         # Store as sorted tuple so direction doesn't matter
         seam_point_pairs.add((min(p1, p2), max(p1, p2)))
 
     visited = {start_poly}
     queue = [start_poly]
-    
+
     # Step 2: Flood fill loop
     while queue:
         curr_poly = queue.pop(0)
         p = polys[curr_poly]
         pts = [p.a, p.b, p.c, p.d]
         sides = 4 if p.c != p.d else 3
-        
+
         for i in range(sides):
             p1 = pts[i]
             p2 = pts[(i + 1) % sides]
             edge_key = (min(p1, p2), max(p1, p2))
-            
+
             # CRITICAL FIX: Check the barrier using unique point geometry, not C4D edge IDs
             if edge_key in seam_point_pairs:
                 continue
-                
+
             neighbor = nbr.GetNeighbor(p1, p2, curr_poly)
             if neighbor != -1 and neighbor not in visited:
                 visited.add(neighbor)
                 queue.append(neighbor)
-                
+
     return len(visited)
 
 
@@ -190,17 +201,17 @@ def is_edge_loop_closed(obj, seam_edges):
     """
     unique_edges = set()
     point_edge_count = {}
-    
+
     for edge_idx in seam_edges:
         poly_idx = edge_idx // 4
         edge_num = edge_idx % 4
         poly = obj.GetPolygon(poly_idx)
-        
+
         if edge_num == 0:   p1, p2 = poly.a, poly.b
         elif edge_num == 1: p1, p2 = poly.b, poly.c
         elif edge_num == 2: p1, p2 = poly.c, poly.d if poly.c != poly.d else poly.a
         else:               p1, p2 = (poly.d if poly.c != poly.d else poly.c), poly.a
-            
+
         # Create a unique identifier for the physical edge regardless of direction
         edge_key = (min(p1, p2), max(p1, p2))
         unique_edges.add(edge_key)
@@ -217,20 +228,20 @@ def is_edge_loop_closed(obj, seam_edges):
     for pt, count in point_edge_count.items():
         if count != 2:
             return False
-            
+
     return True
 
 
 def main():
     obj = doc.GetActiveObject()
     if not obj or not obj.CheckType(c4d.Opolygon):
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Select a valid polygon mesh object!")
+        err_dlg = MessageDialogCustom("Select a valid polygon mesh object!")
         err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=140)
         return
 
     edge_selection = obj.GetEdgeS()
     if edge_selection.GetCount() == 0:
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Please select the base symmetrical edge-loop!")
+        err_dlg = MessageDialogCustom("Please select the base symmetrical edge-loop!")
         err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=140)
         return
 
@@ -257,13 +268,17 @@ def main():
 
     # After collecting seam_edges array inside the selection loop:
     if not is_edge_loop_closed(obj, seam_edges):
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Selected edges do not form a closed loop!\nPlease ensure the centerline seam forms\na perfectly continuous ring...")
+        err_dlg = MessageDialogCustom("Selected edges do not form a closed loop!\nPlease ensure the centerline seam forms\na perfectly continuous ring...", 
+            force=True
+        )
         err_dlg.Open(c4d.DLG_TYPE_MODAL, defaulth=140)
-        return
+        
+        if err_dlg.result is False:
+            return
 
 
     seam_matrix = calculate_seam_matrix(seam_points, points)
-    inv_seam_matrix = ~seam_matrix 
+    inv_seam_matrix = ~seam_matrix
 
     flat_tolerance = 0.01
     show_alignment_warning = False
@@ -281,8 +296,8 @@ def main():
     poly_b_idx = nbr.GetNeighbor(root_a, root_b, poly_a_idx)
 
     if poly_b_idx == -1:
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "The base seam lacks a valid topological neighbor layout.\nAborting...")
-        err_dlg.Open(c4d.DLG_TYPE_MODAL,defaulth=140)
+        err_dlg = MessageDialogCustom("The base seam lacks a valid topological neighbor layout.\nAborting...")
+        err_dlg.Open(c4d.DLG_TYPE_MODAL, defaulth=140)
         return
 
     center_a = (points[polys[poly_a_idx].a] + points[polys[poly_a_idx].b] + points[polys[poly_a_idx].c]) / 3.0
@@ -295,7 +310,7 @@ def main():
 
     # Pure topological Flood Fill side counts
     seam_edges_set = set(seam_edges)
-    
+
     left_poly_count = count_side_polygons(left_start_poly, seam_edges_set, polys, nbr)
     right_poly_count = count_side_polygons(right_start_poly, seam_edges_set, polys, nbr)
 
@@ -307,7 +322,7 @@ def main():
         )
 
 
-        warn_dlg = MessageDialogCustom(SCRIPT_NAME, warn_text)
+        warn_dlg = MessageDialogCustom(warn_text)
         warn_dlg.Open(c4d.DLG_TYPE_MODAL, defaulth=140)
         return
 
@@ -330,7 +345,7 @@ def main():
     poly_b_idx = nbr.GetNeighbor(root_a, root_b, poly_a_idx)
 
     if poly_b_idx == -1:
-        err_dlg = MessageDialogCustom(SCRIPT_NAME, "Error: The base seam lacks a valid topological neighbor layout. Aborting.")
+        err_dlg = MessageDialogCustom("Error: The base seam lacks a valid topological neighbor layout. Aborting.")
         err_dlg.Open(c4d.DLG_TYPE_MODAL_RESIZEABLE, defaulth=160)
         return
 
