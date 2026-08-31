@@ -11,7 +11,7 @@ The resulting path should look like this:
 .\_modules\dialogs.pyw - заготовка, для хранения переиспользуемых модулей
 
 
-.\cust_icons\after_ai_process.pyw 
+.\_cust_icons\after_ai_process.pyw 
 Обычный .py файл, только переименнованный. Запускается аналогично.
 После экспорта png по артбордам из "!cons.ai - конвертирует их в .tiff формат
 Переименован, чтобы не отображаться в основном списке скриптов
