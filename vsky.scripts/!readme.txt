@@ -6,3 +6,11 @@ Cinema 4D R23: Top Menu > Extensions > User Scripts > Script Folder...
 
 The resulting path should look like this:
 ...\AppData\Roaming\Maxon\Cinema 4D R23_########\library\scripts\vsky.scripts\
+
+
+.\_modules\dialogs.pyw - заготовка, для хранения переиспользуемых модулей
+
+
+.\cust_icons\after_ai_process.pyw 
+Обычный .py файл, только переименнованный. Запускается аналогично.
+После экспорта png по артбордам из "!cons.ai - конвертирует их в .tiff формат
