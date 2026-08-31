@@ -5,12 +5,19 @@ Author: Viktor Aleksandrovsky & Google AI
 Written & Tested for Maxon Cinema 4D R23
 """
 
-import os, c4d, tempfile
+import c4d, sys, os, importlib
+## подьем на один уровень выше, чтобы импортировать модули
+p = os.path.dirname(__file__); sys.path.append(os.path.dirname(p)) if p not in sys.path else None
+try: import _modules.dialogs; importlib.reload(_modules.dialogs); from _modules.dialogs import ConsolePrinter
+except: print("[!]ConsolePrinter NotFound"); ConsolePrinter = type('ConsolePrinter', (), {'__init__': lambda *a,**k: None, '__getattr__': lambda *a,**k: lambda *a,**k: None})
 
+import tempfile
 HOUDINI_PATH = True
 MESH_ONLY = False
 
 def main():
+    #printer = ConsolePrinter()
+
     active_obj = doc.GetActiveObject()
     if not active_obj:
         print("Not Select Object")

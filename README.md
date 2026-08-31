@@ -120,12 +120,12 @@ Includes a 2D mode for conversion between projections
 
 <br><br>
 
-## 🔹 [Print Alembic Paths](./vsky.scripts/Print%20Alembic%20Path.py)  
+## 🔹 [Print Alembic Paths](./vsky.scripts/_modules/Print%20Alembic%20Path.py)  
 
 <div class="btn-about">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
-Console print selected Hierarchy.<br>Houdini attribute mode display include
+Console print selected Hierarchy.<br>Houdini attribute mode display include...
 </p><br clear="left"></div>
 
 
