@@ -126,7 +126,7 @@ Includes a 2D mode for conversion between projections
 <img src="./assets/svg/gh_vram_crunch_c4d.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
-~ GUI Wrapper !experimental! standalone app *<br>
+GUI Wrapper !experimental! standalone app *<br>
 with pipeline to reduce collected texture folder
 </p><br clear="left"></div>
 
