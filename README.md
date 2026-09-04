@@ -120,6 +120,30 @@ Includes a 2D mode for conversion between projections
 
 <br><br>
 
+## 🔹 [VRAM Folder Crunch for C4D](./vsky.scripts/VRAM%20Folder%20Crunch%20for%20C4D.py)  
+
+<div class="btn-about">
+<img src="./assets/svg/gh_vram_crunch_c4d.svg" width="84" align="left" style="padding-right: 12px;">
+<p style="margin-top: 12px ">
+<strong> Tested:</strong> R23<br>
+Pipeline to reduce texture folder<br> 
+GUI Wrapper for standalone app
+</p><br clear="left"></div>
+
+>Designed as post-action for collected/packaged tex folders to<br>
+>resolve 'Out of VRAM' errors in GPU render engines<br>
+> * backup "Source Folder" always include ~
+
+> * operates via a single-pass in-place resolution downscaling
+
+<div align="right" class="cslink mn">
+
+[standalone](https://github.com/AleksandrovskyV/vram_crunch) *
+
+</div>
+
+<br><br>
+
 ## 🔹 [Print Alembic Paths](./vsky.scripts/_modules/Print%20Alembic%20Path.py)  
 
 <div class="btn-about">
