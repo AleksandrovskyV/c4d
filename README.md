@@ -126,14 +126,14 @@ Includes a 2D mode for conversion between projections
 <img src="./assets/svg/gh_vram_crunch_c4d.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
-Pipeline to reduce texture folder<br> 
-GUI Wrapper for standalone app
+Pipeline to reduce collected texture folder<br> 
+~ GUI Wrapper for standalone app
 </p><br clear="left"></div>
 
 >Designed as post-action for collected/packaged tex folders to<br>
 >resolve 'Out of VRAM' errors in GPU render engines<br>
 > * backup "Source Folder" always include ~
-
+>
 > * operates via a single-pass in-place resolution downscaling
 
 <div align="right" class="cslink mn">
