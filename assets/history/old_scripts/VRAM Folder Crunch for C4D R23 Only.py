@@ -3,7 +3,7 @@
 VRAM Folder Crunch for C4D
 
 Author: Viktor Aleksandrovsky & Google AI & ChatGPT
-Written & Tested for Maxon Cinema 4D R20
+Written & Tested for Maxon Cinema 4D R23
 
 Description-US:Experimental button  |
 
@@ -16,13 +16,10 @@ SHORT_NAME = "vram4d_crunch"
 
 import c4d, os, sys
 import subprocess
+import urllib.request
 import json
 import datetime
 
-if sys.version_info >= (3, 0):
-    import urllib.request as urllib_req
-else:
-    import urllib2 as urllib_req
 
 # Прокси-файлы Arnold и Redshift (TX / RSTEX)
 # Эти рендеры генерируют зеркальные файлы .rstex или .tx прямо рядом с основными текстурами. Скрипт их пока игнорирует, 
@@ -51,28 +48,28 @@ def download_from_web():
     dlg.SetString(ID_EXE_DIR, "Downloads...")
 
     try:
-        req = urllib_req.Request(download_link, headers={'User-Agent': 'Mozilla/5.0'})
-        response = urllib_req.urlopen(req)
-        try:
+        req = urllib.request.Request(download_link, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response:
             with open(local_file_path, 'wb') as f:
                 f.write(response.read())
-        finally:
-            response.close() 
-
+    
         if os.path.isfile(local_file_path):
             dlg.U_EXE_PATH = local_file_path
             save_settings_to_json("exe_path", dlg.U_EXE_PATH)
             dlg.SetString(ID_EXE_DIR, local_file_path)
-            print("Exe path updated: " + str(local_file_path))
+            print("Exe path updated:", local_file_path)
         else:
             old_path = dlg.U_EXE_PATH if dlg.U_EXE_PATH else "Try Mirror..."
             dlg.SetString(ID_EXE_DIR, old_path)
-        return True
 
+
+        return True
+        
     except Exception as e:
         old_path = dlg.U_EXE_PATH if dlg.U_EXE_PATH else "Try Mirror..."
         dlg.SetString(ID_EXE_DIR, old_path)
-        c4d.gui.MessageDialog("Failed download: {}\nCheck connection, or try Mirror...".format(str(e)))
+
+        c4d.gui.MessageDialog(f"Failed download: {str(e)}\nCheck connection, or try Mirror...")
         return False
 
 
@@ -80,10 +77,7 @@ def get_json_config_path():
     """Находит путь к конфигу в нашей локальной папке libs"""
     if not SCRIPT_DIR:
         return None
-
-    config_filename = SHORT_NAME + "_config.json"
-    return os.path.join(SCRIPT_DIR, config_filename)
-
+    return os.path.join(SCRIPT_DIR, f"{SHORT_NAME}_config.json")
 
 def save_settings_to_json(key, data_value):
     """
@@ -178,16 +172,17 @@ class TextureToolDialog(c4d.gui.GeDialog):
     def CreateLayout(self):
 
 
-        self.SetTitle(TOOL_NAME)
+        self.SetTitle(f"{TOOL_NAME}")
         
         # Главная вертикальная группа на всё окно
         self.GroupBegin(10, c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT, cols=1, rows=0)
         self.GroupSpace(0, 10) 
         self.GroupBorderSpace(14, 14, 14, 14)
 
-
         # Описание
-
+        self.GroupBegin(0, c4d.BFH_SCALEFIT, cols=1, rows=0)
+        self.GroupBorderSpace(0, 0, 0, 100) 
+        
         about_text = (
             "Горит...\n\n"
             "Pipeline to reduce tex folder size under user input values\n"
@@ -196,21 +191,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
             "Backup 'Source Folder' always included ~\n\n"
             "And need download standalone...\n\n"
         )
-
-        self.GroupBegin(0, c4d.BFH_SCALEFIT, cols=1, rows=0)
-        
-
-        if sys.version_info >= (3, 0):
-            self.GroupBorderSpace(0, 0, 0, 100) 
-            self.AddStaticText(ID_ABOUT, c4d.BFH_SCALEFIT, name=about_text, borderstyle=0, initw=0, inith=40)
-        else:
-            # Для Python 2 (C4D R20)
-            self.GroupBorderSpace(0, 0, 0, 10) 
-            for line in about_text.split('\n'):
-                # Передаем 0 вместо ID — C4D присвоит уникальный ID автоматически
-                self.AddStaticText(0, c4d.BFH_SCALEFIT, name=line, borderstyle=0, initw=0, inith=0)
-
-
+        self.AddStaticText(ID_ABOUT, c4d.BFH_SCALEFIT, name=about_text, borderstyle=0, initw=0, inith=40)
         self.GroupEnd()
         
         
@@ -244,9 +225,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
         self.GroupBegin(1995, c4d.BFH_SCALEFIT, cols=2, rows=1)
         self.GroupSpace(0, 0)
         self.AddEditText(ID_EXE_DIR, c4d.BFH_SCALEFIT, editflags=1) 
-        
         self.SetString(ID_EXE_DIR, self.U_EXE_PATH if self.U_EXE_PATH else "No .exe selected...")
-
         self.AddButton(ID_DIR_EXE_OPEN, 0, name="...", initw=30)
         self.GroupEnd()
 
@@ -347,7 +326,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
                 self.SetString(ID_EXE_DIR, user_entered_path)
                 print("Exe path updated:", user_entered_path)
             else:
-                c4d.gui.MessageDialog("Only Copy-Paste or click button!")
+                c4d.gui.MessageDialog(f"Only Copy-Paste or click button!")
                 old_path = self.U_EXE_PATH if self.U_EXE_PATH else "Not Corrected Path, Try again..."
                 self.SetString(ID_EXE_DIR, old_path)
 
@@ -390,10 +369,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
 
                 if current_unit == "GB" and self.prev_unit == "MB":
                     new_val = current_val / 1024.0
-
-                    new_text = "%.3f" % new_val
-                    new_text = new_text.rstrip('0').rstrip('.')
-
+                    new_text = f"{new_val:.3f}".rstrip('0').rstrip('.')
                 elif current_unit == "MB" and self.prev_unit == "GB":
                     new_val = int(current_val * 1024)
                     new_text = str(new_val)
@@ -450,7 +426,7 @@ def start_texture_optimization(data):
         return False
 
     if not os.path.isfile(exe_path):
-        c4d.gui.MessageDialog(".exe not found: " + str(exe_path))
+        c4d.gui.MessageDialog(f".exe not found:\n{exe_path}")
         return False
 
     config = {
@@ -461,27 +437,40 @@ def start_texture_optimization(data):
         "input_dir": data["dir"],
     }
 
-    config_json = json.dumps(config, ensure_ascii=False)
-    command = [exe_path, "--mode", "silent", "--config", config_json]
+    config_json = json.dumps(config,ensure_ascii=False)
+
+    command = [exe_path,"--mode","silent","--config",config_json]
 
     try:
-        import sys
-        
-        if sys.version_info >= (3, 0):
-            # Для Python 3: запускаем процесс полностью независимо
-            # Окно плагина C4D не замерзает, консоль живет своей жизнью
-            subprocess.Popen(command, creationflags=subprocess.CREATE_NEW_CONSOLE)
-        else:
-            # Для Python 2 (Cinema 4D R20)
-            # Точно так же отправляем процесс в систему асинхронно
-            subprocess.Popen(command, creationflags=0x00000010)
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace"
+        )
 
-        # Мы больше НЕ вызываем .wait() и НЕ вызываем subprocess.run().
-        # Cinema 4D просто успешно запустила задачу и сразу готова к работе дальше.
+        print("\n--- VRAM Folder Crunch ---")
+        print(result.stdout)
+
+        if result.stderr:
+            print("--- STDERR ---")
+            print(result.stderr)
+
+        if result.returncode != 0:
+            c4d.gui.MessageDialog(
+                f"Optimizer failed.\n\n"
+                f"Exit code: {result.returncode}\n"
+                f"{result.stderr}"
+            )
+            return False
+
         return True
 
     except Exception as e:
-        c4d.gui.MessageDialog("Failed to start optimizer:\n{}".format(e))
+        c4d.gui.MessageDialog(
+            f"Failed to start optimizer:\n{e}"
+        )
         return False
 
 
