@@ -132,7 +132,7 @@ with pipeline to reduce collected texture folder
 
 >Designed as post-action to resolve 'Out of VRAM' <br>
 >errors in GPU render engines<br>
-> * backup "Source Folder" always include \~
+> * backup "Source Folder" always include 
 > * operates via a single-pass in-place resolution downscaling
 
 <div align="right" class="cslink mn">
