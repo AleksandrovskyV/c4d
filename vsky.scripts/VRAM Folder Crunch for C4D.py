@@ -25,7 +25,7 @@ else:
     import urllib2 as urllib_req
 
 # Прокси-файлы Arnold и Redshift (TX / RSTEX)
-# Эти рендеры генерируют зеркальные файлы .rstex или .tx прямо рядом с основными текстурами. Скрипт их пока игнорирует, 
+# Эти рендеры генерируют зеркальные файлы .rstex или .tx прямо рядом с основными текстурами. Скрипт их пока игнорирует,
 # Проблема при запуске рендера Redshift увидит старый, тяжелый .rstex файл и не поймет, что оригинальный JPEG уменьшился.
 
 
@@ -47,7 +47,7 @@ def download_from_web():
 
     download_link = "https://github.com/AleksandrovskyV/vram_crunch/releases/download/e1/VRAM_Folder_Crunch.exe"
     local_file_path = os.path.join(LOCAL_LIBS_DIR, "VRAM Folder Crunch.exe")
-    
+
     dlg.SetString(ID_EXE_DIR, "Downloads...")
 
     try:
@@ -57,7 +57,7 @@ def download_from_web():
             with open(local_file_path, 'wb') as f:
                 f.write(response.read())
         finally:
-            response.close() 
+            response.close()
 
         if os.path.isfile(local_file_path):
             dlg.U_EXE_PATH = local_file_path
@@ -93,7 +93,7 @@ def save_settings_to_json(key, data_value):
     path = get_json_config_path()
     if not path:
         return
-    
+
     current_config = {}
     if os.path.exists(path):
         try:
@@ -115,7 +115,7 @@ def save_settings_to_json(key, data_value):
     try:
         if not os.path.exists(SCRIPT_DIR):
             os.makedirs(SCRIPT_DIR)
-            
+
         with open(path, 'w') as f:
             json.dump(current_config, f, ensure_ascii=False, indent=4)
     except Exception as e:
@@ -164,10 +164,10 @@ class TextureToolDialog(c4d.gui.GeDialog):
     def __init__(self):
         super(TextureToolDialog, self).__init__()
         self.result = {
-            "algo": "VRAM", 
-            "value": 512.0, 
-            "unit": "MB", 
-            "excludes": ('.psd', '.hdr'), 
+            "algo": "VRAM",
+            "value": 512.0,
+            "unit": "MB",
+            "excludes": ('.psd', '.hdr'),
             "dir": None
         }
 
@@ -179,41 +179,36 @@ class TextureToolDialog(c4d.gui.GeDialog):
 
 
         self.SetTitle(TOOL_NAME)
-        
+
         # Главная вертикальная группа на всё окно
         self.GroupBegin(10, c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT, cols=1, rows=0)
-        self.GroupSpace(0, 10) 
+        self.GroupSpace(0, 10)
         self.GroupBorderSpace(14, 14, 14, 14)
 
 
         # Описание
 
         about_text = (
+            "\n"
             "Горит...\n\n"
             "Pipeline to reduce tex folder size under user input values\n"
             "Designed as post-action for collected texture folders to\n"
             "resolve 'Out of VRAM' errors in GPU render engines\n\n"
             "Backup 'Source Folder' always included ~\n\n"
-            "And need download standalone...\n\n"
+            "And need download standalone..."
         )
 
         self.GroupBegin(0, c4d.BFH_SCALEFIT, cols=1, rows=0)
-        
 
-        if sys.version_info >= (3, 0):
-            self.GroupBorderSpace(0, 0, 0, 100) 
-            self.AddStaticText(ID_ABOUT, c4d.BFH_SCALEFIT, name=about_text, borderstyle=0, initw=0, inith=40)
-        else:
-            # Для Python 2 (C4D R20)
-            self.GroupBorderSpace(0, 0, 0, 10) 
-            for line in about_text.split('\n'):
-                # Передаем 0 вместо ID — C4D присвоит уникальный ID автоматически
-                self.AddStaticText(0, c4d.BFH_SCALEFIT, name=line, borderstyle=0, initw=0, inith=0)
-
+        self.GroupSpace(0, 1) # уменьшаем отступы сверху-низу
+        self.GroupBorderSpace(0, 0, 0, 0)
+        for line in about_text.split('\n'):
+            # Передаем 0 вместо ID — C4D присвоит уникальный ID автоматически
+            self.AddStaticText(0, c4d.BFH_SCALEFIT, name=line, borderstyle=0, initw=0, inith=0)
 
         self.GroupEnd()
-        
-        
+
+
 
         self.AddSeparatorH(0, flags=c4d.BFH_SCALEFIT)
 
@@ -228,23 +223,23 @@ class TextureToolDialog(c4d.gui.GeDialog):
         # cols=4, rows=1 — всё верно
         self.GroupBegin(4000, c4d.BFH_SCALEFIT, cols=4, rows=1)
         self.GroupSpace(0, 0)
-        
+
         # 1. Тексту даем флаг BFH_SCALEFIT — он займет все пустое пространство слева
         self.AddStaticText(ID_PIL_TEXT, c4d.BFH_SCALEFIT, name="Folder with standalone", borderstyle=0, initw=0, inith=0)
-        
+
         # 2. Кнопкам даем флаг BFH_LEFT или BFH_FIT и фиксированную ширину, чтобы они не растягивались
         self.AddButton(ID_LINK_DOWN, c4d.BFH_LEFT, name="Download", initw=100)
         self.AddButton(ID_MIRROR, c4d.BFH_LEFT, name="Mirror", initw=100)
         self.AddButton(ID_EXE_OPEN, c4d.BFH_LEFT, name="Open?", initw=100)
-        
+
         self.GroupEnd() # Конец блока кнопок
 
 
 
         self.GroupBegin(1995, c4d.BFH_SCALEFIT, cols=2, rows=1)
         self.GroupSpace(0, 0)
-        self.AddEditText(ID_EXE_DIR, c4d.BFH_SCALEFIT, editflags=1) 
-        
+        self.AddEditText(ID_EXE_DIR, c4d.BFH_SCALEFIT, editflags=1)
+
         self.SetString(ID_EXE_DIR, self.U_EXE_PATH if self.U_EXE_PATH else "No .exe selected...")
 
         self.AddButton(ID_DIR_EXE_OPEN, 0, name="...", initw=30)
@@ -267,7 +262,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
         self.GroupSpace(5, 0)
 
         # Инпут тянется (3), кнопка фиксирована (0)
-        self.AddEditText(ID_TXT_DIR, c4d.BFH_SCALEFIT, editflags=1) 
+        self.AddEditText(ID_TXT_DIR, c4d.BFH_SCALEFIT, editflags=1)
         #current_dir = self.result.get("dir", "")
         self.SetString(ID_TXT_DIR, "No folder selected...")
 
@@ -276,19 +271,19 @@ class TextureToolDialog(c4d.gui.GeDialog):
 
         # --- Блок 2: Целевой размер ---
         self.AddStaticText(ID_LBL_TARGET, c4d.BFH_SCALEFIT, name="Target VRAM size:")
-        
+
         # Строка тянется по ширине (3)
         self.GroupBegin(3000, c4d.BFH_SCALEFIT, cols=3, rows=1)
         self.GroupSpace(5, 0)
         # Инпут тянется (3), комбобоксы фиксированы (0)
         self.AddEditText(ID_EDT_VALUE, c4d.BFH_SCALEFIT)
         self.SetString(ID_EDT_VALUE, "512")
-        
-        
+
+
         self.AddComboBox(ID_CMB_UNIT, 0, initw=55)
         self.AddChild(ID_CMB_UNIT, 0, "MB")
         self.AddChild(ID_CMB_UNIT, 1, "GB")
-        
+
         self.AddComboBox(ID_CMB_ALGO, 0, initw=70)
         self.AddChild(ID_CMB_ALGO, 0, "VRAM")
         self.AddChild(ID_CMB_ALGO, 1, "DRIVE")
@@ -297,12 +292,12 @@ class TextureToolDialog(c4d.gui.GeDialog):
 
         # --- Блок 3: Исключения ---
         self.AddStaticText(ID_LBL_EXCLUDE, c4d.BFH_SCALEFIT, name="Exclude formats:")
-        
+
         # Инпут тянется на всю ширину (3)
         self.AddEditText(ID_EDT_EXCLUDE, c4d.BFH_SCALEFIT)
         self.SetString(ID_EDT_EXCLUDE, "psd hdr")
 
-  
+
 
         self.AddStaticText(445, 0, name="", borderstyle=0, initw=0, inith=0)
 
@@ -310,7 +305,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
 
         self.AddStaticText(446, 0, name="", borderstyle=0, initw=0, inith=0)
 
-        self.GroupEnd() 
+        self.GroupEnd()
         return True
 
     def Command(self, id, msg):
@@ -320,21 +315,21 @@ class TextureToolDialog(c4d.gui.GeDialog):
         elif id == ID_MIRROR:
             c4d.storage.GeExecuteFile("https://github.com/AleksandrovskyV/python")
             return True
-        
+
         elif id==ID_DIR_EXE_OPEN:
 
             filepath = c4d.storage.LoadDialog(
                 type=c4d.FILESELECTTYPE_ANYTHING,
-                title="Select standalone .exe", 
+                title="Select standalone .exe",
                 flags=c4d.FILESELECT_LOAD
             )
 
             if filepath:
                 self.SetString(ID_EXE_DIR, filepath)
                 save_settings_to_json("exe_path", filepath)
-                
+
                 self.U_EXE_PATH = filepath
-            
+
             return True
 
         elif id == ID_EXE_DIR:
@@ -363,10 +358,10 @@ class TextureToolDialog(c4d.gui.GeDialog):
             if folder:
                 self.SetString(ID_TXT_DIR, folder)
                 self.result["dir"] = folder
-            
+
             return True
 
-        
+
         elif id == ID_CMB_ALGO:
             algo_idx = self.GetInt32(ID_CMB_ALGO)
             if algo_idx == 0:
@@ -377,7 +372,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
                 self.result["algo"] = "DRIVE"
             return True
 
-        
+
         elif id == ID_CMB_UNIT:
             try:
                 raw_text = self.GetString(ID_EDT_VALUE).replace(',', '.')
@@ -425,12 +420,12 @@ class TextureToolDialog(c4d.gui.GeDialog):
                     if not ext.startswith('.'):
                         ext = '.' + ext
                     cleaned_excludes.append(ext)
-                
+
                 self.result["excludes"] = tuple(cleaned_excludes)
                 self.is_confirmed = True
 
                 #self.Close() # Сначала закрываем окно
-                start_texture_optimization(self.result) 
+                start_texture_optimization(self.result)
                 return True
 
             except ValueError:
@@ -466,7 +461,7 @@ def start_texture_optimization(data):
 
     try:
         import sys
-        
+
         if sys.version_info >= (3, 0):
             # Для Python 3: запускаем процесс полностью независимо
             # Окно плагина C4D не замерзает, консоль живет своей жизнью
