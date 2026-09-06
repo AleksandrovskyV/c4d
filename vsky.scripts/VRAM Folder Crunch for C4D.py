@@ -215,7 +215,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
         
         
 
-        self.AddSeparatorH(inith=0, flags=c4d.BFH_SCALEFIT)
+        self.AddSeparatorH(0, flags=c4d.BFH_SCALEFIT)
 
         # Строка тянется по ширине (3)
 
@@ -252,7 +252,7 @@ class TextureToolDialog(c4d.gui.GeDialog):
 
         self.AddStaticText(222, 0, name="", borderstyle=0, initw=0, inith=extends)
 
-        self.AddSeparatorH(inith=0, flags=c4d.BFH_SCALEFIT)
+        self.AddSeparatorH(0, flags=c4d.BFH_SCALEFIT)
 
         self.AddStaticText(444, 0, name="", borderstyle=0, initw=0, inith=extends)
 
