@@ -83,6 +83,17 @@ Swap 2 selected texture tags in Object Manager
 
 <br><br>
 
+## 🔹 [SVG from Splines](./vsky.scripts/SVG%20from%20Spline.py)  
+
+<div class="btn-about">
+<img src="./assets/svg/gh_svg_f_splines.svg" width="84" align="left" style="padding-right: 12px;">
+<p style="margin-top: 12px ">
+<strong> Tested:</strong> R23<br>
+Export into friendly vector format, e.g. for AI<br>*Adobe Illustrator...
+</p><br clear="left"></div>
+
+<br><br>
+
 ## 🔹 [Mirror along Edge Loop](./vsky.scripts/Mirror%20along%20Edge%20Loop.py)  
 
 <div class="btn-about">
@@ -120,6 +131,8 @@ Includes a 2D mode for conversion between projections
 
 <br><br>
 
+
+
 ## 🔹 [VRAM Folder Crunch for C4D](./vsky.scripts/VRAM%20Folder%20Crunch%20for%20C4D.py)  
 
 <div class="btn-about">
@@ -143,20 +156,31 @@ with pipeline to reduce collected texture folder
 
 <br><br>
 
-## 🔹 [Print Alembic Paths](./vsky.scripts/_modules/Print%20Alembic%20Path.py)  
+## 🔹 [Checker](./vsky.scripts/Checker.py)  
 
 <div class="btn-about">
+<img src="./assets/svg/gh_Checker.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong> Tested:</strong> R23<br>
-Console print selected Hierarchy.<br>Houdini attribute mode display include...
+<strong> Tested:</strong> R19-26<br>
+A Custom GeDialog with methods & helpers<br>designed for spamming development
 </p><br clear="left"></div>
 
+> Might be moved to a separate module in the future once<br>
+> the code is cleaned up and fully optimized
+
+<div align="right" class="cslink mn">
+
+[touchstone](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/touchstone.c4d?download=) *
+
+</div>
 
 <br><br>
 
-## 🔹 [Connect Objects + Delete + Bake Mats Colors](./vsky.scripts/Connect%20Objects%20%2B%20Delete%20%2B%20Bake%20Mats%20Colors.py)  
+
+## 🔹 [Connect Objects + Delete + Bake Mats Colors](./vsky.scripts/Connect%20Objects%20%2B%20Delete%20%2B%20Bake%20Mats%20Colors.py)
 
 <div class="btn-about">
+<img src="./assets/svg/gh_con_del_b_colors.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Preserve Hierarchy to Single Mesh and<br>
@@ -164,8 +188,6 @@ Bake Luminance and Color Channel to Vertex Color Tags
 </p><br clear="left"></div>
 
 <br><br>
-
-
 
 
 ## 🔹 [Linked Camera](./vsky.scripts/Linked%20Camera.py)  
