@@ -2,20 +2,22 @@
 Print Alembic Paths
 
 Author: Viktor Aleksandrovsky & Google AI
-Written & Tested for Maxon Cinema 4D R23
+Written & Tested for Maxon Cinema 4D R23+
 """
 
-import c4d, sys, os, importlib
-## подьем на один уровень выше, чтобы импортировать модули
+import c4d, sys, os, importlib, tempfile
+
+## подьем на один уровень выше, чтобы импортировать внешние модули
 p = os.path.dirname(__file__); sys.path.append(os.path.dirname(p)) if p not in sys.path else None
 try: import _modules.dialogs; importlib.reload(_modules.dialogs); from _modules.dialogs import ConsolePrinter
 except: print("[!]ConsolePrinter NotFound"); ConsolePrinter = type('ConsolePrinter', (), {'__init__': lambda *a,**k: None, '__getattr__': lambda *a,**k: lambda *a,**k: None})
 
-import tempfile
-HOUDINI_PATH = True
-MESH_ONLY = False
 
-def main():
+def print_abc_hierarchy():
+
+    houdini_path = True
+    mesh_only = False
+
     #printer = ConsolePrinter()
 
     active_obj = doc.GetActiveObject()
@@ -56,9 +58,9 @@ def main():
             is_mesh = not obj.GetDown()
 
             if is_mesh:
-                final_path = f"{node_path}/{name}Shape" if HOUDINI_PATH else node_path
+                final_path = f"{node_path}/{name}Shape" if houdini_path else node_path
                 print(f"{final_path}")
-            elif not MESH_ONLY:
+            elif not mesh_only:
                 print(f"{node_path}")
 
             if obj.GetDown():
@@ -79,7 +81,7 @@ def main():
             f" running sequentially one after another\n\n"
             f" Displays below hierarchy based !only! on the current tempfile\n"
             f" snapshot from this doc\n\n"
-            f" Houdini Path View: {HOUDINI_PATH}  | Mesh Only Mode: {MESH_ONLY}\n\n"
+            f" Houdini Path View: {houdini_path}  | Mesh Only Mode: {mesh_only}\n\n"
             f"=========================================\n"
         )
 
@@ -107,4 +109,4 @@ def main():
         )
 
 if __name__ == '__main__':
-    main()
+    print_abc_hierarchy()
