@@ -83,14 +83,17 @@ Swap 2 selected texture tags in Object Manager
 
 <br><br>
 
-## 🔹 [SVG from Splines](./vsky.scripts/SVG%20from%20Spline.py)  
+## 🔹 [SVG from Splines](./vsky.scripts/SVG%20from%20Splines.py)  
 
 <div class="btn-about">
 <img src="./assets/svg/gh_svg_f_splines.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
-<strong> Tested:</strong> R23<br>
+<strong> Tested:</strong> R19-26<br>
 Export into friendly vector format, e.g. for AI<br>*Adobe Illustrator...
 </p><br clear="left"></div>
+
+> * Support front view camera (no distort)<br>
+> * Soon updated...
 
 <br><br>
 
