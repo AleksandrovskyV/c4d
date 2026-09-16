@@ -93,7 +93,7 @@ Export into friendly vector format, e.g. for AI<br>*Adobe Illustrator...
 </p><br clear="left"></div>
 
 > * Support front view camera / no distort<br>
-> * Soon updated...
+> * Soon updated... check it on [touchstone](https://raw.githubusercontent.com/AleksandrovskyV/c4d/main/vsky.projects/touchstone.c4d?download=)
 
 <br><br>
 
