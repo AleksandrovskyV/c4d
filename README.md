@@ -92,7 +92,7 @@ Swap 2 selected texture tags in Object Manager
 Export into friendly vector format, e.g. for AI<br>*Adobe Illustrator...
 </p><br clear="left"></div>
 
-> * Support front view camera (no distort)<br>
+> * Support front view camera / no distort<br>
 > * Soon updated...
 
 <br><br>
@@ -165,7 +165,7 @@ with pipeline to reduce collected texture folder
 <img src="./assets/svg/gh_Checker.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R19-26<br>
-A Custom GeDialog with methods & helpers<br>designed for spamming development
+A Custom GeDialog with methods & helpers designed<br>for spamming development
 </p><br clear="left"></div>
 
 > Might be moved to a separate module in the future once<br>
