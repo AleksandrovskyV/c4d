@@ -792,8 +792,8 @@ def walk_selected_hierarchy(selected_objects):
 
 def get_clean_splines():
     """
-    Собирает уникальные сплайны. 
-    Идеально конвертирует параметрические сплайны (Circle, Text) в памяти во всех версиях C4D.
+    get unuq splines
+    Convert param circle or Text in memory C4D.
     """
     doc = c4d.documents.GetActiveDocument()
     selected = doc.GetActiveObjects(0)
@@ -877,7 +877,6 @@ def main():
     filename = clean_name + ".svg"
     filepath = os.path.join(target_dir, filename)
 
-    # Если файл уже существует
     if os.path.isfile(filepath):
         import re
         match = re.search(r'([_\-\s])?(\d+)$', clean_name)
@@ -888,7 +887,6 @@ def main():
             name_prefix = clean_name[:match.start()]
             
             while True:
-                # ЧИСТЫЙ, ПЛОТНЫЙ СТИЛЬ: Работает везде, не вызывая SyntaxError!
                 filename = "{}{}{}.svg".format(name_prefix, separator, num)
                 if not os.path.isfile(os.path.join(target_dir, filename)):
                     break
@@ -896,7 +894,6 @@ def main():
         else:
             counter = 1
             while True:
-                # ЧИСТЫЙ, ПЛОТНЫЙ СТИЛЬ: Метод .format() сам переведет int в строку!
                 filename = "{}_{}.svg".format(clean_name, counter)
                 if not os.path.isfile(os.path.join(target_dir, filename)):
                     break
