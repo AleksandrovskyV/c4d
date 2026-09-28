@@ -26,6 +26,9 @@ print("is", IS_PY3)
 # 3 SPLINETYPE_BSPLINE -B-Spline
 # 4 SPLINETYPE_BEZIER  -Bezier
 
+TOTAL_STROKE_WIDTH = 1.0
+EXPAND_VALUE = 20 #px
+
 
 def safe_open_json(path, mode='r'):
     #cyrillic safe and python 2\3
@@ -436,12 +439,34 @@ def svg_from_spline(splines):
         if point_count == 0:
             continue
             
+        hex_color = '#b0b0b0'
+        obj_spline_closed = False
+
         try:
             spline_type = op.GetInterpolationType()
+            print("[DEBUG][GetInterpolationType] SPLINE_TYPE:",spline_type)
+
         except AttributeError:
             spline_type = op[c4d.SPLINEOBJECT_TYPE]
+            print("[DEBUG][SPLINEOBJECT_TYPE] SPLINE_TYPE:",spline_type)
         
-        print("[DEBUG] SPLINE_TYPE:",spline_type)
+        try:
+            spline_color = op[c4d.ID_BASEOBJECT_COLOR]
+            if spline_color:
+                hex_color = '#{:02x}{:02x}{:02x}'.format(
+                    int(spline_color.x * 255), 
+                    int(spline_color.y * 255),
+                    int(spline_color.z * 255)
+                )
+        except AttributeError:
+            print("[DEBUG][ERROR_HEX]")
+
+        try:
+            obj_spline_closed = op[c4d.SPLINEOBJECT_CLOSED]
+            print("[DEBUG][SPLINE CLOSE]",obj_spline_closed)
+        except AttributeError:
+            print("[DEBUG][ERROR CLOSE FLAG]")
+
 
         segment_count = op.GetSegmentCount()
         segments = []
@@ -707,7 +732,24 @@ def svg_from_spline(splines):
         
         # Create <path> tag
         #path_tag = f'  <path id="{obj_name}" d="{single_d_path.strip()}" fill="#b0b0b0" fill-rule="evenodd" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
-        path_tag = '  <path id="{}" d="{}" fill="#b0b0b0" fill-rule="evenodd" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'.format(obj_name, single_d_path.strip())
+        #path_tag = '  <path id="{}" d="{}" fill="#b0b0b0" fill-rule="evenodd" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'.format(obj_name, single_d_path.strip())
+        pre_d = single_d_path.strip()
+        
+        if obj_spline_closed:
+            path_tag = ' <path id="{}" ' \
+                       'd="{}" ' \
+                       'fill="{}" ' \
+                       'fill-rule="evenodd" ' \
+                       '/>'.format(obj_name, pre_d, hex_color)
+        else:
+            path_tag = ' <path id="{}" ' \
+                       'd="{}" ' \
+                       'fill="none" ' \
+                       'stroke="{}" ' \
+                       'stroke-width="{}" ' \
+                       'stroke-linecap="round" ' \
+                       'stroke-linejoin="round" ' \
+                       '/>'.format(obj_name, pre_d, hex_color, TOTAL_STROKE_WIDTH)
 
         svg_paths_list.append(path_tag)
 
@@ -726,10 +768,10 @@ def svg_from_spline(splines):
         svg_width = width 
         svg_height = height 
     else:
-        svg_min_x = min_x - 10
-        svg_min_y = -max_y - 10
-        svg_width = (max_x - min_x) + 20
-        svg_height = (max_y - min_y) + 20
+        svg_min_x = min_x - (EXPAND_VALUE/2)
+        svg_min_y = -max_y - (EXPAND_VALUE/2)
+        svg_width = (max_x - min_x) + EXPAND_VALUE
+        svg_height = (max_y - min_y) + EXPAND_VALUE
 
     
     # 5. create svg
