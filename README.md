@@ -119,7 +119,7 @@ Copies mesh point coordinates from one side to another.<br>The edge/seam loop se
 ## 🔹 [Origins to AE](./vsky.scripts/Origins%20to%20AE.py)  
 
 <div class="btn-about">
-<img src="./assets/svg/gh_OriginsToAe.svg" width="84" align="left" style="padding-right: 12px;">
+<img src="./assets/svg/gh_OriginsToAE.svg" width="84" align="left" style="padding-right: 12px;">
 <p style="margin-top: 12px ">
 <strong> Tested:</strong> R23<br>
 Export selected as 2D layers<br>
