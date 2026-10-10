@@ -126,8 +126,8 @@ Export selected as 2D layers<br>
 to After Effects in .jsx script file
 </p><br clear="left"></div>
 
->Despite the "External Compositing Tag" with the excellent expression by [Dan Ebberts](https://www.motionscript.com/mastering-expressions/lst-lens-flare.html)...
->This script was created to save my time when adding text elements to scenes
+>Despite the "External Compositing Tag" with the excellent expression by [Dan Ebberts](https://www.motionscript.com/mastering-expressions/lst-lens-flare.html)...\
+>This script was created to save my time when adding text elements to scenes\
 
 <br><br>
 
