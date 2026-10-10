@@ -116,6 +116,19 @@ Copies mesh point coordinates from one side to another.<br>The edge/seam loop se
 
 </div>
 
+## 🔹 [Origins to AE](./vsky.scripts/Origins%20to%20AE.py)  
+
+<div class="btn-about">
+<img src="./assets/svg/gh_OriginsToAe.svg" width="84" align="left" style="padding-right: 12px;">
+<p style="margin-top: 12px ">
+<strong> Tested:</strong> R23<br>
+Export selected as 2D layers<br>
+to After Effects in .jsx script file
+</p><br clear="left"></div>
+
+>Despite the "External Compositing Tag" with the excellent expression by [Dan Ebberts](https://www.motionscript.com/mastering-expressions/lst-lens-flare.html)...
+>This script was created to save my time when adding text elements to scenes
+
 <br><br>
 
 ## 🔹 [Globe Deformer](https://github.com/AleksandrovskyV/c4d/releases/download/v1.01/GlobeDeformer.zip)  
